@@ -1,0 +1,3507 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\date{}
+
+\begin{document}
+
+MICRO-WATT ENERGY HARVESTING BY EXPLOITING STREAMWISE VORTEX INDUCED
+VIBRATION IN WATER FLOWS
+
+AHMAD ADZLAN FADZLI bIN kHAIRI
+
+A dissertation submitted in partial fulfilment
+
+Of the requirements for the degree of
+
+Doctor of Philosophy
+
+Malaysia-Japan International Institute of Technology
+
+Universiti Teknologi Malaysia
+
+MAY 2020
+
+I hereby submit this thesis entitled ``Micro-watt energy harvesting by
+exploiting streamwise vortex-induced vibration in water flows'' is the
+product of my own work except for writings and summaries for which their
+sources I have made evident.
+
+Signature : ....................................................
+
+Author : AHMAD ADZLAN FADZLI BIN KHAIRI
+
+Date :
+
+\emph{``My dearest wife, children, Dr. Mohamed Sukri and friends at the
+WEE iKohza''}
+
+This is for all of you.
+
+\protect\hypertarget{_Toc41048784}{}{}ACKNOWLEDGEMENTS
+
+I would like to first express my highest sense of gratitude to my
+supervisor Dr. Mohamed Sukri Mat Ali. His knowledge and proficiency in
+computational fluid dynamics have made my entry into this field of study
+a little bit more bearable and has since been an excellent tool in
+making novel discoveries and conclusions. His open stance in receiving
+ideas and suggestions to strengthen the foundations of this research has
+been fundamental to the preservation of the originality and timeliness
+of this work. I have learned a lot from him about the value of logical
+continuity and how to achieve it throughout the course of completing
+this work. The relentless effort for logical continuity throughout the
+thesis has been, in my opinion, crucial towards a manuscript that not
+only is easily accessible but helps target audiences to build upon this
+work in the future, hence advancing the field as a whole.
+
+As for my beloved family, especially my wife and two babies, I really
+cannot think of any way to repay your hardships and understanding
+throughout the years of my study. Even a lifetime of unconditional love
+and devotion towards all of you squares only but a small fraction of
+what you have given up making my studies a reality. To that end I can
+only trust the Most Merciful to fully even the debt and make all of you
+among those who are most beloved by the Most Gracious. I pray to the
+Almighty to accept the fruit of our jihad in finding knowledge and may
+all the trials and tribulations we have encountered together,
+physically, psychologically and financially, will stand witness in the
+hereafter that we have answered His call towards submission, and His
+call towards success. Aamin ya Rabbal `alamin.
+
+\protect\hypertarget{_Toc328857619}{}{\protect\hypertarget{_Toc328858959}{}{\protect\hypertarget{_Toc328859064}{}{\protect\hypertarget{_Toc344911337}{}{}}}}
+
+\protect\hypertarget{_Toc461032217}{}{\protect\hypertarget{_Toc461032367}{}{\protect\hypertarget{_Toc461035508}{}{\protect\hypertarget{_Toc461036251}{}{\protect\hypertarget{_Toc461036427}{}{\protect\hypertarget{_Toc461037231}{}{\protect\hypertarget{_Toc461037414}{}{\protect\hypertarget{_Toc483907979}{}{\protect\hypertarget{_Toc41048785}{}{}}}}}}}}}ABSTRACT
+
+Drainage monitoring for flood early warning systems and small cells used
+by 5G networks are examples of widely distributed low-electronic
+devices. To become fully independent of the national grid, these devices
+must 1) harness power from a renewable source, 2) produce only the
+required amount of power for safe operation, and 3) is easily scalable.
+Koide et al. demonstrated one method to achieve the first two
+requirements. The type of vortex that triggers the vibration of the
+cylinder in their work is not the Karman vortices usually shed from
+isolated cylinders, but rather a pair of streamwise vortices shed
+alternately from the top and bottom of the cylinder. However, while
+energy harvesters of the Karman vortex type can be scaled at a fixed
+flow velocity by placing several additional cylinders downstream the
+leading cylinder, a simple method to increase the power harnessed at a
+fixed flow velocity for the streamwise vortex type remains an open
+question. Since the streamwise vortices form at the juncture between the
+cylinder, we hypothesise that more of them can be triggered by placing
+additional interfering plates downstream the cylinder to gain more lift,
+and hence, power from the flow. To test this hypothesis, we conduct an
+experimental investigation of a two-plate setup and vary its spacing
+from each other. We aim to elucidate new cylinder response regimes,
+identify optimal power regions from a power - plate spacing - flow
+velocity map, and propose an explanation regarding the observed regimes
+from the perspective of vortex shedding and lift - cylinder displacement
+phase difference. The result of this study is an improved guideline for
+the design of an easily scalable streamwise vortex type energy harvester
+that produces power within the optimal operating range of the device.
+
+\protect\hypertarget{_Toc41048786}{}{}TABLE OF CONTENTS
+
+\textbf{CHAPTER ITEM PAGE}
+
+DECLARATION ii
+
+DEDICATION iii
+
+\protect\hyperlink{_Toc41048784}{ACKNOWLEDGEMENTS iv}
+
+\protect\hyperlink{_Toc41048785}{ABSTRACT v}
+
+\protect\hyperlink{_Toc41048786}{TABLE OF CONTENTS vi}
+
+\protect\hyperlink{_Toc41048787}{LIST OF TABLES ix}
+
+\protect\hyperlink{_Toc41048788}{LIST OF FIGURES x}
+
+\protect\hyperlink{_Toc41048789}{LIST OF ABBREVIATIONS xv}
+
+\protect\hyperlink{_Toc41048790}{LIST OF SYMBOLS xvi}
+
+\protect\hyperlink{_Toc41048791}{CHAPTER 1 1}
+
+\protect\hyperlink{introduction}{1.1 Introduction 1}
+
+\protect\hyperlink{background}{1.2 Background 2}
+
+\protect\hyperlink{problem-statement}{1.3 Problem Statement 5}
+
+\protect\hyperlink{research-objectives}{1.4 Research Objectives 6}
+
+\protect\hyperlink{research-questions}{1.5 Research Questions 7}
+
+\protect\hyperlink{significance-of-study}{1.6 Significance of Study 8}
+
+\protect\hyperlink{_Toc41048798}{CHAPTER 2 10}
+
+\protect\hyperlink{_Toc41048799}{2.1 Karman vortex-induced vibration
+(KVIV) energy harvester 10}
+
+\protect\hyperlink{_Toc41048800}{2.2 Streamwise vortex-induced vibration
+(SVIV) energy harvester 12}
+
+\protect\hyperlink{_Toc41048801}{2.3 Sensors for River/Drainage
+Monitoring 17}
+
+\protect\hyperlink{strip-plate-at-an-angle-as-the-modified-cruciform-configuration}{2.4
+Strip-plate at an Angle as the Modified Cruciform Configuration 19}
+
+\protect\hyperlink{_Toc41048803}{CHAPTER 3 21}
+
+\protect\hyperlink{problem-geometry}{3.1 Problem Geometry 21}
+
+\protect\hyperlink{numerical-method}{3.2 Numerical Method 23}
+
+\protect\hyperlink{dynamic-mesh-motion}{3.3 Dynamic Mesh Motion 26}
+
+\protect\hyperlink{_Toc41048807}{3.4 Experimental Validation of
+Benchmark Case 27}
+
+\protect\hyperlink{grid-independency-study}{3.5 Grid Independency Study
+31}
+
+\protect\hyperlink{_Toc41048809}{CHAPTER 4 38}
+
+\protect\hyperlink{_Toc41048810}{4.1 Amplitude Response 38}
+
+\protect\hyperlink{frequency-response}{4.2 Frequency Response 42}
+
+\protect\hyperlink{ensemble-empirical-mode-decomposition-eemd-and-hilbert-transform}{4.3
+Ensemble Empirical Mode Decomposition (EEMD) and Hilbert Transform 43}
+
+\protect\hyperlink{phase-lag-in-the-kviv-regime-mathbfumathbfmathbf-14}{4.4
+Phase lag in the KVIV regime () 44}
+
+\protect\hyperlink{_Toc41048814}{4.5 Transition to SVIV () 49}
+
+\protect\hyperlink{the-sviv-regime-mathbfumathbfmathbf-20}{4.6 The SVIV
+Regime, 55}
+
+\protect\hyperlink{mathematical-model-for-power-estimation}{4.7
+Mathematical Model for Power Estimation 58}
+
+\protect\hyperlink{section-4}{CHAPTER 5 65}
+
+\protect\hyperlink{the-amplitude-frequency-response}{5.1 The
+amplitude-frequency response 66}
+
+\protect\hyperlink{the-main-components-of-lift-driving-cylinder-vibration}{5.2
+The main components of lift driving cylinder vibration 69}
+
+\protect\hyperlink{estimated-power-map-in-mathbfalphamathbfumathbf-space-and-its-interpretation}{5.3
+Estimated power map in -- space and its interpretation 71}
+
+\protect\hyperlink{section-5}{CHAPTER 6 72}
+
+\protect\hyperlink{conclusions}{6.1 Conclusions 72}
+
+\protect\hyperlink{_Toc41048823}{REFERENCES 74}
+
+\protect\hypertarget{_Toc41048787}{}{}LIST OF TABLES
+
+\textbf{TABLE TITLE PAGE}
+
+\protect\hyperlink{_Toc40994423}{Table 1: Sample power inputs for flow
+velocity and water level monitoring equipment. 18}
+
+\protect\hyperlink{_Toc12528554}{Table 1: Sample power inputs for flow
+velocity and water level monitoring equipment. 18}
+
+\protect\hypertarget{_Toc41048788}{}{}LIST OF FIGURES
+
+\textbf{FIGURE TITLE PAGE}
+
+Figure 1: Number of publications with keywords {[}"vortex induced
+vibration" energy{]}. Retrieved from SCOPUS. 3
+
+Figure 2: Apparent power \(\text{Pa}\) (W) versus reduced velocity
+\(U*\) for cases of KVIV and TVIV. Adapted from (Koide \emph{et al.},
+2013). 4
+
+Figure 3: A schematic view of the periodic shedding of streamwise
+trailing vortex pair that induces vibration in SVIV. The sketches are
+not drawn to scale. 14
+
+Figure 4: The domain size, not according to scale, used in this study.
+This domain setup has been shown to successfully yield realistic results
+from similar simulations found in (Maruai \emph{et al.}, 2017; Maruai
+\emph{et al.}, 2018). 23
+
+Figure 5: Schematic of the experimental setup. (a) presents a three
+dimensional schematic of the experimental rig while (b) shows an
+enlarged schematic of the damping system. 28
+
+Figure 6: Schematic and key dimensions from our experimental setup. The
+acoustic Doppler velocimeter (ADV) was placed at the same location where
+the cylinder is located during experimental runs. 29
+
+Figure 7: A sample of the time history for cylinder displacement from a
+test run of our experimental setup. The value of \(U* = 22.7\). 31
+
+Figure 8: Three meshes used in the grid convergence study. (a), (b) and
+(c) show the coarse, medium and fine meshes viewed perpendicular to
+three main viewing positions: from the inlet, the top and the front,
+which is looking directly at the cylinder end. 33
+
+Figure 9: The convergence diagram for \(yRMS*\). (a) shows how \(yRMS*\)
+converges close to the Richardson extrapolation value while (b) shows
+how the error (difference between the value obtained from a particular
+mesh and the Richardson extrapolation) decreases with decreasing grid
+spacing. 35
+
+Figure 10: The convergence diagram for \(f*\). (a) shows how \(f*\)
+converges close to the Richardson extrapolation value while (b) shows
+how the error (difference between the value obtained from a particular
+mesh and the Richardson extrapolation) decreases with decreasing grid
+spacing. 36
+
+Figure 11: The convergence diagram for \(\text{ClRMS}\). (a) shows how
+\(\text{ClRMS}\) converges close to the Richardson extrapolation value
+while (b) shows how the error (difference between the value obtained
+from a particular mesh and the Richardson extrapolation) decreases with
+decreasing grid spacing. 37
+
+Figure 12: The amplitude and frequency response of our cruciform system,
+in lieu of results from (Nguyen \emph{et al.}, 2012; Koide \emph{et
+al.}, 2013). (a) shows the amplitude response using \(yRMS*\), (b) the
+frequency response using \(f*\) and (c) also the frequency response, but
+using the Strouhal number for vibration St. 39
+
+Figure 13: The time series of cylinder displacement between
+\(18 < U* < 30\). (a) groups the cylinder displacement signal between
+\(18 < U* < 23\), where there seems to be an increase in intermittency
+in the displacement signal, while (b) groups the cylinder displacement
+signal between \(25 \leq U* < 30\), where the intermittency in the
+displacement signal vanishes. 41
+
+Figure 14: Temporal analysis of the lift coefficient and normalised
+cylinder displacement signal at \(U* = 4.5\). We show the lift
+coefficient and normalised cylinder displacement signal side by side in
+(a), present the temporal evolution of the phase lag \(\phi\) of Cl in
+(b) and show the temporal evolution of the instantaneous frequency of
+the lift coefficient signal in (c). The blue line in (a) represents the
+lift coefficient signal, while the black line represents the normalised
+cylinder displacement. 45
+
+Figure 15: Temporal analysis of the lift coefficient and normalised
+cylinder displacement signal at \(U* = 6.8\). We show the lift
+coefficient and normalised cylinder displacement signal side by side in
+Fig. (a), present the temporal evolution of the phase lag \(\phi\) of Cl
+in (b) and show the temporal evolution of the instantaneous frequency of
+the lift coefficient signal in (c). The blue line in (a) represents the
+lift coefficient signal, while the black line represents the normalised
+cylinder displacement. 46
+
+Figure 16: Temporal analysis of the lift coefficient and normalised
+cylinder displacement signal at \(U* = 13.6\). We show the lift
+coefficient and normalised cylinder displacement signal side by side in
+(a), present the temporal evolution of the phase lag \(\phi\) of Cl in
+(b) and show the temporal evolution of the instantaneous frequency of
+the lift coefficient signal in (c). The blue line in (a) represents the
+lift coefficient signal, while the black line represents the normalised
+cylinder displacement. 48
+
+Figure 17: Temporal evolution of \(y*\) and Cl at \(U* = 15.9\). (b)
+shows an enlarged view of (a). We can barely spot semblance of two
+signals with different amplitudes superimposed in the Cl signal in (b).
+50
+
+Figure 18: Temporal analysis of the lift coefficient component that has
+the highest correlation to the original (normalised) cylinder
+displacement signal, \(CCl,\ y*\), and the normalised cylinder
+displacement signal at \(U* = 15.9\). The component was obtained by
+decomposing the lift coefficient signal using EEMD. We show \(CCl,y*\)
+and \(y*\) signal side by side in (a), present the temporal evolution of
+the phase lag \(\phi\) of \(CCl,y*\) in (b) and show the temporal
+evolution of the instantaneous frequency of the \(CCl,y*\) in (c). The
+blue line in (a) represents the lift coefficient component signal, while
+the black line represents the normalised cylinder displacement. 51
+
+Figure 19: Temporal analysis of the lift coefficient component that has
+the highest correlation to the original (normalised) cylinder
+displacement signal, \(CCl,\ y*\), and the normalised cylinder
+displacement signal at \(U* = 18.2\). The component was obtained by
+decomposing the lift coefficient signal using EEMD. We show \(CCl,y*\)
+and \(y*\) signal side by side in (a), present the temporal evolution of
+the phase lag \(\phi\) of \(CCl,y*\) in (b) and show the temporal
+evolution of the instantaneous frequency of the \(CCl,y*\) in (c). The
+blue line in (a) represents the lift coefficient component signal, while
+the black line represents the normalised cylinder displacement. 54
+
+Figure 20: The instantaneous phase lag \(\phi\) of the dominant
+component of the normalised cylinder displacement signal (\(y*\))
+against \(CCl,y*\) in the range \(20 < U* < 30\). See Figure 19 for the
+definition of \(CCl,y*\). 56
+
+Figure 21: Vibration regimes identified during analysis of \(\phi\). To
+capture the evolution of \(\phi\) with respect to \(U*\), a
+representative value for \(\phi\) at each \(U*\) must be selected. We
+chose to use the mean \(\phi\) as the representative value. 57
+
+Figure 22: The evolution of \(yRMS*\) with respect to \(U*\) and plate
+tilt angle. 66
+
+Figure 23: The evolution of \(FL,RMS\) with respect to \(U*\) and plate
+tilt angle. 66
+
+Figure 24: Sketches of the vortical structure in the moderate to high
+\(U*\) region (\(11 < U* < 30\)). The sketches are made based on the
+flow visualisation at maximum lift in a vibration cycle. This definition
+is visualised in the lift/displacement versus time sketch at the top
+left of the figure. The crucifix system is visualised from downstream.
+The vortical structures at \(\theta plate = 0\ rad\) and
+\(\theta plate = \pi 8\ rad\) are not streamwise vortex in the usual
+sense as observed in \(\theta plate = \pi\ 2rad\). Rather, they are the
+streamwise undulation of Karman vortices. The vortical structures
+driving the vibrations at \(\theta plate = 0\ rad\) and
+\(\theta plate = \pi 8\ rad\) are Karman vortices with streamwise
+undulations. 67
+
+Figure 25: Sketches of the vortical structure in the low \(U*\) region
+(\(2 < U* < 10\)). The sketches are made based on the flow visualisation
+at maximum lift in a vibration cycle. This definition is visualised in
+the lift/displacement versus time sketch at the top left of the figure.
+The crucifix system is visualised from downstream. The vortical
+structures summarised are not streamwise vortex in the usual sense as
+observed when \(\theta plate = \pi\ 2rad\) at moderate to high \(U*\).
+Rather, they are the streamwise undulation of Karman vortices. The
+vortical structures driving the vibrations (or lack thereof) in the low
+\(U*\) region are Karman vortices with streamwise undulations. 68
+
+Figure 26: Evolution of the lift force with varying \(U*\). The results
+are summarised for every tilt angle of the strip plate. The horizontal
+axis denotes reduced velocity while the vertical axis denotes the
+root-mean-square of the IMF component of lift that is most correlated to
+the dominant IMF component of \(y*\) (blue point) and the IMF component
+of lift with the highest root-mean-square amplitude (grey point). 69
+
+Figure 27: Evolution of the lift force with varying \(U*\). Like Figure
+33, but with enlarged vertical axes to ease comparison between tilt
+angles. Refer to Figure 33 for caption. 70
+
+Figure 28: The ratio of the root-mean-square amplitude of the IMF
+component of lift most correlated to the \(y*\) signal, to the sum
+between the root-mean-square amplitude of the IMF component of lift most
+correlated to the \(y*\) signal and the IMF component of lift with
+maximum root-mean-square amplitude. 70
+
+Figure 29: The estimated apparent power computed using the following
+formula, \(Pa = 8\pi 3meff.\zeta tot.Afosc2fn,water\), based on the
+power estimation formula for mechanical power described in (Sun \emph{et
+al.}, 2015). 71
+
+\protect\hypertarget{_Toc41048789}{}{}LIST OF ABBREVIATIONS
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+VIV & - & \begin{quote}
+Vortex-induced vibration
+\end{quote}\tabularnewline
+\midrule
+\endhead
+KVIV & - & \begin{quote}
+Karman vortex-induced vibration
+\end{quote}\tabularnewline
+SVIV & - & \begin{quote}
+Streamwise vortex-induced vibration
+\end{quote}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\protect\hypertarget{_Toc41048790}{}{}LIST OF SYMBOLS
+
+\section{\texorpdfstring{\protect\hypertarget{_Toc461037239}{}{\protect\hypertarget{_Toc461037422}{}{\protect\hypertarget{_Toc41048791}{}{}}}}{}}\label{section}
+
+\textbf{INTRODUCTION}
+
+\hypertarget{introduction}{\subsection{Introduction}\label{introduction}}
+
+Vortex-induced vibration (VIV) is a type of vibration that grows from
+instabilities in fluid flows moving past a solid object, i.e. bluff
+body. When the flow exceeds a critical velocity, the flow develops
+vortices that are shed alternately downstream the bluff body. This
+triggers the onset of unsteady lift and drag forces that initiate and
+sustain its vibration (Nakamura \emph{et al.}, 2013). Numerous
+occurrences of VIV are readily observable in the field of engineering.
+In the ocean, marine currents give rise to the vibration of risers and
+offshore drilling platforms (Quen \emph{et al.}, 2014; Vandiver \emph{et
+al.}, 2009; Xu \emph{et al.}, 2009). Up in the sky, aeroplane wings
+vibrate, and high-rise buildings experience sway as strong gusts blow
+around the mighty structures (Tanaka \emph{et al.}, 2012; Kim and You,
+2002). Closer to the ground, power transmission lines vibrate as the
+result of wind blowing over them (Barry \emph{et al.}, 2010; Diana
+\emph{et al.}, 2003).
+
+The common denominator for all these examples is the potential damage to
+the engineering construct experiencing it. Thus, methods are devised and
+implemented to mitigate the effects of the vibrations by dissipating the
+vibrational energy or delaying/aborting its onset in the first place.
+
+However, the past decade has seen efforts to do exactly the opposite:
+purposely maximising the vibration induced by the vortices, with the aim
+to generate electrical power. The simplicity of design and scalability
+attracts many to contribute to this multidisciplinary field of study,
+along with the prospect of successful development and subsequent
+commercialization of a new generation of energy harvester.
+
+\hypertarget{background}{\subsection{Background}\label{background}}
+
+The term ``flow-induced vibration'' refers to a wide range of phenomena:
+flutter (Xia, S. S. Michelin, \emph{et al.}, 2015; Doare and Michelin,
+2011; Pineirua \emph{et al.}, 2015; Xia, S. Michelin, \emph{et al.},
+2015), galloping (Kluger \emph{et al.}, 2013; Barrero-Gil \emph{et al.},
+2010; Luo \emph{et al.}, 2003; Chen \emph{et al.}, 2012),
+turbulence-induced vibration (Nakamura \emph{et al.}, 2013),
+wake-induced vibration (Ogink and Metrikine, 2010; Bearman, 2011; Assi
+\emph{et al.}, 2013; Derakhshandeh \emph{et al.}, 2014), and VIV of
+various kinds, which are the main object of study in this proposal. The
+study of VIV is traditionally motivated by the potential failure of
+engineering structures resulting from the fluid moving around them
+(Larsen and Halse, 1997; Khalak and Williamson, 1999; Shiraishi \emph{et
+al.}, 1988; Nakashima, 1986). Nevertheless, technical publications since
+the 2000s saw a surge in contributions toward the subject from the
+perspective of energy harvesting. A simple search in SCOPUS shown in
+Figure 1 reveals this trend for keywords {[}``vortex induced vibration''
+energy{]} for the last 4 decades.
+
+At the cutting edge of this field of research is a group at The
+University of Michigan, that has already built prototypes of the energy
+harvester, named VIVACE (Norman, 2012). They compared the cost of power
+production in \(\$/kW \cdot h\) between VIVACE and a wide selection of
+common (pulverised coal, integrated gasification combined cycle, natural
+gas combined cycle, etc.) and new power generation technologies
+(anaerobic digester, landfill gas, solar, etc.). The result of this
+comparison demonstrated how VIVACE is on par in terms of power
+production cost with most of the technologies it was contrasted to (M.
+M. M. Bernitsas \emph{et al.}, 2008).
+
+\protect\hypertarget{_Toc520544808}{}{}\includegraphics[width=4.09547in,height=2.75591in]{media/image1.wmf}
+
+\protect\hypertarget{_Ref520282982}{}{\protect\hypertarget{_Toc520544685}{}{\protect\hypertarget{_Toc41048824}{}{}}}Figure
+1: Number of publications with keywords {[}"vortex induced vibration"
+energy{]}. Retrieved from SCOPUS.
+
+The VIV phenomenon utilised by the team at the University of Michigan is
+of the Karman VIV type (KVIV), capable of producing power in the order
+of MW when installed as a large-scale energy farm (Raghavan, 2007).
+However, as pointed out by Koide et al. (Koide \emph{et al.}, 2013) the
+reduced velocity (\(U^{*}\)) range within which KVIV can be relied upon
+for power generation is about one order of magnitude smaller than what
+can be expected from another form of VIV namely the streamwise VIV
+(SVIV). Reduced velocity \(U^{*}\) is a nondimensional form of
+characteristic velocity that allows comparison of results between
+similar systems of differing dimensions. Since SVIV power generation is
+possible for a large range of \(U^{*}\), it is better suited for
+deployment in flows with large velocity changes.
+
+\protect\hypertarget{_Toc520544809}{}{}\includegraphics[width=1.60458in,height=0.47244in]{media/image2.wmf}\includegraphics[width=4.34099in,height=2.83465in]{media/image2.wmf}
+
+\protect\hypertarget{_Toc520544686}{}{\protect\hypertarget{_Toc41048825}{}{}}Figure
+2: Apparent power \(\mathbf{P}_{\mathbf{a}}\) (W) versus reduced
+velocity \(\mathbf{U}^{*}\) for cases of KVIV and TVIV. Adapted from
+(Koide \emph{et al.}, 2013).
+
+Despite this, the main shortcoming of SVIV is its maximum power output
+which is demonstrated at this stage of development to cap at a mW scale
+for a single-cylinder setup. An isolated cylinder setup for KVIV
+produces a maximum power in the order of 10 W (Bernitsas \emph{et al.},
+2009). The apparent power \(P_{a}\) (W) for both KVIV and SVIV is shown
+in (Koide \emph{et al.}, 2013). Following this \emph{present} limitation
+of the \emph{unoptimized} SVIV energy harvesters, their application is
+currently limited to mW electronics e.g., sensors and signal
+transmitters.
+
+One of the most immediate uses of such sensors in Malaysia is part of a
+flood early warning system. Flood forecasting is possible without much
+difficulty using conventional methods if there is a sufficient number of
+hydrological observatories along the body of water (Department of
+Irrigation and Drainage Malaysia, 2010). For this to take place,
+electricity must be available to run the observatories, in addition to
+favourable terrain near the body of water to house the equipment.
+
+In urban areas, even though sourcing electricity may not be a hurdle,
+placement of the observatory itself can be, due to land ownership
+issues. Nevertheless, these issues do not in any way lessen the need to
+have an adequate number of observatories in urban areas. After all,
+urban areas are known to bear a greater risk of flash floods compared to
+rural areas owing to disrupted natural systems of runoff production as a
+result of poorly planned development (Takaijudin \emph{et al.}, 2010;
+Abdullah, 2004; Abdullah, 2011, p.3). Therefore, the prospect of
+devising a simple river monitoring system that consists of only a few
+sensors and electronics totalling to a maximum combined number of three
+(3), powered by a TVIV energy harvester hence becomes worthy of further
+inquiry.
+
+\hypertarget{problem-statement}{\subsection{Problem
+Statement}\label{problem-statement}}
+
+The preceding section has established the viability of harnessing energy
+from a flow by exploiting the VIV phenomenon. Multiple modes of VIV have
+been observed, and SVIV stands out as better oriented for deployment in
+fluid flows that vary greatly in terms of free-stream velocity. Even
+with very rudimentary optimisations, SVIV has demonstrated its ability
+to generate power in the order of mW consistently over a large range of
+free-stream velocities. This can be harnessed to develop a
+self-contained river monitoring device that deploys with ease,
+especially in urban neighbourhoods to facilitate early warning of
+floods.
+
+To achieve this, the problems outlined below must be addressed to close
+relevant gaps in the current body of knowledge.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  A lack of understanding on the transition mechanism from Karman to
+  streamwise vortex-induced vibration.
+\item
+  A paucity in the knowledge on what contributes to the magnitude of the
+  alternating lift force acting on the cylinder, and its vibrational
+  frequency components.
+\item
+  A deficiency of new methods to control the flow perturbation which
+  gives rise to a strong, stable and periodic forcing of the cylinder
+  vibration, sustainable over the desired operating range of \(U^{*}\).
+\end{enumerate}
+
+Addressing the above problems will provide a better understanding on the
+origins of the streamwise vortex pairs, uncover new perspectives on
+variables that affect the alternating lift force in the context of
+streamwise vortex pairs, and generate novel insight on new flow regimes,
+which can enlighten us to a better configuration of the energy
+harvester, i.e. producing more power than ever before.
+
+\hypertarget{research-objectives}{\subsection{Research
+Objectives}\label{research-objectives}}
+
+Following the problems outlined in the previous section, the objectives
+that define the scope of work in this proposal are listed below.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  To investigate what takes place when the dominant vortical structure
+  forcing the vibration transitions from Karman to streamwise
+  vortex-induced vibration in terms of lift and vibration signals.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  To characterise the lift signal in terms of its components and how the
+  components interact to modify the frequency-amplitude response of the
+  cylinder.
+\item
+  To propose a new passive control method for an SVIV-oriented energy
+  harvester that modifies the vortical structures and their distribution
+  around the oscillator to control its region of operability.
+\end{enumerate}
+
+The aim of objective i) is to get a better understanding of how the
+advent of streamwise vortical structures perturb the lift acting on the
+cylinder, which directly modifies the vibration signal of the cylinder.
+Objective ii) is an attempt to identify the footprint of dominant
+vortical structures in the flow in the lift signal and relate those to
+the resulting vibration signal. Finally, objective iii) seeks to
+recommend and evaluate a modified version of the cruciform structure
+that alters the vortical structure in the flow, thus modulating the lift
+signal acting on the cylinder and its frequency-amplitude response. The
+power envelope will give us a more generalised operability condition for
+the energy harvester, and how we can vary the cruciform configuration to
+cater to a particular flow environment.
+
+\hypertarget{research-questions}{\subsection{Research
+Questions}\label{research-questions}}
+
+The answer to several questions is sought in this proposed study. These
+questions are meant to drive the study towards its objectives.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  How does the lift signal evolve as the flow transitions from being
+  driven primarily by Karman vortex to streamwise vortex?
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  How does the ratio of energy transferred from the flow to the lift
+  components evolve with respect to \(U^{*}\)?
+\item
+  What deviations do the modified cruciform configuration impose on the
+  vortical structure, vis-à-vis the vortical structure observed around a
+  pure cruciform?
+\item
+  How do the deviations mentioned in iii) affect the lift magnitude, and
+  by extension the frequency-amplitude response?
+\item
+  Where in the power envelope can we obtain maximum (minimum) power with
+  the largest (narrowest) operability range, and how does this translate
+  into a new mode of flow control to suit the operating conditions of
+  the cruciform energy harvester?
+\end{enumerate}
+
+Concrete steps to be taken to address the questions above are outlined
+in CHAPTER 3.
+
+\hypertarget{significance-of-study}{\subsection{Significance of
+Study}\label{significance-of-study}}
+
+\protect\hypertarget{_Hlk21508814}{}{}As a whole, Malaysia receives an
+average rainfall of about 2990 mm annually (Harris \emph{et al.}, 2014).
+East Malaysia registers an approximate 3250 mm - nearly 1000 mm in
+excess of the average rainfall figures for west Malaysia which is about
+2500 mm (Department of Irrigation and Drainage Malaysia, n.d.).
+Contribution to these values is greater during the monsoon seasons which
+occur during the months of November to March (north-west monsoon) (Kuala
+Lumpur Monsoon Activity Centre, 2015) and May to September (south-west
+monsoon) (Billa \emph{et al.}, 2004). The increased rainfall during the
+monsoon season inevitably saturates catchments, producing several times
+the usual amount of runoff that rivers can drain to the sea within
+sufficient time (Chia, 2004). Consequently, water lever rises past the
+river banks and progresses into the surrounding terrain. This is how
+floods commonly come into being during the monsoon season.
+
+Outside the monsoon season, the inception of floods is due to convective
+rainfall. The flood frequency and extent due to convective rain are
+worse in an urban setting compared to rural areas. The underlying cause
+of this is none other than the major disruption of pre-urbanization
+mechanisms that govern the original rainfall-runoff processes of an
+area. Thus, crippling floods can manifest within a matter of hours from
+the start of rainfall, i.e. flash floods.
+
+Structural efforts to put flash floods in check are almost always very
+costly - RM730 million allocated in the 2016 Malaysia Budget alone
+(Kementerian Kewangan Malaysia, 2015, p.45). However, the rationale for
+structural solutions to the floods becomes increasingly suspect
+considering the worsening climate change in recent decades. On the other
+hand, non-structural methods of reducing flood damages such as flood
+forecasting and warning protocols, receive only about one-twelfth of the
+allocation budgeted for structural methods (Kementerian Kewangan
+Malaysia, 2015, pp.45--46). This fact, along with the decreasing
+effectiveness of structural efforts highlights the need to develop an
+inexpensive, simple, yet reliable non-structural system to tackle the
+flood problem.
+
+Against this background, this study aims to contribute significantly
+towards the development of an in-situ device to power water level and
+flow velocity/discharge sensors for a given river/drainage system using
+vibration energy harnessed from the flow itself. The minimalist and
+self-powered feature of the device allows installation of as many of the
+devices as necessary along the river/drainage system for adequate
+monitoring, even in places where reliance on solar power is negated.
+Finally, pursuant to further scaling studies, the upscaled version of
+the energy harvester may one day be on par with diesel generators for
+use at off-grid areas.
+
+\section{\texorpdfstring{\protect\hypertarget{_Toc461037248}{}{\protect\hypertarget{_Toc461037431}{}{\protect\hypertarget{_Toc41048798}{}{}}}}{}}\label{section-1}
+
+\textbf{LITERATURE REVIEW}
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Toc41048799}{}{\protect\hypertarget{_Hlk21508927}{}{}}Karman
+vortex-induced vibration (KVIV) energy
+harvester}{Karman vortex-induced vibration (KVIV) energy harvester}}\label{karman-vortex-induced-vibration-kviv-energy-harvester}
+
+\protect\hypertarget{_Hlk525229593}{}{}The canonical KVIV energy
+harvester employs a circular cylinder as its bluff body (Williamson and
+Govardhan, 2004; Ahsan, 2015; Hayashi \emph{et al.}, 2006). This bluff
+body is suspended in a flow using an elastic support, and flow
+instabilities trigger the formation of Karman vortices that induce a
+periodic variation of the lift and drag forces. When the motion of the
+bluff body is constrained to the mean flow normal, periodic variation of
+the lift force produces a one-dimensional KVIV.
+
+Efforts to improve the efficiency of KVIV energy harvesters have seen
+experimental and numerical studies of various aspects of the technology
+such as a) bluff body geometry, number and arrangement (Derakhshandeh
+\emph{et al.}, 2014; Gonçalves \emph{et al.}, 2013; Seyed-Aghazadeh
+\emph{et al.}, 2015), b) passive wake control (Sukri Mat Ali \emph{et
+al.}, 2011; Ali \emph{et al.}, 2012), c) restoring force i.e., springs
+(Mackowski and Williamson, 2013), d) damping (Govardhan and Williamson,
+2006), and e) turbulence control (Wu \emph{et al.}, 2011).
+
+Most non-circular cylinders studied in a) - b) are stationary i.e.,
+having zero degrees of freedom. It follows that vibrational behaviour of
+non-circular cylinders - galloping included - has received limited
+coverage in the literature. Galloping is known to produce bigger
+amplitudes of the bluff body displacement compared to simple KVIV
+(Barrero-Gil \emph{et al.}, 2010; Assi \emph{et al.}, 2010), thus
+potentially improving non-circular cylinder KVIV energy harvesters when
+incorporated in the system.
+
+Compared to circular cylinders, non-circular ones have fixed flow
+separation points at their edges. Fixed flow separation points assist
+the establishment of a linear relationship between the Reynolds and
+Strouhal numbers, which is useful for flow velocity measurements
+(Venugopal \emph{et al.}, 2011). Apart from that, the edges can be
+modified to create steep pressure gradients that induce the formation
+strong vortices. These vortices are known to be exploited by scramjet
+engines for accelerated fuel-air mixing (Sunami \emph{et al.}, 2002;
+Arai \emph{et al.}, 2011).
+
+Aside from bluff body shape, other variables that affect non-circular
+cylinder KVIV strength also stand to be optimised. Examples of these are
+listed in c) - e), and related literatures deal almost exclusively with
+circular cylinders. Whether the same results can be reproduced by
+employing a square cylinder remains an open question. The inclusion of
+some mode of passive wake control in KVIV of a square cylinder is even
+more uncommon within the current research landscape. Passive wake
+control methods, for example, splitter or interfering plates, are
+relatively simple ways to control vortex-vortex and vortex-shear layer
+interaction (Sukri Mat Ali \emph{et al.}, 2013; Mat Ali \emph{et al.},
+2011). It is reasonable to imagine that more active research on this
+subject will pave the way towards a low-key vortical flow control, akin
+to those utilised by fishes (Borazjani and Daghooghi, 2013; Drucker and
+Lauder, 1999; Liao \emph{et al.}, 2003) to facilitate their locomotion.
+
+In KVIV, there exists different modes of vibration with different
+resulting power characteristics. The simplest categorization, groups
+them according to their amplitude response: the initial, upper and lower
+branch (Williamson, 1996; Williamson and Govardhan, 2004). An additional
+galloping branch also exists for certain configurations. For optimal
+energy harnessing, one should operate their system in the upper branch,
+where the vibration amplitude is the highest with least variation, and
+the vibration frequency is locked into the natural frequency of the
+system. Although the cylinder attains even higher vibration amplitudes
+in the galloping branch, the upper branch still has better efficiency in
+the sense that the cylinder harnesses a bigger percentage of energy from
+the total energy conducted by the flow (Sun \emph{et al.}, 2016).
+
+We can design the vibrational system so that the system operates in the
+upper branch if the flow has a well-behaved, relatively narrow velocity
+band, e.g. river and ocean currents (M. M. Bernitsas \emph{et al.},
+2008; Raghavan, 2007). However, one may find such a method unsuitable
+for flows with an intermittent, largely varying velocity, e.g. wind
+flows. The large flow velocity variation reduces the probability of the
+cylinder operating in the upper branch. Hence, most of the time, the
+cylinder operates in the initial or lower branch, where the vibration
+amplitude has a smaller magnitude and larger variance compared to the
+upper branch. In the galloping branch, the system loses the
+amplitude-limiting mechanism, in addition to a lower harnessing
+efficiency compared to the upper branch. This means that we need to
+apply a larger safety factor when harnessing energy in the galloping
+regime in order to benefit from the large vibration amplitude, while
+avoiding possible damage to the system from unexpectedly large outlier
+vibration amplitude. Exploiting streamwise vortex-induced vibration
+(SVIV) alleviates this concern.
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Ref40969711}{}{\protect\hypertarget{_Ref40969718}{}{\protect\hypertarget{_Toc41048800}{}{}}}Streamwise
+vortex-induced vibration (SVIV) energy
+harvester}{Streamwise vortex-induced vibration (SVIV) energy harvester}}\label{streamwise-vortex-induced-vibration-sviv-energy-harvester}
+
+\protect\hypertarget{_Hlk525229690}{}{}Streamwise vortex-induced
+vibration (SVIV) is a form of VIV that develops from a pair of
+streamwise vortices, shed alternately from opposing sides of a bluff
+body parallel to the mean flow. Among the earliest mention of this type
+of vortex is in Ref. (Zdravkovich, 1981), from a configuration of two
+cylinders forming a plus sign (┼). In this setting, the upstream
+cylinder periodically sheds a pair of streamwise trailing vortex from
+its top and bottom surfaces. This periodic formation of streamwise
+trailing vortex pairs is seen by some as a welcome addition to the class
+of fluid mechanical phenomena through which energy can be extracted, and
+hence elucidating its fundamental mechanics becomes necessary. Several
+studies were then undertaken to address this concern.
+
+The authors of Ref. (Shirakashi \emph{et al.}, 1989) for example,
+experimentally investigated the behaviour of vortex shed from the
+upstream cylinder in the same plus sign configuration mentioned. The
+vortex shedding frequency is linearly related to the characteristic
+velocity of the flow, and the Strouhal number is 3 to 7 times smaller
+than that of a Karman vortex. Additionally, the periodic lift
+coefficient variation reached a maximum when the normalised gap between
+the two cylinders (\(s/d\)) is close to 0.125.
+
+The normalised gap is observed to influence the type of streamwise
+vortex shed from the upstream cylinder. A cylindrical trailing vortex
+pair is formed when \(0 \leq s/d < 0.25\), whereas a U-shaped trailing
+vortex pair (necklace vortex, as named by the authors) forms between
+\(0.25 < s/d < 0.5\ \) (Shirakashi \emph{et al.}, 1989; Bae \emph{et
+al.}, 1992). The vortex shedding of both types of streamwise trailing
+vortex is shown to be most pronounced at \(s/d = 0.08\) and
+\(s/d = 0.28\) for the cylindrical and U-shaped vortex pairs
+respectively (Takahashi \emph{et al.}, 1999).
+
+Considering the qualitative response shown by the vortex pairs towards
+the normalised gap, attempts to describe them quantitatively, naturally
+follow. One of the findings in this respect is the variation of the
+nondimensional frequency of vortex shedding i.e. Strouhal number, with
+regards to the Reynolds number. For Reynolds number below 10000, the
+Strouhal number increases with increasing Reynolds number. The Strouhal
+number ceases to change as the Reynolds number exceeds 10000 (Bae
+\emph{et al.}, 2001). Similar experiments were repeated in wind tunnels
+of different sizes, and in a water tunnel. The results showed good
+reproducibility in both mediums (Koide \emph{et al.}, 2004).
+
+Despite the overall reproducibility, certain features of the flow in
+wind tunnels differ to that in a water tunnel. For example, the onset
+and range of sustenance of the streamwise trailing vortex vibration are
+different in water from what it is in the air (Koide \emph{et al.},
+2006). A suggested explanation is that the discrepancy is brought about
+by the difference in mass ratio between the two. The mass ratio is the
+ratio between the mass of the bluff body to the amount of fluid
+displaced due to its motion.
+
+To simplify and miniaturise the system for generating SVIV, there are
+efforts to swap the downstream cylinder in the plus sign configuration
+with something even geometrically simpler - for example, a rectangular
+plate, as shown in (Kato \emph{et al.}, 2006). Studies were then
+conducted to test the response of this new system, shown in Figure 3,
+and compare it to the previous two-cylinder system. In (Kato \emph{et
+al.}, 2007), experiments showed that both the circular and U-shaped
+streamwise trailing vortices can be generated from this new system,
+albeit at different values of \(s/d\), depending on \(w/d\), which is
+the normalized plate width. The net fluctuating lift coefficient is also
+shown to be similar to the values measured in a two-cylinder system
+(Koide, Kato, \emph{et al.}, 2009).
+
+\includegraphics[width=5.40208in,height=2.89610in]{media/image3.png}
+
+\protect\hypertarget{_Ref40994137}{}{\protect\hypertarget{_Toc520544687}{}{\protect\hypertarget{_Toc41048826}{}{}}}Figure
+3: A schematic view of the periodic shedding of streamwise trailing
+vortex pair that induces vibration in SVIV. The sketches are not drawn
+to scale.
+
+In recent years, research on SVIV took a new turn in terms of design by
+introducing a square cylinder as the upstream bluff body, coupled with a
+downstream rectangular plate to form a plus sign (Kawabata \emph{et
+al.}, 2009). In such a setting, galloping is observed when the reduced
+velocity \(U^{*} > 15\). Furthermore, very large amplitudes of the bluff
+body displacement are observed when \(1 < s/d < 2\), if the width of the
+plate (\(w\)) is equal to the length of the sides of the square cylinder
+(\(d\)), i.e. \(w/d = 1\). This bluff body change may be an attempt to
+facilitate dual-use of the VIV energy harvester: power generation and
+flow velocity measurement.
+
+With regards to the application of SVIV for energy harvesting, related
+literature branched into two areas: first, how the mechanical properties
+of the harvester (e.g., mass ratio, damping, etc.) affects the amplitude
+and frequency response of SVIV (Koide, Sekizaki, \emph{et al.}, 2009;
+Nguyen \emph{et al.}, 2012; Koide \emph{et al.}, 2013) and second, how
+the minutiae of the flow field affect the force acting on the cylinder
+(Deng \emph{et al.}, 2007; Zhao and Lu, 2018; Koide \emph{et al.},
+2017).
+
+In the first focus area, researchers proposed a method to convert the
+vibration into electrical power via a coil and magnet system, where the
+coil moves with the vibrating cylinder, thus creating relative motion
+against the magnet, placed inside the coil (Koide, Sekizaki, \emph{et
+al.}, 2009). The increased damping due to energy harvesting however,
+reduces the maximum vibration amplitude close to a factor of 4.
+Amplitude reduction due to increased total damping was also mentioned in
+(M. M. Bernitsas \emph{et al.}, 2008; Bernitsas and Raghavan, 2008;
+Bernitsas \emph{et al.}, 2009). Further investigation in (Nguyen
+\emph{et al.}, 2012) damping not only affects the amplitude response of
+the cylinder, but also narrows the synchronisation region between vortex
+shedding and cylinder vibration. Moreover, (Nguyen \emph{et al.}, 2012)
+demonstrated a strong coupling between mass ratio and damping in
+determining both the width of the synchronisation region and the maximum
+amplitude response of the cylinder.
+
+In the second focus area, investigators turned their attention to the
+details of the flow containing streamwise vortex shedding. The
+understanding that the forces driving the vibration of the cylinder
+ultimately comes as a by-product of vortex shedding motivates the
+community to examine the flow field closer. One such study carefully
+shoots motion pictures of the dye-injected flow (Koide \emph{et al.},
+2017) at Reynolds number approximately one order of magnitude smaller
+than what was available in the literature. A lower Reynolds number (Re)
+reduces the amount of visual turbulence in the flow, allowing a clearer
+shot of the vortex structures. Their study also highlights the higher
+level of turbulence produced by the circular cylinder--strip-plate
+cruciform in contrast to the twin circular cylinder cruciform, which
+diminishes the periodicity of vortex shedding. Although visually
+enlightening, this and other more qualitative studies contribute little
+towards improving our understanding of the relationship between vortex
+shedding and the resulting lift. (Deng \emph{et al.}, 2007) demonstrated
+a way to overcome such a shortcoming.
+
+In their study, (Deng \emph{et al.}, 2007) examined the flow field of a
+twin circular cylinder cruciform using computational fluid dynamics
+(CFD). Their domain stretches \(28D\) in the streamwise direction,
+\(16D\) in the transverse direction and \(12D\) in the spanwise
+direction. They studied an Re range yet another order of magnitude
+smaller than that studied by (Koide \emph{et al.}, 2017), possibly to
+get an even clearer visualisation of the vortical structures with less
+turbulence, and to ease computational requisites.
+
+At a fixed \(\text{Re} = 150\), streamwise vortices form even at a gap
+ratio of 2. This result differs quite strikingly from studies we
+reviewed earlier (Koide \emph{et al.}, 2007; Koide \emph{et al.}, 2006),
+conducted at an Re twice the order of magnitude of (Deng \emph{et al.},
+2007). This perhaps indicate that the minimum gap ratio needed for the
+onset of streamwise varies with respect to Re.
+
+They also observed that when the gap ratio \(G\), which they denote as
+\(L/D\) in their paper, increases from 3 to 4, the maximum amplitude of
+the lift coefficient increases by almost threefold. This can be
+attributed quite easily to the current vortex pair shed by the upstream
+cylinder. The downstream cylinder immediately disturbs the pair shed
+from the upstream cylinder when \(G = 3\). The lift coefficient
+increases by about a factor of 3 when this immediate disturbance
+diminishes at \(G = 4\). The visualisation of three-dimensional (3D)
+vorticity isocontours enables us to quickly establish this link
+vis-à-vis the lift coefficient signal. The authors use of CFD made this
+possible.
+
+A similar study (\(Re\sim O(10^{2})\)) by (Zhao and Lu, 2018) highlights
+the immense utility of CFD as a tool to research SVIV or flow around a
+cruciform in general. They computed the sectional lift coefficient along
+the upstream cylinder and the time history of this sectional lift
+coefficient points towards 2 different modes of vortex shedding namely,
+parallel and K-shaped. They also brought to our attention the local flow
+patterns that vary along the length of the upstream cylinder such as the
+trailing vortex flow, necklace vortex flow and flow in the small gap
+(denoted as SG flow). As shown by the discontinuities in the phase angle
+of the sectional lift coefficient along the upstream cylinder, we begin
+to wonder whether the total lift coefficient should even be considered
+as the result of the streamwise vortex shedding alone, especially with
+Karman vortex streamlines clearly forming as we move away from the
+junction of the cruciform.
+
+Up to this point, we made a sharp distinction between Karman and
+streamwise vortex-induced vibration. Although one can argue the
+appropriateness of such a distinction for the amplitude and frequency
+response of the cylinder in KVIV and SVIV, we propose that such a clear
+distinction may not be entirely possible for the lift signal of a system
+in SVIV. The main reason behind this lies in the fact that the cylinder
+continues to shed Karman vortices even after the onset for streamwise
+vortex shedding and SVIV (Shirakashi \emph{et al.}, 1989; Zhao and Lu,
+2018). This point lead us to hypothesise that the lift (coefficient)
+signal is more appropriately viewed as the streamwise-Karman
+vortex-induced composite lift signal. However, we could not find studies
+that took this viewpoint in their investigation of SVIV or flow around a
+cruciform in general.
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Ref520288997}{}{\protect\hypertarget{_Toc41048801}{}{}}Sensors
+for River/Drainage
+Monitoring}{Sensors for River/Drainage Monitoring}}\label{sensors-for-riverdrainage-monitoring}
+
+At the current stage of SVIV energy harvester research, the forecasted
+magnitude of power obtainable is in the order of mW. Therefore, as
+mentioned in the previous chapter, the most immediate and
+straightforward application of this technology in for powering sensors
+for river/drainage monitoring. The drainage monitoring sites in Malaysia
+generally operates via remote telemetry units (RTU). These telemetry
+units consist of rain gauges and water level sensors. They are powered
+using solar panels, and the data stream is then relayed to the master
+station of that state. Several factors define the reliability of a solar
+such as panel rating, power tolerance, cell efficiency, and temperature
+coefficient. A reliable solar panel for use by telemetry units typically
+cost around RM1,000 for 2 W, and around RM1,600 for 5W of output.
+
+To facilitate future installation of drainage monitoring equipment, one
+sensible way is to reduce the power supply cost of the telemetry units.
+This means developing a power generation mechanism that can either:
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  complement the solar power so that we can use a cheaper panel with a
+  lower power rating,
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  work as a fully functioning alternative to the solar panel,
+\end{enumerate}
+
+or both. A sample of power requirements of drainage monitoring equipment
+are summarized in Table 1.
+
+\protect\hypertarget{_Ref500253149}{}{\protect\hypertarget{_Ref500253126}{}{\protect\hypertarget{_Toc520543710}{}{\protect\hypertarget{_Toc520545591}{}{\protect\hypertarget{_Toc12528554}{}{\protect\hypertarget{_Toc40994423}{}{}}}}}}Table
+1: Sample power inputs for flow velocity and water level monitoring
+equipment.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Measured quantity & Brand & Measured range & Power input\tabularnewline
+\midrule
+\endhead
+\begin{quote}
+Flow velocity
+\end{quote} & Global Flow Probe FP111 & 0.1 m/s \textasciitilde{} 6.1
+m/s & 0.012 W \textasciitilde{} 0.08 W\tabularnewline
+& Global Water Electromagnetic flow sensors EX-100/200 & 0.08 m/s
+\textasciitilde{} 6.09 m/s & 3 W \textasciitilde{} 6.25 W\tabularnewline
+& OTT MF Pro Water flow meter & 0 m/s \textasciitilde{} 6 m/s & 0.12 W
+(assuming current input of 20 mA)\tabularnewline
+& OTT C2 Mini current meter & 0.025 m/s \textasciitilde{} 5 m/s & 0.18 W
+(assuming current input of 20 mA)\tabularnewline
+\begin{quote}
+Water level
+\end{quote} & Nile series 502/504/517 & 502: 1 m \textasciitilde{} 20 m,
+504: 2 m \textasciitilde{} 40 m, 517: 2 m \textasciitilde{} 70 m & 0.135
+W \textasciitilde{} 0.216 W\tabularnewline
+& CRS 451 & 0 m \textasciitilde{} 5.1 m,
+
+0 m \textasciitilde{} 10.2 m,
+
+0 m \textasciitilde{} 20.4 m,
+
+0 m \textasciitilde{} 50.9 m,
+
+0 m \textasciitilde{} 102 m & 0.04 W (assuming operating voltage of 10
+V)\tabularnewline
+& SR50A-L & 0.5 m \textasciitilde{} 10 m & 2.5 W\tabularnewline
+& ToughSonic remote 50 & 0.305 m \textasciitilde{} 10 m & 0.864
+W\tabularnewline
+\bottomrule
+\end{longtable}
+
+A streamwise vortex-induced vibration (SVIV) method of generating power
+has been investigated by Koide et al. (Koide \emph{et al.}, 2013), and
+they have demonstrated the power generating capability of this setup.
+However, there are several problems.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  The generated power is only in the order of \(10^{- 2}\) W.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  Tangible power is only generated for reduced velocity \(U^{*} > 20\).
+\item
+  The efficiency of the generator decreases with increasing \(U^{*}\).
+\end{enumerate}
+
+As can be seen from Table 1, most of the drainage monitoring devices
+require a power input in the order of 0.1 W. This is one order of
+magnitude higher than the power observed by Koide et al. A \(U^{*}\)
+threshold must also be exceeded to produce useful amount of power, which
+means low-velocity drainage monitoring is difficult. Finally, a
+decreasing efficiency means more energy left uncaptured at high
+\(U^{*}\). Therefore, we need to address these issues and thus propose
+and validate methods to:
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  increase and sustain the \emph{magnitude} of generated power,
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  lower the \(U^{*}\) \emph{threshold} for significant power generation,
+  and
+\item
+  modulate the \emph{operating range} of the generator,
+\end{enumerate}
+
+in contrast to the pure cruciform configuration.
+
+\hypertarget{strip-plate-at-an-angle-as-the-modified-cruciform-configuration}{\subsection{Strip-plate
+at an Angle as the Modified Cruciform
+Configuration}\label{strip-plate-at-an-angle-as-the-modified-cruciform-configuration}}
+
+The SVIV-based energy harvesting system is essentially a circular
+cylinder oscillator system with a downstream passive flow control
+mechanism. The canonical design calls for an arrangement where the axis
+of the passive flow control mechanism -- usually some form of cylinder
+-- is perpendicular to the axis of the oscillator. However, what happens
+if one positions the passive flow control mechanism -- the strip-plate
+-- at an acute angle to the axis of the oscillator is an open question.
+Specifically, i) how the vortical structures around the cruciform is
+altered, ii) how the changes in vortical structures affect the
+alternating lift behaviour acting on the oscillator, and iii) how does
+this impact the frequency-amplitude response and the estimated
+obtainable mechanical power, when the strip-plate is tilted between
+\(0 \leq \alpha\ \left( \text{rad} \right) < \pi/2\), \(\alpha\) being
+the angle between the axis of the strip-plate and the axis of the
+circular oscillator cylinder.
+
+The desired outcome is an estimated mechanical power contour map against
+reduced velocity \(U^{*}\) and \(\alpha\), that guides relevant
+stakeholders in this technology in the process of tuning their system to
+best suit the operating conditions where the energy harvester is going
+to be installed.
+
+\section{\texorpdfstring{\protect\hypertarget{_Toc461037259}{}{\protect\hypertarget{_Toc461037442}{}{\protect\hypertarget{_Toc41048803}{}{\protect\hypertarget{_Ref520286610}{}{}}}}}{}}\label{section-2}
+
+\textbf{METHODOLOGY}
+
+\hypertarget{problem-geometry}{\subsection{Problem
+Geometry}\label{problem-geometry}}
+
+The geometrical setup for this study builds on the work of (Maruai
+\emph{et al.}, 2017; Maruai \emph{et al.}, 2018) who studied both
+experimentally and numerically the FIM of a square cylinder with a
+downstream flat plate. Their simulation results are in good agreement
+with their own experiment, and with the experimental results of
+(Kawabata \emph{et al.}, 2013), in the Reynolds number range
+\(3.6 \times 10^{3} < \text{Re} < 12.5 \times 10^{3}\). This is well
+within the Reynolds number studied in this work, i.e.
+\(1.1 \times 10^{3} < \text{Re} < 14.6 \times 10^{3}\).
+
+Our \(x - y\) plane fundamentally follows the dimensions used in (Maruai
+\emph{et al.}, 2017; Maruai \emph{et al.}, 2018), except for the
+cylinder shape, which in this study is circular, and the \(20D\)
+distance to the outlet is measured from the downstream face of the
+strip-plate. This is shown in Figure 4(a). We chose the cylinder-plate
+gap \(G\) to be \(0.16D\), as previous works have shown this gap size
+sustains the highest SVIV amplitude over the widest range of \(U^{*}\),
+in comparison to other gap sizes.
+
+As the problem geometry is explicitly three-dimensional (3D), the
+\(x - y\) plane is extruded in the \(z\) direction, thus obtaining a 3D
+domain. As can be seen in Figure 4(b), the circular cylinder extends
+from \(z/D = 7.5\) to \(z/D = - 7.5\), while the strip-plate extends
+from \(y/D = - 10.5\) to \(y/D = 10.5\). The \(z\)-direction extent is
+set as \(z/D = \pm 7.5\) to provide enough spanwise length to allow
+formation of the streamwise vortices. Based on the visualisations in the
+experiments of (Koide \emph{et al.}, 2017), we reasoned that
+\(z/D = \pm 7.5\) is already more than twice the spanwise reach of the
+streamwise vortex, thus sufficient for the vortices to materialise in
+our numerical solution. To compare, the spanwise extent of the numerical
+study by (Deng \emph{et al.}, 2007), is \(z/D = \pm 6\) and the spanwise
+extents of experiments by (Nguyen \emph{et al.}, 2012; Koide \emph{et
+al.}, 2013), is \(z/D = \pm 5\).
+
+\includegraphics[width=5.35417in,height=4.94805in]{media/image5.png}
+
+\protect\hypertarget{_Ref520289508}{}{\protect\hypertarget{_Toc520544689}{}{\protect\hypertarget{_Toc41048827}{}{}}}Figure
+4: The domain size, not according to scale, used in this study. This
+domain setup has been shown to successfully yield realistic results from
+similar simulations found in (Maruai \emph{et al.}, 2017; Maruai
+\emph{et al.}, 2018).
+
+\hypertarget{numerical-method}{\subsection{Numerical
+Method}\label{numerical-method}}
+
+The objectives of our study necessitate the solution of the continuity
+and three-dimensional unsteady Reynolds averaged Navier-Stokes (3D
+URANS) equations. We achieve this by using OpenFOAM, an open-source
+computational fluid dynamics (CFD) platform written in C++.
+Specifically, we work to solve the following continuity and URANS
+equations.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(\frac{\partial U_{i}}{\partial x_{i}} = 0,\) &
+\protect\hypertarget{_Ref41041729}{}{}(1)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(\frac{\partial U_{i}}{\partial t} + U_{j}\frac{\partial U_{i}}{\partial x_{j}} = - \frac{1}{\rho}\frac{\partial P}{\partial x_{i}} + \frac{\partial}{\partial x_{j}}\left( 2\nu S_{\text{ij}} - \overset{\overline{}}{u_{j}^{'}u_{i}^{'}} \right).\)
+& \protect\hypertarget{_Ref41041747}{}{}(2)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+The symbols \(U\), \(x\), \(t\), \(\rho\), \(P\), \(\nu\), \(S\), and
+\(u^{'}\) are the mean component of velocity, spatial component, time,
+density, pressure, kinematic viscosity, mean strain rate and the
+fluctuating component of velocity, respectively. The mean strain rate
+\(S_{\text{ij}}\) is given by
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(S_{\text{ij}} = \frac{1}{2}\left( \frac{\partial U_{i}}{\partial x_{j}} + \frac{\partial U_{j}}{\partial x_{i}} \right).\)
+& (3)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+This study employs the Spalart-Allmaras turbulence model to approximate
+the Reynolds stress tensor
+\(\tau_{\text{ij}} = \overset{\overline{}}{u_{j}^{'}u_{i}^{'}}\). This
+turbulence model has been shown to produce results that agree reasonably
+well with experiments in similar flow-induced motion (FIM) studies
+(Ding, Zhang, Wu, \emph{et al.}, 2015; Ding, Zhang, Kim, \emph{et al.},
+2015). We use the Boussinesq approximation to relate the Reynolds stress
+tensor to the mean velocity gradient
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(\tau_{\text{ij}} = 2\nu_{T}S_{\text{ij}},\) & (4)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(\nu_{T}\) represents the kinetic eddy viscosity. \(\nu_{T}\) is,
+in turn, a function of \(\tilde{\nu}\) and \(f_{\nu 1}\), while
+\(f_{\nu 1}\) is a function of \(\chi\) and \(c_{\nu 1}\), and \(\chi\)
+a function of \(\tilde{\nu}\) and \(\nu\), as shown in Eq.
+\textbf{Error! Reference source not found.}).
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+& \(\nu_{T} = \tilde{\nu}f_{\nu 1},\) &
+\(f_{\nu 1} = \frac{\chi^{3}}{\chi^{3} + c_{\nu 1}^{3}},\) &
+\(\chi = \frac{\tilde{\nu}}{\nu}.\) & (5)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Here, \(\tilde{\nu}\) serves to mediate the turbulence model and
+Eq.\textbf{Error! Reference source not found.}) dictates how
+\(\tilde{\nu}\) is conserved.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(\frac{\partial\tilde{\nu}}{\partial t} + U_{j}\frac{\partial\tilde{\nu}}{\partial x_{j}} = c_{b1}\tilde{S}\tilde{\nu} - c_{w1}f_{w}\left( \frac{\tilde{\nu}}{D} \right)^{2} + \frac{1}{\sigma}\left\{ \frac{\partial}{\partial x_{j}}\left\lbrack \left( \nu + \tilde{\nu} \right)\frac{\partial\tilde{\nu}}{\partial x_{j}} \right\rbrack + c_{b2}\frac{\partial\tilde{\nu}}{\partial x_{i}}\frac{\partial\tilde{\nu}}{\partial x_{i}} \right\}\)
+& (6)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+\(c_{b1}\), \(c_{b2}\), and \(c_{\nu 1}\) are constants with values
+0.1335, 0.622 and 7.1 respectively. \(c_{w1}\) is given by
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(c_{w1} = \frac{c_{b1}}{\kappa} + \frac{1 + c_{b2}}{\sigma},\) &
+(7)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where additional constants \(\kappa\) and \(\sigma\) are 0.41 and
+\(2/3\) respectively. \(f_{w}\), on the other hand, is given by
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(f_{w} = g\left( \frac{1 + c_{w3}^{6}}{g^{6} + c_{w3}} \right)^{\frac{1}{6}}.\)
+& (8)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Here, \(c_{w3} = 2\) while \(g\) is given by
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(g = r + c_{w2}\left( r^{6} - r \right),\) & (9)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(r\) is
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(r = \min\left( \frac{\tilde{\nu}}{\tilde{S}\kappa^{2}d^{2}},10 \right).g = r + c_{w2}\left( r^{6} - r \right),\)
+& (10)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Additionally, \(\tilde{S}\) is
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(\tilde{S} = \Omega + \frac{\tilde{\nu}}{\kappa^{2}d^{2}}f_{\nu 2},\)
+& (11)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(\Omega\) and \(d\) are the magnitude of vorticity and the
+distance from the mesh nodes to the nearest wall, respectively. Finally,
+\(f_{\nu 2}\) is
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(f_{\nu 2} = 1 - \frac{\chi}{1 + \chi f_{\nu 1}}.\) &
+(12)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+We solve these equations numerically using the PIMPLE algorithm, which
+combines the transient solver PISO with the steady-state solver SIMPLE
+for improved numerical stability.
+
+\hypertarget{dynamic-mesh-motion}{\subsection{Dynamic Mesh
+Motion}\label{dynamic-mesh-motion}}
+
+In this study, the cylinder in VIV moves perpendicular to the free
+stream direction. The motion unavoidably distorts the mesh around it,
+degrading important mesh metrics such as non-orthogonality and skewness.
+However, we can diffuse the mesh deformation to the neighbouring nodes
+as per the following Laplace equation,
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(\nabla \cdot \left( \gamma\nabla u \right) = 0.\) &
+(13)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Here, \(u\) represents the mesh deformation velocity and \(\gamma\) is
+displacement diffusion. We chose \(\gamma = 1/l^{2}\), where \(l\) is
+the cell centre distance to the nearest cylinder edges. We implement the
+GAMG linear solver with the Gauss-Seidel smoother to solve Eq.(13). The
+dynamic mesh algorithm then updates the mesh node positions according to
+the following equation.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(x_{\text{new}} = x_{\text{old}} + ut\) & (14)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+The solver resumes the solution of Eqs. (1) and (2) once the mesh node
+positions are updated.
+
+Another dynamic mesh handling technique used in this study is the
+arbitrarily coupled mesh interface (ACMI), that allows non-conforming
+meshes to slide over another, thus preserving the mesh quality around a
+moving object. The very small gap between the cylinder and strip-plate,
+limits our ability to diffuse the mesh deformation to the surrounding
+space. ACMI is thus implemented at the centre of the gap between the
+circular cylinder and the strip-plate, as shown in Figure 4, to
+circumvent this problem. This method has been successfully implemented
+in the works of (Ding, Zhang, Kim, \emph{et al.}, 2015; Xu \emph{et
+al.}, 2017) and (B. Zhang \emph{et al.}, 2018), preserving the quality
+of their mesh and controlling their Courant-Fredichs-Lewy (CFL) number.
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Ref40998709}{}{\protect\hypertarget{_Toc41048807}{}{}}Experimental
+Validation of Benchmark
+Case}{Experimental Validation of Benchmark Case}}\label{experimental-validation-of-benchmark-case}
+
+One of the aims of this work is to study the transition between Karman
+and streamwise vortex-induced vibration. Therefore, we set up an
+experimental rig to study the VIV motion in the vicinity of \(U^{*}\)
+where the vortex-induced vibration transitions from Karman to streamwise
+vortex driven. To this end, we constructed a closed-loop open channel
+circuit based on the water tunnel used by (Nguyen \emph{et al.}, 2012),
+shown in Fig. 3. The cross-section of our test section is a rectangle of
+width 100 mm and height 200 mm. The water level is kept at a height of
+100 mm from the bottom of the test section throughout its length of 1500
+mm.
+
+The system for providing elastic support and damping to the circular
+cylinder follows closely those used by (Kawabata \emph{et al.}, 2013;
+Koide \emph{et al.}, 2013, 2017), which can be summarised as follows.
+The stiffness coefficient \(k\) of the plate spring is determined
+through a simple weight versus displacement test (Sun \emph{et al.},
+2016), at various active lengths of the spring. This provides a
+calibration curve of stiffness coefficient, \(k\) against plate spring
+length, \(l\). We can then adjust the length of the plate spring to
+obtain the desired value for \(k\).
+
+On the other hand, the damping of the system is adjusted using T-shaped
+aluminium plates fixed at either ends of the cylinder end plate, and a
+pair of neodymium magnets contained in a claw-shaped casing. The further
+the T-shaped plate is pushed into the opening of the claw, the denser
+the magnetic field it needs to cut through during motion, thus
+dissipating more energy. We then calibrate the damping produced at
+various depths at which the T-shaped plate is pushed into the casing,
+via free-decay tests of the cylinder in still water. The procedure for
+conducting free-decay tests are detailed in (Raghavan, 2007).
+
+\includegraphics[width=5.40208in,height=5.18611in]{media/image9.png}
+
+\protect\hypertarget{_Toc41048828}{}{}Figure 5: Schematic of the
+experimental setup. (a) presents a three dimensional schematic of the
+experimental rig while (b) shows an enlarged schematic of the damping
+system.
+
+Flow inside the open channel is driven by a 3.728 kW (5 hp) centrifugal
+pump, controlled using a voltage controller. The input voltage for the
+centrifugal pump is calibrated against the centreline velocity of the
+test section, 750 mm from the inlet, i.e. mid-length of the test
+section. We show this schematically in Figure 6. Here, we define the
+centreline of the test section as the line 50 mm from the bottom and 50
+mm from either of the side walls of the test section. We placed the
+cylinder at the same position during experimental runs.
+
+\includegraphics[width=5.40208in,height=2.24719in]{media/image13.png}
+
+\protect\hypertarget{_Ref40996269}{}{\protect\hypertarget{_Toc41048829}{}{}}Figure
+6: Schematic and key dimensions from our experimental setup. The
+acoustic Doppler velocimeter (ADV) was placed at the same location where
+the cylinder is located during experimental runs.
+
+The centreline velocity, \(U_{\text{cent.}}\) is measured using an
+acoustic Doppler velocimeter (ADV), sampling at 200 Hz. The resulting
+calibration curve is applicable for determining \(U_{\text{cent.}}\) at
+input voltages \({30 < V}_{\text{in}}\ (V) < 100\). We measured the
+turbulence intensity along the centreline to be about 5\%.
+
+We obtained the time history for cylinder displacement by using a video
+camera pointed normal to the cylinder end plate. We placed a visual
+marker on the end plate, and the motion of the marker captured by the
+camera is analysed using Tracker: a motion analysis tool built on the
+Open Source Physics Java framework.
+
+To validate our experimental setup, we tuned to the best of our ability
+our experimental parameters to the values used by (Koide \emph{et al.},
+2013) and test whether we can replicate their results. The following
+table summarises the parameters in lieu of (Koide \emph{et al.}, 2013).
+
+Table 2: Summary of experimental parameters in contrast to those used in
+the experimental work of (Koide \emph{et al.}, 2013).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& Current study & (Koide \emph{et al.}, 2013)\tabularnewline
+\midrule
+\endhead
+Cylinder diameter, \(D\) (m) & 0.01 & 0.01\tabularnewline
+Cylinder length, \(l_{\text{cylinder}}\) (m) & 0.09 &
+0.098\tabularnewline
+Strip-plate width (m) & 0.01 & 0.01\tabularnewline
+Strip-plate length (m) & 0.1 & 0.1\tabularnewline
+Effective mass, \(m_{e}\) (kg) & 0.162 & 0.174\tabularnewline
+Logarithmic damping, \(\delta\) & 0.178 & 0.24\tabularnewline
+Scruton number, Sc & 9.94 & 7.74\tabularnewline
+System natural frequency, \(f_{n}\) (Hz) & 4.42 & 4.4 \textasciitilde{}
+4.79\tabularnewline
+\bottomrule
+\end{longtable}
+
+We conducted an experiment at \(U^{*} = 22.7\), a value that falls in
+the SVIV regime, and show a sample of the normalised displacement time
+series in Figure 7. Computing the statistics of the normalised
+displacement \(y^{*} = y/D\) and normalised vibration frequency
+\(f^{*} = f_{\text{cyl.}}/f_{n}\ \)of the cylinder from several runs
+gave us a value of \(y^{*} = 0.33 \pm 0.03\) and
+\(f^{*} = 1.03 \pm 0.04\). (Koide \emph{et al.}, 2013) obtained
+\(y^{*} = 0.32\) and \(f^{*} = 1.09\) under a similar \(U^{*}\)
+condition. We thus take this fairly successful reproduction of the
+results of (Koide \emph{et al.}, 2013) can be taken as an indication of
+readiness for further data collection.
+
+\includegraphics[width=5.40208in,height=2.67944in]{media/image15.png}
+
+\protect\hypertarget{_Ref40996667}{}{\protect\hypertarget{_Toc41048830}{}{}}Figure
+7: A sample of the time history for cylinder displacement from a test
+run of our experimental setup. The value of \(U^{*} = 22.7\).
+
+\hypertarget{grid-independency-study}{\subsection{Grid Independency
+Study}\label{grid-independency-study}}
+
+In this study, checking for grid independence involves deciding whether
+or not the quantities of interest tend towards a value, as one solves
+the governing equation on successively finer grid resolutions
+(Richardson and Gaunt, 1927; Stern \emph{et al.}, 2001). This method, of
+checking for convergence pays attention not only on the presumed
+converged value, but also on the trend of convergence. Literatures that
+employ this method impose a monotonic convergence condition (Stern
+\emph{et al.}, 2001; Mat Ali, Doolan and Wheatley, 2011; Ali, Doolan and
+Wheatley, 2012; Maruai \emph{et al.}, 2018) on their quantities of
+interest, adding an extra layer of confidence in the final form of their
+spatial discretisation.
+
+Additionally, this method allows for a quantitative description of the
+degree of convergence through the grid convergence index (GCI). Let
+\(f_{1},f_{2},f_{3},\cdots,f_{n}\) denote the quantity of interest
+obtained from several grids. A larger subscript indicates a coarser
+grid, thus \(f_{1}\) denotes the finest while \(f_{n}\) denotes the
+coarsest grid. Let the difference between successive solutions be
+\(\epsilon_{2,1},\epsilon_{3,2},\epsilon_{4,3},\cdots,\epsilon_{n,n - 1}\),
+where \(\epsilon_{2,1} = f_{2} - f_{1}\),
+\(\epsilon_{3,2} = f_{3} - f_{2}\) and so on. Then, the GCI is defined
+as
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(\text{GC}I_{i + 1,i} = F_{s}\frac{\left| \epsilon_{i + 1,i} \right|}{f_{i}\left( r^{p} - 1 \right)} \times 100\%,\)
+& (15)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(F_{s}\), \(f_{i}\) and \(r^{p}\) denotes the safety factor
+(\(= 1.25\)), quantity of interest and the refinement ratio (\(r\))
+between successive grids raised to the order of accuracy of the series
+of solutions (\(p\)). We refer the reader to ­­­­­­(Stern \emph{et al.},
+2001; Langley Research Centre, 2018) for a more detailed discussion on
+\(r^{p}\).
+
+We can estimate what the solution approaches as the grid size approaches
+zero by using the p\textsuperscript{th} method. Briefly, we compute the
+generalised Richardson extrapolation of the quantity of interest as
+follows.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(f_{\text{RE}} = f_{1} + \frac{f_{1} - f_{2}}{r^{p} - 1},\) &
+(16)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(f_{\text{RE}}\) is the Richardson extrapolation of the quantity
+of interest. Using \(f_{\text{RE}}\) to estimate the limit of the
+monotonically convergent series of \(f_{i}\), we can estimate the
+percentage difference of our solution on our finest grid from this limit
+as
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(E_{i} = \frac{f_{i} - f_{\text{RE}}}{f_{\text{RE}}} \times 100\%.\)
+& (17)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Table 3 summarises the result of our grid independency study for the
+SVIV reduced velocity of \(U^{*} = 22.7\). We identified three
+quantities central to the investigation of fluid-structure phenomena,
+especially flow-induced vibration of a circular cylinder. They are the
+vibration amplitude, vibration frequency and lift coefficient of the
+cylinder. We solve the governing equations on three grids which are
+numbered 1 for the finest, 2 for the medium and 3 for the coarsest,
+shown in Figure 8. If we let \(v_{i}\) be the volume of the
+\emph{i}\textsuperscript{th} cell in the grid, then, the average cell
+size is
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(h = \frac{1}{N}\left\lbrack \sum_{i = 1}^{N}v_{i} \right\rbrack^{1/3},\)
+& (18)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+and the normalised average cell size is hence
+\(h/D = \frac{1}{\text{ND}}\left\lbrack \sum_{i = 1}^{N}v_{i} \right\rbrack^{1/3}\).
+
+\includegraphics[width=5.67532in,height=4.22431in]{media/image16.jpeg}
+
+\protect\hypertarget{_Ref40997559}{}{\protect\hypertarget{_Toc41048831}{}{}}Figure
+8: Three meshes used in the grid convergence study. (a), (b) and (c)
+show the coarse, medium and fine meshes viewed perpendicular to three
+main viewing positions: from the inlet, the top and the front, which is
+looking directly at the cylinder end.
+
+Both \(y_{\text{RMS}}^{*}\) and \(Cl_{\text{RMS}}\) starts at an initial
+value smaller than their Richardson extrapolations, \(f_{\text{RE}}\),
+before approaching \(f_{\text{RE}}\) as we decrease the average cell
+size, \(h\). This similar trend can perhaps be attributed to the causal
+relationship between the lift coefficient and vibration amplitude. The
+lift drives and sustains the vibration, hence a small lift produces a
+small vibration, and when the lift amplitude becomes higher, so too does
+the vibration amplitude. The vibration frequency, on the other hand,
+starts at a value larger than its \(f_{\text{RE}}\) before falling as it
+approaches its \(f_{\text{RE}}\).
+
+\protect\hypertarget{_Ref40997535}{}{}Table 3: Summary of grid
+independency study.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Parameter/
+
+metric & \(Cl_{\text{RMS}}\) & \(y_{\text{RMS}}^{*} = y_{\text{RMS}}/D\)
+& \(f^{*} = f_{\text{cyl.}}/f_{n}\)\tabularnewline
+\midrule
+\endhead
+\(f_{\text{RE}}\) & 0.262 & 0.369 & 0.969\tabularnewline
+\(f_{1}\) & 0.2598 & 0.3687 & 0.9695\tabularnewline
+\(f_{2}\) & 0.2430 & 0.3588 & 0.9740\tabularnewline
+\(f_{3}\) & 0.0805 & 0.2374 & 1.0220\tabularnewline
+\(\left| \epsilon_{2,1} \right|\) & 0.02 & 0.01 & 0.004\tabularnewline
+\(\left| \epsilon_{3,2} \right|\) & 0.16 & 0.12 & 0.48\tabularnewline
+\(R = \left| \epsilon_{2,1} \right|/\left| \epsilon_{3,2} \right|\) &
+0.10 & 0.08 & 0.094\tabularnewline
+\(\text{GC}I_{3,2}\ (\%)\) & 30.92 & 6.00 & 0.64\tabularnewline
+\(\text{GC}I_{2,1}\ (\%)\) & 1.63 & 0.52 & 0.10\tabularnewline
+\bottomrule
+\end{longtable}
+
+The quantity C\(l_{\text{RMS}}\) experiences the most significant drop
+in GCI as we refine the grid. The GCI is close to one-third
+(\(30.92\%\)) as we refine the grid from coarse to medium with a
+refinement ratio of 1.376. The refinement ratio is calculated by
+dividing the number of cells in one grid with the next one down the
+refinement line. Following the grid numbering convention explained
+previously, dividing the number of cells in the fine grid (grid 1) with
+the number of cells in the medium grid (grid 2) gives us the refinement
+ratio from medium to fine, of \(r_{2,1}\). Similarly, dividing the
+number of cells in the medium grid (grid 2) with the number of cells in
+the coarse grid (grid 3) gives us the refinement ratio from coarse to
+medium, or \(r_{3,2}\). We can generalise this to \(n\)--number of grids
+as follows.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(r_{i + 1,i} = \frac{S_{\text{gri}d_{i + 1}}}{S_{\text{gri}d_{i}}},\)
+& (19)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where \(S_{\text{gri}d_{i}}\) denotes the total number of cells in the
+\(i^{\text{th}}\) grid. The GCI of \(\backslash nCl_{\text{RMS}}\) drops
+further to \(1.63\%\) as the mesh is refined more with a refinement
+ratio of 1.304.
+
+The GCI for \(y_{\text{RMS}}^{*}\) also drops by one order of magnitude
+as can be seen by comparing \(\text{GC}I_{3,2}\) with
+\(\text{GC}I_{2,1}\). Again, this similar trend of improvement points to
+the causal relationship between lift and displacement of the cylinder.
+The GCI for \(f^{*}\), however, drops by approximately a factor of 6
+instead of one order or magnitude, unlike the GCIs of
+\(y_{\text{RMS}}^{*}\) and \(Cl_{\text{RMS}}\).
+
+I provide visual representations of the convergent \(Cl_{\text{RMS}}\),
+\(y_{\text{RMS}}^{*}\) and \(f^{*}\) series in Figs. 9, 10 and 11. Note
+how the quantity of interest is very close to its Richardson
+extrapolation at the fine grid (grid 1) for all \(Cl_{\text{RMS}}\),
+\(y_{\text{RMS}}^{*}\) and \(f^{*}\). This implies that the fine grid
+already provides adequate spatial discretisation for the problem we are
+studying, and further refinements, while able to nudge our solutions
+even closer to the limit that is the Richardson extrapolation, may not
+be optimal in terms of usage of computational resources. Values of
+\(y_{\text{RMS}}^{*}\) and \(f^{*}\) at the fine grid already fall
+within experimental uncertainty as evidenced by our measurement in §3.4
+and the work by (Koide \emph{et al.}, 2013). Hence, all succeeding
+numerical data are gathered from grids with a resolution like the fine
+grid.
+
+\includegraphics[width=5.40208in,height=4.16667in]{media/image25.png}
+
+\protect\hypertarget{_Toc41048832}{}{}Figure 9: The convergence diagram
+for \(y_{\text{RMS}}^{*}\). (a) shows how \(y_{\text{RMS}}^{*}\)
+converges close to the Richardson extrapolation value while (b) shows
+how the error (difference between the value obtained from a particular
+mesh and the Richardson extrapolation) decreases with decreasing grid
+spacing.
+
+\includegraphics[width=5.65915in,height=4.45833in]{media/image27.png}
+
+\protect\hypertarget{_Toc41048833}{}{}Figure 10: The convergence diagram
+for \(f^{*}\). (a) shows how \(f^{*}\) converges close to the Richardson
+extrapolation value while (b) shows how the error (difference between
+the value obtained from a particular mesh and the Richardson
+extrapolation) decreases with decreasing grid spacing.
+
+\includegraphics[width=5.66875in,height=4.93506in]{media/image29.png}
+
+\protect\hypertarget{_Toc41048834}{}{}Figure 11: The convergence diagram
+for \(\text{Cl}_{\text{RMS}}\). (a) shows how \(\text{Cl}_{\text{RMS}}\)
+converges close to the Richardson extrapolation value while (b) shows
+how the error (difference between the value obtained from a particular
+mesh and the Richardson extrapolation) decreases with decreasing grid
+spacing.
+
+\section{\texorpdfstring{\protect\hypertarget{_Toc461037268}{}{\protect\hypertarget{_Toc461037451}{}{\protect\hypertarget{_Toc41048809}{}{}}}}{}}\label{section-3}
+
+\textbf{THE PURE CRUCIFORM}
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Toc41048810}{}{\protect\hypertarget{_Ref41049198}{}{}}Amplitude
+Response}{Amplitude Response}}\label{amplitude-response}
+
+Figure 12 shows the amplitude response of our single plate experiment
+and simulation. Besides simplifying comparison between our work and the
+results of (Koide \emph{et al.}, 2013) as we did previously, this time
+we also compare our data with the results of (Nguyen \emph{et al.},
+2012). We use the root-mean-square value of the cylinder displacement to
+represent the amplitude responses instead of the maximum displacement.
+The reason for this is twofold: first, using \(y_{\text{RMS}}^{*}\)
+facilitates comparison of data with (Nguyen \emph{et al.}, 2012; Koide
+\emph{et al.}, 2013), who also used \(y_{\text{RMS}}^{*}\) in their
+work. Second, because the cylinder displacement is an intermediate
+quantity for the estimation harnessed power (Maruai \emph{et al.}, 2017,
+2018), the usage of root-mean-square of cylinder displacement gives a
+preview of mean harnessed power, once the vibration is converted into
+alternating current. There is virtually no vibration for both our
+experiment and simulation when \(U^{*} < 18\), except for a small peak
+close to 0.1 at \(U^{*} \approx 7\). We attribute this peak to the upper
+branch of KVIV, which still exists, although suppressed due to the
+cruciform configuration of the system (Shirakashi, Mizuguchi and Bae,
+1989; Nguyen \emph{et al.}, 2012). However, when \(U^{*}\) exceeds 18,
+we observe a sudden jump in \(y_{\text{RMS}}^{*}\) right up to about
+0.4, for both our experiment and simulation. This we attribute to the
+formation of the streamwise vortices that drive SVIV.
+
+\includegraphics[width=5.40208in,height=5.76944in]{media/image31.png}
+
+\protect\hypertarget{_Ref41040609}{}{\protect\hypertarget{_Toc41048835}{}{}}Figure
+12: The amplitude and frequency response of our cruciform system, in
+lieu of results from (Nguyen \emph{et al.}, 2012; Koide \emph{et al.},
+2013). (a) shows the amplitude response using \(y_{\text{RMS}}^{*}\),
+(b) the frequency response using \(f^{*}\) and (c) also the frequency
+response, but using the Strouhal number for vibration St.
+
+After the inception of SVIV, value for \(y_{\text{RMS}}^{*}\) drops down
+to approximately 0.3, before recovering to a value that is close to what
+was observed by (Nguyen \emph{et al.}, 2012) and (Koide \emph{et al.},
+2013). This sudden jump followed by a gradual drop and a gradual rise in
+\(y_{\text{RMS}}^{*}\) was not observed in the works of (Nguyen \emph{et
+al.}, 2012) nor (Koide \emph{et al.}, 2013), even though their
+experimental parameters are fairly close to what we use in both our
+experiment and simulation.
+
+We therefore attribute this difference to the higher turbulence level
+set in our work. The turbulence level in the works of (Nguyen \emph{et
+al.}, 2012), for example was \(< 2.8\%\) throughout their range of
+Reynolds number. Instead, the initial turbulence level in our setup,
+both experimental and numerical is approximately double that value.
+Because of this, the turbulence amplification due to the onset of
+streamwise vortices (Zhao and Lu, 2018) -- especially for a circular
+cylinder-strip plate cruciform (Koide \emph{et al.}, 2017) -- is also
+greater compared to the experiments of (Nguyen \emph{et al.}, 2012) and
+(Koide \emph{et al.}, 2013). This higher compound turbulence warps the
+dominant vortical structure and introduces an increasing amount of
+intermittency to the lift signal, and by extension, to the displacement
+time history of the cylinder.
+
+One can simply inspect the error bars within \(18 < U^{*} < 23\) in
+Figure 12(a) to verify the greater sample dispersion within that range
+of \(U^{*}\). This intermittency ultimately vanishes as the dominant
+vortical structures become sufficiently stable to retain enough
+periodicity in its formation. Our numerical results also seem to support
+this argument, as evidenced by the time history of \(y^{*}\) within
+\({18 < U}^{*} < 30\) in Figure 13. There exists a distinct increase in
+intermittency for the time histories in Figure 13(a), that disappears
+once \(U^{*} > 23\) as can be seen in Figure 13(b).
+
+\includegraphics[width=5.40208in,height=4.65169in]{media/image35.png}
+
+\protect\hypertarget{_Ref41044658}{}{\protect\hypertarget{_Toc41048836}{}{}}Figure
+13: The time series of cylinder displacement between
+\(18 < U^{*} < 30\). (a) groups the cylinder displacement signal between
+\(18 < U^{*} < 23\), where there seems to be an increase in
+intermittency in the displacement signal, while (b) groups the cylinder
+displacement signal between \(25 \leq U^{*} < 30\), where the
+intermittency in the displacement signal vanishes.
+
+We see these as grounds for further study on streamwise vortex shedding
+onset, perhaps from the perspective of transition from convective to
+absolute instability. However, such studies are more commonly done under
+low Reynolds number conditions (Wang \emph{et al.}, 2019; X. Li \emph{et
+al.}, 2019) to ease the isolation of the phenomenon and is therefore out
+of the scope of this study.
+
+\hypertarget{frequency-response}{\subsection{Frequency
+Response}\label{frequency-response}}
+
+Figure 12(b) compares the frequency responses of our experiment and
+numerical results with those in (Nguyen \emph{et al.}, 2012) and (Koide
+\emph{et al.}, 2013). We use the normalised frequency \(f^{*}\) in
+Figure 12(b) and the vibration Strouhal number in Figure 12(c) to aid
+comparison between the results. In our experiments, the value for
+\(f^{*}\) always fall close to unity. However, if the inspect the size
+of the error bars we observed a range of \(U^{*}\) where there exists a
+higher degree of variance in the sample measurements between
+\(13 < U^{*} < 20\). The reason for this lies in \(13 < U^{*} < 20\)
+coinciding with the desynchronization region of the KVIV regime up to
+\(U^{*} < 18\), and then overlaps with the intermittent vibration regime
+up to \(U^{*} < 20\). Within these two regimes, the cylinder
+displacement history -- from which \(f^{*}\) is calculated -- varies
+considerably in amplitude and in periodicity, resulting in larger error
+bars. In Figure 12(c) we can see the overall trend being more similar to
+the results of (Koide \emph{et al.}, 2013) rather than (Nguyen \emph{et
+al.}, 2012), which is likely due to a higher similarity between our
+experimental setup with that of (Koide \emph{et al.}, 2013), most
+striking in terms of the gap ratio \(G\), which is exactly the same.
+
+Our numerical results exhibit a significantly different trend, but only
+up to \(U^{*} < 17\). We observe in Figure 12(b) that the vibration
+frequency of the cylinder increases linearly, even past \(U^{*} = 7\),
+which is the upper branch of the KVIV regime. Converting \(f^{*}\) into
+Strouhal number reveals that the cylinder is vibrating close to the
+Karman frequency of the system. The Karman frequency of a smooth, fixed
+circular cylinder refers to the shedding frequency of Karman vortices in
+its wake. An empirical relationship with Reynolds number exists for
+\(250 < Re < 2 \times 10^{5}\), which is the following Eq. (20)
+(Blevins, 1990).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& \(\text{St} = 0.198\left( 1 - \frac{19.7}{\text{Re}} \right)\) &
+\protect\hypertarget{_Ref41045031}{}{}(20)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+The values we get using Eq. (20) are nearly constant about \(0.19\) for
+\(U^{*} < 15\). The slight discrepancy from our Strouhal number mean
+(\(\approx 0.16\)) in the \(U^{*} < 15\) range can be ascribed to us
+studying a cruciform structure instead of the smooth circular cylinder
+upon which Eq. (20) was originally based (Blevins, 1990).
+
+The experimental studies benchmarked in Figure 12 quite possibly were
+simply unable to observe this phenomenon due to insufficient sensitivity
+in the equipment used to measure the cylinder displacement. The lowest
+\(y_{\text{RMS}}^{*}\) recorded in our simulation within
+\(7 < U^{*} < 15\) was in the order of \(10^{- 5}\) m (10 microns). A
+numerical study has no problem recording vibration of this order as the
+precision of the numerical solution is only limited by the processor
+architecture. Experimental work, however, requires not only the
+sensitivity, but also the isolation from the background noise that
+forces the cylinder to vibrate close to the natural frequency of the
+system \(f_{n}\) (Nguyen \emph{et al.}, 2012), hence overpowering this
+very small amplitude vibration. Once streamwise vortices form, their
+shedding and cylinder vibration synchronises close to \(f_{n}\), thus
+locking the normalised vibration frequency back to \(f^{*} \approx 1\).
+
+\hypertarget{ensemble-empirical-mode-decomposition-eemd-and-hilbert-transform}{\subsection{Ensemble
+Empirical Mode Decomposition (EEMD) and Hilbert
+Transform}\label{ensemble-empirical-mode-decomposition-eemd-and-hilbert-transform}}
+
+To obtain a clearer picture of the temporal characteristics of the lift
+and cylinder displacement signals, we decided to employ the ensemble
+empirical mode decomposition (EEMD) method (Huang \emph{et al.}, 1998;
+WU and HUANG, 2008) on the signals, and compute their instantaneous
+phase lag, frequency and amplitude. EEMD is a method of signal
+decomposition that breaks down a signal into a finite number of
+constituents \(C_{i}\) (\(i = 1,\ 2,\ \cdots,\ n\)), each component
+\(C_{i}\) orthogonal to \(C_{i + 1}\). To compute the phase lag between
+lift coefficient Cl and normalised cylinder displacement \(y^{*}\), we
+select the component with the highest correlation to the original
+signal, to represent the original signal.
+
+The Hilbert transform (HT) has been used in the past to study the
+instantaneous phase and frequencies of KVIV (Khalak and Williamson,
+1999). However, the signal must be monochromatic if we are to obtain a
+physically meaningful result after applying HT. EEMD is a way to
+pre-process the signal and obtain components that (1) have zero mean,
+and (2) have an equal number of extrema and zero crossings, or they
+differ only by one. Functions that fulfil these criteria are called
+intrinsic mode functions (IMF), and they guarantee a physically
+meaningful result to HT (Gumelar \emph{et al.}, 2019; Zhou, Meng and
+Abbaspour, 2019). We refer the reader interested in the details of EEMD
+and Hilbert transform, also collectively known as the Hilbert-Huang
+transform (HHT), to the following excellent texts on the subject (Huang
+and Attoh-Okine, 2005; Huang, 2014).
+
+\hypertarget{phase-lag-in-the-kviv-regime-mathbfumathbfmathbf-14}{\subsection{\texorpdfstring{Phase
+lag in the KVIV regime
+(\(\mathbf{U}^{\mathbf{*}}\mathbf{< 14}\))}{Phase lag in the KVIV regime (\textbackslash{}mathbf\{U\}\^{}\{\textbackslash{}mathbf\{*\}\}\textbackslash{}mathbf\{\textless{} 14\})}}\label{phase-lag-in-the-kviv-regime-mathbfumathbfmathbf-14}}
+
+At reduced velocities \(U^{*} = 2.3\) and 4.5, the phase lags \(\phi\)
+(\(\)) between Cl and \(y^{*}\) are practically zero. The characteristic
+IMFs of Cl and \(y^{*}\) at \(U^{*} = 4.5\) exemplifies this trend, as
+showcased in Fig. 12. Recall that the characteristic IMFs are the EEMD
+components of Cl and \(y^{*}\) that has the highest correlation with the
+original signals. The trend that one notices in Fig. 12 is similar to
+what was observed in (Khalak and Williamson, 1999), a study that also
+employs the Hilbert transform to obtain instantaneous phase, albeit
+without EEMD. Both Cl and \(y^{*}\) are in phase with each other and the
+normalised dominant frequency of the lift coefficient
+\(f_{\text{Cl}}^{*} = f_{\text{Cl}}/f_{n}\) (Fig. 12(c)) falls about one
+quarter short of the system natural frequency \(f_{n}\).
+
+\includegraphics[width=5.40208in,height=5.59845in]{media/image47.png}
+
+\protect\hypertarget{_Toc41048837}{}{}Figure 14: Temporal analysis of
+the lift coefficient and normalised cylinder displacement signal at
+\(U^{*} = 4.5\). We show the lift coefficient and normalised cylinder
+displacement signal side by side in (a), present the temporal evolution
+of the phase lag \(\phi\) of Cl in (b) and show the temporal evolution
+of the instantaneous frequency of the lift coefficient signal in (c).
+The blue line in (a) represents the lift coefficient signal, while the
+black line represents the normalised cylinder displacement.
+
+Once we enter the upper branch of KVIV at \(U^{*} = 6.8\), \(\phi\)
+jumps to approximately \(110\). This jump in \(\phi\) is characteristic
+of the transition to the upper branches as observed also by (Maruai
+\emph{et al.}, 2018), among others. Both Cl and \(y^{*}\) signals are
+visibly very periodic, and the dominant frequency of Cl
+\(f_{\text{Cl}}^{*}\) is \(\approx 1\), as one can verify in Fig. 13(c).
+
+\includegraphics[width=5.40208in,height=5.55833in]{media/image53.png}
+
+\protect\hypertarget{_Toc41048838}{}{}Figure 15: Temporal analysis of
+the lift coefficient and normalised cylinder displacement signal at
+\(U^{*} = 6.8\). We show the lift coefficient and normalised cylinder
+displacement signal side by side in Fig. (a), present the temporal
+evolution of the phase lag \(\phi\) of Cl in (b) and show the temporal
+evolution of the instantaneous frequency of the lift coefficient signal
+in (c). The blue line in (a) represents the lift coefficient signal,
+while the black line represents the normalised cylinder displacement.
+
+As we increase \(U^{*}\) even further up to \(U^{*} < 14\), we see a
+similar trend for all \(U^{*} = 9.1,\ 11.4,\ 13.6\) examined: the signal
+of Cl and \(y^{*}\) are both qualitatively very periodic, the phase lag
+is very close to \(180\), and the dominant Cl frequency increases
+linearly in a manner that the Strouhal number of Cl is always
+\(\approx 0.16\) on average. We present a sample of the (1) Cl and
+\(y^{*}\) signals, (2) \(\phi\), and (3)
+\protect\hypertarget{_Hlk23621866}{}{}\(f_{\text{Cl}}^{*}\) in the
+\(6.8 < U^{*} < 14\) range in Figure 16(a), (b) and (c) respectively.
+The sample is taken from the numerical results at \(\ U^{*} = 13.6\),
+and it is characteristic of a KVIV system in the lower branch.
+
+\includegraphics[width=5.40208in,height=5.78333in]{media/image56.png}
+
+\protect\hypertarget{_Ref41047456}{}{\protect\hypertarget{_Toc41048839}{}{}}Figure
+16: Temporal analysis of the lift coefficient and normalised cylinder
+displacement signal at \(U^{*} = 13.6\). We show the lift coefficient
+and normalised cylinder displacement signal side by side in (a), present
+the temporal evolution of the phase lag \(\phi\) of Cl in (b) and show
+the temporal evolution of the instantaneous frequency of the lift
+coefficient signal in (c). The blue line in (a) represents the lift
+coefficient signal, while the black line represents the normalised
+cylinder displacement.
+
+\subsection{\texorpdfstring{\protect\hypertarget{_Ref24287997}{}{\protect\hypertarget{_Toc41048814}{}{}}Transition
+to SVIV
+(\(\mathbf{15.9 <}\mathbf{U}^{\mathbf{*}}\mathbf{< 18.2}\))}{Transition to SVIV (\textbackslash{}mathbf\{15.9 \textless{}\}\textbackslash{}mathbf\{U\}\^{}\{\textbackslash{}mathbf\{*\}\}\textbackslash{}mathbf\{\textless{} 18.2\})}}\label{transition-to-sviv-mathbf15.9-mathbfumathbfmathbf-18.2}
+
+Previously in the \(U^{*} < 14\) regime, we observe that the temporal
+profile of both Cl and \(y^{*}\) are very similar to each other, except
+that Cl leads \(y^{*}\) by a certain amount. This similarity in profile
+supports the assertion that the vibration within \(U^{*} < 14\) is
+driven exclusively by the shedding of Karman vortices, which brings the
+onset of the alternating lift. By extension, one might expect a similar
+profile between Cl and \(y^{*}\) even when the vibration is driven by
+streamwise vortices. However, this presumption seems to not be the case.
+
+Once we reach \(U^{*} = 15.9\), we observe that it has become difficult
+to argue that the profile of \(y^{*}\) is just a lagged version of the
+profile of Cl. This is shown in Figure 17(a), with the enlarged version
+in Figure 17(b). The profile of Cl looks like the result of several
+superimposed signals, which one can almost distinguish from the presence
+of two types of maxima at two different amplitude heights. We put a red
+dashed line and a red dashed-dot line in Figure 17(b) as visual cues
+indicating the two amplitude heights. Decomposing the lift coefficient
+signal using EEMD reveals partial evidence supporting the superimposed
+(compound) signal hypothesis.
+
+\includegraphics[width=5.40208in,height=4.29583in]{media/image65.png}
+
+\protect\hypertarget{_Ref41047682}{}{\protect\hypertarget{_Toc41048840}{}{}}Figure
+17: Temporal evolution of \(y^{*}\) and Cl at \(U^{*} = 15.9\). (b)
+shows an enlarged view of (a). We can barely spot semblance of two
+signals with different amplitudes superimposed in the Cl signal in (b).
+
+Once we have decomposed the signal using EEMD, we replot Fig. 15(a)
+using the component of Cl with the highest correlation to the original
+\(y^{*}\) signal and present the comparison in Fig. 16(a). To represent
+\(y^{*}\) in Fig. 16(a), we again chose its IMF component with the
+highest correlation to the original \(y^{*}\) signal, as we have done in
+Figs. 12, 13, and 14. One can clearly see that the part of Cl signal
+responsible for driving the vibration at \(U^{*} = 15.9\) is embedded in
+the original Cl signal, and decomposition via EEMD managed to recover
+this signal whose profile is indeed similar to the profile of the
+characteristic IMF of \(y^{*}\), except that it leads \(y^{*}\) on
+average by approximately \(150\) (Fig. 16(b)). This decline from
+\(\phi \approx 180\) at reduced velocities \(6.8 < U^{*} < 14\), to
+\(\phi \approx 150\) at \(U^{*} = 15.9\) is quite sizeable, suggesting a
+fundamental change in flow dynamics, particularly in terms of vortical
+structure.
+
+\includegraphics[width=5.40208in,height=5.80486in]{media/image67.png}
+
+\protect\hypertarget{_Ref41047933}{}{\protect\hypertarget{_Toc41048841}{}{}}Figure
+18: Temporal analysis of the lift coefficient component that has the
+highest correlation to the original (normalised) cylinder displacement
+signal, \(C_{Cl,\ y^{*}}\), and the normalised cylinder displacement
+signal at \(U^{*} = 15.9\). The component was obtained by decomposing
+the lift coefficient signal using EEMD. We show \(C_{Cl,y^{*}}\) and
+\(y^{*}\) signal side by side in (a), present the temporal evolution of
+the phase lag \(\phi\) of \(C_{Cl,y^{*}}\) in (b) and show the temporal
+evolution of the instantaneous frequency of the \(C_{Cl,y^{*}}\) in (c).
+The blue line in (a) represents the lift coefficient component signal,
+while the black line represents the normalised cylinder displacement.
+
+Inspecting the HHT spectrogram in Figure 18(c) reveals two dominant
+bands in the frequency domain. The first one marked with a white
+continuous rectangular box is the instantaneous frequency for the IMF
+component of lift shown in Figure 18(a), and its mean frequency lies
+close to the natural frequency of the system
+(\(f_{\text{Cl}}^{*} \approx 1\)). There is however, a second band of
+frequency with nearly similar amplitude around
+\(f_{\text{Cl}}^{*} \approx 3.3\), marked with a white dashed
+rectangular box. Computing the Strouhal number from this frequency
+returns a value of \(\text{St} = 0.20\), which is very close to the
+Strouhal number for Karman vortices as predicted by Eq.(20) at the
+Reynolds number equivalent to \(U^{*} = 15.9\), which is
+\(\text{Re} = 7.9 \times 10^{3}\). We thus attribute this second band of
+frequency as being the footprint left by the shedding of Karman
+vortices, and the first band (the component of Cl in Figure 18(a)) as
+the result of streamwise vortex shedding.
+
+The knowledge that Karman vortices continue to exist and shed from a
+cruciform structure during SVIV is not new in the literature. However,
+this is the first time that the lift signal from a cruciform structure
+undergoing SVIV has been subjected to HHT, revealing the compositeness
+of the lift signal and elucidating the footprint of the two dominant
+vortical structures on it. Although the magnitude of the instantaneous
+frequency due to Karman vortex is comparable to the streamwise vortex
+(sometimes even bigger), the reason why the cylinder resists locking
+into its frequency is perhaps because its frequency too distant from the
+natural frequency of the system \(f_{n}\). The shedding frequency of the
+streamwise vortex is much closer to \(f_{n}\) and is thus preferred by
+the cylinder.
+
+We consider the transition to SVIV to be complete at \(U^{*} = 18.2\),
+when the mean phase lag \(\phi\) drops further to \(\approx 20\). Figure
+17(a) and (b) documents this observation. The phase lag is observed to
+slip through \(360\) at certain portions of the characteristic Cl
+profile where there are slight distortions in the periodicity of the
+IMF. The slipping through \(360\) was also observed by (Khalak and
+Williamson, 1999) in their work on KVIV, which highlights the
+quasi-periodic nature of the signal being analysed. The slip appeared in
+(Khalak and Williamson, 1999) at the initial branch of KVIV. It may be
+the case that the overall low value of \(\phi \approx 20\) at
+\(U^{*} = 18.2\), coupled with the presence of \(\phi\) slippage is
+suggesting the possibility of \(U^{*} = 18.2\) being the initial branch
+for SVIV. We could not foresee this point brought up if the original Cl
+signal is not decomposed beforehand, implying the utility of EEMD in
+studying fluid-structure interactions with multiple dominant flow
+structures.
+
+\includegraphics[width=5.40208in,height=5.48542in]{media/image73.png}
+
+\protect\hypertarget{_Ref41048365}{}{\protect\hypertarget{_Toc41048842}{}{}}Figure
+19: Temporal analysis of the lift coefficient component that has the
+highest correlation to the original (normalised) cylinder displacement
+signal, \(C_{Cl,\ y^{*}}\), and the normalised cylinder displacement
+signal at \(U^{*} = 18.2\). The component was obtained by decomposing
+the lift coefficient signal using EEMD. We show \(C_{Cl,y^{*}}\) and
+\(y^{*}\) signal side by side in (a), present the temporal evolution of
+the phase lag \(\phi\) of \(C_{Cl,y^{*}}\) in (b) and show the temporal
+evolution of the instantaneous frequency of the \(C_{Cl,y^{*}}\) in (c).
+The blue line in (a) represents the lift coefficient component signal,
+while the black line represents the normalised cylinder displacement.
+
+\hypertarget{the-sviv-regime-mathbfumathbfmathbf-20}{\subsection{\texorpdfstring{The
+SVIV Regime,
+\(\mathbf{U}^{\mathbf{*}}\mathbf{> 20}\)}{The SVIV Regime, \textbackslash{}mathbf\{U\}\^{}\{\textbackslash{}mathbf\{*\}\}\textbackslash{}mathbf\{\textgreater{} 20\}}}\label{the-sviv-regime-mathbfumathbfmathbf-20}}
+
+As \(U^{*}\) is increased to \(20.5\), we can see a jump in \(\phi\)
+from a mean value of approximately \(20\) to about \(120\), shown in
+Fig. 18(a). The phase slippage discussed previously is also observed in
+this time series subset, indicating the quasi-periodic nature of the
+lift coefficient signal at this \(U^{*}\). Incidentally, this
+quasi-periodicity seems to be the norm for the lift signals up to
+\(U^{*} = 27.3\), as suggested by the phase slippages evident in Figs.
+18(b), (c), and (d). The slippage only stops once \(U^{*}\) reaches
+\(29.5\), suggesting a more periodic behaviour of the lift coefficient
+compared to its counterparts between \(20.5 \leq U^{*} \leq 27.3\).
+Although the instantaneous phase between \(20.5 \leq U^{*} \leq 27.3\)
+implies a quasi-periodic nature, their mean values at each \(U^{*}\) are
+contained in the narrow region \(114 < \phi\ \left( \right) < 135\), as
+is the value for \(\phi\) at \(U^{*} = 29.5\). This observation that the
+value of \(\phi\) is only slowly varying with respect to \(U^{*}\), once
+\(U^{*}\) increases past \(20.5\), can be interpreted as the dominant
+flow structures settling into a stable form that becomes more resilient
+against external excitations. Based on this feature, it seems
+appropriate to classify \(20.5 \leq U^{*} \leq 29.5\) as the upper
+branch of SVIV.
+
+\includegraphics[width=5.40208in,height=4.40625in]{media/image79.png}
+
+\protect\hypertarget{_Toc41048843}{}{}Figure 20: The instantaneous phase
+lag \(\phi\) of the dominant component of the normalised cylinder
+displacement signal (\(y^{*}\)) against \(C_{Cl,y^{*}}\) in the range
+\(20 < U^{*} < 30\). See Figure 19 for the definition of
+\(C_{Cl,y^{*}}\).
+
+Figure 21 summarises our findings thus far, with respect to our analysis
+of the Cl time series, specifically the ensemble average value of
+\(\phi\), denoted as \(\phi_{\text{mean}}\). The region A denotes the
+initial branch of (suppressed) KVIV, where \(\phi_{\text{mean}}\) is
+close to zero. Region B denotes the upper/lower branch of (suppressed)
+KVIV, where the system experiences a jump from
+\(\phi_{\text{mean}} \approx 0\) to greater than \(110\). The value of
+\(\phi_{\text{mean}}\) settles very close to \(180\) towards the end of
+this upper/lower branch. The HHT spectrograms up to this \(U^{*}\) shows
+only one dominant band of \(f_{\text{Cl}}^{*}\) which is close to the
+Strouhal frequency of Karman vortex shedding.
+
+\includegraphics[width=5.40208in,height=2.12500in]{media/image89.png}
+
+\protect\hypertarget{_Ref41048465}{}{\protect\hypertarget{_Toc41048844}{}{}}Figure
+21: Vibration regimes identified during analysis of \(\phi\). To capture
+the evolution of \(\phi\) with respect to \(U^{*}\), a representative
+value for \(\phi\) at each \(U^{*}\) must be selected. We chose to use
+the mean \(\phi\) as the representative value.
+
+Then, \(\phi_{\text{mean}}\) experiences a slight drop of about
+one-sixth the value of \(\phi_{\text{mean}}\) at the preceding
+upper/lower branch as we enter region C, marking the start of transition
+to the SVIV regime. The emergence of two dominant instantaneous
+frequency bands for \(f_{\text{Cl}}^{*}\) further supports this
+demarcation. One of the dominant \(f_{\text{Cl}}^{*}\) band has a value
+close to unity, while the other has a value close to the shedding
+frequency of Karman vortex for a fixed, isolated circular cylinder at
+the same Reynolds number. The system then undergoes a more sudden drop
+to \(\phi_{\text{mean}} \approx 20\) at \(U^{*} = 18.2\). Inspecting the
+temporal evolution of \(\phi\) revealed the quasi-periodic nature of Cl
+at this \(U^{*}\), which is analogous to the KVIV initial branch studied
+by (Khalak and Williamson, 1999), prompting us to assign the region up
+to \(U^{*} = 20.5\) as the initial branch of SVIV (region D).
+
+Finally, in region E we observe another jump in \(\phi_{\text{mean}}\)
+from \(\phi_{\text{mean}} \approx 20\) to approximately \(120\) as
+\(U^{*} > 20.5\). The Cl signal gradually loses its quasi-periodicity
+with increasing \(U^{*}\), and the \(\phi_{\text{mean}}\) in this region
+falls within the arguably narrow range of
+\(114 < \phi\ \left( \right) < 135\), pointing to stabilisation of
+dominant flow structures. We hence designate region E as the upper
+branch of SVIV.
+
+\hypertarget{mathematical-model-for-power-estimation}{\subsection{Mathematical
+Model for Power
+Estimation}\label{mathematical-model-for-power-estimation}}
+
+The mathematical model for harnessable power estimation in this study
+follows that which had been mentioned in (Raghavan, 2007; M. M. M.
+Bernitsas \emph{et al.}, 2008; Bernitsas \emph{et al.}, 2009). In these
+works, the authors mentioned that work done by the oscillating cylinder
+\(W_{\text{cyl.}}\)during one cycle of oscillation \(T_{\text{osc.}}\)
+is as follows.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(W_{\text{cyl.}} = \int_{0}^{T_{\text{osc.}}}\left( F_{L} \cdot \dot{y} \right)dt,\)
+& (21)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+where both the lift \(F_{L}\) and cylinder velocity \(\dot{y}\) are both
+functions of time. Through several manipulations and simplifying
+assumptions (see (Sun \emph{et al.}, 2016) for updated derivation
+steps), the power captured by the system can be written, using our
+parameters, as the fluid power
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(P_{Fluid,RMS} = \frac{1}{2}\text{ρπ}C_{y,\text{RMS}}U^{2}f_{\text{osc.}}y_{\text{RMS}}\text{DL}\sin\left( \phi \right),\)
+& \protect\hypertarget{_Ref41049025}{}{}(22)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+or the mechanical power
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+&
+\(P_{Mech.,RMS} = 8\pi^{3}m_{\text{eff.}}\zeta_{\text{Tot.}}\left( y_{\text{RMS}}f_{\text{osc.}} \right)^{2}f_{n}.\)
+& \protect\hypertarget{_Ref41049030}{}{}(23)\tabularnewline
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Here, \(P_{Fluid,RMS}\), \(P_{Mech.,RMS}\), \(L\), \(C_{y,\text{RMS}}\),
+\(\zeta_{\text{Tot.}}\) and \(m_{\text{eff.}}\) are the root mean square
+of fluid power, root mean square of mechanical power, length of the
+circular cylinder, root mean square of lift amplitude, total damping
+coefficient, and the system effective mass respectively. We choose to
+use root mean square (parameters subscript RMS) quantities in Eqs. (22)
+and (23) instead of the maximum values like the original authors because
+that may lead to a misunderstanding that the maximum value is sustained
+throughout the observation window. This obviously is not always the case
+in our study, especially once the flow transits to SVIV. Time series
+analysis of \(y^{*}\left( t \right)\) and \(\text{Cl}\left( t \right)\)
+in §\protect\hypertarget{currentWorkingPosition}{}{}4.1 revealed that
+there is a degree of intermittency in both signals that cannot be
+overlooked at certain ranges of \(U^{*}\), thus making it better to use
+the root mean square values instead. Estimation of the root mean square
+of harnessable power in our opinion makes more sense because it returns
+a value that is continually approached by the system \emph{over time},
+while the maximum, may be a one-off value.
+
+Before presenting the results of our harnessable power estimation
+following Eqs. (22) and (23), let us clarify our method of estimating
+the root mean square of lift amplitude \(C_{y,\text{RMS}}\). Let
+\(F_{L}\left( t \right)\) be the lift acting on the cylinder and
+\(y\left( t \right)\) the cylinder displacement time series resulting
+from that alternating lift. Decomposing \(F_{L}\left( t \right)\) via
+EEMD yields a finite number \(N\) of IMFs which we can summarily write
+as \(F_{L}\left( t \right) = \sum_{N}^{}{C_{i}\left( t \right)}\). The
+IMF chosen as the component of lift driving \(y\left( t \right)\) is the
+\(C_{i}\left( t \right)\) with the highest correlation with
+\(y\left( t \right)\), the original cylinder displacement signal. This
+automatically selects the component of lift with a mean frequency
+closest to the mean frequency of \(y\left( t \right)\). We then compute
+the root mean square value of that component of lift, giving us
+\(C_{y,\text{RMS}}\).
+
+Figure 21 shows the comparison between power estimated from our
+experiment and numerical results, with the experimental results of
+(Nguyen \emph{et al.}, 2012) and the direct power measurement of (Koide
+\emph{et al.}, 2013). Only the value for \(P_{Mech.,RMS}\) is computed
+from our experimental results due to the absence of lift data. Our
+numerical results have both lift and cylinder displacement data and
+hence, we computed both \(P_{Fluid,RMS}\) and \(P_{Mech.,RMS}\). We
+estimated the power from the experimental results of (Nguyen \emph{et
+al.}, 2012) by interpolating missing data points in both their amplitude
+and frequency responses to compute the value of \(P_{Mech.,RMS}\) at a
+given value of \(U^{*}\). The direct power measurement by (Koide
+\emph{et al.}, 2013) was done by connecting the elastic support of the
+cylinder to a coil. The coil moves with the cylinder, thus creating a
+relative pistoning motion against a fixed magnet and produces an
+alternating current.
+
+\includegraphics[width=5.40208in,height=3.73958in]{media/image93.png}
+
+\protect\hypertarget{_Ref41049462}{}{}Figure 22: Estimated root mean
+square of mechanical power \(P_{Mech.,RMS}\), fluid power
+\(P_{Fluid,RMS}\), or both, of our experimental and numerical results,
+compared with results of similar studies in the literature. The fluid
+power \(P_{Fluid,RMS}\) is calculated only from the results of our
+numerical study as the others did not measure lift. The computation of
+the instantaneous phase lag \(\phi\) requires both lift and cylinder
+displacement signals.
+
+We note that the evolution trend of estimated power with respect to
+\(U^{*}\) is similar between \(P_{Mech.,RMS}\) from our experiment and
+simulation, especially in the \(U^{*}\) region immediately after the
+onset of SVIV. This makes sense since \(P_{Mech.,RMS}\) is basically a
+single variable function, the variable being \(y_{\text{RMS}}\), with
+the others fixed as we vary \(U^{*}\). The trend observed in
+\(P_{Mech.,RMS}\) is thus a scaled version of the trend found in
+\(y_{\text{RMS}}\). Nevertheless, besides this region of
+\(18 < U^{*} < 23\) the trend between all data series compared in Figure
+22 are relatively like each other. This is especially the case after
+\(U^{*} > 23\), where we observe a fairly good agreement between
+\(P_{Mech.,RMS}\) and \(P_{Fluid,RMS}\) computed from our experimental
+and numerical results with the direct power measurements of (Koide
+\emph{et al.}, 2013) and the estimated \(P_{Mech.,RMS}\) from the data
+of (Nguyen \emph{et al.}, 2012). The estimated power in the KVIV regime
+(\(U^{*} < 17\)) produces power only in the order of \(10\ \text{μW}\),
+which is relatively insignificant in contrast to the magnitude of power
+produced in the SVIV regime (mW).
+
+\subsection{\texorpdfstring{Possibility for Increasing Fluid Power,
+\(\mathbf{P}_{\mathbf{Fluid,RMS}}\)}{Possibility for Increasing Fluid Power, \textbackslash{}mathbf\{P\}\_\{\textbackslash{}mathbf\{Fluid,RMS\}\}}}\label{possibility-for-increasing-fluid-power-mathbfp_mathbffluidrms}
+
+We have seen in Figure 22 the similarity in the evolution trend of
+\(P_{Mech.,RMS}\) and \(P_{Fluid,RMS}\) against \(U^{*}\) of our
+numerical results with those from (Nguyen \emph{et al.}, 2012) and
+(Koide \emph{et al.}, 2013). However, recall that in order to represent
+the amplitude of lift, we used the root mean square amplitude of the
+component of lift that has the highest correlation with the normalised
+cylinder displacement signal \(y^{*}\left( t \right)\). We did not use
+the root mean square amplitude of the original lift signal, and yet we
+obtained \(P_{Fluid,RMS}\) estimates that are in reasonable agreement
+not only with its \(P_{Mech.,RMS}\) counterparts but with the actual
+measured power of (Koide \emph{et al.}, 2013).
+
+On one hand, this is an indication that the lift component selected for
+use in computation is an arguably faithful representation of the force
+driving the motion of the cylinder. On the other, this also suggests
+that the motion of the cylinder, once it enters the SVIV regime, is
+driven only by a subset of the total lift force. Another significant
+subset of the lift force, once decomposed with EEMD, is the component
+whose mean frequency is close to the Karman frequency of vortex
+shedding, as explained in §4.5. This ``Karman'' component of lift has a
+similar magnitude to the ``streamwise vortex'' component (or just
+streamwise component for short) of lift, as evidenced inFigure 24, and
+is therefore not negligible. The Karman components are marked with a
+dashed, white box and the streamwise components are marked with a solid,
+white box, following the convention in Figure 18 and Figure 19. However,
+the Karman component fails to affect the cylinder vibration like the
+streamwise component most probably due to the large difference between
+the mean frequency of the Karman component and the natural frequency of
+the system, \(f_{n}\). The streamwise component has a mean frequency
+close to \(f_{n}\) and is hence able to synchronize with the vibration
+of the cylinder, producing a sizeable amplitude response.
+
+\includegraphics[width=5.40208in,height=2.99097in]{media/image94.png}
+
+Figure 23: Evolution of the root mean square amplitude of two dominant
+lift components: the Karman and streamwise components with respect to
+\(U^{*}\). The region \(U^{*} < 23\) exhibits similar magnitude for both
+the Karman and streamwise components of lift. On the other hand, the
+magnitude of amplitude for the Karman component while the region
+\(U^{*} > 23\) is almost always twice that of the streamwise component.
+
+\includegraphics[width=5.40208in,height=5.64931in]{media/image95.png}
+
+\protect\hypertarget{_Ref41049739}{}{}Figure 24: The instantaneous
+frequency of the lift signal between \(20 < U^{*} < 30\). The white,
+solid box encloses the region where the mean frequency is close to the
+system natural frequency \(f_{n}\), while the dashed, white box encloses
+the region where the mean frequency is close to the shedding frequency
+of Karman vortex at the Reynolds number at which the simulation is
+performed. Through visual inspection, we can see how the degree of
+dispersion in the instantaneous frequency of the ``Karman component'' of
+lift is about twice that of the ``streamwise component'' of lift.
+
+Figure 24 shows the root mean square amplitude of the Karman and
+streamwise components of lift in the SVIV regime \(U^{*} > 18\). Between
+\(18 < U^{*} < 23\), the magnitude of the Karman and streamwise
+components are nearly equal. However, once we exceed \(U^{*} = 23\),
+Figure 24 shows that the contribution to the total lift by the Karman
+component is on average twice the contribution of the streamwise
+component. Let us assume a hypothetical situation where we can
+consolidate the contribution by the Karman component under the
+streamwise component of lift. Then, the value for \(C_{y,\text{RMS}}\)
+in Eq. (22) will increase close to a factor of 2 when
+\(18 < U^{*} < 23\), and close to a factor of
+\protect\hypertarget{_Hlk24566759}{}{}3 when \(23 < U^{*} < 30\). This
+increase in \(C_{y,\text{RMS}}\) will lead to a larger
+\(P_{Fluid,RMS}\), if the value of the other parameters in Eq. (23) are
+similar. The point of this exercise is to demonstrate a procedure to
+estimate the room for improvement for future iterations of the cruciform
+system with respect to
+\(P_{Fluid,RMS}\).\protect\hypertarget{currentlyWorking}{}{}
+
+Although not as pertinent in a vibrating system forced only by one
+dominant mechanism, e.g. KVIV-based and galloping-based systems, we
+think that it is advantageous to consider the contribution of different
+vibration-driving mechanisms on the lift produced, in order to better
+understand the phenomena, and tackle further improvements of the system
+from a new perspective. This is especially true, in our opinion, in this
+study where there exist simultaneous shedding of Karman and streamwise
+vortices once we enter the SVIV regime. Once we have an estimate of how
+much fluid energy is being taken up by the vortical structure that is
+not the primary vibration forcing mechanism, we can then work to find
+methods to redirect that energy towards the vortical structure that is
+the primary vibration forcing mechanism, thus potentially harnessing an
+even bigger power at the same \(U^{*}\).
+
+.
+
+\hypertarget{section-4}{\section{}\label{section-4}}
+
+\textbf{THE MODIFIED CRUCIFORM}
+
+\hypertarget{the-amplitude-frequency-response}{\subsection{The
+amplitude-frequency response}\label{the-amplitude-frequency-response}}
+
+\includegraphics[width=5.40208in,height=2.63577in]{media/image103.png}
+
+\protect\hypertarget{_Toc41048845}{}{}Figure 25: The evolution of
+\(y_{\text{RMS}}^{*}\) with respect to \(U^{*}\) and plate tilt angle.
+
+\includegraphics[width=5.40208in,height=2.98333in]{media/image116.png}
+
+\protect\hypertarget{_Toc41048846}{}{}Figure 26: The evolution of
+\(F_{L,\text{RMS}}\) with respect to \(U^{*}\) and plate tilt angle.
+
+\includegraphics[width=5.40208in,height=2.83194in]{media/image126.png}
+
+\protect\hypertarget{_Toc41048847}{}{}Figure 27: Sketches of the
+vortical structure in the moderate to high \(U^{*}\) region
+(\(11 < U^{*} < 30\)). The sketches are made based on the flow
+visualisation at maximum lift in a vibration cycle. This definition is
+visualised in the lift/displacement versus time sketch at the top left
+of the figure. The crucifix system is visualised from downstream. The
+vortical structures at \(\theta_{\text{plate}} = 0\ \text{rad}\) and
+\(\theta_{\text{plate}} = \frac{\pi}{8}\ \text{rad}\) are not streamwise
+vortex in the usual sense as observed in
+\(\theta_{\text{plate}} = \frac{\text{π~}}{2}\text{rad}\). Rather, they
+are the streamwise undulation of Karman vortices. The vortical
+structures driving the vibrations at
+\(\theta_{\text{plate}} = 0\ \text{rad}\) and
+\(\theta_{\text{plate}} = \frac{\pi}{8}\ \text{rad}\) are Karman
+vortices with streamwise undulations.
+
+\includegraphics[width=5.40208in,height=3.00000in]{media/image127.png}
+
+\protect\hypertarget{_Toc41048848}{}{}Figure 28: Sketches of the
+vortical structure in the low \(U^{*}\) region (\(2 < U^{*} < 10\)). The
+sketches are made based on the flow visualisation at maximum lift in a
+vibration cycle. This definition is visualised in the lift/displacement
+versus time sketch at the top left of the figure. The crucifix system is
+visualised from downstream. The vortical structures summarised are not
+streamwise vortex in the usual sense as observed when
+\(\theta_{\text{plate}} = \frac{\text{π~}}{2}\text{rad}\) at moderate to
+high \(U^{*}\). Rather, they are the streamwise undulation of Karman
+vortices. The vortical structures driving the vibrations (or lack
+thereof) in the low \(U^{*}\) region are Karman vortices with streamwise
+undulations.
+
+\hypertarget{the-main-components-of-lift-driving-cylinder-vibration}{\subsection{The
+main components of lift driving cylinder
+vibration}\label{the-main-components-of-lift-driving-cylinder-vibration}}
+
+\includegraphics[width=5.40208in,height=2.83118in]{media/image147.png}
+
+\protect\hypertarget{_Ref39495423}{}{\protect\hypertarget{_Toc41048849}{}{}}Figure
+29: Evolution of the lift force with varying \(U^{*}\). The results are
+summarised for every tilt angle of the strip plate. The horizontal axis
+denotes reduced velocity while the vertical axis denotes the
+root-mean-square of the IMF component of lift that is most correlated to
+the dominant IMF component of \(y^{*}\) (blue point) and the IMF
+component of lift with the highest root-mean-square amplitude (grey
+point).
+
+\includegraphics[width=5.40208in,height=2.77778in]{media/image147.png}
+
+\protect\hypertarget{_Toc41048850}{}{}Figure 30: Evolution of the lift
+force with varying \(U^{*}\). Like Figure 29, but with enlarged vertical
+axes to ease comparison between tilt angles. Refer to Figure 29 for
+caption.
+
+\includegraphics[width=5.40208in,height=2.91667in]{media/image167.png}
+
+\protect\hypertarget{_Toc41048851}{}{}Figure 31: The ratio of the
+root-mean-square amplitude of the IMF component of lift most correlated
+to the \(y^{*}\) signal, to the sum between the root-mean-square
+amplitude of the IMF component of lift most correlated to the \(y^{*}\)
+signal and the IMF component of lift with maximum root-mean-square
+amplitude.
+
+\hypertarget{estimated-power-map-in-mathbfalphamathbfumathbf-space-and-its-interpretation}{\subsection{\texorpdfstring{Estimated
+power map in \(\mathbf{\alpha}\)--\(\mathbf{U}^{\mathbf{*}}\) space and
+its
+interpretation}{Estimated power map in \textbackslash{}mathbf\{\textbackslash{}alpha\}--\textbackslash{}mathbf\{U\}\^{}\{\textbackslash{}mathbf\{*\}\} space and its interpretation}}\label{estimated-power-map-in-mathbfalphamathbfumathbf-space-and-its-interpretation}}
+
+\includegraphics[width=5.40208in,height=2.73194in]{media/image177.png}
+
+\protect\hypertarget{_Toc41048852}{}{}Figure 32: The estimated apparent
+power computed using the following formula,
+\(P_{a} = 8\pi^{3}m_{\text{eff.}}\zeta_{\text{tot.}}\left( Af_{\text{osc}} \right)^{2}f_{n,water}\),
+based on the power estimation formula for mechanical power described in
+(Sun \emph{et al.}, 2015).
+
+\hypertarget{section-5}{\section{}\label{section-5}}
+
+\textbf{CONCLUSIONS}
+
+\hypertarget{conclusions}{\subsection{Conclusions}\label{conclusions}}
+
+In this report, we have reviewed the methods and models used to compute
+harnessable power from a circular cylinder in vibration due to the
+shedding of Karman and streamwise vortices. We showed the method for
+computing instantaneous power produced by the cylinder vibration while
+discussing the model put forward by other researchers. The model,
+dependent as it is on global quantities of the vibration and force
+signal, gives a more in-depth insight into the variables that affect
+harnessable power. In contrast, the instantaneous power formula gives us
+value for power at any given instant without knowing much what is
+happening behind the scenes.
+
+We have analysed several regimes based on the cylinder vibration
+characteristic. The pre-Karman VIV regime saw the flow dominated by
+turbulent fluctuations, which is wholly overpowered by vortical
+structures once we are in the KVIV regime. Transition to SVIV saw the
+lift signal becoming more complex, with multiple flow structures leaving
+their imprint on the lift signal. The phase lag shows that the SVIV
+regime is shown to be a vortex, not galloping-induced phenomena.
+
+Analysis of the streamwise and Karman vortex-based lift signals suggest
+that a significant portion of fluid energy is dissipated as Karman
+vortex lift in the SVIV regime. The reduction of this is critical, and
+some evidence points towards the length of the circular cylinder as
+holding the answer. We need to investigate this more in the future.
+
+\protect\hypertarget{_Toc461037287}{}{\protect\hypertarget{_Toc461037470}{}{\protect\hypertarget{_Toc41048823}{}{}}}REFERENCES
+
+Abdullah, K., 2011. \emph{Integrated River Basin Management Report},
+
+Abdullah, K., 2004. Stormwater Management and Road Tunnel (SMART) a
+Lateral Approach to Flood Mitigation Works. \emph{International
+Conference on Bridge Engineering \& Hydraulic Structures}, pp.59--79.
+
+Ahsan, N., 2015. Computational Analysis of Vortex-Induced Vibration and
+its Potential in Energy Harvesting. , pp.437--443.
+
+Ali, M.S.M., Doolan, C.J. and Wheatley, V., 2012. Low Reynolds number
+flow over a square cylinder with a detached flat plate.
+\emph{International Journal of Heat and Fluid Flow}, 36, pp.133--141.
+Available at: http://dx.doi.org/10.1016/j.ijheatfluidflow.2012.03.011.
+
+Arai, T. et al., 2011. Streamwise Vortices Introduced by ``Hyper-Mixer''
+on Supersonic Mixing. \emph{17th AIAA International Space Planes and
+Hypersonic Systems and Technologies Conference}, (April), pp.1--8.
+
+Assi, G.R. da S. et al., 2013. The role of wake stiffness on the
+wake-induced vibration of the downstream cylinder of a tandem pair.
+\emph{Journal of Fluid Mechanics}, 718, pp.210--245.
+
+Assi, G.R.S., Bearman, P.W. and Meneghini, J.R., 2010. On the
+wake-induced vibration of tandem circular cylinders: the vortex
+interaction excitation mechanism. \emph{Journal of Fluid Mechanics},
+661, pp.365--401.
+
+Bae, H.M. et al., 2001. Suppression of Karman Vortex Excitation of a
+Circular Cylinder By a Second Cylinder set Downstream in Cruciform
+Arrangement. \emph{Journal of Computational and Applied Mechanics},
+2(2), pp.175--188. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/15003161\%5Cnhttp://cid.oxfordjournals.org/lookup/doi/10.1093/cid/cir991\%5Cnhttp://www.scielo.cl/pdf/udecada/v15n26/art06.pdf\%5Cnhttp://www.scopus.com/inward/record.url?eid=2-s2.0-84861150233\&partnerID=tZOtx3y1.
+
+Bae, H.M., Hirai, T., Sano, M. and Shirakashi, M., 1992. Excitation by
+Vortices Shedding Periodically from Two Cylinders in Cruciform
+Arrangement. \emph{Transactions of the Japan Society of Mechanical
+Engineers Series B}, 58(551). Available at:
+https://www.jstage.jst.go.jp/article/kikaib1979/58/551/58\_551\_2093/\_article.
+
+Barrero-Gil, A., Alonso, G. and Sanz-Andres, A., 2010. Energy harvesting
+from transverse galloping. \emph{Journal of Sound and Vibration},
+329(14), pp.2873--2883. Available at:
+http://www.sciencedirect.com/science/article/pii/S0022460X10000891
+{[}Accessed: 18 January 2016{]}.
+
+Barry, O., Oguamanam, D.C.D. and Lin, D.C., 2010. Free Vibration
+Analysis of a Single Conductor With a Stockbridge Damper.
+\emph{Proceedings of the 23rd CANCAM}. 2010 pp. 950--952.
+
+Bearman, P.W., 2011. Circular cylinder wakes and vortex-induced
+vibrations. \emph{Journal of Fluids and Structures}, 27(5--6),
+pp.648--658. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974611000600
+{[}Accessed: 20 January 2016{]}.
+
+Bernitsas, M.M., Ben-Simon, Y., Raghavan, K. and Garcia, E.M.H., 2009.
+The VIVACE Converter: Model Tests at High Damping and Reynolds Number
+Around 10{[}sup 5{]}. \emph{Journal of Offshore Mechanics and Arctic
+Engineering}, 131(1), p.011102. Available at:
+http://offshoremechanics.asmedigitalcollection.asme.org/article.aspx?articleid=1472649.
+
+Bernitsas, M.M. and Raghavan, K., 2008. Reduction/suppression of VIV of
+circular cylinders through roughness distribution at 8×103 \&lt; Re
+\&lt; 1.5×105. \emph{Proceedings of the International Conference on
+Offshore Mechanics and Arctic Engineering - OMAE}. 2008
+
+Bernitsas, M.M., Raghavan, K., Ben-Simon, Y. and Garcia, E.M.H., 2008.
+VIVACE (Vortex Induced Vibration Aquatic Clean Energy): A New Concept in
+Generation of Clean and Renewable Energy From Fluid Flow. \emph{Journal
+of Offshore Mechanics and Arctic Engineering}.
+
+Bernitsas, M.M.M., Raghavan, K., Ben-Simon, Y. and Garcia, E.M.H.M.H.,
+2008. VIVACE (Vortex Induced Vibration Aquatic Clean Energy): A New
+Concept in Generation of Clean and Renewable Energy From Fluid Flow.
+\emph{Journal of Offshore Mechanics and Arctic Engineering}, 130(4),
+p.041101. Available at:
+http://www.scopus.com/record/display.url?eid=2-s2.0-56749179917\&origin=resultslist\&sort=plf-f\&src=s\&st1=A+new+concept+in+generation+of+clean+and+renewable+energy+from+fluid+flow\&sid=620865A71FAF26768C42655E1E8BC194.aXczxbyuHHiXgaIW6Ho7g:230\&sot=b\&sdt=b\&
+{[}Accessed: 2 February 2016{]}.
+
+Billa, L., Mansor, S. and Mahmud, A.R., 2004. Spatial information
+technology in flood early warning systems: an overview of theory,
+application and latest developments in Malaysia. \emph{Disaster
+Prevention and Management}, 13, pp.356--363.
+
+Borazjani, I. and Daghooghi, M., 2013. The fish tail motion forms an
+attached leading edge vortex. \emph{Proceedings. Biological sciences /
+The Royal Society}, 280(February), p.20122071. Available at:
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3574357\&tool=pmcentrez\&rendertype=abstract.
+
+Chen, Z.Q., Liu, M., Hua, X. and Mou, T., 2012. Flutter, Galloping, and
+Vortex-Induced Vibrations of H-Section Hangers. \emph{Journal of Bridge
+Engineering}, 17(3), pp.500--508.
+
+Chia, C.W., 2004. Managing flood problems in Malaysia. \emph{Buletin
+Ingeniur}.
+
+Deng, J., Ren, A.-L. and Shao, X.-M., 2007. The flow between a
+stationary cylinder and a downstream elastic cylinder in cruciform
+arrangement. \emph{Journal of Fluids and Structures}, 23(5),
+pp.715--731. Available at:
+https://www.sciencedirect.com/science/article/pii/S0889974606001472
+{[}Accessed: 12 September 2018{]}.
+
+Department of Irrigation and Drainage Malaysia, 2010. Hydrological
+Procedure No.27 (Estimation of Design Flood Hydrograph).
+
+Department of Irrigation and Drainage Malaysia, Managing The Flood
+Problem In Malaysia.
+\emph{Http://Www.Water.Gov.My/Images/Pdf/Managing\_Flood.Pdf}, pp.1--11.
+
+Derakhshandeh, J.F., Arjomandi, M., Dally, B. and Cazzolato, B., 2014.
+The effect of arrangement of two circular cylinders on the maximum
+efficiency of Vortex-Induced Vibration power using a Scale-Adaptive
+Simulation model. \emph{Journal of Fluids and Structures}, 49,
+pp.654--666. Available at:
+http://dx.doi.org/10.1016/j.jfluidstructs.2014.06.005.
+
+Diana, G., Cigada, A., Belloli, M. and Vanali, M., 2003.
+Stockbridge-type damper effectiveness evaluation: Part I - Comparison
+between tests on span and on the shaker. \emph{IEEE Transactions on
+Power Delivery}, 18(4), pp.1462--1469.
+
+Ding, L., Zhang, L., Wu, C., et al., 2015. Flow induced motion and
+energy harvesting of bluff bodies with different cross sections.
+\emph{Energy Conversion and Management}.
+
+Ding, L., Zhang, L., Kim, E.S. and Bernitsas, M.M., 2015. URANS vs.
+experiments of flow induced motions of multiple circular cylinders with
+passive turbulence control. \emph{Journal of Fluids and Structures}, 54,
+pp.612--628.
+
+Doare, O. and Michelin, S., 2011. Piezoelectric coupling in
+energy-harvesting fluttering flexible plates: Linear stability analysis
+and conversion efficiency. \emph{Journal of Fluids and Structures},
+27(8), pp.1357--1375.
+
+Drucker, E.G. and Lauder, G. V, 1999. Locomotor forces on a swimming
+fish: three-dimensional vortex wake dynamics quantified using digital
+particle image velocimetry. \emph{The Journal of Experimental Biology},
+202, pp.2393--2412. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/10460729.
+
+Gonçalves, R.T. et al., 2013. Two-degree-of-freedom vortex-induced
+vibration of circular cylinders with very low aspect ratio and small
+mass ratio. \emph{Journal of Fluids and Structures}, 39(March),
+pp.237--257.
+
+Govardhan, R.N. and Williamson, C.H.K., 2006. Defining the `modified
+Griffin plot' in vortex-induced vibration: revealing the effect of
+Reynolds number using controlled damping. \emph{Journal of Fluid
+Mechanics}, 561, p.147. Available at:
+http://journals.cambridge.org/abstract\_S0022112006000310 {[}Accessed: 8
+March 2016{]}.
+
+Harris, I., Jones, P.D., Osborn, T.J. and Lister, D.H., 2014. Updated
+high-resolution grids of monthly climatic observations - the CRU TS3.10
+Dataset. \emph{International Journal of Climatology}, 34(3),
+pp.623--642. Available at: http://doi.wiley.com/10.1002/joc.3711
+{[}Accessed: 11 July 2014{]}.
+
+Hayashi, M., Sakurai, A. and Ohya, Y., 2006. Wake interference of a row
+of normal flat plates arranged side by side in a uniform flow.
+\emph{Journal of Fluid Mechanics}, 164(1), p.1. Available at:
+http://www.journals.cambridge.org/abstract\_S0022112086002446.
+
+Huang, N.E. and Wu, Z., 2008. A review on Hilbert-Huang transform:
+Method and its applications to geophysical studies. \emph{Reviews of
+Geophysics}, 46(2), p.RG2006. Available at:
+http://doi.wiley.com/10.1029/2007RG000228 {[}Accessed: 27 February
+2019{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2006. Influence
+of Cross-Sectional Configuration on the Longitudinal Vortex Excitation
+of the Upstream Cylinder in Cruciform Two-Cylinder System. \emph{Journal
+of Fluid Science and Technology}, 1(2), pp.126--137. Available at:
+http://joi.jlc.jst.go.jp/JST.JSTAGE/jfst/1.126?from=CrossRef
+{[}Accessed: 17 December 2017{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2007. Vibration
+Control for a Circular Cylinder by a Strip-plate Set Downstream in
+Cruciform Arrangement (1st Report, Influence of a Downstream Strip-plate
+on the Shedding of Longitudinal Vortices from Fixed System).
+\emph{Transactions of the Japan Society of Mechanical Engineers Series
+B}, 73(728), pp.957--964. Available at:
+https://www.jstage.jst.go.jp/article/kikaib1979/73/728/73\_728\_957/\_article/-char/ja/
+{[}Accessed: 13 March 2016{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2012. VIVs of a
+circular cylinder with a downstream strip-plate in cruciform
+arrangement. \emph{Journal of Fluids and Structures}, 30, pp.97--114.
+
+Kawabata, Y., Takahashi, T., Haginoya, T. and Shirakashi, M., 2013.
+Interference Effect of Downstream Strip-Plate on the Crossflow Vibration
+of a Square Cylinder. \emph{Journal of Fluid Science and Technology},
+8(3), pp.647--658.
+
+Kawabata, Y., Takahashi, T. and Shirakashi, M., 2009. Influence of a
+Downstream Strip-plate on Galloping of a Square Cylinder in Cruciform
+Arrangement. \emph{日本機械学会論文集(B編)}, 75(754).
+
+Kementerian Kewangan Malaysia, 2015. Bajet 2016. Available at:
+http://www.treasury.gov.my/index.php?option=com\_content\&view=article\&id=6437:ucapan-bajet-2016\&catid=256\&Itemid=2472\&lang=ms.
+
+Khalak, A. and Williamson, C.H.K., 1999. MOTIONS, FORCES AND MODE
+TRANSITIONS IN VORTEX-INDUCED VIBRATIONS AT LOW MASS-DAMPING.
+\emph{Journal of Fluids and Structures}, 13(7--8), pp.813--851.
+Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974699902360
+{[}Accessed: 10 March 2016{]}.
+
+Kim, Y.-M. and You, K.-P., 2002. Dynamic responses of a tapered tall
+building to wind loads. \emph{Journal of Wind Engineering and Industrial
+Aerodynamics}, 90(12--15), pp.1771--1782. Available at:
+http://www.sciencedirect.com/science/article/pii/S0167610502002866
+{[}Accessed: 10 March 2016{]}.
+
+Kluger, J.M., Moon, F.C. and Rand, R.H., 2013. Shape optimization of a
+blunt body Vibro-wind galloping oscillator. \emph{Journal of Fluids and
+Structures}, 40, pp.185--200. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974613000868
+{[}Accessed: 10 March 2016{]}.
+
+Koide, M., Sekizaki, T., et al., 2009. A Novel Technique for
+Hydroelectricity Utilizing Vortex Induced Vibration. \emph{Proceedings
+of the ASME Pressure Vessels and Piping Division Conference,
+PVP2009-77487}. 2009
+
+Koide, M. et al., 2007. Influence Of A Cruciform Arrangement Downstream
+Strip-Plate On Crossflow Vibration. \emph{Journal of Computational and
+Applied Mechanics}, 8(2), pp.135--148.
+
+Koide, M. et al., 2013. Prospect of Micro Power Generation Utilizing VIV
+in Small Stream Based on Verification Experiments of Power Generation in
+Water Tunnel. \emph{Journal of Fluid Science and Technology}, 8(3),
+pp.294--308. Available at:
+https://www.jstage.jst.go.jp/article/jfst/8/3/8\_294/\_article
+{[}Accessed: 13 March 2016{]}.
+
+Koide, M. et al., 2006. Vortex Excitation Caused by Longitudinal
+Vortices Shedding from Cruciform Cylinder System in Water Flow.
+\emph{JSME International Journal}, 49(4), pp.1043--1048.
+
+Koide, M., Kato, N., Takahashi, T. and Shirakashi, M., 2009. Vibration
+Control for a Circular Cylinder by a Strip-Plate Set Downstream in
+Cruciform Arrangement (2nd Report, Generation and Suppression of Vortex
+Excitation on Elastically Supported Cylinder).
+\emph{日本機械学会論文集(B編)}, 75(752), pp.691--699.
+
+Koide, M., Oogane, K., Takahashi, T. and Shirakashi, M., 2004.
+Experimental Study on Universality of Longitudinal Vortices Shedding
+Periodically from Crisscross Circular Cylinder System in Uniform Flow.
+\emph{Transactions of the Visualization Society of Japan}, 24(4),
+pp.15--22. Available at:
+https://www.jstage.jst.go.jp/article/tvsj/24/4/24\_4\_15/\_article.
+
+Koide, M., Takahashi, T., Shirakashi, M. and Salim, S.A.Z.B.S., 2017.
+Three-dimensional structure of longitudinal vortices shedding from
+cruciform two-cylinder systems with different geometries. \emph{Journal
+of Visualization}, pp.1--11.
+
+Kuala Lumpur Monsoon Activity Centre, 2015. \emph{Northeast Monsoon
+Report},
+
+Larsen, C.M. and Halse, K.H., 1997. Comparison of models for vortex
+induced vibrations of slender marine structures. \emph{Marine
+Structures}, 10(6), pp.413--441. Available at:
+http://www.sciencedirect.com/science/article/pii/S0951833997000117
+{[}Accessed: 22 January 2016{]}.
+
+Liao, J.C., Beal, D.N., Lauder, G. V and Triantafyllou, M.S., 2003. Fish
+Exploiting Vortices Decrease Muscle Activity. \emph{Science}, 302(2003),
+pp.1566--1569.
+
+Luo, S.C., Chew, Y.T. and Ng, Y.T., 2003. Hysteresis phenomenon in the
+galloping oscillation of a square cylinder. \emph{Journal of Fluids and
+Structures}, 18(1), pp.103--118. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974603000847
+{[}Accessed: 10 March 2016{]}.
+
+Mackowski, A.W. and Williamson, C.H.K., 2013. An experimental
+investigation of vortex-induced vibration with nonlinear restoring
+forces. \emph{Physics of Fluids}, 25(8).
+
+Maruai, N.M., Ali, M.S.M., Ismail, M.H. and Zaki, S.A., 2018.
+Flow-induced vibration of a square cylinder and downstream flat plate
+associated with micro-scale energy harvester. \emph{Journal of Wind
+Engineering and Industrial Aerodynamics}, 175, pp.264--282. Available
+at:
+https://www.scopus.com/inward/record.uri?eid=2-s2.0-85042219159\&doi=10.1016\%2Fj.jweia.2018.01.010\&partnerID=40\&md5=2f3f62b94bb69ced3368b32e682aefc7.
+
+Maruai, N.M., Mat Ali, M.S., Ismail, M.H. and Shaikh Salim, S.A.Z.,
+2017. Downstream flat plate as the flow-induced vibration enhancer for
+energy harvesting. \emph{Journal of Vibration and Control},
+p.107754631770787. Available at:
+http://journals.sagepub.com/doi/10.1177/1077546317707877 {[}Accessed: 2
+January 2018{]}.
+
+Mat Ali, M.S., Doolan, C.J. and Wheatley, V., 2011. Low Reynolds number
+flow over a square cylinder with a splitter plate. \emph{Physics of
+Fluids}, 23(3).
+
+Nakamura, T. et al., 2013. \emph{Flow-Induced Vibrations:
+Classifications and Lessons from Practical Experiences},
+Butterworth-Heinemann.
+
+Nakashima, M., 1986. Vortex excitation. , 163, pp.149--169.
+
+Nguyen, T. et al., 2012. Influence of mass and damping ratios on VIVs of
+a cylinder with a downstream counterpart in cruciform arrangement.
+\emph{Journal of Fluids and Structures}, 28, pp.40--55.
+
+Norman, J., 2012. VIVACE Hydrokinetic Power Generator System : The
+Solution for Fish Protection and Debris Avoidance in Alaskan Rivers. ,
+pp.2--6.
+
+Ogink, R.H.M. and Metrikine, A.V., 2010. A wake oscillator with
+frequency dependent coupling for the modeling of vortex-induced
+vibration. \emph{Journal of Sound and Vibration}, 329(26),
+pp.5452--5473. Available at:
+http://www.sciencedirect.com/science/article/pii/S0022460X10004621
+{[}Accessed: 10 March 2016{]}.
+
+Pineirua, M., Doaré, O. and Michelin, S., 2015. Influence and
+optimization of the electrodes position in a piezoelectric energy
+harvesting flag. \emph{Journal of Sound and Vibration}, 346,
+pp.200--215.
+
+Quen, L.K. et al., 2014. Investigation on the effectiveness of helical
+strakes in suppressing VIV of flexible riser. \emph{Applied Ocean
+Research}, 44, pp.82--91. Available at:
+http://www.sciencedirect.com/science/article/pii/S0141118713001028
+{[}Accessed: 10 March 2016{]}.
+
+Raghavan, K., 2007. \emph{Energy Extraction from a Steady Flow Using
+Vortex Induced Vibration.} The University of Michigan.
+
+Seyed-Aghazadeh, B., Carlson, D.W. and Modarres-Sadeghi, Y., 2015. The
+influence of taper ratio on vortex-induced vibration of tapered
+cylinders in the crossflow direction. \emph{Journal of Fluids and
+Structures}, 53, pp.84--95. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974614001765
+{[}Accessed: 4 May 2017{]}.
+
+Shiraishi, N., Matsumoto, M., Shirato, H. and Ishizaki, H., 1988. On
+aerodynamic stability effects for bluff rectangular cylinders by their
+corner-cut. \emph{Journal of Wind Engineering and Industrial
+Aerodynamics}, 28(1--3), pp.371--380. Available at:
+http://www.sciencedirect.com/science/article/pii/016761058890133X
+{[}Accessed: 10 March 2016{]}.
+
+Shirakashi, M., Mizuguchi, K. and Bae, H.M., 1989. Flow-induced
+excitation of an elastically-supported cylinder caused by another
+located downstream in cruciform arrangement. \emph{Journal of Fluids and
+Structures}, 3(6), pp.595--607.
+
+Su, H., Li, H., Chen, Z. and Wen, Z., 2016. An approach using ensemble
+empirical mode decomposition to remove noise from prototypical
+observations on dam safety. \emph{SpringerPlus}, 5, p.650. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/27330916 {[}Accessed: 14 February
+2019{]}.
+
+Sukri Mat Ali, M., Doolan, C.J. and Wheatley, V., 2013. Aeolian Tones
+Generated by a Square Cylinder with a Detached Flat Plate. \emph{AIAA
+Journal}, 51(2), pp.291--301. Available at:
+http://arc.aiaa.org/doi/abs/10.2514/1.J051378.
+
+Sukri Mat Ali, M., Doolan, C.J. and Wheatley, V., 2011. The sound
+generated by a square cylinder with a splitter plate at low Reynolds
+number. \emph{Journal of Sound and Vibration}, 330(15), pp.3620--3635.
+Available at: http://dx.doi.org/10.1016/j.jsv.2011.03.008.
+
+Sun, H. et al., 2016. Effect of mass-ratio, damping, and stiffness on
+optimal hydrokinetic energy conversion of a single, rough cylinder in
+flow induced motions. \emph{Renewable Energy}, 99, pp.936--959.
+Available at:
+http://www.sciencedirect.com/science/article/pii/S0960148116306206
+{[}Accessed: 12 February 2017{]}.
+
+Sun, H., Soo Kim, E., Bernitsas, M.P. and Bernitsas, M.M., 2015. Virtual
+Spring--Damping System for Flow-Induced Motion Experiments.
+\emph{Journal of Offshore Mechanics and Arctic Engineering}.
+
+Sunami, T. et al., 2002. Mixing and Combustion Control Strategies for
+Effecient Scramjet Operation in Wide Range of Flight Mach Numbers.
+\emph{11th AIAA/AAAF International Space Planes and Hypersonic Systems
+and Technologies Conference}, (AIAA 2002-5116).
+
+Takahashi, T., Baranyi, L. and Shirakashi, M., 1999. Configuration and
+Frequency of Longitudinal Vortices Shedding from Circular Cylinders in
+Cruciform Arrangement. \emph{Journal of the Visualization Society of
+Japan}, 19(75), pp.64--72.
+
+Takaijudin, H. et al., 2010. Implementation of Urban Stormwater
+Management Practices in Malaysia. \emph{International Conference on
+Sustainable Building and Infrastructure (ICSBI 2010)}, p.5.
+
+Tanaka, H. et al., 2012. Experimental investigation of aerodynamic
+forces and wind pressures acting on tall buildings with various
+unconventional configurations. \emph{Journal of Wind Engineering and
+Industrial Aerodynamics}, 107--108, pp.179--191. Available at:
+http://www.sciencedirect.com/science/article/pii/S016761051200116X
+{[}Accessed: 10 March 2016{]}.
+
+Vandiver, J.K., Jaiswal, V. and Jhingran, V., 2009. Insights on
+vortex-induced, traveling waves on long risers. \emph{Journal of Fluids
+and Structures}, 25(4), pp.641--653. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974608001321
+{[}Accessed: 10 March 2016{]}.
+
+Venugopal, A., Agrawal, A. and Prabhu, S. V, 2011. Review on vortex
+flowmeter---Designer perspective. \emph{Sensors and Actuators A:
+Physical}, 170(1), pp.8--23.
+
+Williamson, C.H.K., 1996. Vortex Dynamics in the Cylinder Wake.
+\emph{Annual Review of Fluid Mechanics}, 28(1), pp.477--539. Available
+at:
+http://www.annualreviews.org/doi/10.1146/annurev.fl.28.010196.002401.
+
+Williamson, C.H.K. and Govardhan, R., 2004. Vortex-Induced Vibrations.
+\emph{Annual Review of Fluid Mechanics}, 36(1), pp.413--455. Available
+at:
+http://arjournals.annualreviews.org/doi/abs/10.1146\%252Fannurev.fluid.36.050802.122128.
+
+Wu, W., 2011. \emph{Two-Dimensional RANS Simulation of Flow Induced
+Motion of Circular Cylinder with Passive Turbulence Control}. The
+University of Michigan.
+
+Wu, W., Bernitsas, M.M. and Maki, K., 2011. RANS Simulation vs.
+Experiments of Flow Induced Motion of Circular Cylinder With Passive
+Turbulence Control at 35,000\textless{}Re\textless{}130,000.
+\emph{Volume 7: CFD and VIV; Offshore Geotechnics}. 1 January 2011 ASME,
+pp. 733--744.
+
+Xia, Y., Michelin, S. and Doaré, O., 2015. Fluid-solid-electric lock-in
+of energy-harvesting piezoelectric flags. \emph{Physical Review
+Applied}, 3(1), p.14009.
+
+Xia, Y., Michelin, S.S., Doaré, O. and Doare, O., 2015.
+Resonance-induced enhancement of the energy harvesting performance of
+piezoelectric flags. \emph{Applied Physics Letters}, 107(26), pp.1--5.
+
+Xiao, F., Chen, G.S., Zatar, W. and Hulsey, J.L., 2018. Quantification
+of Dynamic Properties of Pile Using Ensemble Empirical Mode
+Decomposition. \emph{Advances in Civil Engineering}, 2018, pp.1--6.
+Available at: https://www.hindawi.com/journals/ace/2018/8379871/
+{[}Accessed: 14 February 2019{]}.
+
+Xu, J., He, M. and Bose, N., 2009. Vortex modes and vortex-induced
+vibration of a long, flexible riser. \emph{Ocean Engineering}, 36(6--7),
+pp.456--467. Available at:
+http://www.sciencedirect.com/science/article/pii/S0029801809000146
+{[}Accessed: 10 March 2016{]}.
+
+Zdravkovich, M.M., 1981. Review and classification of various
+aerodynamic and hydrodynamic means for suppressing vortex shedding.
+\emph{Journal of Wind Engineering and Industrial Aerodynamics}, 7(2),
+pp.145--189. Available at:
+http://www.sciencedirect.com/science/article/pii/0167610581900362
+{[}Accessed: 4 January 2016{]}.
+
+Zhao, M. and Lu, L., 2018. Numerical simulation of flow past two
+circular cylinders in cruciform arrangement. \emph{Journal of Fluid
+Mechanics}, 848, pp.1013--1039. Available at:
+https://www.cambridge.org/core/product/identifier/S0022112018003804/type/journal\_article
+{[}Accessed: 12 September 2018{]}.
+
+Abdullah, K., 2011. \emph{Integrated River Basin Management Report},
+
+Abdullah, K., 2004. Stormwater Management and Road Tunnel (SMART) a
+Lateral Approach to Flood Mitigation Works. \emph{International
+Conference on Bridge Engineering \& Hydraulic Structures}, pp.59--79.
+
+Ahsan, N., 2015. Computational Analysis of Vortex-Induced Vibration and
+its Potential in Energy Harvesting. , pp.437--443.
+
+Ali, M.S.M., Doolan, C.J. and Wheatley, V., 2012. Low Reynolds number
+flow over a square cylinder with a detached flat plate.
+\emph{International Journal of Heat and Fluid Flow}, 36, pp.133--141.
+Available at: http://dx.doi.org/10.1016/j.ijheatfluidflow.2012.03.011.
+
+Arai, T. et al., 2011. Streamwise Vortices Introduced by ``Hyper-Mixer''
+on Supersonic Mixing. \emph{17th AIAA International Space Planes and
+Hypersonic Systems and Technologies Conference}, (April), pp.1--8.
+
+Assi, G.R. da S. et al., 2013. The role of wake stiffness on the
+wake-induced vibration of the downstream cylinder of a tandem pair.
+\emph{Journal of Fluid Mechanics}, 718, pp.210--245.
+
+Assi, G.R.S., Bearman, P.W. and Meneghini, J.R., 2010. On the
+wake-induced vibration of tandem circular cylinders: the vortex
+interaction excitation mechanism. \emph{Journal of Fluid Mechanics},
+661, pp.365--401.
+
+Bae, H.M. et al., 2001. Suppression of Karman Vortex Excitation of a
+Circular Cylinder By a Second Cylinder set Downstream in Cruciform
+Arrangement. \emph{Journal of Computational and Applied Mechanics},
+2(2), pp.175--188. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/15003161\%5Cnhttp://cid.oxfordjournals.org/lookup/doi/10.1093/cid/cir991\%5Cnhttp://www.scielo.cl/pdf/udecada/v15n26/art06.pdf\%5Cnhttp://www.scopus.com/inward/record.url?eid=2-s2.0-84861150233\&partnerID=tZOtx3y1.
+
+Bae, H.M., Hirai, T., Sano, M. and Shirakashi, M., 1992. Excitation by
+Vortices Shedding Periodically from Two Cylinders in Cruciform
+Arrangement. \emph{Transactions of the Japan Society of Mechanical
+Engineers Series B}, 58(551). Available at:
+https://www.jstage.jst.go.jp/article/kikaib1979/58/551/58\_551\_2093/\_article.
+
+Barrero-Gil, A., Alonso, G. and Sanz-Andres, A., 2010. Energy harvesting
+from transverse galloping. \emph{Journal of Sound and Vibration},
+329(14), pp.2873--2883. Available at:
+http://www.sciencedirect.com/science/article/pii/S0022460X10000891
+{[}Accessed: 18 January 2016{]}.
+
+Barry, O., Oguamanam, D.C.D. and Lin, D.C., 2010. Free Vibration
+Analysis of a Single Conductor With a Stockbridge Damper.
+\emph{Proceedings of the 23rd CANCAM}. 2010 pp. 950--952.
+
+Bearman, P.W., 2011. Circular cylinder wakes and vortex-induced
+vibrations. \emph{Journal of Fluids and Structures}, 27(5--6),
+pp.648--658. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974611000600
+{[}Accessed: 20 January 2016{]}.
+
+Bernitsas, M.M., Ben-Simon, Y., Raghavan, K. and Garcia, E.M.H., 2009.
+The VIVACE Converter: Model Tests at High Damping and Reynolds Number
+Around 10{[}sup 5{]}. \emph{Journal of Offshore Mechanics and Arctic
+Engineering}, 131(1), p.011102. Available at:
+http://offshoremechanics.asmedigitalcollection.asme.org/article.aspx?articleid=1472649.
+
+Bernitsas, M.M. and Raghavan, K., 2008. Reduction/suppression of VIV of
+circular cylinders through roughness distribution at 8×103 \&lt; Re
+\&lt; 1.5×105. \emph{Proceedings of the International Conference on
+Offshore Mechanics and Arctic Engineering - OMAE}. 2008
+
+Bernitsas, M.M., Raghavan, K., Ben-Simon, Y. and Garcia, E.M.H., 2008.
+VIVACE (Vortex Induced Vibration Aquatic Clean Energy): A New Concept in
+Generation of Clean and Renewable Energy From Fluid Flow. \emph{Journal
+of Offshore Mechanics and Arctic Engineering}.
+
+Bernitsas, M.M.M., Raghavan, K., Ben-Simon, Y. and Garcia, E.M.H.M.H.,
+2008. VIVACE (Vortex Induced Vibration Aquatic Clean Energy): A New
+Concept in Generation of Clean and Renewable Energy From Fluid Flow.
+\emph{Journal of Offshore Mechanics and Arctic Engineering}, 130(4),
+p.041101. Available at:
+http://www.scopus.com/record/display.url?eid=2-s2.0-56749179917\&origin=resultslist\&sort=plf-f\&src=s\&st1=A+new+concept+in+generation+of+clean+and+renewable+energy+from+fluid+flow\&sid=620865A71FAF26768C42655E1E8BC194.aXczxbyuHHiXgaIW6Ho7g:230\&sot=b\&sdt=b\&
+{[}Accessed: 2 February 2016{]}.
+
+Billa, L., Mansor, S. and Mahmud, A.R., 2004. Spatial information
+technology in flood early warning systems: an overview of theory,
+application and latest developments in Malaysia. \emph{Disaster
+Prevention and Management}, 13, pp.356--363.
+
+Borazjani, I. and Daghooghi, M., 2013. The fish tail motion forms an
+attached leading edge vortex. \emph{Proceedings. Biological sciences /
+The Royal Society}, 280(February), p.20122071. Available at:
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3574357\&tool=pmcentrez\&rendertype=abstract.
+
+Chen, Z.Q., Liu, M., Hua, X. and Mou, T., 2012. Flutter, Galloping, and
+Vortex-Induced Vibrations of H-Section Hangers. \emph{Journal of Bridge
+Engineering}, 17(3), pp.500--508.
+
+Chia, C.W., 2004. Managing flood problems in Malaysia. \emph{Buletin
+Ingeniur}.
+
+Deng, J., Ren, A.-L. and Shao, X.-M., 2007. The flow between a
+stationary cylinder and a downstream elastic cylinder in cruciform
+arrangement. \emph{Journal of Fluids and Structures}, 23(5),
+pp.715--731. Available at:
+https://www.sciencedirect.com/science/article/pii/S0889974606001472
+{[}Accessed: 12 September 2018{]}.
+
+Department of Irrigation and Drainage Malaysia, 2010. Hydrological
+Procedure No.27 (Estimation of Design Flood Hydrograph).
+
+Department of Irrigation and Drainage Malaysia, Managing The Flood
+Problem In Malaysia.
+\emph{Http://Www.Water.Gov.My/Images/Pdf/Managing\_Flood.Pdf}, pp.1--11.
+
+Derakhshandeh, J.F., Arjomandi, M., Dally, B. and Cazzolato, B., 2014.
+The effect of arrangement of two circular cylinders on the maximum
+efficiency of Vortex-Induced Vibration power using a Scale-Adaptive
+Simulation model. \emph{Journal of Fluids and Structures}, 49,
+pp.654--666. Available at:
+http://dx.doi.org/10.1016/j.jfluidstructs.2014.06.005.
+
+Diana, G., Cigada, A., Belloli, M. and Vanali, M., 2003.
+Stockbridge-type damper effectiveness evaluation: Part I - Comparison
+between tests on span and on the shaker. \emph{IEEE Transactions on
+Power Delivery}, 18(4), pp.1462--1469.
+
+Ding, L., Zhang, L., Wu, C., et al., 2015. Flow induced motion and
+energy harvesting of bluff bodies with different cross sections.
+\emph{Energy Conversion and Management}.
+
+Ding, L., Zhang, L., Kim, E.S. and Bernitsas, M.M., 2015. URANS vs.
+experiments of flow induced motions of multiple circular cylinders with
+passive turbulence control. \emph{Journal of Fluids and Structures}, 54,
+pp.612--628.
+
+Doare, O. and Michelin, S., 2011. Piezoelectric coupling in
+energy-harvesting fluttering flexible plates: Linear stability analysis
+and conversion efficiency. \emph{Journal of Fluids and Structures},
+27(8), pp.1357--1375.
+
+Drucker, E.G. and Lauder, G. V, 1999. Locomotor forces on a swimming
+fish: three-dimensional vortex wake dynamics quantified using digital
+particle image velocimetry. \emph{The Journal of Experimental Biology},
+202, pp.2393--2412. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/10460729.
+
+Gonçalves, R.T. et al., 2013. Two-degree-of-freedom vortex-induced
+vibration of circular cylinders with very low aspect ratio and small
+mass ratio. \emph{Journal of Fluids and Structures}, 39(March),
+pp.237--257.
+
+Govardhan, R.N. and Williamson, C.H.K., 2006. Defining the `modified
+Griffin plot' in vortex-induced vibration: revealing the effect of
+Reynolds number using controlled damping. \emph{Journal of Fluid
+Mechanics}, 561, p.147. Available at:
+http://journals.cambridge.org/abstract\_S0022112006000310 {[}Accessed: 8
+March 2016{]}.
+
+Harris, I., Jones, P.D., Osborn, T.J. and Lister, D.H., 2014. Updated
+high-resolution grids of monthly climatic observations - the CRU TS3.10
+Dataset. \emph{International Journal of Climatology}, 34(3),
+pp.623--642. Available at: http://doi.wiley.com/10.1002/joc.3711
+{[}Accessed: 11 July 2014{]}.
+
+Hayashi, M., Sakurai, A. and Ohya, Y., 2006. Wake interference of a row
+of normal flat plates arranged side by side in a uniform flow.
+\emph{Journal of Fluid Mechanics}, 164(1), p.1. Available at:
+http://www.journals.cambridge.org/abstract\_S0022112086002446.
+
+Huang, N.E. and Wu, Z., 2008. A review on Hilbert-Huang transform:
+Method and its applications to geophysical studies. \emph{Reviews of
+Geophysics}, 46(2), p.RG2006. Available at:
+http://doi.wiley.com/10.1029/2007RG000228 {[}Accessed: 27 February
+2019{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2006. Influence
+of Cross-Sectional Configuration on the Longitudinal Vortex Excitation
+of the Upstream Cylinder in Cruciform Two-Cylinder System. \emph{Journal
+of Fluid Science and Technology}, 1(2), pp.126--137. Available at:
+http://joi.jlc.jst.go.jp/JST.JSTAGE/jfst/1.126?from=CrossRef
+{[}Accessed: 17 December 2017{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2007. Vibration
+Control for a Circular Cylinder by a Strip-plate Set Downstream in
+Cruciform Arrangement (1st Report, Influence of a Downstream Strip-plate
+on the Shedding of Longitudinal Vortices from Fixed System).
+\emph{Transactions of the Japan Society of Mechanical Engineers Series
+B}, 73(728), pp.957--964. Available at:
+https://www.jstage.jst.go.jp/article/kikaib1979/73/728/73\_728\_957/\_article/-char/ja/
+{[}Accessed: 13 March 2016{]}.
+
+Kato, N., Koide, M., Takahashi, T. and Shirakashi, M., 2012. VIVs of a
+circular cylinder with a downstream strip-plate in cruciform
+arrangement. \emph{Journal of Fluids and Structures}, 30, pp.97--114.
+
+Kawabata, Y., Takahashi, T., Haginoya, T. and Shirakashi, M., 2013.
+Interference Effect of Downstream Strip-Plate on the Crossflow Vibration
+of a Square Cylinder. \emph{Journal of Fluid Science and Technology},
+8(3), pp.647--658.
+
+Kawabata, Y., Takahashi, T. and Shirakashi, M., 2009. Influence of a
+Downstream Strip-plate on Galloping of a Square Cylinder in Cruciform
+Arrangement. \emph{日本機械学会論文集(B編)}, 75(754).
+
+Kementerian Kewangan Malaysia, 2015. Bajet 2016. Available at:
+http://www.treasury.gov.my/index.php?option=com\_content\&view=article\&id=6437:ucapan-bajet-2016\&catid=256\&Itemid=2472\&lang=ms.
+
+Khalak, A. and Williamson, C.H.K., 1999. MOTIONS, FORCES AND MODE
+TRANSITIONS IN VORTEX-INDUCED VIBRATIONS AT LOW MASS-DAMPING.
+\emph{Journal of Fluids and Structures}, 13(7--8), pp.813--851.
+Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974699902360
+{[}Accessed: 10 March 2016{]}.
+
+Kim, Y.-M. and You, K.-P., 2002. Dynamic responses of a tapered tall
+building to wind loads. \emph{Journal of Wind Engineering and Industrial
+Aerodynamics}, 90(12--15), pp.1771--1782. Available at:
+http://www.sciencedirect.com/science/article/pii/S0167610502002866
+{[}Accessed: 10 March 2016{]}.
+
+Kluger, J.M., Moon, F.C. and Rand, R.H., 2013. Shape optimization of a
+blunt body Vibro-wind galloping oscillator. \emph{Journal of Fluids and
+Structures}, 40, pp.185--200. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974613000868
+{[}Accessed: 10 March 2016{]}.
+
+Koide, M., Sekizaki, T., et al., 2009. A Novel Technique for
+Hydroelectricity Utilizing Vortex Induced Vibration. \emph{Proceedings
+of the ASME Pressure Vessels and Piping Division Conference,
+PVP2009-77487}. 2009
+
+Koide, M. et al., 2007. Influence Of A Cruciform Arrangement Downstream
+Strip-Plate On Crossflow Vibration. \emph{Journal of Computational and
+Applied Mechanics}, 8(2), pp.135--148.
+
+Koide, M. et al., 2013. Prospect of Micro Power Generation Utilizing VIV
+in Small Stream Based on Verification Experiments of Power Generation in
+Water Tunnel. \emph{Journal of Fluid Science and Technology}, 8(3),
+pp.294--308. Available at:
+https://www.jstage.jst.go.jp/article/jfst/8/3/8\_294/\_article
+{[}Accessed: 13 March 2016{]}.
+
+Koide, M. et al., 2006. Vortex Excitation Caused by Longitudinal
+Vortices Shedding from Cruciform Cylinder System in Water Flow.
+\emph{JSME International Journal}, 49(4), pp.1043--1048.
+
+Koide, M., Kato, N., Takahashi, T. and Shirakashi, M., 2009. Vibration
+Control for a Circular Cylinder by a Strip-Plate Set Downstream in
+Cruciform Arrangement (2nd Report, Generation and Suppression of Vortex
+Excitation on Elastically Supported Cylinder).
+\emph{日本機械学会論文集(B編)}, 75(752), pp.691--699.
+
+Koide, M., Oogane, K., Takahashi, T. and Shirakashi, M., 2004.
+Experimental Study on Universality of Longitudinal Vortices Shedding
+Periodically from Crisscross Circular Cylinder System in Uniform Flow.
+\emph{Transactions of the Visualization Society of Japan}, 24(4),
+pp.15--22. Available at:
+https://www.jstage.jst.go.jp/article/tvsj/24/4/24\_4\_15/\_article.
+
+Koide, M., Takahashi, T., Shirakashi, M. and Salim, S.A.Z.B.S., 2017.
+Three-dimensional structure of longitudinal vortices shedding from
+cruciform two-cylinder systems with different geometries. \emph{Journal
+of Visualization}, pp.1--11.
+
+Kuala Lumpur Monsoon Activity Centre, 2015. \emph{Northeast Monsoon
+Report},
+
+Larsen, C.M. and Halse, K.H., 1997. Comparison of models for vortex
+induced vibrations of slender marine structures. \emph{Marine
+Structures}, 10(6), pp.413--441. Available at:
+http://www.sciencedirect.com/science/article/pii/S0951833997000117
+{[}Accessed: 22 January 2016{]}.
+
+Liao, J.C., Beal, D.N., Lauder, G. V and Triantafyllou, M.S., 2003. Fish
+Exploiting Vortices Decrease Muscle Activity. \emph{Science}, 302(2003),
+pp.1566--1569.
+
+Luo, S.C., Chew, Y.T. and Ng, Y.T., 2003. Hysteresis phenomenon in the
+galloping oscillation of a square cylinder. \emph{Journal of Fluids and
+Structures}, 18(1), pp.103--118. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974603000847
+{[}Accessed: 10 March 2016{]}.
+
+Mackowski, A.W. and Williamson, C.H.K., 2013. An experimental
+investigation of vortex-induced vibration with nonlinear restoring
+forces. \emph{Physics of Fluids}, 25(8).
+
+Maruai, N.M., Ali, M.S.M., Ismail, M.H. and Zaki, S.A., 2018.
+Flow-induced vibration of a square cylinder and downstream flat plate
+associated with micro-scale energy harvester. \emph{Journal of Wind
+Engineering and Industrial Aerodynamics}, 175, pp.264--282. Available
+at:
+https://www.scopus.com/inward/record.uri?eid=2-s2.0-85042219159\&doi=10.1016\%2Fj.jweia.2018.01.010\&partnerID=40\&md5=2f3f62b94bb69ced3368b32e682aefc7.
+
+Maruai, N.M., Mat Ali, M.S., Ismail, M.H. and Shaikh Salim, S.A.Z.,
+2017. Downstream flat plate as the flow-induced vibration enhancer for
+energy harvesting. \emph{Journal of Vibration and Control},
+p.107754631770787. Available at:
+http://journals.sagepub.com/doi/10.1177/1077546317707877 {[}Accessed: 2
+January 2018{]}.
+
+Mat Ali, M.S., Doolan, C.J. and Wheatley, V., 2011. Low Reynolds number
+flow over a square cylinder with a splitter plate. \emph{Physics of
+Fluids}, 23(3).
+
+Nakamura, T. et al., 2013. \emph{Flow-Induced Vibrations:
+Classifications and Lessons from Practical Experiences},
+Butterworth-Heinemann.
+
+Nakashima, M., 1986. Vortex excitation. , 163, pp.149--169.
+
+Nguyen, T. et al., 2012. Influence of mass and damping ratios on VIVs of
+a cylinder with a downstream counterpart in cruciform arrangement.
+\emph{Journal of Fluids and Structures}, 28, pp.40--55.
+
+Norman, J., 2012. VIVACE Hydrokinetic Power Generator System : The
+Solution for Fish Protection and Debris Avoidance in Alaskan Rivers. ,
+pp.2--6.
+
+Ogink, R.H.M. and Metrikine, A.V., 2010. A wake oscillator with
+frequency dependent coupling for the modeling of vortex-induced
+vibration. \emph{Journal of Sound and Vibration}, 329(26),
+pp.5452--5473. Available at:
+http://www.sciencedirect.com/science/article/pii/S0022460X10004621
+{[}Accessed: 10 March 2016{]}.
+
+Pineirua, M., Doaré, O. and Michelin, S., 2015. Influence and
+optimization of the electrodes position in a piezoelectric energy
+harvesting flag. \emph{Journal of Sound and Vibration}, 346,
+pp.200--215.
+
+Quen, L.K. et al., 2014. Investigation on the effectiveness of helical
+strakes in suppressing VIV of flexible riser. \emph{Applied Ocean
+Research}, 44, pp.82--91. Available at:
+http://www.sciencedirect.com/science/article/pii/S0141118713001028
+{[}Accessed: 10 March 2016{]}.
+
+Raghavan, K., 2007. \emph{Energy Extraction from a Steady Flow Using
+Vortex Induced Vibration.} The University of Michigan.
+
+Seyed-Aghazadeh, B., Carlson, D.W. and Modarres-Sadeghi, Y., 2015. The
+influence of taper ratio on vortex-induced vibration of tapered
+cylinders in the crossflow direction. \emph{Journal of Fluids and
+Structures}, 53, pp.84--95. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974614001765
+{[}Accessed: 4 May 2017{]}.
+
+Shiraishi, N., Matsumoto, M., Shirato, H. and Ishizaki, H., 1988. On
+aerodynamic stability effects for bluff rectangular cylinders by their
+corner-cut. \emph{Journal of Wind Engineering and Industrial
+Aerodynamics}, 28(1--3), pp.371--380. Available at:
+http://www.sciencedirect.com/science/article/pii/016761058890133X
+{[}Accessed: 10 March 2016{]}.
+
+Shirakashi, M., Mizuguchi, K. and Bae, H.M., 1989. Flow-induced
+excitation of an elastically-supported cylinder caused by another
+located downstream in cruciform arrangement. \emph{Journal of Fluids and
+Structures}, 3(6), pp.595--607.
+
+Su, H., Li, H., Chen, Z. and Wen, Z., 2016. An approach using ensemble
+empirical mode decomposition to remove noise from prototypical
+observations on dam safety. \emph{SpringerPlus}, 5, p.650. Available at:
+http://www.ncbi.nlm.nih.gov/pubmed/27330916 {[}Accessed: 14 February
+2019{]}.
+
+Sukri Mat Ali, M., Doolan, C.J. and Wheatley, V., 2013. Aeolian Tones
+Generated by a Square Cylinder with a Detached Flat Plate. \emph{AIAA
+Journal}, 51(2), pp.291--301. Available at:
+http://arc.aiaa.org/doi/abs/10.2514/1.J051378.
+
+Sukri Mat Ali, M., Doolan, C.J. and Wheatley, V., 2011. The sound
+generated by a square cylinder with a splitter plate at low Reynolds
+number. \emph{Journal of Sound and Vibration}, 330(15), pp.3620--3635.
+Available at: http://dx.doi.org/10.1016/j.jsv.2011.03.008.
+
+Sun, H. et al., 2016. Effect of mass-ratio, damping, and stiffness on
+optimal hydrokinetic energy conversion of a single, rough cylinder in
+flow induced motions. \emph{Renewable Energy}, 99, pp.936--959.
+Available at:
+http://www.sciencedirect.com/science/article/pii/S0960148116306206
+{[}Accessed: 12 February 2017{]}.
+
+Sun, H., Soo Kim, E., Bernitsas, M.P. and Bernitsas, M.M., 2015. Virtual
+Spring--Damping System for Flow-Induced Motion Experiments.
+\emph{Journal of Offshore Mechanics and Arctic Engineering}.
+
+Sunami, T. et al., 2002. Mixing and Combustion Control Strategies for
+Effecient Scramjet Operation in Wide Range of Flight Mach Numbers.
+\emph{11th AIAA/AAAF International Space Planes and Hypersonic Systems
+and Technologies Conference}, (AIAA 2002-5116).
+
+Takahashi, T., Baranyi, L. and Shirakashi, M., 1999. Configuration and
+Frequency of Longitudinal Vortices Shedding from Circular Cylinders in
+Cruciform Arrangement. \emph{Journal of the Visualization Society of
+Japan}, 19(75), pp.64--72.
+
+Takaijudin, H. et al., 2010. Implementation of Urban Stormwater
+Management Practices in Malaysia. \emph{International Conference on
+Sustainable Building and Infrastructure (ICSBI 2010)}, p.5.
+
+Tanaka, H. et al., 2012. Experimental investigation of aerodynamic
+forces and wind pressures acting on tall buildings with various
+unconventional configurations. \emph{Journal of Wind Engineering and
+Industrial Aerodynamics}, 107--108, pp.179--191. Available at:
+http://www.sciencedirect.com/science/article/pii/S016761051200116X
+{[}Accessed: 10 March 2016{]}.
+
+Vandiver, J.K., Jaiswal, V. and Jhingran, V., 2009. Insights on
+vortex-induced, traveling waves on long risers. \emph{Journal of Fluids
+and Structures}, 25(4), pp.641--653. Available at:
+http://www.sciencedirect.com/science/article/pii/S0889974608001321
+{[}Accessed: 10 March 2016{]}.
+
+Venugopal, A., Agrawal, A. and Prabhu, S. V, 2011. Review on vortex
+flowmeter---Designer perspective. \emph{Sensors and Actuators A:
+Physical}, 170(1), pp.8--23.
+
+Williamson, C.H.K., 1996. Vortex Dynamics in the Cylinder Wake.
+\emph{Annual Review of Fluid Mechanics}, 28(1), pp.477--539. Available
+at:
+http://www.annualreviews.org/doi/10.1146/annurev.fl.28.010196.002401.
+
+Williamson, C.H.K. and Govardhan, R., 2004. Vortex-Induced Vibrations.
+\emph{Annual Review of Fluid Mechanics}, 36(1), pp.413--455. Available
+at:
+http://arjournals.annualreviews.org/doi/abs/10.1146\%252Fannurev.fluid.36.050802.122128.
+
+Wu, W., 2011. \emph{Two-Dimensional RANS Simulation of Flow Induced
+Motion of Circular Cylinder with Passive Turbulence Control}. The
+University of Michigan.
+
+Wu, W., Bernitsas, M.M. and Maki, K., 2011. RANS Simulation vs.
+Experiments of Flow Induced Motion of Circular Cylinder With Passive
+Turbulence Control at 35,000\textless{}Re\textless{}130,000.
+\emph{Volume 7: CFD and VIV; Offshore Geotechnics}. 1 January 2011 ASME,
+pp. 733--744.
+
+Xia, Y., Michelin, S. and Doaré, O., 2015. Fluid-solid-electric lock-in
+of energy-harvesting piezoelectric flags. \emph{Physical Review
+Applied}, 3(1), p.14009.
+
+Xia, Y., Michelin, S.S., Doaré, O. and Doare, O., 2015.
+Resonance-induced enhancement of the energy harvesting performance of
+piezoelectric flags. \emph{Applied Physics Letters}, 107(26), pp.1--5.
+
+Xiao, F., Chen, G.S., Zatar, W. and Hulsey, J.L., 2018. Quantification
+of Dynamic Properties of Pile Using Ensemble Empirical Mode
+Decomposition. \emph{Advances in Civil Engineering}, 2018, pp.1--6.
+Available at: https://www.hindawi.com/journals/ace/2018/8379871/
+{[}Accessed: 14 February 2019{]}.
+
+Xu, J., He, M. and Bose, N., 2009. Vortex modes and vortex-induced
+vibration of a long, flexible riser. \emph{Ocean Engineering}, 36(6--7),
+pp.456--467. Available at:
+http://www.sciencedirect.com/science/article/pii/S0029801809000146
+{[}Accessed: 10 March 2016{]}.
+
+Zdravkovich, M.M., 1981. Review and classification of various
+aerodynamic and hydrodynamic means for suppressing vortex shedding.
+\emph{Journal of Wind Engineering and Industrial Aerodynamics}, 7(2),
+pp.145--189. Available at:
+http://www.sciencedirect.com/science/article/pii/0167610581900362
+{[}Accessed: 4 January 2016{]}.
+
+Zhao, M. and Lu, L., 2018. Numerical simulation of flow past two
+circular cylinders in cruciform arrangement. \emph{Journal of Fluid
+Mechanics}, 848, pp.1013--1039. Available at:
+https://www.cambridge.org/core/product/identifier/S0022112018003804/type/journal\_article
+{[}Accessed: 12 September 2018{]}.
+
+\end{document}
