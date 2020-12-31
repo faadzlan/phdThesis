@@ -436,6 +436,17 @@
   year     = {2013},
 }
 
+@article{Nguyen2010,
+author = {Nguyen, Tuananh and Koide, Mizuyasu and Takahashi, Tsutomu and Shirakashi, Masataka},
+journal = {Journal of Fluid Science and Technology},
+number = {3},
+pages = {603--616},
+publisher = {The Japan Society of Mechanical Engineers},
+title = {{Universality of longitudinal vortices shedding from a cruciform two circular cylinder system in uniform flow}},
+volume = {5},
+year = {2010}
+}
+
 @Article{Nguyen2012,
   author   = {Nguyen, T. and Koide, M. and Yamada, S. and Takahashi, T. and Shirakashi, M.},
   title    = {{Influence of mass and damping ratios on VIVs of a cylinder with a downstream counterpart in cruciform arrangement}},
@@ -670,6 +681,34 @@
   title = {{Vortex Excitation Caused by Longitudinal Vortices Shedding from Cruciform Cylinder System in Water Flow}},
   volume = {49},
   year = {2006}
+}
+
+@article{Kato2006,
+author = {Kato, Naoto and Koide, Mizuyasu and Takahashi, Tsutomu and Shirakashi, Masataka},
+doi = {10.1299/jfst.1.126},
+issn = {1880-5558},
+journal = {Journal of Fluid Science and Technology},
+number = {2},
+pages = {126--137},
+publisher = {The Japan Society of Mechanical Engineers},
+title = {{Influence of Cross-Sectional Configuration on the Longitudinal Vortex Excitation of the Upstream Cylinder in Cruciform Two-Cylinder System}},
+url = {http://joi.jlc.jst.go.jp/JST.JSTAGE/jfst/1.126?from=CrossRef},
+volume = {1},
+year = {2006}
+}
+
+@article{Kato2007,
+author = {Kato, Naoto and Koide, Mizuyasu and Takahashi, Tsutomu and Shirakashi, Masataka},
+doi = {10.1299/kikaib.73.957},
+issn = {0387-5016},
+journal = {Transactions of the Japan Society of Mechanical Engineers Series B},
+month = {mar},
+number = {728},
+pages = {957--964},
+title = {{Vibration Control for a Circular Cylinder by a Strip-plate Set Downstream in Cruciform Arrangement (1st Report, Influence of a Downstream Strip-plate on the Shedding of Longitudinal Vortices from Fixed System)}},
+url = {https://www.jstage.jst.go.jp/article/kikaib1979/73/728/73{\_}728{\_}957/{\_}article/-char/ja/},
+volume = {73},
+year = {2007}
 }
 
 @article{Koide2007,
@@ -961,7 +1000,7 @@
   year    = {2016},
 }
 
-@Article{Williamson1996,
+@Article{Williamson1996a,
   author    = {Williamson, C. H. K.},
   title     = {{Three-dimensional wake transition}},
   doi       = {10.1017/S0022112096008750},
@@ -973,6 +1012,19 @@
   month     = dec,
   publisher = {Cambridge University Press},
   year      = {1996},
+}
+
+@article{Williamson1996b,
+author = {Williamson, C.H.K.},
+doi = {10.1146/annurev.fl.28.010196.002401},
+isbn = {9780521477390},
+issn = {0066-4189},
+journal = {Annual Review of Fluid Mechanics},
+number = {1},
+pages = {477--539},
+title = {{Vortex Dynamics in the Cylinder Wake}},
+volume = {28},
+year = {1996}
 }
 
 @article{Ma2018,
@@ -1967,6 +2019,319 @@ year = {2020}
   journal  = {Jisuanji Xuebao/Chinese Journal of Computers},
   keywords = {Autoencoder,Network partition,Safety monitoring,Spatial-temporal feature,Wireless sensor network},
   year     = {2020},
+}
+
+@article{Geyer2020,
+author = {Geyer, Thomas F.},
+doi = {10.2514/1.J058877},
+issn = {00011452},
+journal = {AIAA Journal},
+month = {feb},
+number = {5},
+pages = {2014--2028},
+publisher = {American Institute of Aeronautics and Astronautics Inc.},
+title = {{Vortex shedding noise from finite, wall-mounted, circular cylinders modified with porous material}},
+url = {https://arc.aiaa.org/doi/abs/10.2514/1.J058877},
+volume = {58},
+year = {2020}
+}
+
+@inproceedings{Ledda2018,
+archivePrefix = {arXiv},
+arxivId = {1805.11862},
+author = {Ledda, P. G. and Siconolfi, L. and Viola, F. and Gallaire, F. and Camarri, S.},
+booktitle = {Physical Review Fluids},
+doi = {10.1103/PhysRevFluids.3.103901},
+eprint = {1805.11862},
+issn = {2469990X},
+month = {oct},
+number = {10},
+pages = {103901},
+publisher = {American Physical Society},
+title = {{Suppression of von K{\'{a}}rm{\'{a}}n vortex streets past porous rectangular cylinders}},
+url = {https://journals.aps.org/prfluids/abstract/10.1103/PhysRevFluids.3.103901},
+volume = {3},
+year = {2018}
+}
+
+@article{Arsh2020,
+author = {Arsh, Basheer Al},
+doi = {10.1108/AEAT-02-2020-0040},
+issn = {1748-8842},
+journal = {Aircraft Engineering and Aerospace Technology},
+month = {jan},
+number = {7},
+pages = {1027--1035},
+publisher = {Emerald Publishing Limited},
+title = {{Advances in the smart materials applications in the aerospace industries}},
+url = {https://doi.org/10.1108/AEAT-02-2020-0040},
+volume = {92},
+year = {2020}
+}
+
+@article{Asano2020,
+author = {Asano, Yuta and Watanabe, Hiroshi and Noguchi, Hiroshi},
+doi = {10.1063/1.5138212},
+issn = {00219606},
+journal = {Journal of Chemical Physics},
+month = {jan},
+number = {3},
+pages = {034501},
+pmid = {31968948},
+publisher = {American Institute of Physics Inc.},
+title = {{Effects of cavitation on K{\'{a}}rm{\'{a}}n vortex behind circular-cylinder arrays: A molecular dynamics study}},
+url = {http://aip.scitation.org/doi/10.1063/1.5138212},
+volume = {152},
+year = {2020}
+}
+
+@article{Xiong2018,
+author = {Xiong, Chengwang and Cheng, Liang and Tong, Feifei and An, Hongwei},
+doi = {10.1017/jfm.2018.436},
+issn = {14697645},
+journal = {Journal of Fluid Mechanics},
+keywords = {bifurcation,vortex instability},
+title = {{On regime C flow around an oscillating circular cylinder}},
+year = {2018}
+}
+
+@misc{AlvesPortela2020,
+author = {{Alves Portela}, F. and Papadakis, G. and Vassilicos, J. C.},
+booktitle = {arXiv},
+issn = {0022-1120},
+title = {{The role of Coherent Structures and Inhomogeneity in Near-Field Inter-Scale Turbulent Energy Transfers}},
+year = {2020}
+}
+
+@inproceedings{Deloze2016,
+author = {Deloze, T. and Hoarau, Y. and Chinaud, M. and Scheller, J. and Deri, E. and Rouchon, J. F. and Duhayon, E. and Braza, M.},
+booktitle = {Notes on Numerical Fluid Mechanics and Multidisciplinary Design},
+doi = {10.1007/978-3-319-27386-0_19},
+isbn = {9783319273846},
+issn = {16122909},
+keywords = {Deformation,Flat plate,Shape memory alloys,Turbulence},
+title = {{Dynamic effect of an active deformable flat plate on its turbulent flow}},
+year = {2016}
+}
+
+@article{Shao2016,
+author = {Shao, Wei Dong and Li, Jun},
+issn = {0253231X},
+journal = {Kung Cheng Je Wu Li Hsueh Pao/Journal of Engineering Thermophysics},
+keywords = {Aeroacoustical noise,Convection effect,Flow around circular cylinder,Frequency analysis},
+title = {{Numerical prediction of noise induced by flow around a cylinder considering the convection effect}},
+year = {2016}
+}
+
+@article{Liu2020,
+author = {Liu, Guijie and Li, Haiyang and Qiu, Zhaozun and Leng, Dingxin and Li, Zhixiong and Li, Weihua},
+doi = {10.1016/j.oceaneng.2019.106704},
+file = {:C$\backslash$:/Users/alan{\_}/Google Drive/Pembelajaran/PhD 2016/Literature/thesisLiteratureReview/2019{\_}Liu et al.pdf:pdf},
+issn = {00298018},
+journal = {Ocean Engineering},
+keywords = {Floating platform,Internal flow,Marine risers,Multi-mode response,Vortex-induced vibration},
+month = {jan},
+pages = {106704},
+title = {{A mini review of recent progress on vortex-induced vibrations of marine risers}},
+url = {https://linkinghub.elsevier.com/retrieve/pii/S0029801819308182},
+volume = {195},
+year = {2020}
+}
+
+@article{Kang2020,
+author = {Kang, Yongtian and Xiao, Wensheng and Wang, Quanbin and Zhang, Dagang and Zhao, Jun},
+doi = {10.1007/s11802-020-4033-0},
+issn = {1672-5182},
+journal = {Journal of Ocean University of China},
+keywords = {faring devices,finite element analysis,testing,vortex-induced vibration},
+month = {apr},
+number = {2},
+pages = {298--306},
+title = {{Suppression of Vortex-Induced Vibration by Fairings on Marine Risers}},
+url = {http://link.springer.com/10.1007/s11802-020-4033-0},
+volume = {19},
+year = {2020}
+}
+
+@article{Gibeau2019,
+author = {Gibeau, Bradley and Ghaemi, Sina},
+doi = {10.1017/jfm.2019.931},
+issn = {14697645},
+journal = {Journal of Fluid Mechanics},
+keywords = {vortex shedding,wakes},
+publisher = {Cambridge University Press},
+title = {{The mode B structure of streamwise vortices in the wake of a two-dimensional blunt trailing edge}},
+url = {https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/mode-b-structure-of-streamwise-vortices-in-the-wake-of-a-twodimensional-blunt-trailing-edge/96902F0B5708A2903A2A37DFCCC0A89B},
+volume = {884},
+year = {2019}
+}
+
+@article{Gibeau2018,
+author = {Gibeau, B. and Koch, C. R. and Ghaemi, S.},
+doi = {10.1017/jfm.2018.285},
+issn = {14697645},
+journal = {Journal of Fluid Mechanics},
+keywords = {turbulent flows,vortex shedding,wakes},
+month = {jul},
+pages = {578--604},
+publisher = {Cambridge University Press},
+title = {{Secondary instabilities in the wake of an elongated two-dimensional body with a blunt trailing edge}},
+url = {https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/secondary-instabilities-in-the-wake-of-an-elongated-twodimensional-body-with-a-blunt-trailing-edge/A4EC8275E0795D5C250592FAD4432D2D},
+volume = {846},
+year = {2018}
+}
+
+@article{Agbaglah2019,
+author = {Agbaglah, G. and Mavriplis, C.},
+doi = {10.1017/jfm.2019.265},
+issn = {14697645},
+journal = {Journal of Fluid Mechanics},
+keywords = {nonlinear instability,vortex shedding,wakes},
+month = {jul},
+pages = {419--432},
+publisher = {Cambridge University Press},
+title = {{Three-dimensional wakes behind cylinders of square and circular cross-section: Early and long-time dynamics}},
+url = {https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/threedimensional-wakes-behind-cylinders-of-square-and-circular-crosssection-early-and-longtime-dynamics/CD67101DDF06DC60C861D404743DB48E},
+volume = {870},
+year = {2019}
+}
+
+@article{Rai2018,
+author = {Rai, Man Mohan},
+doi = {10.1016/j.ijheatfluidflow.2018.05.015},
+issn = {0142727X},
+journal = {International Journal of Heat and Fluid Flow},
+month = {aug},
+pages = {20--36},
+publisher = {Elsevier B.V.},
+title = {{Vortex shedding characteristics of the wake of a thin flat plate with a circular trailing edge}},
+volume = {72},
+year = {2018}
+}
+
+@article{Lin2018,
+author = {Lin, L. M. and Zhong, X. F. and Wu, Y. X.},
+doi = {10.1007/s10409-017-0707-2},
+issn = {16143116},
+journal = {Acta Mechanica Sinica/Lixue Xuebao},
+keywords = {Conical shroud,Flow control,Fluid forces,Perforation,Vortex shedding pattern},
+month = {apr},
+number = {2},
+pages = {238--256},
+publisher = {Springer Verlag},
+title = {{Effect of perforation on flow past a conic cylinder at Re = 100: vortex-shedding pattern and force history}},
+url = {https://link.springer.com/article/10.1007/s10409-017-0707-2},
+volume = {34},
+year = {2018}
+}
+
+@article{Zhang2016,
+author = {Zhang, Hongfu and Xin, Dabo and Ou, Jinping},
+doi = {10.1016/j.jweia.2016.05.004},
+issn = {01676105},
+journal = {Journal of Wind Engineering and Industrial Aerodynamics},
+keywords = {Bridges,Delayed Detached Eddy Simulation,Secondary wake instability,Spanwise suction control,Spanwsie vortex shedding},
+month = {aug},
+pages = {100--114},
+publisher = {Elsevier B.V.},
+title = {{Wake control of vortex shedding based on spanwise suction of a bridge section model using Delayed Detached Eddy Simulation}},
+volume = {155},
+year = {2016}
+}
+
+@article{Zhang2019,
+author = {Zhang, Hongfu and Xin, Dabo and Ou, Jinping},
+doi = {10.1016/j.jweia.2018.11.031},
+issn = {01676105},
+journal = {Journal of Wind Engineering and Industrial Aerodynamics},
+keywords = {Bridge,Dynamic mode decomposition,Three-dimensional spanwise-varying control,Vortex generator,Vortex-induced vibration,Wake},
+month = {jan},
+pages = {185--197},
+publisher = {Elsevier B.V.},
+title = {{Wake control using spanwise-varying vortex generators on bridge decks: A computational study}},
+volume = {184},
+year = {2019}
+}
+
+
+@article{Takahashi1999,
+author = {Takahashi, Tsutomu and Baranyi, Laszlo and Shirakashi, Masataka},
+doi = {https://doi.org/10.3154/jvs.19.75_328},
+journal = {Journal of the Visualization Society of Japan},
+number = {75},
+pages = {64--72},
+title = {{Configuration and Frequency of Longitudinal Vortices Shedding from Circular Cylinders in Cruciform Arrangement}},
+volume = {19},
+year = {1999}
+}
+
+@article{Shirakashi2001,
+author = {Shirakashi, M and Takahashi, T and Kumagai, I and Matsumoto, T},
+journal = {Journal of Computational and Applied Mechanics},
+number = {1},
+pages = {103--122},
+title = {{Vortex-induced vibration of the upstream cylinder of a two-cylinder system in cruciform arrangement}},
+volume = {2},
+year = {2001}
+}
+
+@article{Bae2001,
+author = {Bae, Heon Meen and Baranyi, Laszlo and Koide, Mizuyasu and Takahashi, Tsutomu and Shirakashi, Masataka},
+doi = {10.1007/s13398-014-0173-7.2},
+isbn = {9780874216561},
+issn = {0717-6163},
+journal = {Journal of Computational and Applied Mechanics},
+number = {2},
+pages = {175--188},
+title = {{Suppression of Karman Vortex Excitation of a Circular Cylinder By a Second Cylinder set Downstream in Cruciform Arrangement}},
+url = {http://www.ncbi.nlm.nih.gov/pubmed/15003161{\%}5Cnhttp://cid.oxfordjournals.org/lookup/doi/10.1093/cid/cir991{\%}5Cnhttp://www.scielo.cl/pdf/udecada/v15n26/art06.pdf{\%}5Cnhttp://www.scopus.com/inward/record.url?eid=2-s2.0-84861150233{\&}partnerID=tZOtx3y1},
+volume = {2},
+year = {2001}
+}
+
+@article{Chang2011,
+author = {Chang, Che-Chun (Jim) and {Ajith Kumar}, R. and Bernitsas, Michael M.},
+doi = {10.1016/j.oceaneng.2011.07.013},
+issn = {00298018},
+journal = {Ocean Engineering},
+keywords = {Flow Induced Motions,Galloping,Hydrokinetic energy,Passive Turbulence Control,Surface roughness,VIV,VIVACE Converter,Vortex induced vibrations},
+month = {nov},
+number = {16},
+pages = {1713--1732},
+title = {{VIV and galloping of single circular cylinder with surface roughness at 3.0×104≤Re≤1.2×105}},
+url = {https://linkinghub.elsevier.com/retrieve/pii/S0029801811001582},
+volume = {38},
+year = {2011}
+}
+
+@article{Park2013,
+author = {Park, Hongrae and Kumar, R. Ajith and Bernitsas, Michael M.},
+doi = {10.1016/j.oceaneng.2013.06.026},
+isbn = {0029-8018},
+issn = {00298018},
+journal = {Ocean Engineering},
+keywords = {Circular cylinder,Enhancement of FIM,Flow-induced motions,Hard galloping,Passive turbulence control,Soft galloping,Surface roughness,Vortex-induced vibrations,Wake-vortex structures},
+month = {nov},
+pages = {403--415},
+title = {{Enhancement of flow-induced motion of rigid circular cylinder on springs by localized surface roughness at 3×104≤Re≤1.2×105}},
+url = {https://linkinghub.elsevier.com/retrieve/pii/S0029801813002722},
+volume = {72},
+year = {2013}
+}
+
+@article{Park2016,
+author = {Park, Hongrae and {Ajith Kumar}, R. and Bernitsas, Michael M.},
+doi = {10.1016/j.oceaneng.2015.10.044},
+isbn = {0029-8018},
+issn = {00298018},
+journal = {Ocean Engineering},
+keywords = {Circular cylinder,Distributed roughness,Flow-induced motions,Suppression,Vortex-induced vibrations,Wake vortex structures},
+month = {jan},
+pages = {218--233},
+title = {{Suppression of vortex-induced vibrations of rigid circular cylinder on springs by localized surface roughness at 3×104≤Re≤1.2×105}},
+url = {https://linkinghub.elsevier.com/retrieve/pii/S0029801815005910},
+volume = {111},
+year = {2016}
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
