@@ -10,6 +10,7 @@
 \usepackage{longtable}
 \usepackage{siunitx}
 \usepackage{subcaption}
+\usepackage{multirow}
 
 %%% You MUST load the natbib package if you want to use author-date bibliography style. Also remember to change the bibliography style at the bottom of the .tex file.
 % Comment natbib for citation by number
@@ -508,27 +509,42 @@ This chapter reviewed studies that contribute towards the advancement of vibrati
 
 The main takeaways from each literature reviewed in this chapter is summarised in
 
-\begin{table}[!ht]
-\centering
-\caption{Summary of findings in literature and problems highlighted in the literature review.} \label{tab:litRevSummary}
-\vspace{\baselineskip}
-\begin{tabular}{l c c c}
-  \hline
-  \hline
+\begin{landscape}
+  \begin{table}[p]
+  \centering
+  \caption{Summary of findings in literature and key takeaways.} \label{tab:litRevSummary}
+  \vspace{\baselineskip}
+  \begin{tabular}{p{4cm}>{\centering}p{2.5cm}>{\centering\arraybackslash}p{15cm}}
+    \hline
+    \hline
 
-  Empirical constants & Value    \\
-  \hline
+    Literature           & Type of study & Key takeaway \\
+    \hline
 
-  $c_{b1}$            & $0.01$   \\
-  $c_{b2}$            & $0.09$   \\
-  $c_{\nu1}$          & $0.01$   \\
-  $\kappa$            & $0.1$    \\
-  $\sigma$            & $0.162$  \\
-  $c_{\omega3}$       & $0.178$  \\
-  \hline
-  \hline
+    \citet{Asano2020} & Numerical & \multirow{5}{\hsize}{Karman vortex shedding can be controlled by modulating the shear layer of the circular cylinder. This is achieved through various methods, e.g., porous surface/outer layer and caviration bubbles.} \\
+    \cline{1-2}
+    \citet{Ledda2018}, \citet{Durhasan2019}, \citet{Geyer2020}, \citet{Kang2020}  & \multirow{5}{\hsize}{Experimental} & \\
+    \hline
+    \citet{Gibeau2018}, \citet{Gibeau2019}, \citet{Rai2018} & \multirow{3}{\hsize}{Experimental} & \multirow{3}{\hsize}{Small scale streamwise vortices originate from the three-dimensionality of Karman vortices, and the temporal dynamics of these streamwise vortices are dictated by the shedding dynamics of the Karman vortices.} \\
+    \hline
+    \citet{Lin2018}, \citet{Zhang2019}, \citet{Koide2017}  & \multirow{3}{\hsize}{Experimental} & \multirow{3}{\hsize}{Flow control due to placement of a downstream body is able to induce the shedding of large scale streamwise vortices, and the temporal dynamics of these streamwise vortices are independent of the shedding dynamics of coexisting Karman vortices.} \\
+    \hline
+    \citet{Ding2017}, \citet{Xu2017}, \citet{Yuan2020} & \multirow{3}{\hsize}{Experimental} & \multirow{3}{\hsize}{The amplitude/frequency response of a single cylinder oscillator unit can be modulated by tuning the mechanical parameters of the oscillator, e.g., adjusting the spacing between units, spring stiffness, system damping.} \\
+    \hline
+    \citet{Deng2007}   & Numerical & \multirow{4}{\hsize}{The amplitude/frequency response of a pure cruciform oscillator is heavily influenced by the spacing between the upstream and downstream cylinders. Optimising this parameter allows for very large range of synchronisation and a well-behaved upper limit to the vibration amplitude.} \\
+    \cline{1-2}
+    \citet{Kato2007}, \citet{Koide2013}, \citet{Zhao2018a}   & \multirow{3}{\hsize}{Experimental} &        \\
+    \hline
+    \citet{Ma2018}, \citet{Sun2019b} & \multirow{2}{\hsize}{Experimental} & \multirow{2}{\hsize}{In-tandem configuration of single cylinder harvester units are able to synergise and recover a large amount of power. The use of nonlinear springs can enhance this effect.} \\
+    \hline
+    \citet{Hemsuwan2018a,Hemsuwan2018b,Hemsuwan2018c}  & \multirow{2}{\hsize}{Numerical} &  \multirow{4}{\hsize}{Advances in cruciform energy harvesters are heavily focussed on recording the system responses due to cruciform parameter variation. Numerical studies are disrupting this trend.} \\
+    \cline{1-2}
+    \citet{Koide2009}, \citet{Nguyen2012} & \multirow{3}{\hsize}{Experimental} &  \\
+    \hline
+    \hline
 \end{tabular}
-\end{table}
+  \end{table}
+\end{landscape}
 
 \chapter{Methodology} \label{chap:method}
 \section{Problem geometry} \label{sec:probGeo}
