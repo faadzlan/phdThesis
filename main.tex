@@ -553,6 +553,7 @@ Table \ref{tab:litRevSummary} also highlights how the amplitude/frequency respon
 Finally, Table \ref{tab:litRevSummary} summarises the studies that sits at the very top of the knowledge pyramid of Fig. \ref{fig:pyramidOfKnowledge}, namely how the future of alternating lift energy harvesting lies in teasing out favourable flow structures from a system that is made of more than one cylinder. In particular, the VIV-based cruciform system whose studies up until the present is heavily reliant on probes and simple dye visualisations can benefit from advances in CFD and a relatively improved access to computing facilities, to investigate and evaluate novel geometrical configurations of the cruciform oscillator for energy harvesting. These studies serve as the starting point in fulfilling objective three of this thesis. The next chapter discussses the methods employed to achieve all three objectives.
 
 \chapter{Methodology} \label{chap:method}
+This chapter details the methodology employed to fulfill the objectives outlined in Chapter \ref{chap:introduction}. The methodologies can be loosely grouped into three categories, the first being the method used to set up the numerical model and their solution algorithm, second being the method used to set up and run experimental validations of a representative case from this work's numerical investigation, and third, the introduction to a time series analysis method called the Hilbert-Huang transform (HHT) which is deployed to decompose both lift and cylinder displacement signals into physically meaningful components and compute the instantaneous phase angle and frequency.
 \section{Problem geometry} \label{sec:probGeo}
 This study bases itself on the work done by \citet{Maruai2017}, \citet{Maruai2018}, and \citet{Koide2013}. In these works, the investigators conducted both experimental and computational investigations of passive control of FSI of cylinders using a strip plate located at the cylinder downstream. Here, the term ``strip plate'' is used as a shorthand for the long, rectangular plate used to control the vibration of the cylinder -- since the plate resembles a strip due to its large aspect ratio. These studies demonstrated the feasibility of energy harvesting using the oscillator system described, in the Reynolds number range $3.6\times10^{3}<\text{Re}<12.5\times10^{3}$. Following this observation, we performed our numerical investigations within a similar \re{} range, albeit slightly widened, to check for variations in the cylinder response in as wide an \re{} range as possible, computational resources permitting.
 
@@ -760,11 +761,54 @@ For the benchmarking, we chose the reduced velocity $\ured = \urte$, as the cyli
   \label{fig:sampTimeHist}
 \end{figure}
 
+\section{Ensemble empirical mode decomposition and Hilbert transform} \label{sec:eemd}
+To obtain a clearer picture of the temporal characteristics of the lift and cylinder displacement signals, we decided to employ the ensemble empirical mode decomposition (EEMD) method \citep{Huang1998,Wu2008} on the signals, and compute their instantaneous phase lag, frequency and amplitude using the Hilbert transform.
 
+The Hilbert transform (HT) has been used in the past to study the instantaneous phase and frequencies of KVIV \citep{Khalak1999}. However, the signal must be monochromatic if we are to obtain a physically meaningful result after applying HT. EEMD is a way to pre-process the signal and get components that (1) have zero mean, and (2) have an equal number of extrema and zero crossings, or they differ only by one. Functions that fulfil these criteria are called intrinsic mode functions (IMF), and they guarantee a physically meaningful result to HT \citep{Gumelar2019,Zhou2019}. Unlike Fourier transform, which is an analytical method of signal decomposition based on circular functions in the complex plane, EEMD is algorithmic, and the processes undertaken can be summarised as follows.
 
+Produce 150 white noise signals of length equal to the original signal and amplitude equal to 0.2 of the standard deviation of the original signal. Then, add to the set of white noises the original signal -- creating 150 variations of the original signal. Following that, we apply the empirical mode decomposition (EMD) algorithm on each of the 150 signals. The EMD algorithm is summarised below.
+
+\begin{enumerate} \label{enumerate:emd}
+  \item Construct the envelope of the signal by connecting all maxima/minima with cubic splines. \label{enum:envelope}
+  \item Find the local mean of the envelope for the span of the data. \label{enum:localMean}
+  \item Find the difference between the local mean and the original data. \label{enum:difference}
+  \item Repeat steps \ref{enum:envelope} and \ref{enum:localMean} on the difference in \ref{enum:difference} for ten times \citep{Wu2008}.
+\end{enumerate}
+
+The steps above produce a set of intrinsic mode functions or IMFs for each of the 150 variations of the original signal. Then, we average the first IMF component from each of the decomposed original signal variations, to obtain the first EEMD IMF, $C_{1}$, of the original signal. We do the same for the second, third, until the $i^{\text{th}}$ component for each of the 150 original signal variations, thus obtaining $C_{2},C_{3},\dots,C_{i}$.
+
+To compute the phase lag between the characteristic IMFs of the lift coefficient and normalised cylinder displacement, we select the IMF components with the highest correlation to the $\ystr$ signal at that particular $\ured$, to represent the signals, denoted as $\cysys$ for the characteristic normalised cylinder displacement, and $\cclys$ as the characteristic lift coefficient signal. The phase lag, instantaneous frequency and instantaneous amplitude of the signal is subsequently computed by constructing an analytical signal $z \left( t \right)$ from $C_{1},C_{2},\dots,C_{i}$ by computing the Hilbert transform of the IMF, $H_{i}$,
+
+\begin{equation}
+  H_{i} \left( t \right) = \frac{1}{\pi} \text{PV} \int\limits_{}^{\infty} \frac{C_{i} \left( \tau \right)}{t - \tau} d\tau,
+  \label{eq:hilbertTransform}
+\end{equation}
+
+\noindent where PV denotes the Cauchy principal value, and then constructing the analytical signal as follows.
+\begin{equation}
+  z \left( t \right) = C_{i} \left( t \right) + i H_{i} \left( t \right)
+  \label{eq:analiticalSignal}
+\end{equation}
+
+\noindent Note that $i$ in Eq. \ref{eq:analiticalSignal} is the complex number.
+
+We refer the reader interested in the details of EEMD and Hilbert transform, also collectively known as the Hilbert-Huang transform (HHT), to the following excellent texts on the subject \citep{Huang2005,Huang2014}.
+
+\section{Chapter Summary} \label{sec:chapSumMethod}
+This chapter covers the methods employed to attain the objectives outlined in Chapter \ref{chap:introduction}. A cruciform consisting of an upstream circular cylinder and a strip plate placed $G=0.16D$ downstream is the problem geometry studied in this thesis and the primary mode of investigation is numerical, i.e., using CFD. The numerical model is solved using OpenFOAM, which is used to discretise the continuity and the RANS form of the momentum transport equation. The turbulence model employed is the one-equation Spalart-Allmaras model, which has been shown time and again in the literature to capture the essence of the flow in VIV situations.
+
+Advances in the OpenFOAM code allows for the implementation of dynamic mesh methods to simulate cylinder motion during VIV. Virtual spring and dampers are included in the computational loop and are used in the computation of the cylinder motion via the Euler's method. The arbitrarily coupled mesh interface (ACMI) allows for cruciform layouts with a tight gap, i.e. $G < 1$. During the analysis of the lift and cylinder displacement signals, the Hilbert-Huang transform is implemented to decompose the signals into physically meaningful components and allow the computation of instantaneous phase angle and frequency.
+
+The experimental method used to validate the CFD setup consists of an elastically supported cruciform oscillator in an open flow channel. The side plates supporting the two ends of the upstream circular cylinder are marked with a visual marker, thus enabling their motion to be tracked and the displacement time series obtained using a motion capture camera and a motion tracking software.
+
+In the next chapter, this thesis outlines the grid independency study conducted on the numerical setup and attempts to demonstrate the convergence of the numerical solution that comes hand-in-hand with mesh refinement using techniques such as the grid convergence index (GCI) and Richardson extrapolation. 
 
 \chapter{Numerical setup validation} \label{chap:numSetup}
-\section{Richardson extrapolation and the grid convergence index (GCI)} \label{sec:richExtrap}
+This chapter details the validation method used to check the grid independency of the numerical solutions. This validation can be divided into two main steps, the first being computing the grid convergence index and the second, extrapolating the value of the numerical solution to estimate its limit as mesh size approaches zero.
+
+This whole exercise is intended to show that the final form used in the main body of the numerical study is quantifiably independent from the spatial discretisation that this work settled upon.
+
+\section{The grid convergence index (GCI) and Richardson extrapolation} \label{sec:richExtrap}
 In this work, we establish the grid independency of the solution using the Richardson extrapolation and the grid convergence index (GCI) \citep{Richardson1927,Stern2001}. The Richardson extrapolation and GCI provides us with a procedure to quantitatively measure on the degree of convergence for the quantities of interest in a numerical study. This method also forces us to pay attention to the trend of convergence of the quantities of interest, requiring a monotonic convergence before proceeding to data collection \citep{Stern2001,MatAli2011,Ali2012,Maruai2018}.
 
 Let $f_{1},f_{2},f_{3},\dots,\fk$ be the quantity of interest obtained from several grid resolutions. We assign a larger subscript for a coarser grid, thus ascribing $f_{1}$ to the finest and $\fk$ to the coarsest grid. Let the difference between successive solutions be $\epsilon_{2,1},\epsilon_{3,2},\epsilon_{4,3},\dots,\epsilon_{n,n-1}$, where $\epsilon_{2,1} = f_{2} - f_{1}$, $\epsilon_{3,2} = f_{3} - f_{2}$ and so on. Then, the GCI is defined as
@@ -913,8 +957,12 @@ Inspecting Figs. \ref{fig:gciYrms}, \ref{fig:gciFstr} and \ref{fig:gciClrms}, we
   \caption{The convergence diagram for $\clrms$. Figure \ref{fig:gciClrms-1} shows how $\clrms$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciClrms-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.} \label{fig:gciClrms}
 \end{figure}
 
+\section{Chapter Summary} \label{sec:chapSumValid}
+This chapter elaborated on the demonstration of grid independency of the numerical solutions from the final form of spatial discretisation used. Three quantities of interest, namely the normalised root-mean-square of cylinder displacement, normalised dominant frequency of cylinder vibration, and the root-mean-square of the lift coefficient are chosen, and their monotonic convergence as the mesh is refined becomes apparent through the computation of the Richardson extrapolation of each quantity. Furthermore, the GCI values drop significantly with each subsequent refinement of the mesh.
 
-\chapter{Streamwise vortex-driven vibration}\label{chap:svivRegime}
+In the following chapter, this thesis begins to investigate the pure cruciform (\SI{90}{\degree}) oscillator. In particular, the following chapter tries to unravel the mechanism of lift formation in a pure cruciform and pinpoint any possibility to improve harnessed power from a cruciform-based energy harvester.
+
+\chapter{The pure cruciform}\label{chap:svivRegime}
 
 \section{The amplitude and frequency response}\label{sec:svivRegimeAmpFreqResp}
 
@@ -1015,12 +1063,12 @@ Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests t
 
 In this study, we compute the phase lag $\plag$ by taking the Hilbert transform of both $\ystr$ and Cl signals, as \citet{Khalak1999} did in their VIV study of isolated circular cylinders. However, since Hilbert transform only produce physically meaningful results when used on monocomponent signals \citep{Huang1998,Huang2005,Huang2014}, the signals first needs to be decomposed into components that satisfy the aforementioned condition, referred to in the literature as the intrinsic mode function (IMF). To achieve this, we implement the ensemble empirical mode decomposition (EEMD) \citep{Wu2008}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.4\textwidth]{figs/phaseLag5}
-  \caption{Phase lag $\plag$ (\si{\degree}) between Cl and $\ystr$ when \angfi{}.}
-  \label{fig:phaseLag90deg}
-\end{figure}
+% \begin{figure}
+  % \centering
+  % \includegraphics[width=0.4\textwidth]{figs/phaseLag5}
+  % \caption{Phase lag $\plag$ (\si{\degree}) between Cl and $\ystr$ when \angfi{}.}
+  % \label{fig:phaseAngleRegime}
+% \end{figure}
 
 \begin{equation}
   \plag = \frac{1}{T} \int_{0}^{T} \left[ \theta_{\text{Cl}}(t) - \theta_{y}(t) \right] dt.
@@ -1029,44 +1077,11 @@ In this study, we compute the phase lag $\plag$ by taking the Hilbert transform 
 
 Out of $C_{i}$ IMFs for each of $\ystr$ and Cl, we select the ones for computation of instantaneous phase according to the following rule. First, we choose the IMF component of $\yrms$ with the largest \rms{} amplitude to represent the original $\ystr$ signal. Then, we choose the component of Cl with the highest correlation to the IMF component of $\ystr$, to represent the Cl signal. The degree of correlation is determined by computing the cross-correlation between the two.
 
-The characteristic phase angle $\plag$ defined in Eq. \ref{eq:phaseLagDefinition} is what we summarise against $\ured$ in Fig. \ref{fig:phaseLag90deg}. Note that the $\plag$ pattern between $0 \leq \ured \leq \ursi$ resembles that which is found in isolated cylinder systems undergoing KVIV. We also observe that $\plag$ starts to drop when $\ured = \urse$, supporting the view that a fundamental change in vibration-driving mechanism took place at that $\ured$, culminating in the emergence of the initial branch for SVIV at $\ured = \urei$.
+% The characteristic phase angle $\plag$ defined in Eq. \ref{eq:phaseLagDefinition} is what we summarise against $\ured$ in Fig. \ref{fig:phaseAngleRegime}. Note that the $\plag$ pattern between $0 \leq \ured \leq \ursi$ resembles that which is found in isolated cylinder systems undergoing KVIV. We also observe that $\plag$ starts to drop when $\ured = \urse$, supporting the view that a fundamental change in vibration-driving mechanism took place at that $\ured$, culminating in the emergence of the initial branch for SVIV at $\ured = \urei$.
 
-\chapter{Temporal evolution of the lift coefficient} \label{chap:tempEvo}
+\section{Temporal evolution of the lift coefficient} \label{sec:tempEvo}
 
-\section{Ensemble empirical mode decomposition and Hilbert transform} \label{sec:eemd}
-To obtain a clearer picture of the temporal characteristics of the lift and cylinder displacement signals, we decided to employ the ensemble empirical mode decomposition (EEMD) method \citep{Huang1998,Wu2008} on the signals, and compute their instantaneous phase lag, frequency and amplitude using the Hilbert transform.
-
-The Hilbert transform (HT) has been used in the past to study the instantaneous phase and frequencies of KVIV \citep{Khalak1999}. However, the signal must be monochromatic if we are to obtain a physically meaningful result after applying HT. EEMD is a way to pre-process the signal and get components that (1) have zero mean, and (2) have an equal number of extrema and zero crossings, or they differ only by one. Functions that fulfil these criteria are called intrinsic mode functions (IMF), and they guarantee a physically meaningful result to HT \citep{Gumelar2019,Zhou2019}. Unlike Fourier transform, which is an analytical method of signal decomposition based on circular functions in the complex plane, EEMD is algorithmic, and the processes undertaken can be summarised as follows.
-
-Produce 150 white noise signals of length equal to the original signal and amplitude equal to 0.2 of the standard deviation of the original signal. Then, add to the set of white noises the original signal -- creating 150 variations of the original signal. Following that, we apply the empirical mode decomposition (EMD) algorithm on each of the 150 signals. The EMD algorithm is summarised below.
-
-\begin{enumerate} \label{enumerate:emd}
-  \item Construct the envelope of the signal by connecting all maxima/minima with cubic splines. \label{enum:envelope}
-  \item Find the local mean of the envelope for the span of the data. \label{enum:localMean}
-  \item Find the difference between the local mean and the original data. \label{enum:difference}
-  \item Repeat steps \ref{enum:envelope} and \ref{enum:localMean} on the difference in \ref{enum:difference} for ten times \citep{Wu2008}.
-\end{enumerate}
-
-The steps above produce a set of intrinsic mode functions or IMFs for each of the 150 variations of the original signal. Then, we average the first IMF component from each of the decomposed original signal variations, to obtain the first EEMD IMF, $C_{1}$, of the original signal. We do the same for the second, third, until the $i^{\text{th}}$ component for each of the 150 original signal variations, thus obtaining $C_{2},C_{3},\dots,C_{i}$.
-
-To compute the phase lag between the characteristic IMFs of the lift coefficient and normalised cylinder displacement, we select the IMF components with the highest correlation to the $\ystr$ signal at that particular $\ured$, to represent the signals, denoted as $\cysys$ for the characteristic normalised cylinder displacement, and $\cclys$ as the characteristic lift coefficient signal. The phase lag, instantaneous frequency and instantaneous amplitude of the signal is subsequently computed by constructing an analytical signal $z \left( t \right)$ from $C_{1},C_{2},\dots,C_{i}$ by computing the Hilbert transform of the IMF, $H_{i}$,
-
-\begin{equation}
-  H_{i} \left( t \right) = \frac{1}{\pi} \text{PV} \int\limits_{}^{\infty} \frac{C_{i} \left( \tau \right)}{t - \tau} d\tau,
-  \label{eq:hilbertTransform}
-\end{equation}
-
-\noindent where PV denotes the Cauchy principal value, and then constructing the analytical signal as follows.
-\begin{equation}
-  z \left( t \right) = C_{i} \left( t \right) + i H_{i} \left( t \right)
-  \label{eq:analiticalSignal}
-\end{equation}
-
-\noindent Note that $i$ in Eq. \ref{eq:analiticalSignal} is the complex number.
-
-We refer the reader interested in the details of EEMD and Hilbert transform, also collectively known as the Hilbert-Huang transform (HHT), to the following excellent texts on the subject \citep{Huang2005,Huang2014}.
-
-\section{The KVIV regime (reduced velocity below 13.6 )} \label{sec:phaseLag}
+\subsection{The KVIV regime (reduced velocity below 13.6 )} \label{ssec:phaseLag}
 At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between Cl and  $\ured$ are practically zero throughout the whole observation time. The characteristic IMFs of Cl and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the HHT spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the IMF components of Cl. The trend that one notices in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed in \citet{Khalak1999}, a study that also employs the Hilbert transform to obtain the instantaneous phase, albeit without EEMD. The dominant IMF component (IMF component sustaining the highest amplitude throughout the whole observation time) of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$.
 
 \begin{figure}
@@ -1091,7 +1106,7 @@ As we increase $\ured$ even further up to $\ured = \ursi$, we see a similar tren
   \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \ursi$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisLower}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisLower}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisLower}c.} \label{fig:tempAnalysisLower}
 \end{figure}
 
-\section{Transition to SVIV (reduced velocity between 15.9 and 18.2)} \label{sec:transSVIV}
+\subsection{Transition to SVIV (reduced velocity between 15.9 and 18.2)} \label{ssec:transSVIV}
 Previously in the $\ured \leq \ursi$ range, we observed that the temporal profile of both Cl and  $\ystr$ are very similar to each other, except that Cl leads $\ystr$ by a certain amount. This similarity in profile supports the assertion that the vibration within $\ured \leq \ursi$ is driven exclusively by the shedding of Karman vortices, which brings the onset of the alternating lift. Analogously, one might expect a similar profile between Cl and $\ystr$ when streamwise vortices drive the vibration. However, this does not seem to be the case.
 
 Once we reach $\ured = 15.9$, we observe that it has become difficult to argue that the profile of $\ystr$ is just a lagged version of the profile of Cl. This is shown in Fig. \ref{fig:tempEvoCompare}a, with the enlarged version in Fig. \ref{fig:tempEvoCompare}b. The profile of Cl looks like the result of several signals in superposition, which one can almost distinguish from the presence of two types of maxima at two different amplitude heights. We put a red dashed line and a red dashed-dot line in Fig. \ref{fig:tempEvoCompare}b as visual cues indicating the two amplitude heights. Decomposing the lift coefficient signal using EEMD reveals partial evidence supporting the compound signal hypothesis.
@@ -1124,7 +1139,7 @@ We consider the transition to SVIV to be complete at $\ured = 18.2$, when the ti
   \label{fig:tempAnalysisStableInitialBranch}
 \end{figure}
 
-\section{The stable SVIV regime (reduced velocity greater than 20.5)} \label{sec:svivRegime}
+\subsection{The stable SVIV regime (reduced velocity greater than 20.5)} \label{ssec:svivRegime}
 As $\ured$ is increased to 20.5, we can see a jump in $\phi$ from a mean value of approximately 20 deg. to about 120 deg., shown in Fig. \ref{fig:phaseAngle}a. The phase slippage discussed previously is also observed, indicating the quasi-periodic nature of the lift coefficient signal at this $\ured$. Incidentally, this quasi-periodicity seems to be the norm for the lift signals up to $\ured = 27.3$, as suggested by the phase slippages evident in Figs. \ref{fig:phaseAngle}b, c and d. The slippage only stops once $\ured$ reaches 29.5, suggesting a more periodic behaviour of the lift coefficient compared to its counterparts between $20.5 \leq \ured \leq 27.3$. Although the instantaneous phase between $20.5 \leq \ured \leq 27.3$ implies a quasi-periodic nature, their time-averaged values at each $\ured$ are contained in the narrow region $114 < \phi$ (deg.) $< 135$, as is the value for $\phi$ at $\ured = 29.5$. This observation that the time-averaged value of $\phi$ to only slowly vary with respect to $\ured$, once $\ured$ increases past 20.5, can be interpreted as the dominant flow structures settling into a stable form that becomes more resilient against external excitations. Based on this feature, we classified $20.5 \leq \ured \leq 29.5$ as the upper branch of SVIV.
 
 \begin{figure}
@@ -1145,8 +1160,7 @@ The data on the evolution of $\phi$ allows us to construct a map of the ``branch
 
 Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B, as we enter region C, marking the start of the transition to the SVIV regime. Following this, the system undergoes a more sudden drop to $\phim \approx 20$ deg. at $\ured = 18.2$. This we designate as region D. Finally, in region E, we observe another jump in $\phim$ from $\phim \approx 20$ deg. in region D to approximately 120 deg. when $\ured \geq \urni$.
 
-\chapter{Estimation of harnessable power from a pure cruciform} \label{chap:estimPow}
-\section{Mathematical model for power estimation} \label{sec:mathModel}
+\section{Harnesseable power} \label{sec:mathModel}
 The mathematical model for harnessable power estimation in this study follows that which had been derived in \citet{Raghavanetal2007}. In these works, the authors mentioned that work done by the oscillating cylinder $\wcl$ during one cycle of oscillation $\tosc$ is as follows.
 
 \begin{equation}
@@ -1193,7 +1207,7 @@ In the range $\urel \leq \ured \leq \urtt$, we find a reasonably good agreement 
 \section{Possibility for increasing fluid power} \label{sec:possIncrease}
 Recall in Fig. \ref{fig:powerComparison} that although $\pfrms$ is computed according to Eq. \ref{eq:rmsFluidPower}, which uses $\cclrms$ instead of the actual \rms{} amplitude of lift ($\clrms$), the resulting power estimate does not result in a trend that is totally different from the trend found in the other datasets. Furthermore, except for $\pmrms$ estimated from the experimental data of \citet{Nguyen2012}, the values of $\pfrms$ are in fairly good agreement with other data that it is compared against at high $\ured$ ($\ured = \urtv$ and $\urtt$). We see this is an indication that the lift component selected for use in computation of $\pfrms$ is an arguably faithful representation of the force driving the motion of the cylinder. This suggests that the motion of the cylinder, once it enters the SVIV regime, is driven only by one component, and not the totality, of the lift force. This component -- that has a time-averaged frequency close to the natural frequency of the system, $\fn$ -- is the ``streamwise component'' of lift.
 
-Another significant IMF component of the lift force in the SVIV regime is the component whose mean frequency is close to the Karman frequency of vortex shedding, as explained in \S\ref{sec:transSVIV}. This Karman component of lift has a similar amplitude size as the streamwise component of lift, as evidenced in Fig. \ref{fig:instantLiftFreq}, and as such is also a dominant component of lift. The Karman components are marked with a dashed, white box, and the streamwise components are marked with a solid, white box, following the convention in Figs. \ref{fig:tempAnalysisKVIV}, \ref{fig:tempAnalysisUpper}, \ref{fig:tempAnalysisLower}, \ref{fig:tempAnalysisTransition} and \ref{fig:tempAnalysisStableInitialBranch}. However, the Karman component fails to affect the cylinder vibration like the streamwise component most probably due to the large difference between the mean frequency of the Karman component and the natural frequency of the system, $\fn$.  The streamwise component has a mean frequency close to $\fn$ and is hence able to synchronise with the vibration of the cylinder, producing a sizeable amplitude response.
+Another significant IMF component of the lift force in the SVIV regime is the component whose mean frequency is close to the Karman frequency of vortex shedding, as explained in \S\ref{ssec:transSVIV}. This Karman component of lift has a similar amplitude size as the streamwise component of lift, as evidenced in Fig. \ref{fig:instantLiftFreq}, and as such is also a dominant component of lift. The Karman components are marked with a dashed, white box, and the streamwise components are marked with a solid, white box, following the convention in Figs. \ref{fig:tempAnalysisKVIV}, \ref{fig:tempAnalysisUpper}, \ref{fig:tempAnalysisLower}, \ref{fig:tempAnalysisTransition} and \ref{fig:tempAnalysisStableInitialBranch}. However, the Karman component fails to affect the cylinder vibration like the streamwise component most probably due to the large difference between the mean frequency of the Karman component and the natural frequency of the system, $\fn$.  The streamwise component has a mean frequency close to $\fn$ and is hence able to synchronise with the vibration of the cylinder, producing a sizeable amplitude response.
 
 \begin{figure}
   \centering
@@ -1206,7 +1220,16 @@ Figure \ref{fig:karmanStreamwiseComponents} shows the \rms{} amplitude of the Ka
 
 One possible method of improving $\pfrms$ is by implementing a modified version of the cruciform that is able to enforce the dominance of the vortical structure that is able to lock into $\fn$ - which in Fig. \ref{fig:karmanStreamwiseComponents} is the streamwise vortex - against the vortical structures that do not, i.e., the Karman vortices. We will outline such a method in our future work.
 
-\chapter{Transition to Karman vortex-driven vibration}\label{chap:transitionToKarman}
+\section{Chapter Summary} \label{sec:chapSumPure}
+In this chapter, the present author investigated the amplitude/frequency responses of the pure cruciform and compared them to the experiment done in the open flow channel, and with experimental works of others in the literature. In doing so, this work found good agreement between the amplitude responses and observed fair agreement between the frequency responses. The discrepancy in the frequency responses are attributed to the high resolution of observation obtainable through the use of CFD, which is not obscured by random excitation frequencies present in experimental works.
+
+This chapter also decisively demonstrated the vortical structures present in the flow during the high-amplitde vibrations of SVIV, which are observed to be due to the alternate shedding of large-scale streamwise vortices. Karman vortices continue to be shed in the region away from the juncture of the cruciform, but the region close to the juncture is dominated by streamwise vortex shedding.
+
+The amplitude response is highly dependent on the resulting lift signal, and the Hilbert-Huang transforms allows this study to compute the instantaneous phase lag between the lift and cylinder displacement signals - a first in the study of VIV in cruciform oscillators. Through the decomposition of the lift signal via EEMD, this study discovers that there is an increase in the level of intermittency of the signal, causing a dip in the amplitude response during the early stages of the onset of SVIV. The results here demonstrate that there exists two main parts to the lift signal, namely the contribution due to the shedding of streamwise vortex and the contribution due to the shedding of Karman vortex.
+
+The existence of two dominant components in the lift signal explains the saturation of $\yrms$ in the amplitude response curve, wherein a significant amount energy from the freestream is lost due to the production of Karman vortices. During the estimation of harnessed power, this thesis found that the power output can potentially be improved by a factor of two to a factor of three depending on $\ured$. This is a major finding in that it informs the present author not only of the potential improvement possible from a cruciform energy harvester, but also indicates that in order to achieve such an improvement, the cruciform need to fashioned in such a way that there exists only one vibration-driving mechanism in the system. The following chapter attempts to evaluate the ability of an angled cruciform in achieving this target.
+
+\chapter{Steep-angled cruciforms}\label{chap:transitionToKarman}
 
 \section{The amplitude and frequency response}\label{sec:transRegimeAmpFreqResp}
 
@@ -1352,7 +1375,7 @@ We also managed to find the source of asymmetry in the vortical structure distri
 \end{figure}
 
 \section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag67545}
-Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. If we work backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseLag90deg}, we confront the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
+Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. If we work backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseAngleRegime}, we confront the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
 
 For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower branch of KVIV at $\ured = \urth$, $\plag$ transitioned to $\approx \SI{65}{\degree}$ between $\urfi \leq \ured \leq \urni$. The proximity between the values \SI{65}{\degree} and \SI{70}{\degree} for the \angfo{} cruciform suggests the equivalence of the two branches. However, we are inclined to a more cautious conclusion: the two are \textit{variants} of the same branch that is only similar in limited respects as they originate from different angled cruciforms. In this respect, the \angth{} cruciform is much less similar to the pure cruciform case, as one might expect, simply because \angth{} is a much larger deviation from \angfi{} compared to \angfo{}. This larger deviation is in our opinion what causes $\plag$ in the \angth{} case to drop further to $\approx \SI{35}{\degree}$ within $\urte \leq \ured \leq \urtt$, instead of jumping up to some mean value between $100 \leq \plag \; (\si{\degree}) \leq 130$ similar to what we observe in the \angfi{} and \angfo{} cruciforms.
 
@@ -1375,7 +1398,16 @@ For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower br
 \end{figure}
 
 
-\chapter{Karman vortex-driven vibration}\label{chap:kvivRegime}
+\section{Chapter Summary} \label{sec:chapSumSteep}
+In this chapter, the present author explored the amplitude/frequency response of steep-angled cruciforms, defined as a cruciform with angles $45 \leq \alpha (\si{\degree}) \leq 67.5$. In doing so, this study found out that the oscillators in this category fails to attain at minimum a similar amplitude/frequency response as the pure cruciform. Instead, there only exists a narrow region of meaningful vibration in the KVIV regime - an example of which is illustrated in \S\ref{ssec:phaseLag}.
+
+The SVIV regime seems to be non-existent in this steep-angled layout. Flow visualisations confirms the existence of large-scale streamwise vortices near the cruciform juncture, but the absence of a counter-rotating pair in the same plane as either the top or bottom of the upstream cylinder results in a severely diminished vibration-driving lift acting on the cylinder. Furthermore, the unstable evolution of $fstr$ with respect to $\ured$ led this study to discover an inherent asymmetry in the distribution of vortices along the length of the cylinder, most apparent of which are the Karman vortex cells. This non-uniform distribution of force along the length of the cylinder is what probably induce the instability in the evolution of $\fstr$ with respect to $\ured$. 
+
+The findings regarding the importance of symmetry in the distibution of vortical structures along the cylinder, of both the Karman and streamwise kind, signals the potential of the angled cruciform as a mechanism of vibration control: a cruciform that instigates the formation of less symmetrical vortical distributions can be useful in certain situations, e.g. during the startup of the energy harvester, where one may intend to begin by generating a small amount of power first. The power output can then be gradually increased by increasing the symmetry of vortical distributions along the cylinder, e.g. bringing the configuration to a pure cruciform layout.
+
+The question is therefore whether one can attain a more symmetrical distribution of the vortical structures along the cylinder by instead rotating the strip plate in the opposite direction - which brings the cruciform to an in-tandem configuration, i.e., \SI{0}{\degree}. This thesis attempts to answer this question in the following chapter.
+
+\chapter{Shallow-angled cruciforms}\label{chap:kvivRegime}
 \section{The amplitude and frequency response}\label{sec:kvivAmpFreqResp}
 As we decrease the cruciform angle even further to \angtw{}, we observe a significant change in the amplitude and frequency response, compared to the transitional stage previously explored in \S\ref{chap:transitionToKarman}. Consider Figs. \ref{fig:yStrRMS4} and \ref{fig:yStrFreq2}. There is no apparent KVIV upper branch similar to what we have seen in Figs. \ref{fig:yStrRMS2} and \ref{fig:yStrFreq4} at $\ured = \urtw$. Then, we observe no significant vibration elicited from the oscillator until $\ured = \urni$. When $\ured = \urni$, there is a abrupt jump in $\yrms$ from $\yrms < 0.02$ to $\yrms \approx 0.3$. The $\fstr$ vs. $\ured$ trend demonstrated a bypassing of the KVIV lower branch - which occurred at $\ured = \urth$ in the transitional stages of \S\ref{chap:transitionToKarman} - right into $\fstr \approx 1$. Past $\ured = \urni$, the value for $\yrms$ continues to increase and saturates at $\ured = \urel$, and $\fstr$ continues to be close to $1$ up to $\ured = \urtt$.
 
@@ -1525,7 +1557,7 @@ As we have seen in \S\ref{chap:svivRegime} and \ref{chap:transitionToKarman}, el
 \noindent The results also suggest the total cylinder-strip plate area overlap as a factor influencing the exact $\ured$ at which the vortical synchronisation occurs. The $\ured$ at which the synchronisation -- and the jump to large $\yrms$ amplitude -- occurs at a lower value when the overlap area is bigger. Nevertheless, there seems to be a limit to this lowering of $\ured$, which in this work we determined to be $\ured = \urfo$. Recall that this is the value where the synchronisation begins for the \angon{} layout; the layout where the totality of the cylinder and strip plate projections onto the $y-z$ plane coincides with each other.
 
 \section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag22500}
-In Fig. \ref{fig:phaseLag225deg}, we summarise the evolution of $\plag$ with respect to $\ured$ for the \angtw{} cruciform and find $\plag \approx \SI{115}{\degree}$ at $\ured = \urtt$. The significance of $\ured = \urtt$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseLag90deg} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. This may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform (Fig. \ref{fig:yStrFreq2}).
+In Fig. \ref{fig:phaseLag225deg}, we summarise the evolution of $\plag$ with respect to $\ured$ for the \angtw{} cruciform and find $\plag \approx \SI{115}{\degree}$ at $\ured = \urtt$. The significance of $\ured = \urtt$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseAngleRegime} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. This may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform (Fig. \ref{fig:yStrFreq2}).
 
 The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump is the sudden drop at $\ured = \urfo$, which brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which we find $\plag$ to monotonically increase up to $\ured = \urtt$.
 
@@ -1547,7 +1579,7 @@ The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225de
   \label{fig:phaseLag22500deg}
 \end{figure}
 
-\chapter{Power characteristic in cruciform angle - reduced velocity parameter space}\label{chap:powerCharacteristic}
+\section{Power characteristic in cruciform angle - reduced velocity parameter space}\label{sec:powerCharacteristic}
 In this study, we estimate the mechanical power harnessed from the flow for each cruciform through the application of the formula in Eq. \ref{eq:rmsMechPower}.
 
 To understand how mechanical power $\pmrms$ is influenced not only by $\ured$, but also by the strip plate tilt angle $\alpha$ (\si{\degree}), we decided to visualise $\pmrms$ as contour plots, where the abscissa and ordinate are $\ured$ and $\alpha$, respectively, and the colour of the contours denote the magnitude of $\pmrms$. As an example, we plotted the values of $\yrms$ against $\ured$ and $\alpha$ in Fig. \ref{fig:yRMSContour}. The data used to produce Fig. \ref{fig:yRMSContour} are those from Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}. We then performed linear interpolations on the $\yrms$ data along both $\ured$ and $\alpha$ axes to populate the $\alpha$--$\ured$ parameter space. The result of this two-dimensional interpolation is Fig. \ref{fig:yRMSContour}. The snapshot of $\yrms$ evolution in the $\alpha$--$\ured$ parameter space summarises our observations made previously in Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}.
@@ -1588,6 +1620,18 @@ Unlike Fig. \ref{fig:mechanicalPowerContour}, the efficiency contour does not di
   \label{fig:powerEfficiencyContour}
 \end{figure}
 
+\section{Chapter Summary} \label{sec:chapSumShallow}
+In this final leg of investigations, the chapter attempts to address the question whether one is able to attain a more symmetrical distribution of the vortical structures along the upstream cylinder as the cruciform is brought to \SI{0}{\degree}. The results from the amplitude/frequency response curves seems to suggest that an improved symmetry in the vortical distribution is certainly the case, judging from the huge improvement in $\yrms$, especially for the \SI{0}{\degree} cruciform which is up to one order of magnitude larger than the maximum observed in the pure cruciform case. In addition, the high-amplitude vibrations are observed to start at a very low $\urfo$, compared to $\urni$ for the pure cruciform case.
+
+The main vibration-driving vortical structure in the shallow angled cruciforms seems to be Karman vortices, as suggested by the flow visualisations. They are symmetrically distributed relative to the $Z=0$ plane, and this seems to be the key to the onset of high-amplitude vibrations for both the \SI{22.5}{\degree} and \SI{0}{\degree} cruciforms. What is more interesting is the observation at the \SI{22.5}{\degree} cruciform, where the Karman vortices need not strictly exist in the same plane parallel to the cylinder axis in order to drive the high-amplitude vibrations. This condition of co-planar existence cannot be waived should the vibration-driving vortical structure is a streamwise vortex pair, as discussed in \S\ref{sec:transitionalRegimeVortStruct}.
+
+The magnitude of $\clrms$ is also found to improve by one order of magnitude for the \SI{0}{\degree} cruciform. Recalling the discussions in \S\ref{sec:possIncrease}, it is easy to appreciate that this is due to the focussing of the freestream energy in the production of only one vortical structure: the Karman vortices, instead of a significant amount being lost to the formation of another type of vortical structure that does not contribute to the generation of vibration-driving lift. Needless to say, such a significant improvement in terms of $\clrms$ and $\yrms$ will necessarily bear improvement of a similar scale in terms of power output.
+
+Through the isocontours of mechanical power in Fig. \ref{fig:mechanicalPowerContour} one can inspect that there exists two bands suitable for energy harvesting, first as the oscillator approaches a pure cruciform configuration and second as the oscillator approaches the in-tandem configuration (\SI{0}{\degree}). The two bands are separated by a region of sub-mW power output which can be useful as the starting configuration of the variable angle cruciform oscillator, followed by gradual rotation of the strip plate towards either poles of $\alpha$ (\si{\degree}), in effect increasing its power output to the desired level.
+
+However, the isocontours of the mechanical efficiency does not coincide with with the isocontours of mechanical power. This is largely due to the definition of $etamech$ in Eq. \ref{eq:mechanicalEfficiency} in the following manner. Maximum efficiency is attained when $\pmrms = P_{\text{Fluid}}$. However, $P_{\text{Fluid}}$ is simply the power transported by the freestream and is therefore proportional to the flow velocity. Therefore, if a VIV system such as the cruciform system studied in this work produces an amplitude response that plateaus with increase in $\ured$, $etamech$ necessarily drops with increasing $\ured$ and the peaks in $etamech$ indicates the neighbourhood where $\pmrms = P_{\text{Fluid}}$.
+
+In the next chapter: Conclusion, the present author summarises all the findings made during the course of this study and presents them in a more concise manner.
 \chapter{Conclusion}
 
 In this study, we numerically investigated the temporal evolution of the lift coefficient and cylinder displacement signals of an elastically supported cruciform system in the range $1.1 \times 10^{3} < \re < 14.6 \times 10^{3}$, or $\uron < \ured < \urtt$. Our circular cylinder diameter is \SI{10}{\milli\metre} and the natural frequency of the system is \SI{4.4}{\hertz}. Validation of key numerical results was made experimentally in a custom-built open flow channel, using a cruciform system whose parameters were tuned as close as possible to the quantities used in the numerical study. Decomposing the lift coefficient signal in the SVIV regime ($\urse \leq \ured \leq \urtt$) using EEMD allows us to see that the complexity of the lift coefficient signal as being caused by the superpositioning of two dominant components of lift. One due to the shedding of Karman and the other due to the shedding of streamwise vortices. The former has a frequency close to the vortex shedding frequency of Karman vortex from a smooth, isolated circular cylinder, while the latter has a mean frequency close to $\fn$. Application of the Hilbert-Huang transform on the dominant component of cylinder displacement -- and the component of lift most correlated to it -- allows for the computation of the instantaneous phase lag between lift and cylinder displacement. The time-averaged phase lag revealed five ``branches'' of vibration, among which is the initial branch of SVIV at $\ured = \urei$, which has never been identified before in the literature. We also computed the instantaneous frequency of the lift coefficient, thus revealing the loss of periodicity and self-similarity in the lift coefficient signal as the system enters the SVIV regime. Estimation of power from our results show that the \rms{} mechanical and fluid power computed from our experimental and numerical work agree to varying degrees depending on $\ured$ with data from similar studies in the literature. Finally, we estimated that the \rms{} fluid power can potentially be increased close to a factor of 2 within $\urei \leq \ured \leq \urte$ and close to a factor of 3 when $\urel \leq \ured \leq \urtt$. We base this estimation on the premise of redirecting the contribution to the \rms{} amplitude of total lift from Karman vortex shedding, towards the streamwise component of lift alone.
