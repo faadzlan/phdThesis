@@ -268,9 +268,9 @@ The answer to several questions is sought in this proposed study. These question
 Following the problems outlined in the previous section, the objectives that define the scope of work in this proposal are listed below.
 
 \begin{enumerate}
-  \item To investigate what takes place when the dominant vortical structure forcing the vibration changes from Karman to streamwise vortex-induced vibration (SVIV) in terms of lift and vibration signals. \label{enum:whatHappens}
-  \item To characterise the lift signal in terms of its components and how the components interact to modify the frequency-amplitude response of the cylinder. \label{enum:characteriseLift}
-  \item To propose a new passive control method for an SVIV-oriented energy harvester that modifies the vortical structures and their distribution around the oscillator to control its region of operability. \label{enum:passiveControl}
+  \item To identify what takes place when the dominant vortical structure forcing the vibration changes from Karman to streamwise vortex-induced vibration (SVIV) in terms of lift and vibration signals for the pure cruciform (\SI{90}{\degree}) oscillator. \label{enum:whatHappens}
+  \item To distinguish the lift signal in terms of its components and how the components interact to modify the frequency-amplitude response of the cylinder. \label{enum:characteriseLift}
+  \item To synthesise the system responses of a variable-angle cruciform and chart how the mechanical power and efficiency evolve in cruciform angle - reduced velocity parameter space. \label{enum:passiveControl}
 \end{enumerate}
 
 The aim of objective item \ref{enum:whatHappens} is to get a better understanding of how the advent of streamwise vortical structures perturb the lift acting on the cylinder, which directly modifies the vibration signal of the cylinder. Objective \ref{enum:characteriseLift} is an attempt to identify the footprint of dominant vortical structures in the flow in the lift signal and relate those to the resulting vibration signal. Finally, objective \ref{enum:passiveControl} seeks to recommend and evaluate a modified version of the cruciform structure that alters the vortical structure in the flow, thus modulating the lift signal acting on the cylinder and its frequency-amplitude response. The power envelope will give us a more generalised operability condition for the energy harvester, and how we can vary the cruciform configuration to cater to a particular flow environment.
@@ -906,9 +906,15 @@ The mathematical model for harnessable power estimation in this study follows th
 
 Here, $\pfrms$, $\pmrms$, $L$, $\cclrms$, $\zetatot$ and $\meff$ are the \rms{} of fluid power, \rms{} of mechanical power, length of the circular cylinder, characteristic \rms{} of lift amplitude, total damping coefficient, and the system effective mass respectively. We use $\cclys$ to represent $\cclrms$ in Eq. \ref{eq:rmsFluidPower}. We choose to use \rms{} (parameters with subscript RMS) quantities in Eq. \ref{eq:workCylinder} instead of the maximum values like the original authors because that may lead to a misunderstanding that the maximum value is sustained throughout the observation window. This obviously is not always the case in our study, especially once the system transits into the SVIV regime. Recall that the time series analysis of $\ystr\left( t \right)$ and $\text{Cl}\left( t \right)$ in Chapter \ref{chap:svivRegime} revealed that there is a degree of intermittency in both signals that cannot be overlooked at certain ranges of $\ured$. Using the \rms{} value allows us to partially take this into account in the estimation of harnessable power.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{figs/researchMethodology}
+  \caption{The flowchart encapsulating the sum total of research activities in this study.}
+  \label{fig:researchMethodologyFlowchart}
+\end{figure}
 
+%
 % The characteristic phase angle $\plag$ defined in Eq. \ref{eq:phaseLagDefinition} is what we summarise against $\ured$ in Fig. \ref{fig:phaseAngleRegime}. Note that the $\plag$ pattern between $0 \leq \ured \leq \ursi$ resembles that which is found in isolated cylinder systems undergoing KVIV. We also observe that $\plag$ starts to drop when $\ured = \urse$, supporting the view that a fundamental change in vibration-driving mechanism took place at that $\ured$, culminating in the emergence of the initial branch for SVIV at $\ured = \urei$.
-
 
 \section{Chapter Summary} \label{sec:chapSumMethod}
 This chapter covers the methods employed to attain the objectives outlined in Chapter \ref{chap:introduction}. A cruciform consisting of an upstream circular cylinder and a strip plate placed $G=0.16D$ downstream is the problem geometry studied in this thesis and the primary mode of investigation is numerical, i.e., using CFD. The numerical model is solved using OpenFOAM, which is used to discretise the continuity and the RANS form of the momentum transport equation. The turbulence model employed is the one-equation Spalart-Allmaras model, which has been shown time and again in the literature to capture the essence of the flow in VIV situations.
@@ -917,7 +923,7 @@ Advances in the OpenFOAM code allows for the implementation of dynamic mesh meth
 
 The experimental method used to validate the CFD setup consists of an elastically supported cruciform oscillator in an open flow channel. The side plates supporting the two ends of the upstream circular cylinder are marked with a visual marker, thus enabling their motion to be tracked and the displacement time series obtained using a motion capture camera and a motion tracking software.
 
-In the next chapter, this thesis outlines the grid independency study conducted on the numerical setup and attempts to demonstrate the convergence of the numerical solution that comes hand-in-hand with mesh refinement using techniques such as the grid convergence index (GCI) and Richardson extrapolation. 
+To summarise the research methodology employed during the course of this study, a flowchart describing the activities and their ordering is presented in Fig. \ref{fig:researchMethodologyFlowchart}. In the next chapter, this thesis outlines the grid independency study conducted on the numerical setup and attempts to demonstrate the convergence of the numerical solution that comes hand-in-hand with mesh refinement using techniques such as the grid convergence index (GCI) and Richardson extrapolation. 
 
 \chapter{Numerical setup validation} \label{chap:numSetup}
 This chapter details the validation method used to check the grid independency of the numerical solutions. This validation can be divided into two main steps, the first being computing the grid convergence index and the second, extrapolating the value of the numerical solution to estimate its limit as mesh size approaches zero.
