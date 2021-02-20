@@ -561,19 +561,20 @@ Our oscillator system derives its geometry from the works of \citet{Nguyen2012},
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.5\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/problemGeometrySide}
     \caption{}
     \label{fig:probGeoSide}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.5\textwidth}
+  \begin{subfigure}[h]{0.98\textwidth}
     \includegraphics[width=\textwidth]{figs/problemGeometryTop}
     \caption{}
     \label{fig:probGeoTop}
   \end{subfigure}
 
-  \caption{Figure \ref{fig:probGeoSide} shows the cross-chapteral layout of the computational domain, along with key dimensions, when viewed from the side. Figure \ref{fig:probGeoTop} visualises the cross-chapter of the computational domain as viewed from the top. The arbitrarily coupled mesh interface (ACMI) used to connect the domain containing the cylinder with the domain containing the strip plate is placed halfway through the gap, i.e. $0.08D$ downstream the cylinder.} \label{fig:problemGeometry}
+  \caption{The side and top cross-sections of the computational domain.} \label{fig:problemGeometry}
+  %Figure \ref{fig:probGeoSide} shows the cross-chapteral layout of the computational domain, along with key dimensions, when viewed from the side. Figure \ref{fig:probGeoTop} visualises the cross-chapter of the computational domain as viewed from the top. The arbitrarily coupled mesh interface (ACMI) used to connect the domain containing the cylinder with the domain containing the strip plate is placed halfway through the gap, i.e. $0.08D$ downstream the cylinder.
 \end{figure}
 
 Figure \ref{fig:probGeoSide} visualises our computational domain from its side. We chose these dimensions based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
@@ -582,40 +583,43 @@ In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.3\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/cruciform90}
     \caption{Cruciform layout for \angfi{}}
     \label{fig:cruciform90}
   \end{subfigure}
-  \hfill
-  \begin{subfigure}[h]{0.3\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/cruciform675}
     \caption{Cruciform layout for \angfo{}}
     \label{fig:cruciform675}
   \end{subfigure}
-  \hfill
-  \begin{subfigure}[h]{0.3\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/cruciform45}
     \caption{Cruciform layout for \angth{}}
     \label{fig:cruciform45}
   \end{subfigure}
+  \caption{The cruciform variations studied in this thesis.}
+\end{figure}
 
-  \raggedright
-  \begin{subfigure}[h]{0.3\textwidth}
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/cruciform225}
     \caption{Cruciform layout for \angtw{}}
     \label{fig:cruciform22.5}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.3\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/cruciform00}
     \caption{Cruciform layout for \angon{}}
     \label{fig:cruciform00}
   \end{subfigure}
 
-  \caption{Variation of cruciforms studied in this work. We vary the cruciform angle from the case of a pure cruciform (\angfi{}) to the case of cylinder - plate in tandem (\angon{}), in increments of \angtw{}.}\label{fig:cruciformLayouts}
+  \caption{The cruciform variations studied in this thesis (cont.)}\label{fig:cruciformLayouts}
+  %Variation of cruciforms studied in this work. We vary the cruciform angle from the case of a pure cruciform (\angfi{}) to the case of cylinder - plate in tandem (\angon{}), in increments of \angtw{}.
 \end{figure}
-
 We then produce variants of the pure cruciform configuration by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, we constructed five different cruciforms shown in Fig. \ref{fig:cruciformLayouts}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
 
 \section{Numerical method} \label{sec:numMeth}
@@ -752,19 +756,20 @@ We benchmark the open flow channel by setting up a pure cruciform oscillator (\a
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.5\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/rigSketch}
     \caption{}
     \label{fig:rigSketch}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.35\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/damperSketch}
     \caption{}
     \label{fig:damperSketch}
   \end{subfigure}
 
-  \caption{Our experimental system used to validate our numerical study. Figure \ref{fig:rigSketch} presents a 3D schematic of the open channel test chapter with a pure cruciform oscillator setup, while Fig. \ref{fig:damperSketch} shows a magnified schematic of the damping system.} \label{fig:experimentalSetup}
+  \caption{Sketch of the experimental system used in this study.} \label{fig:experimentalSetup}
+  %Our experimental system used to validate our numerical study. Figure \ref{fig:rigSketch} presents a 3D schematic of the open channel test chapter with a pure cruciform oscillator setup, while Fig. \ref{fig:damperSketch} shows a magnified schematic of the damping system.
 \end{figure}
 
 Tuning the total damping of the system and consequently the multiple expressions of damping such as the logarithmic damping $\delta$, Scruton number Sc, or the damping coefficient is done by attaching, as shown in Fig. \ref{fig:rigSketch}, a T-shaped plate made from aluminium into a claw-shaped casing that houses neodymium magnets at its ends. As presented in Fig. \ref{fig:damperSketch}, the method we use to control the strength of the magnetic field exposed to the T-shaped plate is by fixing the insertion depth of the T-shaped plate into the casing. The magnetic field serves to dissipate the kinetic energy of the T-shaped plate that moves with the cylinder during FIM, providing system damping.
@@ -795,8 +800,9 @@ A voltage controller regulates the power driving the $3.728$ kW (5 hp) centrifug
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{figs/channelSchematic}
-  \caption{The side view of our test chapter. For a more valid benchmarking of our open channel flow with a similar system in \citet{Koide2013}, we keep the water level to \SI{100}{\milli\metre}.}
+  \includegraphics[width=1\textwidth]{figs/channelSchematic}
+  \caption{Side view schematic of the openflow channel.}
+  %The side view of our test chapter. For a more valid benchmarking of our open channel flow with a similar system in \citet{Koide2013}, we keep the water level to \SI{100}{\milli\metre}.
   \label{fig:channelSchematic}
 \end{figure}
 
@@ -806,8 +812,9 @@ For the benchmarking, we chose the reduced velocity $\ured = \urte$, as the cyli
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.41\textwidth]{figs/figure5}
-  \caption{The normalised cylinder displacement measured as a function of time at $\ured = \urte$. The experiment was repeated several times to estimate the uncertainty of the measured quantities $\ystr$ and $\fstr$.}
+  \includegraphics[width=1\textwidth]{figs/figure5}
+  \caption{Experimentally measured $y^{*}(t)$, which is the normalised cylinder displacement time series.}
+  %The normalised cylinder displacement measured as a function of time at $\ured = \urte$. The experiment was repeated several times to estimate the uncertainty of the measured quantities $\ystr$ and $\fstr$.
   \label{fig:sampTimeHist}
 \end{figure}
 
