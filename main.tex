@@ -967,25 +967,31 @@ Table \ref{tab:gridIndependency} summarises the result of our grid independency 
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.3\textwidth}
+  \begin{subfigure}[h]{0.85\textwidth}
     \includegraphics[width=\textwidth]{figs/figure6a}
     \caption{Coarse}
     \label{fig:coarseMesh}
   \end{subfigure}
-  \hfill
-  \begin{subfigure}[h]{0.3\textwidth}
+
+  \begin{subfigure}[h]{0.85\textwidth}
     \includegraphics[width=\textwidth]{figs/figure6b}
     \caption{Medium}
     \label{fig:mediumMesh}
   \end{subfigure}
-  \hfill
-  \begin{subfigure}[h]{0.3\textwidth}
+
+  \caption{The course, medium and fine mesh used in the grid independency study.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{0.85\textwidth}
     \includegraphics[width=\textwidth]{figs/figure6c}
     \caption{Fine}
     \label{fig:fineMesh}
   \end{subfigure}
 
-  \caption{Three meshes used in the grid convergence study. Figures \ref{fig:coarseMesh}, \ref{fig:mediumMesh} and \ref{fig:fineMesh} show the coarse, medium and fine meshes viewed perpendicular to three main viewing positions: from the inlet, the top and the front, which is looking directly at the cylinder end.} \label{fig:convergenceStudy}
+  \caption{The course, medium and fine mesh used in the grid independency study (cont.)} \label{fig:convergenceStudy}
+%Three meshes used in the grid convergence study. Figures \ref{fig:coarseMesh}, \ref{fig:mediumMesh} and \ref{fig:fineMesh} show the coarse, medium and fine meshes viewed perpendicular to three main viewing positions: from the inlet, the top and the front, which is looking directly at the cylinder end.
 \end{figure}
 
 \begin{equation}
@@ -1039,51 +1045,54 @@ Inspecting Figs. \ref{fig:gciYrms}, \ref{fig:gciFstr} and \ref{fig:gciClrms}, we
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.38\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciYrms-1}
     \caption{}
     \label{fig:gciYrms-1}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.38\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciYrms-2}
     \caption{}
     \label{fig:gciYrms-2}
   \end{subfigure}
 
-  \caption{The convergence diagram for $\yrms$. Figure \ref{fig:gciYrms-1} shows how $\yrms$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciYrms-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.} \label{fig:gciYrms}
+  \caption{Richardson extrapolation of $\yrms$ and the corresponding drop in error.} \label{fig:gciYrms}
+%The convergence diagram for $\yrms$. Figure \ref{fig:gciYrms-1} shows how $\yrms$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciYrms-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.
 \end{figure}
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.39\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciFstr-1}
     \caption{}
     \label{fig:gciFstr-1}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.39\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciFstr-2}
     \caption{}
     \label{fig:gciFstr-2}
   \end{subfigure}
-  \caption{The convergence diagram for $\fstr$. Figure \ref{fig:gciFstr-1} shows how $\fstr$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciFstr-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.} \label{fig:gciFstr}
+  \caption{Richardson extrapolation of $\fstr$ and the corresponding drop in error.} \label{fig:gciFstr}
+% The convergence diagram for $\fstr$. Figure \ref{fig:gciFstr-1} shows how $\fstr$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciFstr-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.
 \end{figure}
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.39\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciClrms-1}
     \caption{}
     \label{fig:gciClrms-1}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.39\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/gciClrms-2}
     \caption{}
     \label{fig:gciClrms-2}
   \end{subfigure}
-  \caption{The convergence diagram for $\clrms$. Figure \ref{fig:gciClrms-1} shows how $\clrms$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciClrms-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.} \label{fig:gciClrms}
+  \caption{Richardson extrapolation of $\clrms$ and the corresponding drop in error.} \label{fig:gciClrms}
+% The convergence diagram for $\clrms$. Figure \ref{fig:gciClrms-1} shows how $\clrms$ converges close to the Richardson extrapolation value while Fig. \ref{fig:gciClrms-2} shows how the error (difference between the value obtained from a particular mesh and the Richardson extrapolation) decreases with decreasing grid spacing.
 \end{figure}
 
 \section{Chapter Summary} \label{sec:chapSumValid}
