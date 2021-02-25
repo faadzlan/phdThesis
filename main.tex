@@ -617,7 +617,7 @@ In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z
     \label{fig:cruciform00}
   \end{subfigure}
 
-  \caption{The cruciform variations studied in this thesis (continued from previous page.)}\label{fig:cruciformLayouts}
+  \caption{The cruciform variations studied in this thesis.}\label{fig:cruciformLayouts}
   %Variation of cruciforms studied in this work. We vary the cruciform angle from the case of a pure cruciform (\angfi{}) to the case of cylinder - plate in tandem (\angon{}), in increments of \angtw{}.
 \end{figure}
 We then produce variants of the pure cruciform configuration by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, we constructed five different cruciforms shown in Fig. \ref{fig:cruciformLayouts}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
@@ -990,7 +990,7 @@ Table \ref{tab:gridIndependency} summarises the result of our grid independency 
     \label{fig:fineMesh}
   \end{subfigure}
 
-  \caption{The course, medium and fine mesh used in the grid independency study (continued from previous page.)} \label{fig:convergenceStudy}
+  \caption{The course, medium and fine mesh used in the grid independency study.} \label{fig:convergenceStudy}
 %Three meshes used in the grid convergence study. Figures \ref{fig:coarseMesh}, \ref{fig:mediumMesh} and \ref{fig:fineMesh} show the coarse, medium and fine meshes viewed perpendicular to three main viewing positions: from the inlet, the top and the front, which is looking directly at the cylinder end.
 \end{figure}
 
@@ -1235,7 +1235,7 @@ At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) betw
     \label{fig:tempAnalysisKVIV-c}
   \end{subfigure}
 
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urtw$ (continued from previous page.)} \label{fig:tempAnalysisKVIV}
+  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urtw$.} \label{fig:tempAnalysisKVIV}
 % Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 4.5$. We show $\cclys$ and $\cclys$ side by side in Fig. \ref{fig:tempAnalysisKVIV}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisKVIV}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisKVIV}c.
 \end{figure}
 
@@ -1243,16 +1243,62 @@ Once we enter the upper branch of KVIV at  $\ured = 6.8$, $\phi$ jumps to approx
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{figs/tempAnalysisUpper}
-  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 6.8$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisUpper}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisUpper}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisUpper}c.} \label{fig:tempAnalysisUpper}
+  % \includegraphics[width=0.5\textwidth]{figs/tempAnalysisUpper}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisUpper-a}
+    \caption{}
+    \label{fig:tempAnalysisUpper-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisUpper-b}
+    \caption{}
+    \label{fig:tempAnalysisUpper-b}
+  \end{subfigure}
+  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urth$.}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 6.8$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisUpper}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisUpper}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisUpper}c.
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisUpper-c}
+    \caption{}
+    \label{fig:tempAnalysisUpper-c}
+  \end{subfigure}
+  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urth$.} \label{fig:tempAnalysisUpper}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 6.8$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisUpper}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisUpper}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisUpper}c.
 \end{figure}
 
 As we increase $\ured$ even further up to $\ured = \ursi$, we see a similar trend for all $\ured = 9.1, 11.4, 13.6$ examined: $\cysys$ and $\cclys$ are both qualitatively very periodic. Their phase lags are very close to $180$ deg., and the dominant Cl frequency bands exhibit a time-averaged value that increases linearly with respect to $\ured$, in a manner that the Strouhal number of Cl is always $\approx 0.16$ on average. We present the representative case of $\ured = \ursi$ in Fig. \ref{fig:tempAnalysisLower}. Note how $\phi$ in this range of $\ured$ varies much less with respect to time, compared to $\phi$ at $\ured = \urth$, and the dominant frequency band of Cl is much narrower compared to the dominant frequency band at $\ured = \urth$, indicating a highly periodic and self-similar oscillation of lift.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{figs/tempAnalysisLower}
-  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \ursi$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisLower}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisLower}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisLower}c.} \label{fig:tempAnalysisLower}
+  % \includegraphics[width=0.5\textwidth]{figs/tempAnalysisLower}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisLower-a}
+    \caption{}
+    \label{fig:tempAnalysisLower-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisLower-b}
+    \caption{}
+    \label{fig:tempAnalysisLower-b}
+  \end{subfigure}
+  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \ursi$.}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \ursi$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisLower}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisLower}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisLower}c.
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisLower-c}
+    \caption{}
+    \label{fig:tempAnalysisLower-c}
+  \end{subfigure}
+  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \ursi$.} \label{fig:tempAnalysisLower}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \ursi$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisLower}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisLower}b and show the temporal evolution of the instantaneous frequency of the lift coefficient signal in Fig. \ref{fig:tempAnalysisLower}c.
 \end{figure}
 
 \subsection{Transition to SVIV (reduced velocity between 15.9 and 18.2)} \label{ssec:transSVIV}
@@ -1262,16 +1308,51 @@ Once we reach $\ured = 15.9$, we observe that it has become difficult to argue t
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.4\textwidth]{figs/tempEvoCompare}
-  \caption{Temporal evolution of $\ystr$ and Cl at $\ured 15.9$. Figure \ref{fig:tempEvoCompare}b shows an enlarged view of Fig. \ref{fig:tempEvoCompare}a. We can barely spot semblance of two signals with different amplitudes superimposed in the Cl signal in Fig. \ref{fig:tempEvoCompare}b.} \label{fig:tempEvoCompare}
+  % \includegraphics[width=0.4\textwidth]{figs/tempEvoCompare}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempEvoCompare-a}
+    \caption{}
+    \label{fig:tempEvoCompare-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.98\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempEvoCompare-b}
+    \caption{}
+    \label{fig:tempEvoCompare-b}
+  \end{subfigure}
+  \caption{Temporal evolution of $\ystr$ and Cl at $\ured = \urse$.} \label{fig:tempEvoCompare}
+% Temporal evolution of $\ystr$ and Cl at $\ured 15.9$. Figure \ref{fig:tempEvoCompare}b shows an enlarged view of Fig. \ref{fig:tempEvoCompare}a. We can barely spot semblance of two signals with different amplitudes superimposed in the Cl signal in Fig. \ref{fig:tempEvoCompare}b.
 \end{figure}
 
 Once we have decomposed the signal using EEMD, we replot Fig. \ref{fig:tempEvoCompare}a using $\cclys$ and $\cysys$ in Fig. \ref{fig:tempAnalysisTransition}a. One can clearly see that the part of Cl signal responsible for driving the vibration at  $\ured = 15.9$ is embedded in the original Cl signal (Fig. \ref{fig:tempAnalysisTransition}a), and decomposition via EEMD managed to recover this signal, which leads $\cysys$ by approximately 150 deg. on average, throughout the whole observation time (Fig. \ref{fig:tempAnalysisTransition}b). This decline from $\phi \approx 180$ deg. at reduced velocities $\urfo \leq \ured \leq \ursi$, to $\phi \approx 150$ deg. at $\ured = \urse$ is quite sizeable, suggesting a fundamental change in flow dynamics, particularly in terms of vortical structure. Another notable change is the increased temporal variation in $\phi$ from its time-averaged value, in contrast to the evolution of $\phi$ in the range $\urfo \leq \ured \leq \ursi$, which has very little jitter throughout the observation time.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.45\textwidth]{figs/tempAnalysisTransition}
-  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 15.9$. We show $\cclystr$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisTransition}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisTransition}b and show the temporal evolution of the instantaneous frequency of Cl in Fig. \ref{fig:tempAnalysisTransition}c.}
+  % \includegraphics[width=0.45\textwidth]{figs/tempAnalysisTransition}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisTransition-a}
+    \caption{}
+    \label{fig:tempAnalysisTransition-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.98\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisTransition-b}
+    \caption{}
+    \label{fig:tempAnalysisTransition-b}
+  \end{subfigure}
+
+  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \urse$.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisTransition-c}
+    \caption{}
+    \label{fig:tempAnalysisTransition-c}
+  \end{subfigure}
+  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \urse$.}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 15.9$. We show $\cclystr$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisTransition}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisTransition}b and show the temporal evolution of the instantaneous frequency of Cl in Fig. \ref{fig:tempAnalysisTransition}c.
   \label{fig:tempAnalysisTransition}
 \end{figure}
 
@@ -1283,8 +1364,30 @@ We consider the transition to SVIV to be complete at $\ured = 18.2$, when the ti
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.47\textwidth]{figs/tempAnalysisStableInitialBranch}
-  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 18.2$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisStableInitialBranch}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisStableInitialBranch}b and show the temporal evolution of the instantaneous frequency of Cl in Fig. \ref{fig:tempAnalysisStableInitialBranch}c.}
+  % \includegraphics[width=0.47\textwidth]{figs/tempAnalysisStableInitialBranch}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisStableInitialBranch-a}
+    \caption{}
+    \label{fig:tempAnalysisStableInitialBranch-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisStableInitialBranch-b}
+    \caption{}
+    \label{fig:tempAnalysisStableInitialBranch-b}
+  \end{subfigure}
+  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \urei$.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/tempAnalysisStableInitialBranch-c}
+    \caption{}
+    \label{fig:tempAnalysisStableInitialBranch-c}
+  \end{subfigure}
+  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \urei$.}
+% Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = 18.2$. We show $\cclys$ and $\cysys$ side by side in Fig. \ref{fig:tempAnalysisStableInitialBranch}a, present the temporal evolution of the phase lag $\phi$ in Fig. \ref{fig:tempAnalysisStableInitialBranch}b and show the temporal evolution of the instantaneous frequency of Cl in Fig. \ref{fig:tempAnalysisStableInitialBranch}c.
   \label{fig:tempAnalysisStableInitialBranch}
 \end{figure}
 
@@ -1293,8 +1396,42 @@ As $\ured$ is increased to 20.5, we can see a jump in $\phi$ from a mean value o
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.45\textwidth]{figs/phaseAngle}
-  \caption{The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$. We can observe $\phi$ slipping through 360 deg. between $\urni \leq \ured \leq \urtv$, before disappearing at $\ured = \urtt$; an indication of improved stability and resilience of the vortical structure driving the vibration.}
+  % \includegraphics[width=0.45\textwidth]{figs/phaseAngle}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/phaseAngle-a}
+    \caption{}
+    \label{fig:phaseAngle-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/phaseAngle-b}
+    \caption{}
+    \label{fig:phaseAngle-b}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/phaseAngle-c}
+    \caption{}
+    \label{fig:phaseAngle-c}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/phaseAngle-d}
+    \caption{}
+    \label{fig:phaseAngle-d}
+  \end{subfigure}
+  \caption{The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/phaseAngle-e}
+    \caption{}
+    \label{fig:phaseAngle-e}
+  \end{subfigure}
+  \caption{The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$.}
+% The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$. We can observe $\phi$ slipping through 360 deg. between $\urni \leq \ured \leq \urtv$, before disappearing at $\ured = \urtt$; an indication of improved stability and resilience of the vortical structure driving the vibration.
   \label{fig:phaseAngle}
 \end{figure}
 
@@ -1302,8 +1439,9 @@ The data on the evolution of $\phi$ allows us to construct a map of the ``branch
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.37\textwidth]{figs/phaseAngleRegime}
-  \caption{Vibration regimes identified during analysis of $\phi$. To capture the evolution of $\phi$ with respect to $\ured$, a representative value for $\phi$ at each $\ured$ must be selected. We chose to use the time-averaged $\phi$, $\phim$, as the representative value.}
+  \includegraphics[width=1\textwidth]{figs/phaseAngleRegime}
+  \caption{Variation of $\theta_{y-\text{Cl}}$ with respect to $\ured$.}
+% Vibration regimes identified during analysis of $\phi$. To capture the evolution of $\phi$ with respect to $\ured$, a representative value for $\phi$ at each $\ured$ must be selected. We chose to use the time-averaged $\phi$, $\phim$, as the representative value.
   \label{fig:phaseAngleRegime}
 \end{figure}
 
@@ -1314,15 +1452,50 @@ Figure \ref{fig:powerComparison} shows the comparison between power estimated fr
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.4\textwidth]{figs/powerComparison}
-  \caption{Estimated \rms{} of mechanical power $\pmrms$, fluid power $\pfrms$, or both, of our experimental and numerical results, compared with results of similar studies in the literature. The fluid power $\pfrms$ is calculated only from the results of our numerical study as the others did not measure lift.}
+  \includegraphics[width=1\textwidth]{figs/powerComparison}
+  \caption{Estimation of $\pmrms$ and $\pfrms$ and comparison with available data.}
+% Estimated \rms{} of mechanical power $\pmrms$, fluid power $\pfrms$, or both, of our experimental and numerical results, compared with results of similar studies in the literature. The fluid power $\pfrms$ is calculated only from the results of our numerical study as the others did not measure lift.
   \label{fig:powerComparison}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.47\textwidth]{figs/instantLiftFreq}
-  \caption{The instantaneous frequency of the lift signal between $\urni \leq \ured \leq \urtt$. The white, solid boxes enclose the IMF component of Cl due to the shedding of the streamwise vortex, while the dashed, white boxes enclose the IMF component due to the shedding of Karman vortex. Through visual inspection, we can see how the degree of dispersion (i.e., height of the box) in the instantaneous frequency of the ``Karman component'' of lift is about twice that of the ``streamwise component'' of lift.}
+  % \includegraphics[width=0.47\textwidth]{figs/instantLiftFreq}
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/instantLiftFreq-a}
+    \caption{}
+    \label{fig:instantLiftFreq-a}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/instantLiftFreq-b}
+    \caption{}
+    \label{fig:instantLiftFreq-b}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/instantLiftFreq-c}
+    \caption{}
+    \label{fig:instantLiftFreq-c}
+  \end{subfigure}
+  \caption{The HHT spectrogram of Cl between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/instantLiftFreq-d}
+    \caption{}
+    \label{fig:instantLiftFreq-d}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{1\textwidth}
+    \includegraphics[width=\textwidth]{figs/instantLiftFreq-e}
+    \caption{}
+    \label{fig:instantLiftFreq-e}
+  \end{subfigure}
+  \caption{The HHT spectrogram of Cl between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
+% The instantaneous frequency of the lift signal between $\urni \leq \ured \leq \urtt$. The white, solid boxes enclose the IMF component of Cl due to the shedding of the streamwise vortex, while the dashed, white boxes enclose the IMF component due to the shedding of Karman vortex. Through visual inspection, we can see how the degree of dispersion (i.e., height of the box) in the instantaneous frequency of the ``Karman component'' of lift is about twice that of the ``streamwise component'' of lift.
   \label{fig:instantLiftFreq}
 \end{figure}
 
@@ -1337,8 +1510,9 @@ Another significant IMF component of the lift force in the SVIV regime is the co
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.43\textwidth]{figs/karmanStreamwiseComponents}
-  \caption{Evolution of the \rms{} amplitude of two dominant lift components due to Karman ($\cflkrms$) and streamwise ($\cflsrms$) vortices with respect to $\ured$. The region $\urei \leq \ured \leq \urte$ exhibits similar magnitude for both the Karman and streamwise components of lift. On the other hand, the magnitude of amplitude for the Karman component while the region $\urel \leq \ured \leq \urtt$ is almost always twice that of the streamwise component.}
+  \includegraphics[width=1\textwidth]{figs/karmanStreamwiseComponents}
+  \caption{Evolution of $\cflkrms$ and $\cflsrms$ with respect to $\ured$.}
+% Evolution of the \rms{} amplitude of two dominant lift components due to Karman ($\cflkrms$) and streamwise ($\cflsrms$) vortices with respect to $\ured$. The region $\urei \leq \ured \leq \urte$ exhibits similar magnitude for both the Karman and streamwise components of lift. On the other hand, the magnitude of amplitude for the Karman component while the region $\urel \leq \ured \leq \urtt$ is almost always twice that of the streamwise component.
   \label{fig:karmanStreamwiseComponents}
 \end{figure}
 
