@@ -808,7 +808,7 @@ A voltage controller regulates the power driving the $3.728$ kW (5 hp) centrifug
 
 We measured the cylinder displacement $y$ as a function of time by placing a visual marker on the support plate of the cylinder (see Fig. \ref{fig:rigSketch}) and capturing the motion of the marker using a video camera positioned perpendicular to the support plate. The motion of the marker is then analysed using \textit{Tracker}: a motion analysis tool built on the Open Source Physics Java framework (for recent implementation examples, see \citet{Wen2020}  or \citet{Krishnendu2020}).
 
-For the benchmarking, we chose the reduced velocity $\ured = \urte$, as the cylinder at that $\ured$ produces a large and stable displacement that simplifies on our part, the measurement and comparison process between our experimental system and \citet{Koide2013}. A sample of the normalised displacement -- $\ystr = y/D$ -- measured as a function of time is illustrated in Fig. \ref{fig:sampTimeHist}. This time series allows us to also compute the normalised cylinder vibration frequency, $\fstr = \fcyl/\fn$ ($\fcyl$ being the vibration frequency of the cylinder). The $\ystr$ data presented in Fig. \ref{fig:sampTimeHist} returns $\ystr = 0.33 \pm 0.03$ and $\fstr 1.03 \pm 0.04$, after computing the uncertainty from multiple experimental runs. In their work, \citet{Koide2013} obtained $\ystr = 0.32$ and $\fstr = 1.09$ at a similar $\ured$ - values that are well within the measurement uncertainty of our experiment. This provides a basis for our reliance on results obtained from the experimental system later in the study.
+For the benchmarking, we chose the reduced velocity $\ured = \urte$, as the cylinder at that $\ured$ produces a large and stable displacement that simplifies on our part, the measurement and comparison process between our experimental system and \citet{Koide2013}. A sample of the normalised displacement -- $\ystr = y/D$ -- measured as a function of time is illustrated in Fig. \ref{fig:sampTimeHist}. This time series allows us to also compute the normalised cylinder vibration frequency, $\fstr = \fcyl/\fn$ ($\fcyl$ being the vibration frequency of the cylinder). The $\ystr$ data presented in Fig. \ref{fig:sampTimeHist} returns $\ystr = 0.33 \pm 0.03$ and $\fstr = 1.03 \pm 0.04$, after computing the uncertainty from multiple experimental runs. In their work, \citet{Koide2013} obtained $\ystr = 0.32$ and $\fstr = 1.09$ at a similar $\ured$ - values that are well within the measurement uncertainty of our experiment. This provides a basis for our reliance on results obtained from the experimental system later in the study.
 
 \begin{figure}
   \centering
@@ -1201,7 +1201,8 @@ Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests t
     \label{fig:vorz90}
   \end{subfigure}
 
-  \caption{Dominant vortical structures at $\ured = \urte$ observed in the pure cruciform case. The vorticity slices shown are the $x$ and $y$-component vorticities at $x/D = 1.96D$ ($1D$ downstream the trailing edge of strip plate) plane, viewed orthogonal to that plane from downstream. The vorticities have a unit of \si{\per\second}.} \label{fig:vortStruct90}
+  \caption{Dominant vortical structures at $\ured = \urte$ observed in the pure cruciform case.} \label{fig:vortStruct90}
+% Dominant vortical structures at $\ured = \urte$ observed in the pure cruciform case. The vorticity slices shown are the $x$ and $y$-component vorticities at $x/D = 1.96D$ ($1D$ downstream the trailing edge of strip plate) plane, viewed orthogonal to that plane from downstream. The vorticities have a unit of \si{\per\second}.
 \end{figure}
 
 \section{Temporal evolution of the lift coefficient} \label{sec:tempEvo}
@@ -1542,13 +1543,13 @@ As we reduce the cruciform angle to \angfo{} and \angth{}, we find that the SVIV
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrRMS2}
   \caption{The \angfo{} cruciform.}
     \label{fig:yStrRMS2}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+  
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrRMS3}
     \caption{The \angth{} cruciform.}
     \label{fig:yStrRMS3}
@@ -1562,13 +1563,13 @@ Another striking departure from the trend observed in the pure cruciform case, c
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrFreq4}
     \caption{The \angfo{} cruciform.}
     \label{fig:yStrFreq4}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+  
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrFreq3}
     \caption{The \angth{} cruciform.}
     \label{fig:yStrFreq3}
@@ -1584,13 +1585,13 @@ The fact that the $\fclstr$ trends observed in Figs. \ref{fig:clFreq4} and \ref{
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/clRMS4}
     \caption{The \angfo{} cruciform.}
     \label{fig:clRMS4}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+  
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/clRMS3}
     \caption{The \angth{} cruciform.}
     \label{fig:clRMS3}
@@ -1602,13 +1603,13 @@ The fact that the $\fclstr$ trends observed in Figs. \ref{fig:clFreq4} and \ref{
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/clFreq4}
     \caption{The \angfo{} cruciform.}
     \label{fig:clFreq4}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+ 
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/clFreq3}
     \caption{The \angth{} cruciform.}
     \label{fig:clFreq3}
@@ -1632,13 +1633,13 @@ We also managed to find the source of asymmetry in the vortical structure distri
 \begin{figure}
   \centering
 
-  \begin{subfigure}[h]{0.46\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/probe675YU10}
     \caption{The $\fvstr$ for the \angfo{} cruciform.}
     \label{fig:probe675YU10}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.46\textwidth}
+
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/probe45YU10}
     \caption{The $\fvstr$ for the \angth{} cruciform.}
     \label{fig:probe45YU10}
@@ -1650,33 +1651,39 @@ We also managed to find the source of asymmetry in the vortical structure distri
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{0.6\textwidth}
     \centering
-    \includegraphics[width=0.7\textwidth]{figs/vorx675}
+    \includegraphics[width=\textwidth]{figs/vorx675}
     \caption{$x$-component vorticity, \angfo{} cruciform.}
     \label{fig:vorx675}
   \end{subfigure}
-  \begin{subfigure}[h]{0.4\textwidth}
+
+  \begin{subfigure}[h]{0.6\textwidth}
     \centering
-    \includegraphics[width=0.7\textwidth]{figs/vorz675}
+    \includegraphics[width=\textwidth]{figs/vorz675}
     \caption{$z$-component vorticity, \angfo{} cruciform.}
     \label{fig:vorz675}
   \end{subfigure}
+  \caption{Dominant vortical structures at $\ured = \urte$ observed in the \angfo{} and \angth{} cases.}
+\end{figure}
 
-  \begin{subfigure}[h]{0.4\textwidth}
+\begin{figure} \continuedfloat
+  \centering
+  \begin{subfigure}[h]{0.6\textwidth}
     \centering
-    \includegraphics[width=0.7\textwidth]{figs/vorx45}
+    \includegraphics[width=\textwidth]{figs/vorx45}
     \caption{$x$-component vorticity, \angth{} cruciform.}
     \label{fig:vorx45}
   \end{subfigure}
-  \begin{subfigure}[h]{0.4\textwidth}
+
+  \begin{subfigure}[h]{0.6\textwidth}
     \centering
-    \includegraphics[width=0.7\textwidth]{figs/vorz45}
+    \includegraphics[width=\textwidth]{figs/vorz45}
     \caption{$z$-component vorticity, \angth{} cruciform.}
     \label{fig:vorz45}
   \end{subfigure}
-
-  \caption{Dominant vortical structures at $\ured = \urte$ observed in the \angfo{} and \angth{} cases. The vorticity slices shown are the $x$ and $y$-component vorticities (\si{\per\second}) at the $x/D = 1.96D$ plane, viewed orthogonal to that plane from downstream.} \label{fig:vortStruct67545}
+  \caption{Dominant vortical structures at $\ured = \urte$ observed in the \angfo{} and \angth{} cases.} \label{fig:vortStruct67545}
+% Dominant vortical structures at $\ured = \urte$ observed in the \angfo{} and \angth{} cases. The vorticity slices shown are the $x$ and $y$-component vorticities (\si{\per\second}) at the $x/D = 1.96D$ plane, viewed orthogonal to that plane from downstream.
 \end{figure}
 
 \section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag67545}
@@ -1686,13 +1693,13 @@ For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower br
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag4}
     \caption{Phase lag for the \angfo{} cruciform.}
     \label{fig:phaseLag675deg}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+  
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag3}
     \caption{Phase lag for the \angth{} cruciform.}
     \label{fig:phaseLag45deg}
@@ -1728,13 +1735,13 @@ The \angon{} cruciform (Figs. \ref{fig:yStrRMS5}, \ref{fig:yStrFreq1}) in essenc
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.4\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrRMS4}
   \caption{The \angtw{} cruciform.}
     \label{fig:yStrRMS4}
   \end{subfigure}
-  \hspace{6mm}
-  \begin{subfigure}[h]{0.4\textwidth}
+  
+  \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/yStrRMS5}
     \caption{The \angon{} cruciform.}
     \label{fig:yStrRMS5}
@@ -1805,7 +1812,7 @@ For the \angon{} cruciform, we see that the jump in $\clrms$ occurs at the same 
 \section{Main vibration-driving vortical structure}\label{sec:kvivRegimeVortStruct}
 To understand the cause behind the marked difference between the amplitude/frequency response in both \angfo{} and \angth{} cruciforms, we proceed to deduce the type of vortical structures that form in the flows around the \angtw{} and \angon{} cruciform. We first produce the visualise of $\fvstr$ along the cylinder, in the same manner as Figs. \ref{fig:probe90YU10} and \ref{fig:probe67545YU10}, in Fig. \ref{fig:probe225YU10}. Inspecting Fig. \ref{fig:probe225YU10}, we immediately notice that several frequency bands exist: $\fvstr \approx 1,\, 2,\, 3,\, 4.5$, the most visible of which is the $\fvstr \approx 1$ band. However, unlike the pure cruciform case in Fig. \ref{fig:probe90YU10} -- where the dominant frequency bands are localised to certain regions along the cylinder -- the $\fvstr \approx 1$ band of the \angtw{} cruciform seems to encompass the length of the cylinder. This also seems to be the case for the \angon{} cruciform, displaying a dominant $\fvstr$ band at approximately $1$ along the length of the cylinder.
 
-We then queried the $x$ and $z$-component vorticity contours of the \angtw{} cruciform for deeper insight, presented in Figs. \ref{fig:vorx225} and \ref{fig:vorz225}. In doing so, we found that the large scale streamwise vortex pair near the cruciform juncture is absent. Instead, we noticed streamwise vortex cells distributed on both sides of the $Z = 0$ plane, except within the immediate neighbourhood of the cruciform juncture. We note that these streamwise vortex cells are distributed at a slight angle relative to the $z$-axis, seemingly following the angle of the strip plate, i.e. \SI{22.5}{\degree}. Visualisation of the $z$-component vorticity in Fig. \ref{fig:vorz225} intimates the nature of the tilted streamwise vortex cells: they are simply three-dimensional Karman vortex structures, akin to those observed in the experiments of \citet{Williamson1996}, especially mode B. We inferred this from comparison of the same visual region delimited by dashed rectangles in Figs. \ref{fig:vorx225} and \ref{fig:vorz225}, showing the overlap between the streamwise vortex cells and the strong Karman vortex component.
+We then queried the $x$ and $z$-component vorticity contours of the \angtw{} cruciform for deeper insight, presented in Figs. \ref{fig:vorx225} and \ref{fig:vorz225}. In doing so, we found that the large scale streamwise vortex pair near the cruciform juncture is absent. Instead, we noticed streamwise vortex cells distributed on both sides of the $Z = 0$ plane, except within the immediate neighbourhood of the cruciform juncture. We note that these streamwise vortex cells are distributed at a slight angle relative to the $z$-axis, seemingly following the angle of the strip plate, i.e. \SI{22.5}{\degree}. Visualisation of the $z$-component vorticity in Fig. \ref{fig:vorz225} intimates the nature of the tilted streamwise vortex cells: they are simply three-dimensional Karman vortex structures, akin to those observed in the experiments of \citet{Williamson1996a}, especially mode B. We inferred this from comparison of the same visual region delimited by dashed rectangles in Figs. \ref{fig:vorx225} and \ref{fig:vorz225}, showing the overlap between the streamwise vortex cells and the strong Karman vortex component.
 
 \begin{figure}
   \centering
@@ -1815,7 +1822,7 @@ We then queried the $x$ and $z$-component vorticity contours of the \angtw{} cru
     \caption{The $\fvstr$ for the \angtw{} cruciform.}
     \label{fig:probe225YU10}
   \end{subfigure}
-  \hspace{6mm}
+
   \begin{subfigure}[h]{0.46\textwidth}
     \includegraphics[width=\textwidth]{figs/probe00YU10}
     \caption{The $\fvstr$ for the \angon{} cruciform.}
