@@ -565,23 +565,34 @@ Our oscillator system derives its geometry from the works of \citet{Nguyen2012},
 
 \begin{figure}
   \centering
+  \begin{subfigure}[h]{0.95\textwidth}
+    \includegraphics[width=\textwidth]{figs/threeDimensionalDomain}
+    \caption{}
+    \label{fig:threeDimDom}
+  \end{subfigure}
+
   \begin{subfigure}[h]{1\textwidth}
     \includegraphics[width=\textwidth]{figs/problemGeometrySide}
     \caption{}
     \label{fig:probGeoSide}
   \end{subfigure}
 
+  \caption{The computational domain: three-dimensional overview and cross-sections.}
+\end{figure}
+
+\begin{figure} \continuedfloat
+  \centering
   \begin{subfigure}[h]{0.98\textwidth}
     \includegraphics[width=\textwidth]{figs/problemGeometryTop}
     \caption{}
     \label{fig:probGeoTop}
   \end{subfigure}
 
-  \caption{The side and top cross-sections of the computational domain.} \label{fig:problemGeometry}
+  \caption{The computational domain: three-dimensional overview and cross-sections.} \label{fig:problemGeometry}
   %Figure \ref{fig:probGeoSide} shows the cross-chapteral layout of the computational domain, along with key dimensions, when viewed from the side. Figure \ref{fig:probGeoTop} visualises the cross-chapter of the computational domain as viewed from the top. The arbitrarily coupled mesh interface (ACMI) used to connect the domain containing the cylinder with the domain containing the strip plate is placed halfway through the gap, i.e. $0.08D$ downstream the cylinder.
 \end{figure}
 
-Figure \ref{fig:probGeoSide} visualises our computational domain from its side. We chose these dimensions based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
+Figure \ref{fig:probGeoSide} visualises the computational domain (Fig. \ref{fig:threeDimDom}) from its side. These dimensions are based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
 
 In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z/D=-7.5$, giving the computational domain an overall spanwise length of $15D$. The computational domain of a similar study by \citet{Deng2007} has a length of $12D$, upon which the dimension of our domain is based upon. The extra $1.5D$ of spanwise length on either side of our domain is allocated to ensure the full expression of the three-dimensionality of flow structures that appear during the course of our numerical study.
 
@@ -1209,6 +1220,40 @@ Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests t
 % Dominant vortical structures at $\ured = \urte$ observed in the pure cruciform case. The vorticity slices shown are the $x$ and $y$-component vorticities at $x/D = 1.96D$ ($1D$ downstream the trailing edge of strip plate) plane, viewed orthogonal to that plane from downstream. The vorticities have a unit of \si{\per\second}.
 \end{figure}
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso090U10}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso090U10}
+  \end{subfigure}
+  
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop090U10}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop090U10}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{90}{\degree} cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso090U10}) and plan view (\ref{fig:qTop090U10}).} \label{fig:qCrit090U10}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso090U02}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso090U02}
+  \end{subfigure}
+  
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop090U02}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop090U02}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{90}{\degree} cruciform at $\ured = \urth$: the isometric (\ref{fig:qIso090U02}) and plan view (\ref{fig:qTop090U02}).} \label{fig:qCrit090U02}
+\end{figure}
+
 \section{Temporal evolution of the lift coefficient} \label{sec:tempEvo}
 
 \subsection{The KVIV regime (reduced velocity below 13.6 )} \label{ssec:phaseLag}
@@ -1690,6 +1735,74 @@ We also managed to find the source of asymmetry in the vortical structure distri
 % Dominant vortical structures at $\ured = \urte$ observed in the \angfo{} and \angth{} cases. The vorticity slices shown are the $x$ and $y$-component vorticities (\si{\per\second}) at the $x/D = 1.96D$ plane, viewed orthogonal to that plane from downstream.
 \end{figure}
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso675U10}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso675U10}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop675U10}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop675U10}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{67.5}{\degree} cruciform at $\ured = \urte$: the \ref{fig:qIso675U10} isometric and \ref{fig:qTop675U10} plan view.} \label{fig:qCrit675U10}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso675U02}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso675U02}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop675U02}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop675U02}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{67.5}{\degree} cruciform at $\ured = \urtw$: the \ref{fig:qIso675U02} isometric and \ref{fig:qTop675U02} plan view.} \label{fig:qCrit675U02}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso045U10}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso045U10}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop045U10}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop045U10}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{45}{\degree} cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso045U10}) and plan view (\ref{fig:qTop045U10}).} \label{fig:qCrit045U10}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso045U02}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso045U02}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop045U02}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop045U02}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{45}{\degree} cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso045U02}) and plan view (\ref{fig:qTop045U02}).} \label{fig:qCrit045U02}
+\end{figure}
+
 \section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag67545}
 Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. If we work backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseAngleRegime}, we confront the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
 
@@ -1872,8 +1985,76 @@ We then queried the $x$ and $z$-component vorticity contours of the \angtw{} cru
   \end{subfigure}
 
   \caption{Dominant vortical structures at $\ured = \urte$ observed in the \angtw{} and \angon{} cases.} \label{fig:vortStruct22500}
-% Dominant vortical structures at $\ured = \urte$ observed in the \angtw{} and \angon{} cases. The vorticity slices shown are the $x$ and $y$-component vorticities (\si{\per\second}) at the $x/D = 1.96D$ plane, viewed orthogonal to that plane from downstream.
 \end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso225U10}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso225U10}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop225U10}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop225U10}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{22.5}{\degree} cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso225U10}) and plan view (\ref{fig:qTop225U10}).} \label{fig:qCrit225U10}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso225U02}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso225U02}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop225U02}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop225U02}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{22.5}{\degree} cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso225U02}) and plan view (\ref{fig:qTop225U02}).} \label{fig:qCrit225U02}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso000U10}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso000U10}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop000U10}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop000U10}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{45}{\degree} cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso000U10}) and plan view (\ref{fig:qTop000U10}).} \label{fig:qCrit000U10}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qIso000U02}
+    \caption{Isometric view of the Q-criterion.}
+    \label{fig:qIso000U02}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{figs/qTop000U02}
+    \caption{Plan view of the Q-criterion.}
+    \label{fig:qTop000U02}
+  \end{subfigure}
+
+  \caption{The Q-criterion for the \SI{45}{\degree} cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso000U02}) and plan view (\ref{fig:qTop000U02}).} \label{fig:qCrit000U02}
+\end{figure}
+
 For the \angon{} cruciform in Figs. \ref{fig:vorx00} and \ref{fig:vorz00}, this overlap between the streamwise vortex cells and the distinct Karman vortex component is even more visually pronounced. We interpret this as further evidence to the hypothesis that three-dimensional Karman vortical structures govern the vibration of the cylinder for shallow angled cruciforms, including the \SI{0}{\degree} cruciform, which perhaps is more aptly named in-tandem configuration. Notice that for the \angon{} layout, both the streamwise vortex cells and the Karman vortical structure are arranged parallel to the $z$-axis, or at \SI{0}{\degree} relative to the cylinder. This observation seems to demonstrate the role of the strip plate in shallow angled cruciforms: it modifies the spatial distribution of the Karman vortical structure that is driving the vibration of the cylinder.
 
 As we have seen in \S\ref{chap:svivRegime} and \ref{chap:transitionToKarman}, eliciting a significant vibration amplitude Karman vortex shedding is limited to a narrow $\ured$ range containing the upper branch of KVIV. Beyond that, Karman vortex shedding fails to lock into the natural frequency of the system to produce meaningful vibrations. The fact that shallow angled cruciforms in this \S\ref{sec:kvivRegimeVortStruct} are able to produce very large vibration amplitudes intimate the crucial role played by the strip plate in forcing the shedding of vortical structures and cylinder vibration to lock into the natural frequency of the system $\fn$. We think the mechanics of this forced lock-in is as follows.
