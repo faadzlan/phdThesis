@@ -11,6 +11,7 @@
 \usepackage{siunitx}
 \usepackage{subcaption}
 \usepackage{multirow}
+\usepackage{caption}
 
 %%% You MUST load the natbib package if you want to use author-date bibliography style. Also remember to change the bibliography style at the bottom of the .tex file.
 % Comment natbib for citation by number
@@ -21,7 +22,6 @@
 \raggedbottom
 
 \begin{document}
-
 % Macros for commmon symbols <<<
 \newcommand{\ypl}{y^{+}} %yPlus
 \newcommand{\ured}{U^{*}} %reduced velocity
@@ -179,19 +179,92 @@ As for my beloved family, especially my wife and two babies, I really cannot thi
 
 %List of abbreviation 
 \listofabbre
-\addabbre{ANN}{Artificial Neural Network}
-\addabbre{PC}{Personal Computer}
-\addabbre{SVM}{Support Vector Machine}
-\addabbre{UTM}{Universiti Teknologi Malaysia}
-\addabbre{XML}{Extensible Markup Language}
-
+\addabbre{3D}{Three-dimensional}
+\addabbre{ACMI}{Arbitrarily Coupled Mesh Interface}
+\addabbre{CFD}{Computational Fluid Mechanics}
+\addabbre{CFL}{Courant-Friedrichs-Lewy}
+\addabbre{DKSGS}{Dynamic k-equation Subgrid-scale}
+\addabbre{DNS}{Direct Numerical Simulation}
+\addabbre{EMD}{Empirical Mode Decomposition}
+\addabbre{EEMD}{Ensemble Empirical Mode Decomposition}
+\addabbre{FIV}{Fluid-induced Vibration}
+\addabbre{FSI}{Fluid-structure Interaction}
+\addabbre{GAMG}{Geometric-Algebraic Multi Grid}
+\addabbre{GCI}{Grid Convergence Index}
+\addabbre{HT}{Hilbert Transform}
+\addabbre{HHT}{Hilber-Huang Transform}
+\addabbre{ICT}{Information and Communications Technology}
+\addabbre{IF}{Intrinsic Function}
+\addabbre{KVIV}{Karman Vortex-induced Vibration}
+\addabbre{MD}{Molecular Dynamics}
+\addabbre{PISO}{Pressure-Implicit with Splitting Operators}
+\addabbre{PIMPLE}{PISO-stabilised SIMPLE}
+\addabbre{PIV}{Particle Image Velocimetry}
+\addabbre{POD}{Proper Orthogonal Decomposition}
+\addabbre{PTC}{Passive Turbulence Control}
+\addabbre{PV}{Cauchy Principal Value}
+\addabbre{SIMPLE}{Semi-implicit Method for Pressure Linked Equations}
+\addabbre{SVIV}{Streamwise Vortex-induced Vibration}
+\addabbre{TrSL}{Transition in Shear Layer}
+\addabbre{URANS}{Unsteady Reynolds Averaged Navier-Stokes}
+\addabbre{VIV}{Vortex-induced Vibration}
 
 %List of symbols 
 \listofsymbols
-\addsymbol{Re}{Reynolds number}
-\addsymbol{St}{Strouhal number}
-\addsymbol{$\ured$}{Reduced velocity}
+\addsymbol{$a(t)$}{Instantaneous amplitude}
 \addsymbol{Cl}{Lift coefficient}
+\addsymbol{C$_\text{d}$}{Drag coefficient}
+\addsymbol{$C_{y^{*},y^{*}}$}{IMF component of $y^{*}$ with highest correlation to $y^{*}$}
+\addsymbol{$C_{\text{Cl},y^{*}}$}{IMF component of Cl with highest correlation to $y^{*}$}
+\addsymbol{$\cclrms$}{Root-mean-square of characteristic IMF of Cl}
+\addsymbol{D}{Characteristic diameter}
+\addsymbol{$F_{\text{L}}$}{Lift force}
+\addsymbol{$F_{s}$}{Safety factor for GCI estimation}
+\addsymbol{$\fcyl$}{Dominant cylinder vibration frequency}
+\addsymbol{$f_{RE}$}{Richardson extrapolation of quantity in GCI study}
+\addsymbol{$\fn$}{Natural system frequency}
+\addsymbol{$f_{\text{v,Karman}}$}{Karman vortex shedding frequency}
+\addsymbol{$f^{*}$}{Normalised system frequency}
+\addsymbol{$g$}{Gap between upstream cylinder and downstream plate}
+\addsymbol{$G$}{Normalised gap}
+\addsymbol{$h$}{Average mesh cell size}
+\addsymbol{$l_{\text{cylinder}}$}{Length of upstream cylinder}
+\addsymbol{$m_{\text{eff.}}$}{Effective system mass}
+\addsymbol{$O$}{Order of magnitude}
+\addsymbol{$P$}{Pressure}
+\addsymbol{$p$}{Order of accuracy grid independence study}
+\addsymbol{$\pfrms$}{Root-mean-square of fluid power}
+\addsymbol{$\pmrms$}{Root-mean-square of mechanical power}
+\addsymbol{Re}{Reynolds number}
+\addsymbol{$r^{p}$}{Mesh refinement ratio}
+\addsymbol{$S_{\text{grid, }i}$}{Total number of cells in the $i^{\text{th}}$ grid}
+\addsymbol{$S_{ij}$}{Strain rate}
+\addsymbol{St}{Strouhal number}
+\addsymbol{St$_\text{Karman}$}{Strouhal number of Karman vortex shedding}
+\addsymbol{$T_{\text{osc.}}$}{Period of oscillation}
+\addsymbol{$t$}{Time}
+\addsymbol{$U$}{Velocity}
+\addsymbol{$U_{\infty}$}{Free stream velocity}
+\addsymbol{$u'$}{Fluctuating component of velocity}
+\addsymbol{$\ured$}{Reduced velocity}
+\addsymbol{V$_{\text{in}}$}{Input voltage}
+\addsymbol{$W_{\text{Cl}}$}{Mean work done over one vibration cycle}
+\addsymbol{$y$}{Vertical cylinder displacement}
+\addsymbol{$y^{*}$}{Normalised vertical cylinder displacement}
+\addsymbol{$\yrms$}{Root-mean-square of vertical cylinder displacement}
+\addsymbol{$\beta$}{Porosity}
+\addsymbol{$\delta$}{Logarithmic damping}
+\addsymbol{$\lambda$}{Mesh deformation velocity and displacement diffusion}
+\addsymbol{$\nu$}{Kinematic viscosity}
+\addsymbol{$\nu_{T}$}{Kinetic eddy viscosity}
+\addsymbol{$\omega(t)$}{Instantaneous frequency}
+\addsymbol{$\phi$}{Representative phase lag between $y$ and Cl}
+\addsymbol{$\theta{y-\text{Cl}}$}{Phase lag between $y$ and Cl}
+\addsymbol{$\partial$}{Partial differential operator}
+\addsymbol{$\rho$}{Fluid density}
+\addsymbol{$\tau$}{Reynolds stress tensor}
+\addsymbol{$\theta(t)$}{Instantaneous phase}
+\addsymbol{$\zeta_{\text{tot.}}$}{Total damping coefficient}
 % \addsymbol{$\sigma$}{Whatever}
 % \addsymbol{$\varepsilon$}{Whatever}
 
@@ -202,6 +275,8 @@ As for my beloved family, especially my wife and two babies, I really cannot thi
 
 \mainmatter
 
+\captionsetup[figure]{labelsep=quad}
+\captionsetup[table]{labelsep=quad}
 
 \chapter{Introduction} \label{chap:introduction}
 Vortex-induced vibration (VIV) is a type of vibration that grows from instabilities in fluid flows moving past a solid object, i.e. bluff body. When the flow exceeds a critical velocity, the flow develops vortices that are shed alternately downstream the bluff body. This triggers the onset of unsteady lift and drag forces that initiate and sustain its vibration \citep{Bukka2020}. Numerous occurrences of VIV are readily observable in the field of engineering. In the ocean, marine currents give rise to the vibration of risers and offshore drilling platforms \citep{Liu2020,Zhang2020,Meng2020}. Up in the sky, aeroplane wings vibrate, and high-rise buildings experience sway as strong gusts blow around the mighty structures \citep{Arul2020,Hao2020,Gao2020}. Closer to the ground, power transmission lines vibrate as the result of wind blowing over them \citep{Wang2019,Gomez-Ortega2019}.
@@ -657,7 +732,7 @@ The symbols $U$, $x$, $t$, $\rho$, $P$, $\nu$, $S$, and $u'$ denote the mean com
   \label{eq:sij}
 \end{equation}
 
-The turbulence model employed to approximate the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
+The turbulence model employed to approximate the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'_{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
 
 \begin{equation}
   \tau_{ij} = 2 \nu_{T}S_{ij},

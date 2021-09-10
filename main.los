@@ -1,4 +1,54 @@
-\makesymboltable {Re}{Reynolds number}
-\makesymboltable {St}{Strouhal number}
-\makesymboltable {$U^{*}$}{Reduced velocity}
+\makesymboltable {$a(t)$}{Instantaneous amplitude}
 \makesymboltable {Cl}{Lift coefficient}
+\makesymboltable {C$_\text {d}$}{Drag coefficient}
+\makesymboltable {$C_{y^{*},y^{*}}$}{IMF component of $y^{*}$ with highest correlation to $y^{*}$}
+\makesymboltable {$C_{\text {Cl},y^{*}}$}{IMF component of Cl with highest correlation to $y^{*}$}
+\makesymboltable {$C_{\text {Cl},\text {RMS}}$}{Root-mean-square of characteristic IMF of Cl}
+\makesymboltable {D}{Characteristic diameter}
+\makesymboltable {$F_{\text {L}}$}{Lift force}
+\makesymboltable {$F_{s}$}{Safety factor for GCI estimation}
+\makesymboltable {$f_{\text {cyl.}}$}{Dominant cylinder vibration frequency}
+\makesymboltable {$f_{RE}$}{Richardson extrapolation of quantity in GCI study}
+\makesymboltable {$f_{n}$}{Natural system frequency}
+\makesymboltable {$f_{\text {v,Karman}}$}{Karman vortex shedding frequency}
+\makesymboltable {$f^{*}$}{Normalised system frequency}
+\makesymboltable {$g$}{Gap between upstream cylinder and downstream plate}
+\makesymboltable {$G$}{Normalised gap}
+\makesymboltable {$h$}{Average mesh cell size}
+\makesymboltable {$l_{\text {cylinder}}$}{Length of upstream cylinder}
+\makesymboltable {$m_{\text {eff.}}$}{Effective system mass}
+\makesymboltable {$O$}{Order of magnitude}
+\makesymboltable {$P$}{Pressure}
+\makesymboltable {$p$}{Order of accuracy grid independence study}
+\makesymboltable {$P_{\text {Fluid,RMS}}$}{Root-mean-square of fluid power}
+\makesymboltable {$P_{\text {Mech.,RMS}}$}{Root-mean-square of mechanical power}
+\makesymboltable {Re}{Reynolds number}
+\makesymboltable {$r^{p}$}{Mesh refinement ratio}
+\makesymboltable {$S_{\text {grid, }i}$}{Total number of cells in the $i^{\text {th}}$ grid}
+\makesymboltable {$S_{ij}$}{Strain rate}
+\makesymboltable {St}{Strouhal number}
+\makesymboltable {St$_\text {Karman}$}{Strouhal number of Karman vortex shedding}
+\makesymboltable {$T_{\text {osc.}}$}{Period of oscillation}
+\makesymboltable {$t$}{Time}
+\makesymboltable {$U$}{Velocity}
+\makesymboltable {$U_{\infty }$}{Free stream velocity}
+\makesymboltable {$u'$}{Fluctuating component of velocity}
+\makesymboltable {$U^{*}$}{Reduced velocity}
+\makesymboltable {V$_{\text {in}}$}{Input voltage}
+\makesymboltable {$W_{\text {Cl}}$}{Mean work done over one vibration cycle}
+\makesymboltable {$y$}{Vertical cylinder displacement}
+\makesymboltable {$y^{*}$}{Normalised vertical cylinder displacement}
+\makesymboltable {$y^{*}_{\text {RMS}}$}{Root-mean-square of vertical cylinder displacement}
+\makesymboltable {$\beta $}{Porosity}
+\makesymboltable {$\delta $}{Logarithmic damping}
+\makesymboltable {$\lambda $}{Mesh deformation velocity and displacement diffusion}
+\makesymboltable {$\nu $}{Kinematic viscosity}
+\makesymboltable {$\nu _{T}$}{Kinetic eddy viscosity}
+\makesymboltable {$\omega (t)$}{Instantaneous frequency}
+\makesymboltable {$\phi $}{Representative phase lag between $y$ and Cl}
+\makesymboltable {$\theta {y-\text {Cl}}$}{Phase lag between $y$ and Cl}
+\makesymboltable {$\partial $}{Partial differential operator}
+\makesymboltable {$\rho $}{Fluid density}
+\makesymboltable {$\tau $}{Reynolds stress tensor}
+\makesymboltable {$\theta (t)$}{Instantaneous phase}
+\makesymboltable {$\zeta _{\text {tot.}}$}{Total damping coefficient}

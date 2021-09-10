@@ -1,5 +1,29 @@
-\makeabbretable {ANN}{Artificial Neural Network}
-\makeabbretable {PC}{Personal Computer}
-\makeabbretable {SVM}{Support Vector Machine}
-\makeabbretable {UTM}{Universiti Teknologi Malaysia}
-\makeabbretable {XML}{Extensible Markup Language}
+\makeabbretable {3D}{Three-dimensional}
+\makeabbretable {ACMI}{Arbitrarily Coupled Mesh Interface}
+\makeabbretable {CFD}{Computational Fluid Mechanics}
+\makeabbretable {CFL}{Courant-Friedrichs-Lewy}
+\makeabbretable {DKSGS}{Dynamic k-equation Subgrid-scale}
+\makeabbretable {DNS}{Direct Numerical Simulation}
+\makeabbretable {EMD}{Empirical Mode Decomposition}
+\makeabbretable {EEMD}{Ensemble Empirical Mode Decomposition}
+\makeabbretable {FIV}{Fluid-induced Vibration}
+\makeabbretable {FSI}{Fluid-structure Interaction}
+\makeabbretable {GAMG}{Geometric-Algebraic Multi Grid}
+\makeabbretable {GCI}{Grid Convergence Index}
+\makeabbretable {HT}{Hilbert Transform}
+\makeabbretable {HHT}{Hilber-Huang Transform}
+\makeabbretable {ICT}{Information and Communications Technology}
+\makeabbretable {IF}{Intrinsic Function}
+\makeabbretable {KVIV}{Karman Vortex-induced Vibration}
+\makeabbretable {MD}{Molecular Dynamics}
+\makeabbretable {PISO}{Pressure-Implicit with Splitting Operators}
+\makeabbretable {PIMPLE}{PISO-stabilised SIMPLE}
+\makeabbretable {PIV}{Particle Image Velocimetry}
+\makeabbretable {POD}{Proper Orthogonal Decomposition}
+\makeabbretable {PTC}{Passive Turbulence Control}
+\makeabbretable {PV}{Cauchy Principal Value}
+\makeabbretable {SIMPLE}{Semi-implicit Method for Pressure Linked Equations}
+\makeabbretable {SVIV}{Streamwise Vortex-induced Vibration}
+\makeabbretable {TrSL}{Transition in Shear Layer}
+\makeabbretable {URANS}{Unsteady Reynolds Averaged Navier-Stokes}
+\makeabbretable {VIV}{Vortex-induced Vibration}
