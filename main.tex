@@ -6,12 +6,25 @@
 \usepackage{url} 
 %\usepackage[pages=some]{background}
 %\usepackage{lipsum}
-\usepackage{pdflscape}
+\usepackage{lscape}
 \usepackage{longtable}
 \usepackage{siunitx}
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{caption}
+\usepackage{fancyhdr}
+
+\fancypagestyle{mylandscape}{%
+  \fancyhf{}% Clear header/footer
+  \fancyfoot{% Footer
+    \makebox[\textwidth][r]{% Right
+      \rlap{\hspace{\footskip}% Push out of margin by \footskip
+        \smash{% Remove vertical height
+          \raisebox{\dimexpr.5\baselineskip+\footskip+.825\textheight}{% Raise vertically
+            \rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
+  \renewcommand{\headrulewidth}{0pt}% No header rule
+  \renewcommand{\footrulewidth}{0pt}% No footer rule
+}
 
 %%% You MUST load the natbib package if you want to use author-date bibliography style. Also remember to change the bibliography style at the bottom of the .tex file.
 % Comment natbib for citation by number
@@ -118,8 +131,8 @@
 \intakeyear{2017}
 % \school{Malaysia-Japan International Institute of Technology}
 \faculty{Malaysia-Japan International Institute of Technology}
-\titledate{December 2020}
-\award{5}
+\titledate{September 2021}
+\award{7}
 % Options for Award 
 % 1. Bachelor Degree Project Report
 % 2. Master's Project Report (By course work)
@@ -129,8 +142,8 @@
 % 6. Other PhD Thesis
 % 7. Generic PhD Thesis
 % 8. Thesis Proposal
-\superone{Associate Professor Dr Mohamed Sukri Bin Mat Ali}
-\supertwo{Dr Nurshafinaz Binti Mohd Maruai}
+\superone{Mohamed Sukri Bin Mat Ali}
+\supertwo{Nurshafinaz Binti Mohd Maruai}
 % \superthree{M.Y. Superlong named supervisor}
 % \superfour{Fourth SV}
 % \superfive{Fifth SV}
@@ -455,6 +468,8 @@ Distortion of the vortical structures discussed in \citet{Kato2007} and \citet{K
 Clearly, streamwise vortex shedding that results from the deployment of a cruciform structure is robust and induces as much force on the upstream cylinder as Karman vortex shedding on an isolated cylinder, if not more. This makes the cruciform structure a good oscillator candidate for the purpose of converting energy from the free stream in to vibration energy. In the next section, the author reviews the recent developments in VIV and discusses how a cruciform oscillator ties into the overall work done to induce a larger, but predictable vibration from fluid flows, including that which depends on Karman vortex.
 
 \section{Vortex-induced Vibration of a Cylinder} \label{sec:cylinderVIV}
+In this section, the thesis looks into the literature on vibration that is induced from the vortex being shed from a cylinder whose axis is perpendicular to the direction of the freestream. In particular, the following sections are going to collect and synthesise information on the transverse oscillation response of the cylinder and summarise how it evolves with respect to parameters such as the Reynolds number and reduced velocity.
+
 \subsection{Single Cylinder Oscillator Unit} \label{ssec:singleCylinderOscillator}
 Since Karman vortex shedding has been demonstrated to produce alternating lift and drag on an isolated cylinder system, replacing motion constraints with elastic supports allows oscillatory motion to take place. Typically, the oscillation is constrained to a one-dimensional transverse motion against the direction of the free stream. Following the success of \citet{Raghavan2007} and  \citet{Bernitsas2008a,Bernitsas2008b} in achieving a high amplitude response from an isolated circular cylinder oscillator, experimental studies for such an oscillator are increasingly done in the $2 - 4 \times 10^{4} \leq \re \leq 1 - 2 \times 10^{5}$ range.
 
@@ -589,6 +604,7 @@ This chapter reviewed studies that contribute towards the advancement of vibrati
 The main takeaways from each literature reviewed in this chapter is summarised in Table \ref{tab:litRevSummary}. The state-of-the-art of Karman vortex shedding studies inform this thesis of the controllability of the vortex shedding through the modulation of the shear layer around the circular cylinder. Then, this work is informed that the three-dimensionality of Karman vortex brings about the formation of streamwise vortices of a scale smaller than the diameter of the circular cylinder, and whose dynamics are heavily influenced by the shedding of Karman vortices.
 
 \begin{landscape}
+  \thispagestyle{mylandscape}
   \begin{table}[p]
   \centering
   \caption{Summary of findings in literature and key takeaways.} \label{tab:litRevSummary}
@@ -907,6 +923,7 @@ For the benchmarking, the reduced velocity $\ured = \urte$ is chosen as the cyli
 \end{figure}
 
 \section{Ensemble empirical mode decomposition and Hilbert transform} \label{sec:eemd}
+%% Paraphrase in Grammarly BEGIN
 To obtain a clearer picture of the temporal characteristics of the lift and cylinder displacement signals, this study decided to employ the ensemble empirical mode decomposition (EEMD) method \citep{Huang1998,Wu2008} on the signals, and compute their instantaneous phase lag, frequency and amplitude using the Hilbert transform.
 
 The Hilbert transform (HT) has been used in the past to study the instantaneous phase and frequencies of KVIV \citep{Khalak1999}. However, the signal must be monochromatic if one is to obtain a physically meaningful result after applying HT. EEMD is a way to pre-process the signal and get components that (1) have zero mean, and (2) have an equal number of extrema and zero crossings, or they differ only by one. Functions that fulfil these criteria are called intrinsic mode functions (IMF), and they guarantee a physically meaningful result to HT \citep{Gumelar2019,Zhou2019}. Unlike Fourier transform, which is an analytical method of signal decomposition based on circular functions in the complex plane, EEMD is algorithmic, and the processes undertaken can be summarised as follows.
@@ -935,7 +952,9 @@ To compute the phase lag between the characteristic IMFs of the lift coefficient
   \label{eq:analiticalSignal}
 \end{equation}
 
-\noindent Note that $i$ in Eq. \ref{eq:analiticalSignal} is the complex number. Also, $a(t)$ and $\theta(t)$ are the instantaneous amplitude and phase - both a function of time, and they are computed through the following equations.
+\noindent Note that $i$ in Eq. \ref{eq:analiticalSignal} is the complex number.
+%% Paraphrase in Grammarly END
+Also, $a(t)$ and $\theta(t)$ are the instantaneous amplitude and phase - both a function of time, and they are computed through the following equations.
 
 \begin{equation}
   a(t) = \left( x^{2} + y^{2} \right)^{1/2}, 
@@ -1321,8 +1340,9 @@ Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests t
 \end{figure}
 
 \subsection{Temporal evolution of the lift coefficient} \label{ssec:tempEvo}
+As one can see from the previous section, the streamwise vortex-induced vibration energises the oscillation of the cylinder from within the lower branch of KVIV. However, the amplitude response seems to only increase slightly with each increase of $\ured$, bordering on tapering off. This is different from oscillators that operate in the galloping mode, which exhibits a perceptible increase for as long as the reduced velocity $\ured$ is increased. The following sections attempt to uncover the reason for this observation, which can help to improve the power output in subsequent iterations of the cruciform energy harvester by investigating the temporal evolution of the lift coefficient.
 
-\subsubsection{The KVIV regime (reduced velocity below 13.6 )} \label{sssec:phaseLag}
+\subsubsection{The KVIV regime (reduced velocity below 13.6)} \label{sssec:phaseLag}
 At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between Cl and  $\ured$ are practically zero throughout the whole observation time. The characteristic intrinsic mode functions (IMFs) of Cl and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the Hilbert-Huang transform (HHT) spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the IMF components of Cl. The trend that one notices in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed in \citet{Khalak1999}, a study that also employs the Hilbert transform to obtain the instantaneous phase, albeit without ensemble empirical mode decomposition (EEMD). The dominant IMF component (IMF component sustaining the highest amplitude throughout the whole observation time) of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$.
 
 \begin{figure}
@@ -1794,7 +1814,7 @@ The source of asymmetry in the vortical structure distribution around the crucif
     \label{fig:qTop675U10}
   \end{subfigure}
 
-  \caption{The Q-criterion for the 67.5$^{\circ}$ cruciform at $\ured = \urte$: the \ref{fig:qIso675U10} isometric and \ref{fig:qTop675U10} plan view.} \label{fig:qCrit675U10}
+  \caption{The Q-criterion for the 67.5$^{\circ}$ cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso675U10}) and plan view (\ref{fig:qTop675U10}).} \label{fig:qCrit675U10}
 \end{figure}
 
 \begin{figure}
@@ -1811,7 +1831,7 @@ The source of asymmetry in the vortical structure distribution around the crucif
     \label{fig:qTop675U02}
   \end{subfigure}
 
-  \caption{The Q-criterion for the 67.5$^{\circ}$ cruciform at $\ured = \urtw$: the \ref{fig:qIso675U02} isometric and \ref{fig:qTop675U02} plan view.} \label{fig:qCrit675U02}
+  \caption{The Q-criterion for the 67.5$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso675U02}) and plan view (\ref{fig:qTop675U02}).} \label{fig:qCrit675U02}
 \end{figure}
 
 \begin{figure}
@@ -2259,7 +2279,7 @@ Finally, the implementation of a more efficient procedure in the numerical loop 
 
 \noindent \textbf{Indexed Journal (SCOPUS)}
 \begin{enumerate}
-  \item \textbf{Ahmad Adzlan Fadzli Bin Khairi}, Mohamed Sukri Mat Ali: \textit{\underline{OpenFOAM} \underline{Implementation for The Study of Streamwise Vortex-Induced Vibration-Based } \underline{Energy Harvester for Sensor Networks}}, \textbf{Journal of Advanced Research in Fluid Mechanics and Thermal Sciences} (IF:0.247, Q2) 2018. \textbf{PUBLISHED.}
+  \item \textbf{Ahmad Adzlan Fadzli Bin Khairi}, Mohamed Sukri Mat Ali: \textit{\underline{OpenFOAM} \underline{Implementation for The Study of Streamwise Vortex-Induced Vibration-Based } \underline{Energy Harvester for Sensor Networks}}, \textbf{Journal of Advanced Research in Fluid Mechanics and Thermal Sciences} 2018. \textbf{PUBLISHED.}
 \end{enumerate}
 % \noindent \textbf{Non-Indexed Journal}
 % \begin{enumerate}

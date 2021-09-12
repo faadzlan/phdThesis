@@ -1138,12 +1138,12 @@
   \else
   	 \begingroup
        ``\@addressone\space hereby declare that \@addresstwo\space have read this \@degreetype\space and in \@addressthree\space \\ opinion this \@degreetype\space is sufficient in terms of scope and quality for the \\
-  award of the degree of \@degree
-    		\ifnum \@intakeyear<2015
-    			\space(\@specialization)
-    		\else
-  			\space in \@specialization''
-  		\fi
+       award of the degree of \@degree.
+        \ifnum \@intakeyear<2015
+          \space(\@specialization)
+        \else
+        \space in \@specialization''
+      \fi
      \endgroup
   \fi
   \fi
