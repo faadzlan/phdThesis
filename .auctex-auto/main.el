@@ -3,6 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -95,6 +99,7 @@
    (LaTeX-add-labels
     "chap:introduction"
     "fig:scopusTrend"
+    "eq:reducedVelocity"
     "fig:apparentPowerKoide"
     "enum:deviation"
     "enum:whatHappens"
@@ -106,7 +111,6 @@
     "eq:karmanStrouhalNumber"
     "sec:cylinderVIV"
     "ssec:singleCylinderOscillator"
-    "eq:reducedVelocity"
     "fig:oscillatorSchematic"
     "sec:energyHarvesting"
     "ssec:singleCylinderHarvester"
@@ -343,6 +347,8 @@
     "sec:concResearchOutcome"
     "sec:concFutureWorks")
    (LaTeX-add-bibliographies
-    "reference"))
+    "reference")
+   (LaTeX-add-pagestyles
+    "mylandscape"))
  :latex)
 
