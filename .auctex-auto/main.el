@@ -3,10 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -98,13 +98,20 @@
     "cite")
    (LaTeX-add-labels
     "chap:introduction"
+    "sec:backStudy"
     "fig:scopusTrend"
     "eq:reducedVelocity"
     "fig:apparentPowerKoide"
+    "sec:probState"
+    "sec:resQue"
     "enum:deviation"
+    "sec:thesisObj"
     "enum:whatHappens"
     "enum:characteriseLift"
     "enum:passiveControl"
+    "sec:signStudy"
+    "sec:thesisScope"
+    "sec:thesisOrg"
     "chap:literatureReview"
     "ssec:kvShedding"
     "ssec:svShedding"
