@@ -361,14 +361,17 @@ Nevertheless, these sensors and signal transmitters can make up environment-moni
 %%Chapter 1-9IE
 %%Chapter 1-7IE
 
+%%Chapter 1-3EE<<
  To expand the usability of the cruciform oscillator in energy harvesting, efforts should be made to improve its power output. Hence, this thesis seeks to identify the cause that limits the power output to its current value. This includes the identification of vortical structures in the flow, their location, and strength. The thesis also looks into the modulation of the lift signal by the shedding of vortical structures. Then, this thesis seeks to explore a new parameter in the study of the cruciform oscillator, which is the cruciform angle. This study documents the effects of the various cruciform angles on the vortical structures present in the flow in terms of their location and strength. In addition, this work also studies their effects on the lift and vibration signal, and ultimately, estimated power output and efficiency.
+ %% Chapter 1-3EE>>
+
 % One of the most immediate uses of such sensors in Malaysia is part of a flood early warning system. Flood forecasting is possible without much difficulty using conventional methods if there is a sufficient number of hydrological observatories along the body of water \citep{DIDMalaysia2010}. For this to take place, electricity must be available to run the observatories, in addition to favourable terrain near the body of water to house the equipment.
 
 % In urban areas, even though sourcing electricity may not be a hurdle, placement of the observatory itself can be, due to land ownership issues. Nevertheless, these issues do not in any way lessen the need to have an adequate number of observatories in urban areas. After all, urban areas are known to bear a greater risk of flash floods compared to rural areas owing to disrupted natural systems of runoff production as a result of poorly planned development \citep{Abdullah2004,Takaijudin2010,Abdullah2011}. Therefore, the prospect of devising a simple river monitoring system that consists of only a few sensors and electronics totalling to a maximum combined number of three (3), powered by a TVIV energy harvester hence becomes worthy of further inquiry.
 
 \section{Problem Statement} \label{sec:probState}
 
-The preceding section has established the viability of harnessing energy from a flow by exploiting the VIV phenomenon. Multiple modes of VIV have been observed, and SVIV stands out as better oriented for deployment in fluid flows that vary greatly in terms of free-stream velocity. Even with very rudimentary optimisations, SVIV has demonstrated its ability to generate power in the order of mW consistently over a large range of free-stream velocities.
+The preceding section has established the viability of harnessing energy from a flow by exploiting the VIV phenomenon. Multiple modes of VIV have been observed, and SVIV stands out as better oriented for deployment in fluid flows that vary greatly in terms of free-stream velocity. Even with very rudimentary optimisations, SVIV from a cruciform harvester has the ability to generate power in the order of mW consistently over a large range of free-stream velocities \citep{Koide2013}.
 
 % This can be harnessed to develop a self-contained river monitoring device that deploys with ease, especially in urban neighbourhoods to facilitate early warning of floods.
 
@@ -380,10 +383,17 @@ To achieve this, the problems outlined below must be addressed to close relevant
   \item A deficiency of new methods to control the flow perturbation which gives rise to a strong, stable and periodic forcing of the cylinder vibration, sustainable over the desired operating range of $\ured$.
 \end{enumerate}
 
-Addressing the above problems will provide a better understanding on the origins of the streamwise vortex pairs, uncover new perspectives on variables that affect the alternating lift force in the context of streamwise vortex pairs, and generate novel insight on new flow regimes, which can enlighten the research community to a better configuration of the energy harvester, i.e. producing more power than ever before.
+%%Chapter 1-5EE<<
+Problem statement one stems from the realisation that although past studies have shown that SVIV in a cruciform harvester begins around $\ured = 18$ \citep{Koide2013}, none has ever looked into how the transition actually occurs from KVIV. This is especially the case in terms of the distribution of vortical structures around the cruciform, the lift signal: its frequency, amplitude and phase lag relative to the cylinder vibration signal. Removing this lack of understanding can help to trigger the desired mode of vibration at a lower $\ured$.
+
+Problem statement two stems from the observation by \citet{Zhao2018a} on sectional lift, which drew attention to the effect a vortical structure has on the lift acting on the cylinder. Particularly in the case where several types of vortices are being shed simultaneously - like the cruciform harvester - the paucity in the knowledge on how the different vortical structures affect the lift signal is a hindrance to improving the maximum lift that can be possible obtained from the cruciform harvester.
+
+Finally, problem statement three comes from the realisation that recent studies in the field of cruciform energy harvester seems to be hard-pressed in finding new parameters to explore, focusing time and again on the gap between the cylinder and the downstream plate, the plate width and other dimensions of the system \citep{Sakamoto2021}.
+
+To date, the upstream and downstream cylinder (or plate) in cruciform harvesters have always been assumed to be at $90 \si{\degree}$ to each other. It is possible that keeping the cruciform at a right angle prevents the discovery of other configurations that are capable of outputting higher power at better efficiencies. With enough cruciforms studied between angles $0 \si{\degree}$ and $90 \si{\degree}$, one can synthesise a map of power and efficiency of cruciform harvesters at various cruciform angles $\alpha \; (\si{\degree})$ that can advise on the selection of the cruciform harvester for a given design constraint.
+%%Chapter 1-5EE>>
 
 \section{Research Questions} \label{sec:resQue}
-
 The answer to several questions is sought in this proposed study. These questions are meant to drive the study towards its objectives.
 \begin{enumerate}
   \item How does the lift signal evolve as the flow transitions from being driven primarily by Karman vortex to streamwise vortex?
@@ -404,9 +414,17 @@ Following the problems outlined in the previous section, the objectives that def
 
   \item To distinguish the dominant components of the lift signal and how the components interact to modify the amplitude and frequency response of cylinder vibration, in a pure cruciform. \label{enum:characteriseLift}
 
-  \item To synthesise a map for each of the amplitude, power, and efficiency, summarised from the amplitude, power and efficiency responses of cruciforms with varying cruciform angles. \label{enum:passiveControl}
+  \item To synthesise a map for each of the amplitude, power, and efficiency, summarised in the cruciform angle $\alpha \; (\si{\degree})$ - reduced velocity $\ured$ parameter space. \label{enum:passiveControl}
 \end{enumerate}
 %%Chapter 1-10IE>>
+
+%%Chapter 1-6EE<<
+As mentioned previously in Section \ref{sec:probState}, there is a lack of understanding on how the transition from KVIV to SVIV takes place in a cruciform energy harvester, which is the first problem statement. The first objective is thus to establish the relationship between the amplitude and frequency response of the lift and vibration signals and the vortical structures that are present at that time. The amplitude response is computed by taking the root-mean-square of the signals, both lift and vibration, and plotting them against $\ured$. The frequency response is computed by finding the dominant frequency in the FFT spectrum of the signals, both lift and vibration. Vortical structures are identified by computing the vorticity field.
+
+Then, the second objective of distinguishing the dominant components of the lift signal is to answer problem statement two. As the reason behind the modulation of the lift signal remains unknown, this objective seeks to analyse the lift signal. The method of analysis to be employed here is HHT, through which the signal can be decomposed and the dominant components identified. Once the components of lift have been identified, the study can explain how they interact to produce the amplitude and frequency response of the cylinder vibration being observed.
+
+Lastly, the third objective of synthesising a map of the vibration amplitude, power and efficiency in the $\alpha \; (\si{\degree})$ - reduced velocity $\ured$ parameter space is stated to answer problem statement three. As mentioned in problem statement three, the fact that studies have always assumed the cruciform oscillator to have a cruciform angle of $90 \si{\degree}$ has prevented the investigation of a generalised cruciform oscillator. By computing the amplitude response, power and efficiency of a few cruciforms between $0 \leq \alpha \; (\si{\degree}) < 90$, this study will be able evaluate the feasibility of varying the angle of the cruciform as a method to control flow perturbations due to the arrangement of vortical structures around the cruciform. This also provides a guideline for the optimal cruciform angle for a given design constraint such as vibration clearance, structural integrity and operating range of $\ured$, in addition to power output and efficiency.
+%%Chapter 1-6EE>>
 
 \section{Significance of Study} \label{sec:signStudy}
 
