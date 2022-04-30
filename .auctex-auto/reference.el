@@ -15,7 +15,7 @@
     "Fortunato2010"
     "NewmanGirvan2004"
     "Vehlowetal2013"
-    "Raghavanetal2007"
+    "Raghavan2007b"
     "SubeljBajec2011a"
     "Louetal2013"
     "Clausetetal2004"
@@ -59,7 +59,6 @@
     "Zhang2018"
     "Sun2016"
     "Ma2016"
-    "Raghavan2007"
     "Wu2011"
     "Ding2013"
     "Ding2019"
@@ -151,6 +150,7 @@
     "Shiraishi1988"
     "Nakamura1986"
     "Bernitsas2008c"
+    "Raghavan2007a"
     "Takaijudin2010"
     "Abdullah2004"
     "Abdullah2011"
@@ -223,6 +223,7 @@
     "Mei2021"
     "Liu2022"
     "Ghiasi2021"
-    "Souza2022"))
+    "Souza2022"
+    "Raghavan2011"))
  :bibtex)
 
