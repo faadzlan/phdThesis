@@ -50,6 +50,7 @@
     "cclys"
     "afl"
     "cd"
+    "cl"
     "angfi"
     "angfo"
     "angth"

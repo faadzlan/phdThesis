@@ -48,22 +48,23 @@
 \newcommand{\fvkstr}{f^{*}_{v,\text{Karman}}} %normalised Karman vortex shedding frequency
 \newcommand{\fcyl}{f_{\text{cyl.}}} %frequency of cylinder vibration
 \newcommand{\fosc}{f_{\text{osc.}}} %frequency of cylinder oscillation
-\newcommand{\fclstr}{f_{\text{Cl}}^{*}} %normalised frequency of lift coefficient
+\newcommand{\fclstr}{f_{\text{C}_{l}}^{*}} %normalised frequency of lift coefficient
 \newcommand{\flrms}{F_{\text{L,RMS}}} %root-mean-square of the lift force
 \newcommand{\fl}{F_{\text{L}}} %the lift force
-\newcommand{\clrms}{\text{Cl}_{\text{RMS}}} %root-mean-square of the lift coefficient
+\newcommand{\clrms}{\text{C}_{\text{l,RMS}}} %root-mean-square of the lift coefficient
 \newcommand{\cflyt}{C_{F_{L},y(t)}} %IMF component of lift that is most similar to the displacement signal in terms of temporal evolution of amplitude and frequency, differing only perhaps in phase OR the component of lift with the highest correlation to the displacement signal
 \newcommand{\cflkrms}{C_{F_{L},\text{Karman},\text{RMS}}} %the Karman component of lift
 \newcommand{\cflsrms}{C_{F_{L},\text{streamwise},\text{RMS}}} %the streamwise component of lift
-\newcommand{\ccli}{C_{\text{Cl},i}} %the ith component of lift coefficient
-\newcommand{\cclystr}{C_{\text{Cl},\ystr}} %the ith component of lift coefficient
+\newcommand{\ccli}{C_{\text{C}_{l},i}} %the ith component of lift coefficient
+\newcommand{\cclystr}{C_{\text{C}_{l},\ystr}} %the ith component of lift coefficient
 \newcommand{\cflm}{C_{F_{L},\text{max}}} %IMF component of lift that has maximum RMS amplitude in the IMF set
 \newcommand{\cyrms}{C_{y,\text{RMS}}} %the RMS of the component of lift that is most correlated with the cylinder displacement signal
-\newcommand{\cclrms}{C_{\text{Cl},\text{RMS}}} %the RMS of the component of lift that is most correlated with the cylinder displacement signal (new symbol)
+\newcommand{\cclrms}{C_{\text{C}_{l},\text{RMS}}} %the RMS of the component of lift that is most correlated with the cylinder displacement signal (new symbol)
 \newcommand{\cysys}{C_{\ystr,\ystr}} %the characteristic IMF representing the normalised cylinder displacement
-\newcommand{\cclys}{C_{\text{Cl},\ystr}} %the characteristic IMF representing the lift coefficient
+\newcommand{\cclys}{C_{\text{C}_{l},\ystr}} %the characteristic IMF representing the lift coefficient
 \newcommand{\afl}{\alpha_{F_{L}}} %ratio between two dominant IMF components of the lift
 \newcommand{\cd}{\text{C}_{\text{d}}} %drag coefficient
+\newcommand{\cl}{\text{C}_{\text{l}}} %lift coefficient
 
 \newcommand{\angfi}{\SI{90}{\degree}} %90 deg. angle
 \newcommand{\angfo}{\SI{67.5}{\degree}} %67.5 deg. angle
@@ -76,7 +77,7 @@
 \newcommand{\etamech}{\eta_{\text{Mech.}}} %mechanical power efficiency
 \newcommand{\re}{\text{Re}} %Reynolds number
 \newcommand{\st}{\text{St}} %Strouhal number
-\newcommand{\plag}{\theta_{y-\text{Cl}}} %Characteristic phase lag
+\newcommand{\plag}{\theta_{y-\text{C}_{l}}} %Characteristic phase lag
 \newcommand{\phim}{\phi_{\text{mean}}} %mean phase lag
 \newcommand{\wcl}{W_{\text{cyl.}}} %mean work done by cylinder over one cycle of vibration
 \newcommand{\tosc}{T_{\text{osc.}}} %mean period of cylinder oscillation
@@ -229,7 +230,7 @@ As for my beloved family, especially my wife and two babies, I really cannot thi
 \addsymbol{Cl}{Lift coefficient}
 \addsymbol{C$_\text{d}$}{Drag coefficient}
 \addsymbol{$C_{y^{*},y^{*}}$}{IMF component of $y^{*}$ with highest correlation to $y^{*}$}
-\addsymbol{$C_{\text{Cl},y^{*}}$}{IMF component of Cl with highest correlation to $y^{*}$}
+\addsymbol{$C_{\text{Cl},y^{*}}$}{IMF component of $\cl$ with highest correlation to $y^{*}$}
 \addsymbol{$\cclrms$}{Root-mean-square of characteristic IMF of Cl}
 \addsymbol{D}{Characteristic diameter}
 \addsymbol{$F_{\text{L}}$}{Lift force}
@@ -491,9 +492,9 @@ As the name suggests, VIV is the result of the periodic shedding of vortices. Th
 %%Chapter 2-1IE>>
 
 \subsection{Karman Vortex Shedding} \label{ssec:kvShedding}
-In the study of Karman vortex shedding, seldom is the case where one does not find reference being made to a chart on lift and drag coefficients for a stationary circular cylinder between $10^{0} < \text{Re} < 10^{8}$ in \citet{Zdravkovich1997}. The observation that both lift and drag coefficients (Cl and $\cd$) have their high and low regions within $10^{0} < \text{Re} < 10^{8}$ is of extreme utility to engineers. From the preservation of risers to the improvement of power output for VIV-based energy harvesters, the chart in \citet{Zdravkovich1997} gives a rough outline to the range of Reynolds number suitable for a particular engineering operation. That being said, the chart remains silent on why Cl and $\cd$ evolve the way they do with respect to Re, leaving the gap to be filled by later researchers.
+In the study of Karman vortex shedding, seldom is the case where one does not find reference being made to a chart on lift and drag coefficients for a stationary circular cylinder between $10^{0} < \text{Re} < 10^{8}$ in \citet{Zdravkovich1997}. The observation that both lift and drag coefficients ($\cl$ and $\cd$) have their high and low regions within $10^{0} < \text{Re} < 10^{8}$ is of extreme utility to engineers. From the preservation of risers to the improvement of power output for VIV-based energy harvesters, the chart in \citet{Zdravkovich1997} gives a rough outline to the range of Reynolds number suitable for a particular engineering operation. That being said, the chart remains silent on why $\cl$ and $\cd$ evolve the way they do with respect to Re, leaving the gap to be filled by later researchers.
 
-For example, \citet{Desai2020} tackled the question why is there a reduction in Cl and $\cd$ as the cylinder goes through the upper boundary of subcritical flow ($1.49 \times 10^{5} < \text{Re} < 3.55 \times 10^{5}$). Their study is experimental, using tools such as particle image velocimetry (PIV) for a quantitative visualisation of the two-dimensional (2D) flow field, and proper orthogonal decomposition (POD) for identification of dominant flow structures. In doing so, they have identified two modes of shedding - the antisymmetric and symmetric modes - which takes place one after another, albeit in no well-defined cycle. The antisymmetric mode corresponds to the ``normal'' shedding of Karman vortices while the symmetric mode a weaker form of shedding with a higher energy level in its low-frequency components. The symmetric mode gains strength with increasing Re, which entails a weaker form of shedding taking over the flow. This ultimately reduces the magnitude of Cl and $\cd$ of the cylinder. Depending on which side of the divide one is, an engineer may opt to amplify the symmetric mode to protect the integrity of a structure, or augment the antisymmetric mode to improve the conversion efficiency of energy from the freestream into cylinder vibration. In other words, a deeper understanding into the mechanics of Karman vortex shedding invariably leads to better strategies in cylinder motion control.
+For example, \citet{Desai2020} tackled the question why is there a reduction in $\cl$ and $\cd$ as the cylinder goes through the upper boundary of subcritical flow ($1.49 \times 10^{5} < \text{Re} < 3.55 \times 10^{5}$). Their study is experimental, using tools such as particle image velocimetry (PIV) for a quantitative visualisation of the two-dimensional (2D) flow field, and proper orthogonal decomposition (POD) for identification of dominant flow structures. In doing so, they have identified two modes of shedding - the antisymmetric and symmetric modes - which takes place one after another, albeit in no well-defined cycle. The antisymmetric mode corresponds to the ``normal'' shedding of Karman vortices while the symmetric mode a weaker form of shedding with a higher energy level in its low-frequency components. The symmetric mode gains strength with increasing Re, which entails a weaker form of shedding taking over the flow. This ultimately reduces the magnitude of $\cl$ and $\cd$ of the cylinder. Depending on which side of the divide one is, an engineer may opt to amplify the symmetric mode to protect the integrity of a structure, or augment the antisymmetric mode to improve the conversion efficiency of energy from the freestream into cylinder vibration. In other words, a deeper understanding into the mechanics of Karman vortex shedding invariably leads to better strategies in cylinder motion control.
 
 Expanding on the topic of flow control, \citet{Durhasan2019} conducted an experimental study of the shedding process under the following setup: the circular cylinder is placed in a larger hollow cylinder with varying pore spacing - quantified by their porosity - $\beta$ - and submerged in a water flow at Reynolds number $\text{Re} = 5000$. What they found out is the stunting of the wake from the inner cylinder when $\beta \leq 0.5$, while for porosities $\beta \geq 0.6$, a reduction of 21\% to 87\% in drag is observed.
 
@@ -508,7 +509,7 @@ Other than the usual methods of numerical investigation that work to solve the c
 
 Another method for Karman vortex shedding control that imposes some form of modification to the shear layer of the cylinder is through the affixing of fairings on the surface of the cylinder. A recent example of this can be found in the work of \citet{Kang2020}. In \citet{Kang2020}, the fairings affixed to the cylinder surface caused a reduction in both lift and drag acting on the cylinder, although the strength of this effect varies with respect to the actual flow velocity being imposed on the cylinder.
 
-Apart from tempering the shear layer of the cylinder, one can also - similar to \citet{Yokoi2016} - alter the downstream region of the cylinder to achieve a desired response. In their study, \citet{Yokoi2016} introduced a splitter plate on the trailing edge of a circular cylinder and discovered a rich collection of flow patterns that one can achieve simply by varying the following variables: splitter plate length, cylinder forcing amplitude and cylinder forcing frequency. By doing this, one can even achieve a symmetric shedding of Karman vortices from the top and bottom surfaces of the cylinder. To appreciate the significance of this result, one simply needs to recall that alternating Cl and $\cd$ acting on the cylinder is the consequence of Karman vortices shedding alternately from the top and bottom of the cylinder. The fact that one can force the shedding to take place simultaneously from the top and bottom of the cylinder means that the amplitude of both Cl and $\cd$ can be significantly diminish, if not altogether.
+Apart from tempering the shear layer of the cylinder, one can also - similar to \citet{Yokoi2016} - alter the downstream region of the cylinder to achieve a desired response. In their study, \citet{Yokoi2016} introduced a splitter plate on the trailing edge of a circular cylinder and discovered a rich collection of flow patterns that one can achieve simply by varying the following variables: splitter plate length, cylinder forcing amplitude and cylinder forcing frequency. By doing this, one can even achieve a symmetric shedding of Karman vortices from the top and bottom surfaces of the cylinder. To appreciate the significance of this result, one simply needs to recall that alternating $\cl$ and $\cd$ acting on the cylinder is the consequence of Karman vortices shedding alternately from the top and bottom of the cylinder. The fact that one can force the shedding to take place simultaneously from the top and bottom of the cylinder means that the amplitude of both $\cl$ and $\cd$ can be significantly diminish, if not altogether.
 
 To be clear, the splitter plate method is not particularly new in near-wake control; splitter plates have been studied in the past under a similar setup \citep{MatAli2011,MatAli2012}, although under completely different flow conditions and cylinder geometry. However, one may find it difficult not to rely to some extent on the studies by \citet{MatAli2011,MatAli2012}, since unlike \citet{Yokoi2016}, they study flow patterns that are self-induced and does not rely on external forcing. This is particularly pertinent as in nature and man-made settings, self-induced vibrations is the norm rather than the exception.
 
@@ -1020,7 +1021,7 @@ Decomposing a signal using EEMD is procedural by design: produce 150 sets of whi
 
 This algorithm produces intrinsic mode functions or IMFs for each of the 150 variations of the original signal. Then, the first IMF component is averaged from each of the 150 variations of the original signal to obtain the first EEMD IMF, $C_{1}$. The same is done for component number two, three, ..., $i$ for each of the 150 variations, producing $C_{2},C_{3},\dots,C_{i}$.
 
-Since EEMD decomposes the original signal into $i$ number of IMFs, one needs to be selected among them to represent the original signal to compute phase lag. To achieve this, the original cylinder displacement signal is used as the reference. Then, the correlation between the IMFs from each decomposed Cl and $\ystr$ signals are computed using cross-correlation. The IMF with the highest correlation coefficient is used in the phase lag computation, denoted as $\cysys$ for the cylinder displacement and $\cclys$ for the lift coefficient signal. Computation of the phase lag, instantaneous frequency and instantaneous amplitude of the signal is accomplished by constructing an analytical signal $z \left( t \right)$ from $C_{1},C_{2},\dots,C_{i}$ by computing the Hilbert transform of the IMF, $H_{i}$,
+Since EEMD decomposes the original signal into $i$ number of IMFs, one needs to be selected among them to represent the original signal to compute phase lag. To achieve this, the original cylinder displacement signal is used as the reference. Then, the correlation between the IMFs from each decomposed $\cl$ and $\ystr$ signals are computed using cross-correlation. The IMF with the highest correlation coefficient is used in the phase lag computation, denoted as $\cysys$ for the cylinder displacement and $\cclys$ for the lift coefficient signal. Computation of the phase lag, instantaneous frequency and instantaneous amplitude of the signal is accomplished by constructing an analytical signal $z \left( t \right)$ from $C_{1},C_{2},\dots,C_{i}$ by computing the Hilbert transform of the IMF, $H_{i}$,
 
 \begin{equation}
   H_{i} \left( t \right) = \frac{1}{\pi} \text{PV} \int\limits_{}^{\infty} \frac{C_{i} \left( \tau \right)}{t - \tau} d\tau,
@@ -1058,14 +1059,14 @@ Also, $a(t)$ and $\theta(t)$ are the instantaneous amplitude and phase - both a 
 
 \noindent where $\omega(t)$ represents the instantaneous frequency of component $C_{i}$ of the original signal.
 
-\section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag90}
+\section{Phase lag between $\cl$ and normalised cylinder displacement} \label{sec:phaseLag90}
 
-In this study, the phase lag $\plag$ is computed by taking the Hilbert transform of both $\ystr$ and Cl signals, as \citet{Khalak1999} did in their VIV study of isolated circular cylinders, finding the difference between them, and finally averaging the values over a selected period $T$. This is captured by Eq. \ref{eq:phaseLagDefinition}. The reason this quantity is computed is because there is a need to assign a representative value to the phase lag at each $\ured$, and the ensemble average is a deemed a reasonable statistical quantity that captures the essence of the temporal evolution of phase lag.
+In this study, the phase lag $\plag$ is computed by taking the Hilbert transform of both $\ystr$ and $\cl$ signals, as \citet{Khalak1999} did in their VIV study of isolated circular cylinders, finding the difference between them, and finally averaging the values over a selected period $T$. This is captured by Eq. \ref{eq:phaseLagDefinition}. The reason this quantity is computed is because there is a need to assign a representative value to the phase lag at each $\ured$, and the ensemble average is a deemed a reasonable statistical quantity that captures the essence of the temporal evolution of phase lag.
 
 % \begin{figure}
   % \centering
   % \includegraphics[width=0.4\textwidth]{figs/phaseLag5}
-  % \caption{Phase lag $\plag$ (\si{\degree}) between Cl and $\ystr$ when \angfi{}.}
+  % \caption{Phase lag $\plag$ (\si{\degree}) between $\cl$ and $\ystr$ when \angfi{}.}
   % \label{fig:phaseAngleRegime}
 % \end{figure}
 
@@ -1074,7 +1075,7 @@ In this study, the phase lag $\plag$ is computed by taking the Hilbert transform
   \label{eq:phaseLagDefinition}
 \end{equation}
 
-Out of $C_{i}$ IMFs for each of $\ystr$ and Cl, the ones for computation of instantaneous phase are selected according to the following rule. First, the IMF component of $\yrms$ with the largest \rms{} amplitude is selected to represent the original $\ystr$ signal. Then, the component of Cl with the highest correlation to the IMF component of $\ystr$ is chosen, to represent the Cl signal. The degree of correlation is determined by computing the cross-correlation between the two.
+Out of $C_{i}$ IMFs for each of $\ystr$ and Cl, the ones for computation of instantaneous phase are selected according to the following rule. First, the IMF component of $\yrms$ with the largest \rms{} amplitude is selected to represent the original $\ystr$ signal. Then, the component of $\cl$ with the highest correlation to the IMF component of $\ystr$ is chosen, to represent the $\cl$ signal. The degree of correlation is determined by computing the cross-correlation between the two.
 
 \section{Estimation of Power} \label{sec:estimationOfPower}
 
@@ -1365,9 +1366,9 @@ Let the coordinates of the simulation domain be defined in the following manner:
 
 The shedding of vortical structures leave their footprint on the flow field in the form of velocity fluctuations. The choice of analysing the fluctuations of the $y$-component of velocity is made due to the fact that the oscillator is constrained to move only in the transverse direction. Then, the velocity fluctuations are processed with FFT to obtain the Fourier transform of the fluctuation signals at each spanwise location. The combines Fourier transforms are presented using a colour map in Fig. \ref{fig:probe90YU10}. In this figure, every point is a result of that FFT giving the observer a spatial understanding of the vortical structures present in the flow. The abscissa and ordinates denotes $\fstr$ and $Z$ coordinates respectively, while the bar legend gives the amplitude of the FFT result.
 
-Through inspection, one immediately notices two frequency bands with high amplitudes namely $\fstr \approx 1$ and $\fstr \approx 4.5$. The locations of these bands are between $3 \leq Z \leq 4.5$ for the former and $4.5 < Z \leq 7$ for the latter. Aided with this visualisation, one can give meaning to the $x$ and $z$-components of vorticity visualised in Fig. \ref{fig:vortStruct90} . The slices in Fig. \ref{fig:vortStruct90} visualise the distribution of the $x$ (streamwise) and $z$ (Karman) components of vorticity at the $X = 1.96$ plane. The plane is viewed from downstream (viewer standing at $X = 1.96$, looking towards the cruciform), and the vorticites are presented in units of \si{\per\second}. Furthermore, the visualisations are made when the lift coefficient Cl is at a maximum ($\text{Cl}_{\text{max}}$).
+Through inspection, one immediately notices two frequency bands with high amplitudes namely $\fstr \approx 1$ and $\fstr \approx 4.5$. The locations of these bands are between $3 \leq Z \leq 4.5$ for the former and $4.5 < Z \leq 7$ for the latter. Aided with this visualisation, one can give meaning to the $x$ and $z$-components of vorticity visualised in Fig. \ref{fig:vortStruct90} . The slices in Fig. \ref{fig:vortStruct90} visualise the distribution of the $x$ (streamwise) and $z$ (Karman) components of vorticity at the $X = 1.96$ plane. The plane is viewed from downstream (viewer standing at $X = 1.96$, looking towards the cruciform), and the vorticites are presented in units of \si{\per\second}. Furthermore, the visualisations are made when the lift coefficient $\cl$ is at a maximum ($\text{Cl}_{\text{max}}$).
 
-Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests that the $\fstr \approx 1$ band is actually due to the shedding of streamwise vortex of a scale close to $1D$ while the $\fstr \approx 4.5$ seems to be due to the shedding of Karman vortices. Contrary to the vortical structure commonly observed in studies of isolated circular cylinders \citep{Deng2007,Kinaci2016,Duranay2020}, in the pure cruciform case, two distinct vortical structures take shape in the flow, namely streamwise and Karman vortices. This is consistent with the findings in \citet{Koide2017} or \citet{Zhao2018a}, where they observed a pair of streamwise vortices on a scale of $\approx 1D$ form in the vicinity of the cruciform juncture, and Karman vortices further away in the spanwise direction. Note that the vibration-driving streamwise vortices forming close to the cruciform juncture exist in pairs: in Fig. \ref{fig:vorx90}, one is observed to rotate in the clockwise direction when $Z > 0$ and the other in the counter-clockwise direction when $Z < 0$. What results from this counter-rotating vortex pair is a thrust, propelling the cylinder upwards. This is consistent with the fact that the vorticity field visualisations are produced when the Cl is at a maximum. This work also observe the core of both streamwise vortices lie approximately on the same $Y$-plane, parallel to the axis of the cylinder.
+Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests that the $\fstr \approx 1$ band is actually due to the shedding of streamwise vortex of a scale close to $1D$ while the $\fstr \approx 4.5$ seems to be due to the shedding of Karman vortices. Contrary to the vortical structure commonly observed in studies of isolated circular cylinders \citep{Deng2007,Kinaci2016,Duranay2020}, in the pure cruciform case, two distinct vortical structures take shape in the flow, namely streamwise and Karman vortices. This is consistent with the findings in \citet{Koide2017} or \citet{Zhao2018a}, where they observed a pair of streamwise vortices on a scale of $\approx 1D$ form in the vicinity of the cruciform juncture, and Karman vortices further away in the spanwise direction. Note that the vibration-driving streamwise vortices forming close to the cruciform juncture exist in pairs: in Fig. \ref{fig:vorx90}, one is observed to rotate in the clockwise direction when $Z > 0$ and the other in the counter-clockwise direction when $Z < 0$. What results from this counter-rotating vortex pair is a thrust, propelling the cylinder upwards. This is consistent with the fact that the vorticity field visualisations are produced when the $\cl$ is at a maximum. This work also observe the core of both streamwise vortices lie approximately on the same $Y$-plane, parallel to the axis of the cylinder.
 
 \begin{figure}
   \centering
@@ -1425,7 +1426,7 @@ As one can see from the previous section, the streamwise vortex-induced vibratio
 
 \subsubsection{The KVIV regime (reduced velocity below 13.6)} \label{sssec:phaseLag}
 %% Paraphrase in Grammarly BEGIN
-At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between Cl and  $\ured$ are practically zero throughout the whole observation time. The characteristic intrinsic mode functions (IMFs) of Cl and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the Hilbert-Huang transform (HHT) spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the decomposed Cl signal. The trend in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed by \citet{Khalak1999} which also employs the Hilbert transform to compute the instantaneous phase. It is worth noting that the signals dealt with in \citet{Khalak1999} are more or less monotonic, rendering empirical mode decomposition (EEMD) irrelevant. The dominant IMF component of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$. Here, the dominant IMF component refers to the component of IMF with the highest amplitude during the whole observation time.
+At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between $\cl$ and  $\ured$ are practically zero throughout the whole observation time. The characteristic intrinsic mode functions (IMFs) of $\cl$ and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the Hilbert-Huang transform (HHT) spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the decomposed $\cl$ signal. The trend in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed by \citet{Khalak1999} which also employs the Hilbert transform to compute the instantaneous phase. It is worth noting that the signals dealt with in \citet{Khalak1999} are more or less monotonic, rendering empirical mode decomposition (EEMD) irrelevant. The dominant IMF component of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$. Here, the dominant IMF component refers to the component of IMF with the highest amplitude during the whole observation time.
 
 \begin{figure}
   \centering
@@ -1441,7 +1442,7 @@ At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) betw
     \label{fig:tempAnalysisKVIV-b}
   \end{subfigure}
 
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urtw$.} 
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \urtw$.}
 \end{figure}
 
 \begin{figure} \continuedfloat
@@ -1452,10 +1453,10 @@ At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) betw
     \label{fig:tempAnalysisKVIV-c}
   \end{subfigure}
 
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urtw$.} \label{fig:tempAnalysisKVIV}
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \urtw$.} \label{fig:tempAnalysisKVIV}
 \end{figure}
 
-Once the cylinder enters the upper branch of KVIV at $\ured = 6.8$, $\phi$ jumps to approximately 110 deg. This jump in $\phi$ is commonly observed in the transition to the upper branches \citep{Maruai2018}. Both $\cclys$ and $\cysys$ signals are highly periodic, and the dominant frequency band of Cl is centred at $\approx 1$, as demonstrated in Fig. \ref{fig:tempAnalysisUpper}c.
+Once the cylinder enters the upper branch of KVIV at $\ured = 6.8$, $\phi$ jumps to approximately 110 deg. This jump in $\phi$ is commonly observed in the transition to the upper branches \citep{Maruai2018}. Both $\cclys$ and $\cysys$ signals are highly periodic, and the dominant frequency band of $\cl$ is centred at $\approx 1$, as demonstrated in Fig. \ref{fig:tempAnalysisUpper}c.
 
 \begin{figure}
   \centering
@@ -1470,7 +1471,7 @@ Once the cylinder enters the upper branch of KVIV at $\ured = 6.8$, $\phi$ jumps
     \caption{}
     \label{fig:tempAnalysisUpper-b}
   \end{subfigure}
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urth$.}
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \urth$.}
 \end{figure}
 
 \begin{figure} \continuedfloat
@@ -1480,10 +1481,10 @@ Once the cylinder enters the upper branch of KVIV at $\ured = 6.8$, $\phi$ jumps
     \caption{}
     \label{fig:tempAnalysisUpper-c}
   \end{subfigure}
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \urth$.} \label{fig:tempAnalysisUpper}
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \urth$.} \label{fig:tempAnalysisUpper}
 \end{figure}
 
-As $\ured$ is increased even further up to $\ured = \ursi$, a similar trend is spotted for all $\ured = 9.1, 11.4, 13.6$ examined: $\cysys$ and $\cclys$ are both qualitatively very periodic. Their phase lags are very close to $180$ deg. The dominant Cl frequency bands exhibit a time-averaged value that increases linearly for $\ured$ while keeping the Strouhal number of Cl $\approx 0.16$. The representative case of $\ured = \ursi$ is shown in Fig. \ref{fig:tempAnalysisLower}. Note how $\phi$ in this range of $\ured$ varies less against time, compared to $\phi$ at $\ured = \urth$, and the dominant frequency band of Cl is much narrower compared to the dominant frequency band at $\ured = \urth$, indicating a highly periodic and self-similar oscillation of lift.
+As $\ured$ is increased even further up to $\ured = \ursi$, a similar trend is spotted for all $\ured = 9.1, 11.4, 13.6$ examined: $\cysys$ and $\cclys$ are both qualitatively very periodic. Their phase lags are very close to $180$ deg. The dominant $\cl$ frequency bands exhibit a time-averaged value that increases linearly for $\ured$ while keeping the Strouhal number of $\cl$ $\approx 0.16$. The representative case of $\ured = \ursi$ is shown in Fig. \ref{fig:tempAnalysisLower}. Note how $\phi$ in this range of $\ured$ varies less against time, compared to $\phi$ at $\ured = \urth$, and the dominant frequency band of $\cl$ is much narrower compared to the dominant frequency band at $\ured = \urth$, indicating a highly periodic and self-similar oscillation of lift.
 
 \begin{figure}
   \centering
@@ -1498,7 +1499,7 @@ As $\ured$ is increased even further up to $\ured = \ursi$, a similar trend is s
     \caption{}
     \label{fig:tempAnalysisLower-b}
   \end{subfigure}
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \ursi$.}
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \ursi$.}
 \end{figure}
 
 \begin{figure} \continuedfloat
@@ -1508,13 +1509,13 @@ As $\ured$ is increased even further up to $\ured = \ursi$, a similar trend is s
     \caption{}
     \label{fig:tempAnalysisLower-c}
   \end{subfigure}
-  \caption{Temporal analysis of Cl and $\ystr$ at $\ured = \ursi$.} \label{fig:tempAnalysisLower}
+  \caption{Temporal analysis of $\cl$ and $\ystr$ at $\ured = \ursi$.} \label{fig:tempAnalysisLower}
 \end{figure}
 
 \subsubsection{Transition to SVIV (reduced velocity between 15.9 and 18.2)} \label{sssec:transSVIV}
-Previously in the $\ured \leq \ursi$ range, the temporal profile of both Cl and  $\ystr$ are very similar, except that Cl leads $\ystr$ by a certain amount. This similarity in profile supports the assertion that the vibration within $\ured \leq \ursi$ is driven exclusively by the shedding of Karman vortices, which brings the onset of the alternating lift. Similarly, a similar profile between Cl and $\ystr$ is expected when streamwise vortices drive the vibration. This presupposition, however, seems to disagree with observation.
+Previously in the $\ured \leq \ursi$ range, the temporal profile of both $\cl$ and  $\ystr$ are very similar, except that $\cl$ leads $\ystr$ by a certain amount. This similarity in profile supports the assertion that the vibration within $\ured \leq \ursi$ is driven exclusively by the shedding of Karman vortices, which brings the onset of the alternating lift. Similarly, a similar profile between $\cl$ and $\ystr$ is expected when streamwise vortices drive the vibration. This presupposition, however, seems to disagree with observation.
 
-Once $\ured$ reaches 15.9, it has become difficult to argue that the profile of $\ystr$ is just a lagged version of the profile of Cl. This is shown in Fig. \ref{fig:tempEvoCompare}a, with the enlarged version in Fig. \ref{fig:tempEvoCompare}b. The profile of Cl is akin to the superposition of a plurality of signals. This observation is driven by the presence of two types of maxima with differing amplitude heights. A red dashed line, and a red dashed-dot line is put in Fig. \ref{fig:tempEvoCompare}b as visual cues indicating the two amplitude heights. Through EEMD, some evidence supporting the compound signal hypothesis is brought to light.
+Once $\ured$ reaches 15.9, it has become difficult to argue that the profile of $\ystr$ is just a lagged version of the profile of Cl. This is shown in Fig. \ref{fig:tempEvoCompare}a, with the enlarged version in Fig. \ref{fig:tempEvoCompare}b. The profile of $\cl$ is akin to the superposition of a plurality of signals. This observation is driven by the presence of two types of maxima with differing amplitude heights. A red dashed line, and a red dashed-dot line is put in Fig. \ref{fig:tempEvoCompare}b as visual cues indicating the two amplitude heights. Through EEMD, some evidence supporting the compound signal hypothesis is brought to light.
 
 \begin{figure}
   \centering
@@ -1529,10 +1530,10 @@ Once $\ured$ reaches 15.9, it has become difficult to argue that the profile of 
     \caption{}
     \label{fig:tempEvoCompare-b}
   \end{subfigure}
-  \caption{Temporal evolution of $\ystr$ and Cl at $\ured = \urse$.} \label{fig:tempEvoCompare}
+  \caption{Temporal evolution of $\ystr$ and $\cl$ at $\ured = \urse$.} \label{fig:tempEvoCompare}
 \end{figure}
 
-Once the signal is decomposed using EEMD, Fig. \ref{fig:tempEvoCompare}a is replotted using $\cclys$ and $\cysys$ in Fig. \ref{fig:tempAnalysisTransition}a. One can clearly see that the part of Cl signal responsible for driving the vibration at  $\ured = 15.9$ is embedded in the original Cl signal (Fig. \ref{fig:tempAnalysisTransition}a), and decomposition via EEMD managed to recover this signal, which leads $\cysys$ by approximately 150 deg. on average, throughout the whole observation time (Fig. \ref{fig:tempAnalysisTransition}b). This decline from $\phi \approx 180$ deg. at reduced velocities $\urfo \leq \ured \leq \ursi$, to $\phi \approx 150$ deg. at $\ured = \urse$ is quite sizeable, suggesting a fundamental change in flow dynamics, particularly in terms of vortical structure. Another significant change is the increased scatter in $\phi$ from its time-averaged value, different from the evolution of $\phi$ in the range $\urfo \leq \ured \leq \ursi$, which varies only slightly throughout the observation time.
+Once the signal is decomposed using EEMD, Fig. \ref{fig:tempEvoCompare}a is replotted using $\cclys$ and $\cysys$ in Fig. \ref{fig:tempAnalysisTransition}a. One can clearly see that the part of $\cl$ signal responsible for driving the vibration at  $\ured = 15.9$ is embedded in the original $\cl$ signal (Fig. \ref{fig:tempAnalysisTransition}a), and decomposition via EEMD managed to recover this signal, which leads $\cysys$ by approximately 150 deg. on average, throughout the whole observation time (Fig. \ref{fig:tempAnalysisTransition}b). This decline from $\phi \approx 180$ deg. at reduced velocities $\urfo \leq \ured \leq \ursi$, to $\phi \approx 150$ deg. at $\ured = \urse$ is quite sizeable, suggesting a fundamental change in flow dynamics, particularly in terms of vortical structure. Another significant change is the increased scatter in $\phi$ from its time-averaged value, different from the evolution of $\phi$ in the range $\urfo \leq \ured \leq \ursi$, which varies only slightly throughout the observation time.
 
 \begin{figure}
   \centering
@@ -1677,7 +1678,7 @@ Figure \ref{fig:powerComparison} compares the power estimated from the experimen
     \caption{}
     \label{fig:instantLiftFreq-c}
   \end{subfigure}
-  \caption{The HHT spectrogram of Cl between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
+  \caption{The HHT spectrogram of $\cl$ between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
 \end{figure}
 
 \begin{figure} \continuedfloat
@@ -1693,7 +1694,7 @@ Figure \ref{fig:powerComparison} compares the power estimated from the experimen
     \caption{}
     \label{fig:instantLiftFreq-e}
   \end{subfigure}
-  \caption{The HHT spectrogram of Cl between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
+  \caption{The HHT spectrogram of $\cl$ between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
   \label{fig:instantLiftFreq}
 \end{figure}
 
@@ -1732,7 +1733,7 @@ The discovery made towards the end of \S\ref{sec:svivRegime} strongly supports t
 
 To achieve this, this study attempts to retard the formation of either one of the dominant vortical structures observed in the pure cruciform oscillator, preferably the Karman vortices since for the pure cruciform, the high-amplitude vibrations are driven by streamwise vortex shedding. In a manner similar to how the downstream strip plate was introduced to a single oscillator unit to suppress the Karman vortex shedding, perhaps a modified configuration of the downstream strip plate can potentially bring about an even more vigorous inhibition of Karman vortex shedding and thus direct a bigger portion of energy from the freestream towards the large-scale streamwise vortex. The modification chosen for this purpose is the rotation of the downstream strip plate and the resulting angle between the upstream circular cylinder and the strip plate.
 
-This section investigates the amplitude/frequency responses of steep-angled cruciforms ($67.5 \leq \alpha (\si{\degree}) \leq 45$), the vortical structures behind the amplitude/frequency responses, and how the vortical structures influence the lift acting on the cylinder and subsequently the phase lag between the Cl and $\ystr$ to locate branches that can be exploited for energy harvesting.
+This section investigates the amplitude/frequency responses of steep-angled cruciforms ($67.5 \leq \alpha (\si{\degree}) \leq 45$), the vortical structures behind the amplitude/frequency responses, and how the vortical structures influence the lift acting on the cylinder and subsequently the phase lag between the $\cl$ and $\ystr$ to locate branches that can be exploited for energy harvesting.
 
 \subsection{The amplitude and frequency response}\label{ssec:transRegimeAmpFreqResp}
 
@@ -1795,7 +1796,7 @@ The fact that the $\fclstr$ trends observed in Figs. \ref{fig:clFreq4} and \ref{
   \end{subfigure}
 
   \label{fig:clRMS43}
-  \caption{Evolution of the normalised Cl \rms{} amplitude, $\clrms$, with respect to reduced velocity $\ured$, for the 67.5$^{\circ}$ and 45$^{\circ}$ cruciforms.}
+  \caption{Evolution of the normalised $\cl$ \rms{} amplitude, $\clrms$, with respect to reduced velocity $\ured$, for the 67.5$^{\circ}$ and 45$^{\circ}$ cruciforms.}
 \end{figure}
 
 \begin{figure}
@@ -1813,7 +1814,7 @@ The fact that the $\fclstr$ trends observed in Figs. \ref{fig:clFreq4} and \ref{
   \end{subfigure}
 
   \label{fig:clFreq43}
-  \caption{Evolution of the normalised Cl frequency, $\fclstr$, with respect to reduced velocity $\ured$, for the 67.5$^{\circ}$ and 45$^{\circ}$ cruciforms. The dashed lines outline $\fvk$ from Eq. \ref{eq:karmanSheddingFreq}.}
+  \caption{Evolution of the normalised $\cl$ frequency, $\fclstr$, with respect to reduced velocity $\ured$, for the 67.5$^{\circ}$ and 45$^{\circ}$ cruciforms. The dashed lines outline $\fvk$ from Eq. \ref{eq:karmanSheddingFreq}.}
 \end{figure}
 
 \subsection{Main vibration-driving vortical structure}\label{ssec:transitionalRegimeVortStruct}
@@ -1951,7 +1952,7 @@ The source of asymmetry in the vortical structure distribution around the crucif
   \caption{The Q-criterion for the 45$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso045U02}) and plan view (\ref{fig:qTop045U02}).} \label{fig:qCrit045U02}
 \end{figure}
 
-\subsection{Phase lag between Cl and normalised cylinder displacement} \label{ssec:phaseLag67545}
+\subsection{Phase lag between $\cl$ and normalised cylinder displacement} \label{ssec:phaseLag67545}
 Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. Working backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseAngleRegime}, one confronts the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
 
 For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower branch of KVIV at $\ured = \urth$, $\plag$ transitioned to $\approx \SI{65}{\degree}$ between $\urfi \leq \ured \leq \urni$. The proximity between the values \SI{65}{\degree} and \SI{70}{\degree} for the \angfo{} cruciform suggests the equivalence of the two branches. However, this study is inclined to a more cautious conclusion: the two are \textit{variants} of the same branch that is only similar in limited respects as they originate from different angled cruciforms. In this respect, the \angth{} cruciform is much less similar to the pure cruciform case, as one might expect, simply because \angth{} is a much larger deviation from \angfi{} compared to \angfo{}. This larger deviation is in the opinion of this study, what causes $\plag$ in the \angth{} case to drop further to $\approx \SI{35}{\degree}$ within $\urte \leq \ured \leq \urtt$, instead of jumping up to some mean value between $100 \leq \plag \; (\si{\degree}) \leq 130$ similar to what is observed in the \angfi{} and \angfo{} cruciforms.
@@ -1970,7 +1971,7 @@ For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower br
     \label{fig:phaseLag45deg}
   \end{subfigure}
 
-  \caption{Phase lag $\plag$ ($^{\circ}$) between Cl and $\ystr$ when 67.5$^{\circ}$ and 45$^{\circ}$.}
+  \caption{Phase lag $\plag$ ($^{\circ}$) between $\cl$ and $\ystr$ when 67.5$^{\circ}$ and 45$^{\circ}$.}
   \label{fig:phaseLag67545deg}
 \end{figure}
 
@@ -2033,7 +2034,7 @@ The \angon{} cruciform (Figs. \ref{fig:yStrRMS5}, \ref{fig:yStrFreq1}) in essenc
   \label{fig:yStrFreq21}
 \end{figure}
 
-Apart from the amplitude/frequency response of the \angtw{} cruciform, the evolution of $\clrms$ against $\ured$ showcases a similar trend to the evolution $\yrms$, as shown in Fig. \ref{fig:clRMS2}. The corresponding $\fclstr$ in Fig. \ref{fig:clFreq2} demonstrates the dominant frequency of Cl taking after Eq. \ref{eq:karmanSheddingFreq} between $\uron \leq \ured \leq \urei$, before abruptly dropping close to $1$ between $\urni \leq \ured \leq \urtt$. This in part informs the investigation that the flow between $\uron \leq \ured \leq \urei$ is governed by flow physics that are similar to both \angfo{} and \angth{} within the same $\ured$ range.
+Apart from the amplitude/frequency response of the \angtw{} cruciform, the evolution of $\clrms$ against $\ured$ showcases a similar trend to the evolution $\yrms$, as shown in Fig. \ref{fig:clRMS2}. The corresponding $\fclstr$ in Fig. \ref{fig:clFreq2} demonstrates the dominant frequency of $\cl$ taking after Eq. \ref{eq:karmanSheddingFreq} between $\uron \leq \ured \leq \urei$, before abruptly dropping close to $1$ between $\urni \leq \ured \leq \urtt$. This in part informs the investigation that the flow between $\uron \leq \ured \leq \urei$ is governed by flow physics that are similar to both \angfo{} and \angth{} within the same $\ured$ range.
 
 For the \angon{} cruciform, the jump in $\clrms$ seems to occur at the same $\ured$ as the jump in the corresponding $\yrms$ i.e., $\ured = \urfo$. After $\ured = \urfo$, the magnitude of $\clrms$ gradually drops to a final value of $\clrms \approx 0.45$ at $\ured = \urni$, and remains there up to $\ured = \urtt$. Similar to the \angtw{} cruciform, $\fclstr$ grows linearly in accordance with, again, Eq. \ref{eq:karmanSheddingFreq} until the jump in both $\clrms$ and $\yrms$, where $\fclstr$ drops close to $1$ for the rest the $\ured$ examined in this study.
 
@@ -2052,7 +2053,7 @@ For the \angon{} cruciform, the jump in $\clrms$ seems to occur at the same $\ur
   \end{subfigure}
 
   \label{fig:clRMS21}
-  \caption{Evolution of the normalised Cl \rms{} amplitude, $\clrms$, with respect to reduced velocity $\ured$, for the 22.5$^{\circ}$ and 0$^{\circ}$ cruciforms.}
+  \caption{Evolution of the normalised $\cl$ \rms{} amplitude, $\clrms$, with respect to reduced velocity $\ured$, for the 22.5$^{\circ}$ and 0$^{\circ}$ cruciforms.}
 \end{figure}
 
 \begin{figure}
@@ -2070,7 +2071,7 @@ For the \angon{} cruciform, the jump in $\clrms$ seems to occur at the same $\ur
   \end{subfigure}
 
   \label{fig:clFreq21}
-  \caption{Evolution of the normalised Cl frequency, $\fclstr$, with respect to reduced velocity $\ured$, for the 22.5$^{\circ}$ and 0$^{\circ}$ cruciforms. The dashed lines outline $\fvk$ from Eq. \ref{eq:karmanSheddingFreq}.} 
+  \caption{Evolution of the normalised $\cl$ frequency, $\fclstr$, with respect to reduced velocity $\ured$, for the 22.5$^{\circ}$ and 0$^{\circ}$ cruciforms. The dashed lines outline $\fvk$ from Eq. \ref{eq:karmanSheddingFreq}.}
 \end{figure}
 
 \subsection{Main vibration-driving vortical structure}\label{ssec:kvivRegimeVortStruct}
@@ -2214,7 +2215,7 @@ As demonstrated in \S\ref{sec:svivRegime} and \ref{sec:transitionToKarman}, elic
 
 \noindent The results also suggest the total cylinder-strip plate area overlap as a factor influencing the exact $\ured$ at which the vortical synchronisation occurs. The $\ured$ at which the synchronisation -- and the jump to large $\yrms$ amplitude -- occurs at a lower value when the overlap area is bigger. Nevertheless, there seems to be a limit to this lowering of $\ured$, which in this work is determined to be $\ured = \urfo$. Recall that this is the value where the synchronisation begins for the \angon{} layout; the layout where the totality of the cylinder and strip plate projections onto the $y-z$ plane coincides with each other.
 
-\section{Phase lag between Cl and normalised cylinder displacement} \label{sec:phaseLag22500}
+\section{Phase lag between $\cl$ and normalised cylinder displacement} \label{sec:phaseLag22500}
 In Fig. \ref{fig:phaseLag225deg}, the evolution of $\plag$ is summarised according to $\ured$ for the \angtw{} cruciform and find $\plag \approx \SI{115}{\degree}$ at $\ured = \urtt$. The significance of $\ured = \urtt$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseAngleRegime} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. This may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform (Fig. \ref{fig:yStrFreq2}).
 
 The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump is the sudden drop at $\ured = \urfo$, which brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which $\plag$ is found to monotonically increase up to $\ured = \urtt$.
@@ -2233,7 +2234,7 @@ The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225de
     \label{fig:phaseLag00deg}
   \end{subfigure}
 
-  \caption{Phase lag $\plag$ ($^{\circ}$) between Cl and $\ystr$ when 22.5$^{\circ}$ and 0$^{\circ}$.}
+  \caption{Phase lag $\plag$ ($^{\circ}$) between $\cl$ and $\ystr$ when 22.5$^{\circ}$ and 0$^{\circ}$.}
   \label{fig:phaseLag22500deg}
 \end{figure}
 
