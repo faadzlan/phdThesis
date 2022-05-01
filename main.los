@@ -2,8 +2,8 @@
 \makesymboltable {Cl}{Lift coefficient}
 \makesymboltable {C$_\text {d}$}{Drag coefficient}
 \makesymboltable {$C_{y^{*},y^{*}}$}{IMF component of $y^{*}$ with highest correlation to $y^{*}$}
-\makesymboltable {$C_{\text {Cl},y^{*}}$}{IMF component of $\text {C}_{\text {l}}$ with highest correlation to $y^{*}$}
-\makesymboltable {$C_{\text {C}_{l},\text {RMS}}$}{Root-mean-square of characteristic IMF of Cl}
+\makesymboltable {$C_{\text {Cl},y^{*}}$}{IMF component of $\text {C}_{\text {L}}$ with highest correlation to $y^{*}$}
+\makesymboltable {$C_{\text {C}_{L},\text {RMS}}$}{Root-mean-square of characteristic IMF of Cl}
 \makesymboltable {D}{Characteristic diameter}
 \makesymboltable {$F_{\text {L}}$}{Lift force}
 \makesymboltable {$F_{s}$}{Safety factor for GCI estimation}
