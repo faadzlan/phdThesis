@@ -225,6 +225,7 @@
     "Liu2022"
     "Ghiasi2021"
     "Souza2022"
-    "Raghavan2011"))
+    "Raghavan2011"
+    "Thompson1994"))
  :bibtex)
 

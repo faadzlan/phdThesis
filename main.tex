@@ -575,9 +575,32 @@ To be clear, the splitter plate method is not particularly new in near-wake cont
 
 \subsection{Streamwise Vortex Shedding} \label{ssec:svShedding}
 
-In the real world, Karman vortex shedding is almost never a two-dimensional phenomenon. Once Re exceeds 150, Karman vortices can no longer be considered a purely two-dimensional vortical structure, with its vortex line parallel to the axis of the cylinder from which it is shed. The stretching of Karman vortex lines in the direction of flow breaks the two-dimensionality as there are now sections of the vortex line that points in the direction of the flow. The sections of the vortex line that now points in the direction of the flow - or stream - create structures that are called streamwise vortices.
+In the real world, Karman vortex shedding is almost never a two-dimensional phenomenon. Once Re exceeds 150, Karman vortices can no longer be considered a purely two-dimensional vortical structure, with its vortex line parallel to the axis of the cylinder from which it is shed. The stretching of Karman vortex lines in the direction of flow breaks the two-dimensionality as there are now sections of the vortex line that points in the direction of the flow. The sections of the vortex line that now points in the direction of the flow - or stream - create structures that are called streamwise vortices. A schematic of this vortex line stretching is presented in Fig. \ref{fig:modeAStretching}.
 
-Among the studies on Karman vortex three-dimensionality are the works of \citet{Williamson1996a} and  \citet{Williamson1996b}. The author discusses two main modes of three-dimensionality: modes A and B. Mode A has a spanwise wavelength of three to four diameters and appears at $\re = 200$. However, as Re is increased, another mode with a smaller wavelength appears, designated as mode B. The modes consist of vorticities that point in the streamwise direction. The shedding of these modes are therefore a simple representative case of streamwise vortex shedding.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.5\textwidth]{figs/modeA}
+    \caption{Stretching of the vortex line on a Karman vortex creates streamwise vorticity. Adapted from \citet{Williamson1996a}.}
+    \label{fig:modeAStretching}
+  \end{figure}
+
+Among the studies on Karman vortex three-dimensionality are the works of \citet{Williamson1996a} and  \citet{Williamson1996b}. The author discusses two main modes of three-dimensionality: modes A and B. Mode A has a spanwise wavelength of three to four diameters and appears at $\re = 200$. Mode A of Karman vortex shedding is visualised in Fig. \ref{fig:modeA3D}. The streamwise vortices are the vortical structures whose axis is parallel to the freestream.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[angle=90,width=0.7\textwidth]{figs/modeA3D}
+    \caption{Three-dimensional visualisation of mode A of Karman vortex shedding. Adapted from \citet{Thompson1994}.}
+    \label{fig:modeA3D}
+  \end{figure}
+
+However, as Re is increased, another mode with a smaller wavelength appears, designated as mode B. The modes consist of vorticities that point in the streamwise direction. The shedding of these modes are therefore a simple representative case of streamwise vortex shedding. On the other hand, mode B Karman vortex shedding is shown is Fig. \ref{fig:modeB3D}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[angle=90,width=0.7\textwidth]{figs/modeB3D}
+    \caption{Three-dimensional visualisation of mode B of Karman vortex shedding. Adapted from \citet{Thompson1994}.}
+    \label{fig:modeB3D}
+  \end{figure}
 
 % The Mathematica file used to compute the 20\% value below is in the file liftCoefficients67.50V2HHT.nb
 Noticeably, a lot of studies on streamwise vortex shedding discuss the process as a secondary process that is the offspring of the vortical structure that actually dominates the flow field - the spanwise Karman vortex. This trend in viewing streamwise vortex shedding as a secondary process is also found in \citet{Agbaglah2019}. In their numerical study of an isolated square and circular cylinder, they considered two Reynolds number, $\re = 205$ and $\re = 225$, and noted that the shedding frequencies of the two cylinders are quite similar. The Strouhal number St for the square cylinder is 0.152 and is 0.149 for the circular cylinder. Here, the Strouhal number St is defined as
@@ -604,7 +627,42 @@ More recent works on streamwise vortex shedding have shifted away from a simple 
 
 Knowledge on the spatial distribution and key dimensions of streamwise vortices may be insufficient to highlight how one can exploit them to one's advantage. To exploit streamwise vortex shedding to fulfil engineering objectives, one needs insight on the effects of streamwise vortex shedding on the flow. This is demonstrated in the work by \citet{Rai2018}, in which the author published numerical results of flow around a flat plate with a circular trailing edge. The Reynolds number varies from $250 \leq \re \leq 10000$. \citet{Rai2018} discovered that streamwise vortices are responsible for generating steep spanwise velocity gradients that affect the strength of the dominant vortical structure of the flow, i.e. the Karman vortex. The author also found that fluctuations in the streamwise velocity within the boundary layer leads to variation in the shedding period of the dominant Karman vortex. Finally, streamwise vortex shedding is observed to affect the shedding frequency of the spanwise Karman vortices through the speed of their streaks in the boundary layer.
 
-In an evaluation of a passive method to control flow around a circular cylinder, \citet{Lin2018} inserted the cylinder inside a conical shroud and assessed its effect on the vortical structures shed around it. They chose a very low $\re = 100$, to keep the flow as two-dimensional as possible. \citet{Lin2018} tested two types of conical shroud. One shroud is with perforations of varying diameter and placement angle along the peak of the cone, and the other without. The authors also varied the wavelength and outer diameter of the conical shroud. By doing so, the study essentially discovered a method to prevent the energising of Karman vortex when the disturbance brought about by the conical shroud is large enough. Energy from the freestream is redirected away from Karman vortices, to form strong $\Omega$-shaped vortices in the neighbourhood of the conical valley. This results in partial to full suppression of Karman vortex shedding. The ability to refocus energy to a vortical structure of choice is indispensable, especially to engineers who may either want to minimise cyclic force acting on a structure, or maximise it to improve vibration energy harvesting potential of the structure.
+In an evaluation of a passive method to control flow around a circular cylinder, \citet{Lin2018} inserted the cylinder inside a conical shroud and assessed its effect on the vortical structures shed around it. Their conical shroud is shown in Fig. \ref{fig:conicalShroud}. A very low $\re = 100$ was chosen to keep the flow as two-dimensional as possible.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/conicalShroud}
+    \caption{The conical shroud used by \citet{Lin2018}.}
+    \label{fig:conicalShroud}
+  \end{figure}
+
+  \noindent \citet{Lin2018} tested two types of conical shroud. One shroud is with perforations of varying diameter and placement angle along the peak of the cone, and the other without. The authors also varied the wavelength and outer diameter of the conical shroud. By doing so, the study essentially discovered a method to prevent the energising of Karman vortex when the disturbance brought about by the conical shroud is large enough. Energy from the freestream is redirected away from Karman vortices, to form strong $\Omega$-shaped vortices in the neighbourhood of the conical valley, some examples of which are given in Fig. \ref{fig:omegaVortices}. The name $\Omega$-vortex comes from the fact that the vortices being shed downstream the cylinder resembles the uppercase Greek letter ``omega'' ($\Omega$), when viewed from the direction of $+y$ of their coordinate system.
+
+  \begin{figure}[!h]
+    \centering
+    \begin{subfigure}[h]{0.45\textwidth}
+      \includegraphics[width=\textwidth]{figs/omegaVortexB}
+      \caption{Omega vortex at $t=470$ s.}
+      \label{fig:omegaVortexB}
+    \end{subfigure}
+
+    \begin{subfigure}[h]{0.45\textwidth}
+      \includegraphics[width=\textwidth]{figs/omegaVortexC}
+      \caption{Omega vortex at $t=500$ s.}
+      \label{fig:omegaVortexC}
+    \end{subfigure}
+
+    \begin{subfigure}[h]{0.45\textwidth}
+      \includegraphics[width=\textwidth]{figs/omegaVortexA}
+      \caption{Omega vortex at $t=900$ s.}
+      \label{fig:omegaVortexA}
+    \end{subfigure}
+
+    \caption{Some examples of the $\Omega$-vortices from \citet{Lin2018}, taken at different times of the simulation.} \label{fig:omegaVortices}
+  \end{figure}
+
+
+  This results in partial to full suppression of Karman vortex shedding. The ability to refocus energy to a vortical structure of choice is indispensable, especially to engineers who may either want to minimise cyclic force acting on a structure, or maximise it to improve vibration energy harvesting potential of the structure.
 
 Other examples of energy redirection can be found in \citet{Zhang2016} and \citet{Zhang2019}. In these studies, the authors examined two methods to control Karman vortex shedding from a model bridge. The first method in \citet{Zhang2016} employs suction on the bottom of the bridge to disrupt the homogeneity of the Karman vortex along the span of the bridge. When suction is applied, streamwise vortex - which is considered a secondary process by the authors - becomes energised. The energised streamwise vortex then destabilises the primary vortical structure - the Karman vortex - hence reducing the net force resulting from it.
 
@@ -614,7 +672,25 @@ Attachment of a plate \citep{Gibeau2019} or placement of the cylindrical object 
 
 Flow control using a secondary cylinder placed downstream the main cylinder dates back nearly three decades. Originally, the authors investigating it \citep{Shirakashi1989} is focussed on reducing the magnitude of cyclic forces acting on an isolated circular cylinder system. They placed a secondary circular cylinder downstream the original circular cylinder and explored how, among others, \rms{} lift coefficient of the original cylinder varies as the gap between the original and secondary cylinders are varied. The secondary cylinder is placed downstream the original in a way such that the axes are perpendicular to each other, creating a cruciform. In doing so, they discovered that while the \rms{} of lift coefficient can be reduced as the downstream cylinder is brought closer to the original one, when the normalised gap between two cylinders $g/D$ is $< 0.25$ the lift coefficient rises again and peaks close to $\approx 0.7$ before dropping off again as $g/D \to 0$. This is a significant finding in that it demonstrates how the flow around an existing isolated cylinder system can be altered in hindsight by simply forming a cruciform structure with another cylinder.
 
-The dominant vortical structure in such a cruciform when $0 < g/D < 0.5$ is dominated by a pair of streamwise vortices, shed alternately from the top and bottom of the primary cylinder \citep{Koide2017}. Two types of streamwise vortices are observed, the necklace vortex when $0.25 < g/D < 0.5$, and the trailing vortex when $0 < g/D < 0.25$. Although both types of vortices form close to the cruciform juncture, the necklace vortex dominates a region that is closer to the juncture than the trailing vortex \citep{Takahashi1999}, which forms a little further away from the juncture. The streamwise vortex pair that forms due to the cruciform does not seem to be secondary to the Karman vortex that is also shed from the upstream cylinder. Instead, the streamwise vortices seem to have its own mechanics which is independent from the cycle of Karman vortex shedding.
+The dominant vortical structure in such a cruciform when $0 < g/D < 0.5$ is dominated by a pair of streamwise vortices, shed alternately from the top and bottom of the primary cylinder \citep{Koide2017}. Two types of streamwise vortices are observed, the necklace vortex when $0.25 < g/D < 0.5$, and the trailing vortex when $0 < g/D < 0.25$. This is illustrated in Fig. \ref{fig:streamwiseFigure}. Although both types of vortices form close to the cruciform juncture, the necklace vortex dominates a region that is closer to the juncture than the trailing vortex \citep{Takahashi1999}, which forms a little further away from the juncture. The streamwise vortex pair that forms due to the cruciform does not seem to be secondary to the Karman vortex that is also shed from the upstream cylinder. Instead, the streamwise vortices seem to have its own mechanics which is independent from the cycle of Karman vortex shedding.
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}[h]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figs/streamwiseTrailing}
+    \caption{Trailing vortex, $0 < g/D < 0.25$.}
+    \label{fig:streamTrail}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}[h]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figs/streamwiseNecklace}
+    \caption{Necklace vortex, $0.25 < g/D < 0.5$.}
+    \label{fig:streamNecklace}
+  \end{subfigure}
+
+  \caption{A schematic of streamwise vortex shedding, adapted from \citet{Hemsuwan2018a}.} \label{fig:streamwiseFigure}
+\end{figure}
+
 
 One obvious example is the deference to Eq. \ref{eq:karmanStrouhalNumber}. Streamwise vortices such as those discussed earlier \citep{Zhang2016,Rai2018,Agbaglah2019,Zhang2019} develop as three-dimensional instabilities of Karman vortex shedding, and as such, have a base shedding frequency that loosely obeys Eq. \ref{eq:karmanStrouhalNumber}. However, streamwise vortices in \citet{Takahashi1999}, and even in \citet{Shirakashi2001} and \citet{Bae2001} do not. Streamwise vortices from these studies are shed at an increasing St as Re is increased within the region $\re < 10000$. When $\re > 10000$, St for the streamwise vortex becomes more or less constant with $\st \approx 0.04$ for the necklace vortex and nearly twice that value for the trailing vortex.
 
@@ -642,9 +718,18 @@ One of the recent developments in the control of KVIV is by affixing passive tur
 
 The altering of vorticity in the shear layer is also what enables the bridging of KVIV and galloping in single cylinder systems with surface roughness. At low angles of attachment of the roughness strip \citep{Park2013}, the flow separates at the strip upstream but reattaches further downstream the cylinder surface. At high angles of attachement, there is not enough distance along the cylinder surface for the separated flow to reattach, hence vorticity cancellation between Karman vortices shed from the top and bottom of the cylinder becomes comparatively more aggressive. The absence of this aggressive cancellation of spanwise vorticity is the reason why placement of the roughness strip is able to, in contrast to \citet{Bernitsas2008c} and \citet{Park2016}, enhance KVIV and improve the amplitude response of the single cylinder oscillator.
 
-In \S\ref{ssec:svShedding}, this work discussed how the cruciform system has its origin as a simple method that can be retrofitted to an existing single cylinder oscillator unit to control Karman vortex shedding. As such, the effect of the downstream cylinder/strip plate is targeted towards the upstream cylinder and not itself. However, within the last five years, the VIV research community has increasingly realised that there is no reason for the conversion of energy from the free stream into vibration to strictly be a one-stage process. Excess energy that is not eludes capture by a single cylinder should simply be recovered with another cylinder downstream.
+In Section \ref{ssec:svShedding}, this work discussed how the cruciform system has its origin as a simple method that can be retrofitted to an existing single cylinder oscillator unit to control Karman vortex shedding. As such, the effect of the downstream cylinder/strip plate is targeted towards the upstream cylinder and not itself. However, within the last five years, the VIV research community has increasingly realised that there is no reason for the conversion of energy from the free stream into vibration to strictly be a one-stage process. Excess energy that is not eludes capture by a single cylinder should simply be recovered with another cylinder downstream.
 
-Bearing this in mind, \citet{Ding2017} investigated the system response of a two-circular cylinder system, one in front of the other and with their axes parallel to each other. Then, they measured the amplitude/frequency responses of the system and observed the following, compared against a single cylinder system with passive turbulence control (PTC). The amplitude response of the upstream cylinder seems to improve in this serial arrangement of cylinders, and they experience only a small influence from centre-to-centre distance variation. On the other hand, the downstream cylinder experiences a reduction in the amplitude response compared to a single cylinder system and is more sensitive to the centre-to-centre distance between the two cylinders. The reduced amplitude response of the downstream cylinder is the result of the acquisition of downstream cylinder vorticity by the upstream cylinder in proximity. Proximity between the two cylinders determine how much downstream cylinder vorticity is carried away by the upstream vortex, and this reduces the net lift acting on the downstream cylinder. The reduction of lift finally results in the reduction of downstream vibration amplitude.
+Bearing this in mind, \citet{Ding2017} investigated the system response of a two-circular cylinder system, one in front of the other and with their axes parallel to each other. This system is illustrated in Fig. \ref{fig:twoCylinderSystem}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.65\textwidth]{figs/twoCylinderOscillator}
+  \caption{The two-circular cylinder system of \citet{Ding2017}.}
+  \label{fig:twoCylinderSystem}
+\end{figure}
+
+\noindent Then, they measured the amplitude/frequency responses of the system and observed the following, compared against a single cylinder system with passive turbulence control (PTC). The amplitude response of the upstream cylinder seems to improve in this serial arrangement of cylinders, and they experience only a small influence from centre-to-centre distance variation. On the other hand, the downstream cylinder experiences a reduction in the amplitude response compared to a single cylinder system and is more sensitive to the centre-to-centre distance between the two cylinders. The reduced amplitude response of the downstream cylinder is the result of the acquisition of downstream cylinder vorticity by the upstream cylinder in proximity. Proximity between the two cylinders determine how much downstream cylinder vorticity is carried away by the upstream vortex, and this reduces the net lift acting on the downstream cylinder. The reduction of lift finally results in the reduction of downstream vibration amplitude.
 
 There is however, a countermeasure to improve the amplitude response of the downstream cylinder. The improvement is achieved by imposing a smaller damping on the downstream cylinder \citep{Xu2017}. When \citet{Xu2017} reduced damping for the downstream cylinder, the amplitude response of the downstream cylinder becomes more similar to the amplitude response of the upsteram cylinder. Nevertheless, because harnessed power is proportional to damping - specifically damping in the mechanical to electrical power converter - a reduced total damping just to achieve a higher amplitude vibration is simply contrary to the engineer's main objective of energy harvesting \citet{Bernitsas2009}.
 
@@ -653,9 +738,16 @@ Spacing between the two cylinders play an important role in obtaining maximum vi
 The use of Hilbert transform enabled \citet{Yuan2020} to compute instantaneous frequency and phase lag between the upstream and downstream cylinders and identified the five major response regimes of the system. Although \citet{Yuan2020} have essentially demonstrated the utility of Hilbert transform in analysing complex and interdependent systems of vibration, the signals they analysed are for the most part monocomponent signals with more or less a symmtetrical signal envelope. For signals that lack these features, the pre-processing step of empirical mode decomposition (EMD) or ensemble empirircal mode decomposition (EEMD) is necessary to produce meaningful physical results \citep{Chen2019}.
 
 \subsection{Cruciform Oscillator Unit}
-Streamwise vortex-induced vibration (SVIV) is a type of vortex-induced vibration (VIV) driven by vortical structures whose vorticity vector points in the direction of the free stream. In its early days, the cruciform oscillator is nothing but two circular cylinders perpendicular to each other, overlapping at their midpoints \citep{Zdravkovich1985}.
+Streamwise vortex-induced vibration (SVIV) is a type of vortex-induced vibration (VIV) driven by vortical structures whose vorticity vector points in the direction of the free stream. In its early days, the cruciform oscillator is nothing but two circular cylinders perpendicular to each other, overlapping at their midpoints \citep{Zdravkovich1985}. A cruciform oscillator unit, as shown in Fig. \ref{fig:twoCrossingCylinders}, derives its vibration from the streamwise vortex pairs discussed in Section \ref{ssec:svShedding}.
 
-A cruciform oscillator unit derives its vibration from the streamwise vortex pairs discussed in \S\ref{ssec:svShedding}. Investigators observed the upstream cylinder acquiring significant vibrations in the order of $O(10^{-1}D)$, as the reduced velocity of the flow $\ured$ exceeds 14.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[angle=90,width=0.7\textwidth]{figs/twoCrossingCylinders}
+  \caption{The two-circular cylinder cruciform of \citet{Zhao2018a}.}
+  \label{fig:twoCrossingCylinders}
+\end{figure}
+
+\noindent When the upstream cylinder as shown in Fig. \ref{fig:twoCrossingCylinders} is no longer fixed and is supported elastically through some form of spring, the shedding of streamwise vortices causes SVIV to occur. Investigators observed the upstream cylinder acquiring significant vibrations in the order of $O(10^{-1}D)$, as the reduced velocity of the flow $\ured$ exceeds 14. Notice that there is a gap between the upstream and downstream cylinders.
 
 Interestingly, however, the latest published research on a zero-gap circular cylinder cruciform system between $300 \le \re \le 1800$ revealed that no streamwise vortex cell are formed and shed from the structure \citep{Tang2021}. This work by \citet{Tang2021} was a numerical one, employing large eddy simulation (LES) with the dynamic $k$-equation subgrid-scale (DKSGS) model. Even the time history of the drag and lift coefficients did not show significant levels of periodicity, similar to those found in \citet{Deng2007}, although they both simulate flow in the same Reynolds number magnitude of $O(10^{2})$. In fact, \citet{Deng2007} simulated the flow around a circular cylinder cruciform at a much lower $\re$ and still were able to observe the formation of the streamwise vortex cells and their footprint, manifesting themselves as the periodic oscillation of the drag and lift coefficients. What can be deduced from this is the gap between two cylinders forming a cruciform is essential for the formation of streamwise vortices and ultimately the vibration induced by it.
 
@@ -668,7 +760,7 @@ However, at $G = g/D = 0.16$, researchers have found that the circular cylinder-
 \begin{figure}[!h]
   \centering
   \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/oscillatorSchematic}
-  \caption{Schematic of the base configuration of the oscillator system used in this study, i.e. the pure cruciform. In this configuration, the axis of the cylinder and the strip plate are perpendicular to each other.}
+  \caption{Schematic of the base configuration of the oscillator system used in this study, i.e. the pure cruciform.}
   \label{fig:oscillatorSchematic}
 \end{figure}
 
@@ -690,14 +782,22 @@ Recent advances in energy harvesting from a single cylinder system builds upon t
 
 Here, TrSL1, TrSL2 or TrSL3 refers to the classification system in \citet{Zdravkovich1997} to characterise the flow around a smooth circular cylinder. The classification system uses abbreviations of the flow description as labels for different flow behaviours. For example, the flow around the circular cylinder undergoes a number of transitions in the shear layer between $350 - 500 \leq \re \leq 1 \times 10^{5} - 2 \times 10^{5}$. The \underline{\textbf{first}} \underline{\textbf{tr}}ansition in the \underline{\textbf{s}}hear \underline{\textbf{l}}ayer, occurring between $350 - 500 \leq \re \leq 1 \times 10^{3} \times 2 \times 10^{3}$, is the development of transition waves. \citet{Zdravkovich1997} labeled this regime as TrSL1, formed by joining the abbreviations of ``transition'', ``shear'', ``layer'', and the numerical equivalent of ``first'', which is the number one (1). Similarly, the second transition in the shear layer occurring between $1 \times 10^{3} - 2 \times 10^{3} \leq \re \leq 2 \times 10^{4} - 4 \times 10^{4}$, which is the formation of free vortices, is labeled as TrSL2. The shear layer becomes fully turbulent between $2 \times 10^{4} - 4 \times 10^{4} \leq \re \leq 1 \times 10^{5} - 2 \times 10^{5}$. This regime is thus labeled TrSL3. 
 
-Now with the single cylinder system firmly planted in the TrSL3 regime, researchers worked to push the single cylinder harvesting system even further by tweaking its mechanical parameters. For example, \citet{Sun2018} and \citet{Ma2018} used as the restorative force, i.e. springs, of the nonlinear variant. So instead of modelling the spring linearly as
+Now with the single cylinder system firmly planted in the TrSL3 regime, researchers worked to push the single cylinder harvesting system even further by tweaking its mechanical parameters. For example, \citet{Sun2018} and \citet{Ma2018} used as the restorative force, i.e. springs, of the nonlinear variant. This is achieved by connecting the vibrating cylinder not to a physical spring and damper, but instead to a computer-controlled motor, for example as shown in Fig. \ref{fig:vckSystemModel}. This motor can be programmed to act like a spring and damper, each with its own coefficients $k$ and $c$. So instead of modelling the spring linearly as
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/vckSystemModel}
+  \caption{A three-dimensional drawing of the system to control the mechanical parameters of the system. Adapted from \citet{Ma2018}.}
+  \label{fig:vckSystemModel}
+\end{figure}
+
 
 \begin{equation}
   F(t) = k x(t),
   \label{eq:linearSpring}
 \end{equation}
 
-\noindent where $F(t)$ is the restorative force, $k$ the spring coefficient and $x(t)$ the displacement of the object fixed to the end of the spring, they experimented with $F(t)$ that is given as a cubic function and an $F(t)$ that is given as a piecewise linear function. The cubic spring
+\noindent where $F(t)$ is the restorative force, $k$ the spring coefficient and $x(t)$ the displacement of the object fixed to the end of the spring, they experimented with $F(t)$ that is given as a cubic function and an $F(t)$ that is given as a piecewise linear function. The cubic spring of Eq. \ref{eq:cubicSpring}
 
 \begin{equation}
   F(t) = k y(t) + k y(t)^{3},
@@ -720,16 +820,25 @@ Differently, a piecewise linear spring such as in Eq. \ref{eq:piecewiseLinearSpr
 
 Apart from this, the piecewise linear spring is able to harness energy even when $\re < 25000$, which is lower than the usual linear spring system of Eq. \ref{eq:linearSpring} \citep{Sun2016}. In terms of damping, although it is proportional to the net harnessed power \citep{Ma2018}, there is a trade-off with the size of the stall zone during transition from VIV to galloping. The width of the stall zone increases with increasing system damping, and this reduces the system's range of operability. Furthermore, in a single cylinder system with a linear spring, simply increasing the damping reduces the maximum vibration amplitude.
 
-Interestingly, this suppression effect on vibration amplitude due to increased damping can be kept in check when one uses the in-tandem arrangement of cylinders. The in-tandem system is similar to that discussed in \S\ref{ssec:singleCylinderOscillator}, and \citet{Sun2019b} observed that the amplitude reduction is not as severe in the in-tandem system compared to the single cylinder unit. This highlights the potential of exploiting the synergy between the two cylinders to counter vibration amplitude reduction that is otherwise striking, provided that the two cylinders are optimally spaced. The results also brought attention to the concept of synergy between single cylinder oscillators in order to harness more energy from the flow.
+Interestingly, this suppression effect on vibration amplitude due to increased damping can be kept in check when one uses the in-tandem arrangement of cylinders. The in-tandem system is similar to that discussed in Section \ref{ssec:singleCylinderOscillator}, and \citet{Sun2019b} observed that the amplitude reduction is not as severe in the in-tandem system compared to the single cylinder unit. This highlights the potential of exploiting the synergy between the two cylinders to counter vibration amplitude reduction that is otherwise striking, provided that the two cylinders are optimally spaced. The results also brought attention to the concept of synergy between single cylinder oscillators in order to harness more energy from the flow.
 
 \citet{Kim2016} took the idea of synergy and investigated a four-cylinder system for energy harvesting. Overall, what they found out was the net energy harvested by the four-cylinder system can exceed the total energy harvested by four isolated cylinder, provided that the four-cylinder system adhere to the optimised system parameters of centre-to-centre cylinder spacing, mass ratio, spring stiffness and damping. They also postulated an energy harvesting unit that consists of stacked arrays of single cylinder oscillators, thus maximising the footprint of the unit and increase power-to-volume density of the system. In summary, \citet{Kim2016} highlighted the need for the research community to widen their perspective and pay greater attention to multi-component energy harvesting systems as there is a high chance that one can discover practical arrangement of the components that increases the net harnessed energy. The next subsection explores one such system: the pure cruciform energy harvester.
 
 \subsection{Pure Cruciform System} \label{ssec:pureCruciformHarvester}
-A pure cruciform \citep{Zou2021} system  is an example of a multicomponent energy harvester where the presence of the downstream plate perpendicular to the upstream cylinder alters the flow such that the vibration response of the upstream cylinder becomes different from the single cylinder oscillator. In such an energy harvesting system, there exists two vortical structures regulating the flow around the cruciform: the Karman and streamwise vortices. However, as the present study discussed in \S\ref{ssec:svShedding}, only the shedding of streamwise vortex is able to synchronise with the alternating lift and cylinder displacement, thus producing a cylinder response fit for energy harvesting.
+A pure cruciform \citep{Zou2021} system  is an example of a multicomponent energy harvester where the presence of the downstream plate perpendicular to the upstream cylinder alters the flow such that the vibration response of the upstream cylinder becomes different from the single cylinder oscillator. In such an energy harvesting system, there exists two vortical structures regulating the flow around the cruciform: the Karman and streamwise vortices. However, as the present study discussed in Section \ref{ssec:svShedding}, only the shedding of streamwise vortex is able to synchronise with the alternating lift and cylinder displacement, thus producing a cylinder response fit for energy harvesting.
 
 An example the cruciform system is given in Fig. \ref{fig:oscillatorSchematic}. In broad terms, the literature on SVIV-based energy harvesting from pure cruciform oscillators are either one of these two categories: studies that investigate how the mass ratio, spring stiffness and damping affect the system response, and studies that put into the spotlight the details of flow that regulates the lift acting on the elastically supported cylinder, hence its amplitude/frequency response, which directly influences the system's energy harvesting capabilities.
 
-For example, \citet{Koide2009} investigated such an energy harvesting system by varying a number of parameters defining the vibration-to-electrical energy converter. Damping, similar to single cylinder systems in \S\ref{ssec:singleCylinderHarvester}, decreases the magnitude of amplitude attained by the cylinder during vibration. They pointed out the possibility of reduced harnessed power due to this reduction in vibration amplitude. \citet{Koide2009} also measured the power and current generated by their pure cruciform system. From these measurements, they computed the phase angle between power and current to estimate the power factor of the system. The evolution of the power factor, however, seems to indicate that there is a lot of room for improvement for their vibration-to-electrical energy converter as the power factor varies significantly from reduced velocity to reduced velocity without any prominent trend.
+For example, \citet{Koide2009} investigated such an energy harvesting system by varying a number of parameters defining the vibration-to-electrical energy converter. The energy converter schematic is given in Fig. \ref{fig:coilGenerator}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/coilGenerator}
+  \caption{The vibration-to-electrical energy converter of \citet{Koide2009}.}
+  \label{fig:coilGenerator}
+\end{figure}
+
+\noindent Damping, similar to single cylinder systems in Section \ref{ssec:singleCylinderHarvester}, decreases the magnitude of amplitude attained by the cylinder during vibration. Hence, \citet{Koide2009} pointed out the possibility of reduced harnessed power due to this reduction in vibration amplitude. \citet{Koide2009} also measured the power and current generated by their pure cruciform system. From these measurements, they computed the phase angle between power and current to estimate the power factor of the system. The evolution of the power factor, however, seems to indicate that there is a lot of room for improvement for their vibration-to-electrical energy converter as the power factor varies significantly from reduced velocity to reduced velocity without any prominent trend.
 
 In \citet{Nguyen2012}, the authors attempted to unravel the effect of mass ratio and damping on a pure cruciform oscillator. However, since they are unable to independently vary either of the two parameters, the conclusions one can draw from their study is fairly limited. Taking this handicap into account, they proposed a crude model of the system response with respect to $\ured$ by assuming a strong linearity underpinning the cylinder vibration. According to this model, the synchronisation range of an oscillator is larger when the total damping is higher. This seems to contradict the experimental observations of \citet{Sun2016}, whose data indicates that an increased total damping diminishes the range of $\ured$ capable of sustaining VIV and delayes the onset of galloping. Futhermore, only the experimental data from the single cylinder oscillator of \citet{Nguyen2012} showed some semblance of agreement with the model, but even this agreement is objectively poor as it incapable in capturing the actual trend and magnitude of the experimentally measured amplitude responses. The study did, however, confirm that resonance in VIVs are highly nonliner, while also suggesting the nonlinearity of SVIV to be qualitatively higher than KVIV. 
 
@@ -739,7 +848,16 @@ In the second focus area, investigators turned their attention to the details of
 
 Although visually enlightening, this and other more qualitative studies contribute little towards improving the understanding of the relationship between vortex shedding and the resulting lift. \citet{Deng2007} demonstrated a way to overcome such a shortcoming. In their study at Reynolds number 150, they changed the natural frequency of the system at certain points in their transient simulation and observed how the cylinder amplitude and the force coefficients evolve with respect to the changes. In doing so, the authors found that a higher lift amplitude does not simply translate into a higher amplitude in cylinder displacement. Other factors such as the phase lag between the lift and cylinder displacement plays a significant role in predicting the outcome amplitude of the cylinder. They also verified the previous findings of \citet{Shirakashi1989}, \citet{Koide2009} and \citet{Koide2017}, that points to the coexistence of both Karman and streamwise vortex shedding in a cruciform system. The fact that only one of the two vortex shedding mechanisms actually govern the cylinder's vibration is viewed by this present work as hinting towards an untapped potential in improving the output and efficiency of the cruciform energy harvester.
 
-Despite this, there is a marked lack in efforts to propose and evaluate new types of cruciform oscillators, particularly on the hidden potential of the strip plate as an effective vortical structure regulator. There are, however, some recent studies on the generalisation of the strip plate in the effort to produce steady lift over the surface on the cylinder. For example, the study by \citet{Hemsuwan2018a}, \citet{Hemsuwan2018c}, \citet{Hemsuwan2018d} and \citet{Hemsuwan2018b}. In these studies, there are not one, but two circular cylinders placed at the ends of a small rod. The two cylinders placed just upstream the ring plate, with the centre of the small rod coinciding with the centre of the ring plate. The result of the steady lift acting on the cylinders is the rotation of the rod with the two cylinders at its ends and the centre of the ring plate as its centre of rotation - creating essentially a turbine for fluid energy harvesting.
+Despite this, there is a marked lack in efforts to propose and evaluate new types of cruciform oscillators, particularly on the hidden potential of the strip plate as an effective vortical structure regulator. There are, however, some recent studies on the generalisation of the strip plate in the effort to produce steady lift over the surface on the cylinder. For example, the study by \citet{Hemsuwan2018a}, \citet{Hemsuwan2018c}, \citet{Hemsuwan2018d} and \citet{Hemsuwan2018b}. In these studies, there are not one, but two circular cylinders placed at the ends of a small rod, as shown in Fig. \ref{fig:hemsuwanTurbine}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.8\textwidth]{figs/hemsuwanTurbine}
+  \caption{Steady lift production from streamwise vortex. Adapted from \citet{Hemsuwan2021}.}
+  \label{fig:hemsuwanTurbine}
+\end{figure}
+
+The two cylinders placed just upstream the ring plate, with the centre of the small rod coinciding with the centre of the ring plate. The result of the steady lift acting on the cylinders is the rotation of the rod with the two cylinders at its ends and the centre of the ring plate as its centre of rotation - creating essentially a turbine for fluid energy harvesting.
 
 A lot of studies on this new type of energy harvester focuses on exploring the parameter space of variables that are hypothesised as having some significant degree of influence on the resulting torque or power. For example the study of \citet{Hemsuwan2021} explored the parameters ring plate width and exposed blade length, while \citet{Sakamoto2021} the gap between the circular cylinder blade and ring plate, and flange separation length. All these variables investigated exhibits optimum points that are typical in the study of turbine performance. Although this is a novel variation on the cruciform-type harvesters and seems very promising, the power output and efficiency is still far behind conventional wind turbines by several orders of magnitude.
 
@@ -755,7 +873,7 @@ This chapter reviewed studies that contribute towards the advancement of vibrati
     \label{fig:pyramidOfKnowledge}
 \end{figure}
 
-The main takeaways from each literature reviewed in this chapter is summarised in Table \ref{tab:litRevSummary}. The state-of-the-art of Karman vortex shedding studies inform this thesis of the controllability of the vortex shedding through the modulation of the shear layer around the circular cylinder. Then, this work is informed that the three-dimensionality of Karman vortex brings about the formation of streamwise vortices of a scale smaller than the diameter of the circular cylinder, and whose dynamics are heavily influenced by the shedding of Karman vortices.
+The main takeaways from each literature reviewed in this chapter is summarised in Table \ref{tab:litRevSummary}. The state-of-the-art of Karman vortex shedding studies inform this thesis of the controllability of the vortex shedding through the modulation of the shear layer around the circular cylinder. Then, this work is informed that the three-dimensionality of Karman vortex brings about the formation of streamwise vortices of a scale smaller than the diameter of the circular cylinder, and whose dynamics are heavily influenced by the shedding of Karman vortices. Reviewing these literature updated our understanding on why and when streamwise vortices form in the first place. An improved understanding of this enables the proposal of new ideas on how to trigger the onset of SVIV at a lower Re or $\ured$. It can also help this thesis identify the causes of difference in amplitude and frequency response when KVIV changes to SVIV, which is objective one.
 
 \begin{landscape}
   \thispagestyle{mylandscape}
@@ -795,11 +913,13 @@ The main takeaways from each literature reviewed in this chapter is summarised i
   \end{table}
 \end{landscape}
 
-\noindent However, the inclusion of a downstream cylinder such as another circular cylinder or a strip plate induces the shedding of streamwise vortices of a scale similar to the diameter of the upstream cylinder. These large-scale streamwise vortices are less under the influence of the Karman vortices compared to the small-scale streamwise vortices discussed previously. This highlights the need to understand what actually takes place in the flow field as the large-scale streamwise vortices form, which is what the first objective of this thesis tries to achieve, particularly why they modulate the lift signals as observed in the literature.
+\noindent Then, the inclusion of a downstream cylinder such as another circular cylinder or a strip plate induces the shedding of streamwise vortices of a scale similar to the diameter of the upstream cylinder. These large-scale streamwise vortices are less under the influence of the Karman vortices compared to the small-scale streamwise vortices discussed previously. This highlights the need to understand what actually takes place in the flow field as the large-scale streamwise vortices form, which is what the first objective of this thesis tries to achieve, particularly why they modulate the lift signals as observed in the literature.
 
-Table \ref{tab:litRevSummary} also highlights how the amplitude/frequency response of an oscillating system is influenced by varying mechanical parameters of the system and also geometry of the oscillator. This is especially pertinent in cruciform oscillators as the spacing between the upstream cylinder and downstream strip plate dictates the size of the synchronisation regime, which can be up to 15 times larger than the synchronisation regime of an elastically supported smooth circular cylinder. The fact that not much is known about why the geometrical configuration of the cruciform influences the system response of the oscillator is the motivation behind objective two of this thesis, where the present work tries to describe the lift signal as comprised from a finite number of constituents.
+This chapter also highlights how the amplitude/frequency response of an oscillating system is influenced by varying mechanical parameters of the system and also geometry of the oscillator. This is especially pertinent in cruciform oscillators as the spacing between the upstream cylinder and downstream strip plate dictates the size of the synchronisation regime, which can be up to 15 times larger than the synchronisation regime of an elastically supported smooth circular cylinder. The fact that not much is known about why the geometrical configuration of the cruciform influences the system response of the oscillator is the motivation behind objective two of this thesis, where the present work tries to describe the lift signal as comprised from a finite number of constituents.
 
-Finally, Table \ref{tab:litRevSummary} summarises the studies that sits at the very top of the knowledge pyramid of Fig. \ref{fig:pyramidOfKnowledge}, namely how the future of alternating lift energy harvesting lies in teasing out favourable flow structures from a system that is made of more than one cylinder. In particular, the VIV-based cruciform system whose studies up until the present is heavily reliant on probes and simple dye visualisations can benefit from advances in CFD and a relatively improved access to computing facilities, to investigate and evaluate novel geometrical configurations of the cruciform oscillator for energy harvesting. These studies serve as the starting point in fulfilling objective three of this thesis. The next chapter discussses the methods employed to achieve all three objectives.
+Finally, this chapter revealed how the future of alternating lift energy harvesting lies in teasing out favourable flow structures from a system that is made of more than one cylinder. In particular, the VIV-based cruciform system whose studies up until the present is heavily reliant on probes and simple dye visualisations. This can benefit from advances in CFD and a relatively improved access to computing facilities, to investigate and evaluate novel geometrical configurations of the cruciform oscillator for energy harvesting. Following this literature review, it is found that there has been no effort from the research community to investigate cruciform energy harvesters except when the cruciform is right-angled. In fulfilling objective three of this thesis, a new parameter will be studied in this thesis, which is the cruciform angle. Then, the performance of this type of cruciform energy harvester will be evaluated to fulfil objective three.
+
+The next chapter discussses the methods employed to achieve all three objectives.
 
 \chapter{Methodology} \label{chap:method}
 This chapter details the methodology employed to fulfill the objectives outlined in Chapter \ref{chap:introduction}. The methodologies can be loosely grouped into three categories, the first being the method used to set up the numerical model and their solution algorithm, second being the method used to set up and run experimental validations of a representative case from this work's numerical investigation, and third, the introduction to a time series analysis method called the Hilbert-Huang transform (HHT) which is deployed to decompose both lift and cylinder displacement signals into physically meaningful components and compute the instantaneous phase angle and frequency.

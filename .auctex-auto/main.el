@@ -3,10 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -125,17 +125,33 @@
     "eq:clDef"
     "eq:cdDef"
     "ssec:svShedding"
+    "fig:modeAStretching"
+    "fig:modeA3D"
+    "fig:modeB3D"
     "eq:stDef"
     "eq:karmanStrouhalNumber"
+    "fig:conicalShroud"
+    "fig:omegaVortexB"
+    "fig:omegaVortexC"
+    "fig:omegaVortexA"
+    "fig:omegaVortices"
+    "fig:streamTrail"
+    "fig:streamNecklace"
+    "fig:streamwiseFigure"
     "sec:cylinderVIV"
     "ssec:singleCylinderOscillator"
+    "fig:twoCylinderSystem"
+    "fig:twoCrossingCylinders"
     "fig:oscillatorSchematic"
     "sec:energyHarvesting"
     "ssec:singleCylinderHarvester"
+    "fig:vckSystemModel"
     "eq:linearSpring"
     "eq:cubicSpring"
     "eq:piecewiseLinearSpring"
     "ssec:pureCruciformHarvester"
+    "fig:coilGenerator"
+    "fig:hemsuwanTurbine"
     "fig:pyramidOfKnowledge"
     "tab:litRevSummary"
     "chap:method"
