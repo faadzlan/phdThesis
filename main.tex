@@ -505,6 +505,7 @@ The formation of Karman vortex is the direct result of flow separation over a bo
 
 As the Reynolds number increases, the higher inertial forces in the flow overpower the viscous forces that kept the streamline along the surface of the body, causing it to separate. This separation creates a bubble downstream the body. With further increase in Reynolds number, the bubble destabilises, leading to the formation of vortices that are shed alternately from the top and bottom surfaces of the body. This evolution of vortex shedding behaviour with respect to Re is summarised in Fig. \ref{fig:karmanVortexEvolution}. For creeping flows with $\re < 5$, the flow streamline follows the curvature of the circular cylinder submerged in the flow. Then, between $5 \leq \re < 40$, a small recirculation bubble forms at the downstream side of the circular cylinder. Further increasing the value of $\re$ destabilises the bubble, leading to the the shedding of Karman vortices. Karman vortex shedding becomes turbulent between $150 \leq \re < 30 \times 10^{5}$.
 
+%%Chapter 2-7IE<<
 \begin{figure}[!h]
   % \centering
   \hspace{1.3cm}
@@ -533,6 +534,7 @@ As the Reynolds number increases, the higher inertial forces in the flow overpow
   \end{subfigure}
   \caption{Evolution of Karman vortex shedding from a two-dimensional circular cylinder at increasing Reynolds number.} \label{fig:karmanVortexEvolution}
 \end{figure}
+%%Chapter 2-7IE>>
 
 In the study of Karman vortex shedding, seldom is the case where one does not find reference being made to a chart on lift and drag coefficients for a stationary circular cylinder between $10^{0} < \text{Re} < 10^{8}$ in \citet{Zdravkovich1997}. The lift coefficient $\cl$ acting on the body is defined as
 
@@ -550,22 +552,30 @@ In the study of Karman vortex shedding, seldom is the case where one does not fi
 
 \noindent where $\fd$ is the total drag force acting on the body instead. By convention, the direction of the lift and drag are defined relative to the mean direction of the flow, i.e., the freestream. The lift force is normal to the freestream, while the drag force, parallel to the freestream.
 
-The observation by \citet{Zdravkovich1997} that both lift and drag coefficients ($\cl$ and $\cd$) have their high and low regions within $10^{0} < \text{Re} < 10^{8}$ is of extreme utility to engineers.
+The observation by \citet{Zdravkovich1997} that both lift and drag coefficients ($\cl$ and $\cd$) have their high and low regions within $10^{0} < \text{Re} < 10^{8}$ is of extreme utility to engineers. From the preservation of risers to the improvement of power output for VIV-based energy harvesters, the chart in \citet{Zdravkovich1997} gives a rough outline to the range of Reynolds number suitable for a particular engineering operation. This chart is presented in Fig. \ref{fig:zdravkovichMap}, with the highlighted region showing the Re range studied in this thesis. That being said, the chart remains silent on why $\cl$ and $\cd$ evolve the way they do with respect to Re, leaving the gap to be filled by later researchers.
 
-From the preservation of risers to the improvement of power output for VIV-based energy harvesters, the chart in \citet{Zdravkovich1997} gives a rough outline to the range of Reynolds number suitable for a particular engineering operation. That being said, the chart remains silent on why $\cl$ and $\cd$ evolve the way they do with respect to Re, leaving the gap to be filled by later researchers.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.9\textwidth]{figs/zdravkovichMap}
+  \caption{Force coefficients versus Re summarised by \citet{Zdravkovich1997}.}
+  \label{fig:zdravkovichMap}
+\end{figure}
+
 
 For example, \citet{Desai2020} tackled the question why is there a reduction in $\cl$ and $\cd$ as the cylinder goes through the upper boundary of subcritical flow ($1.49 \times 10^{5} < \text{Re} < 3.55 \times 10^{5}$). Their study is experimental, using tools such as particle image velocimetry (PIV) for a quantitative visualisation of the two-dimensional (2D) flow field, and proper orthogonal decomposition (POD) for identification of dominant flow structures. In doing so, they have identified two modes of shedding - the antisymmetric and symmetric modes - which takes place one after another, albeit in no well-defined cycle. The antisymmetric mode corresponds to the ``normal'' shedding of Karman vortices while the symmetric mode a weaker form of shedding with a higher energy level in its low-frequency components. The symmetric mode gains strength with increasing Re, which entails a weaker form of shedding taking over the flow. This ultimately reduces the magnitude of $\cl$ and $\cd$ of the cylinder. Depending on which side of the divide one is, an engineer may opt to amplify the symmetric mode to protect the integrity of a structure, or augment the antisymmetric mode to improve the conversion efficiency of energy from the freestream into cylinder vibration. In other words, a deeper understanding into the mechanics of Karman vortex shedding invariably leads to better strategies in cylinder motion control.
 
 Expanding on the topic of flow control, \citet{Durhasan2019} conducted an experimental study of the shedding process under the following setup: the circular cylinder is placed in a larger hollow cylinder with varying pore spacing - quantified by their porosity - $\beta$ - and submerged in a water flow at Reynolds number $\text{Re} = 5000$. What they found out is the stunting of the wake from the inner cylinder when $\beta \leq 0.5$, while for porosities $\beta \geq 0.6$, a reduction of 21\% to 87\% in drag is observed. It is worth noting that both lift and drag forces are equally able to initiate the vibration of the cylinder.
 
 Another exploitation of porous material in the control of Karman vortex shedding is in the work of \citet{Geyer2020}. In \citet{Geyer2020}, they work to test a method of noise reduction by wrapping certain parts of the cylinder surface with a porous material. This is because, at velocities in the order of $O(10^{1})$ m/s, Karman vortex shedding also exacerbates the level of noise generated by the cyinder. They discovered that the higher the air resistance of the material, and the higher the porosity, the bigger the improvement will be in terms of noise reduction. In addition, the porous wrapping reduces turbulence intensity in the wake near-field, hence making it more uniform.
-%%Chapter 2-1IE<<
+%%Chapter 2-4IE<<
 This goes to show that the vibration that results from Karman vortex shedding can manifest itself at different scales. First, on the high-amplitude, low-frequency scale, where it is observed as the motion of the cylinder. The second in on the low-amplitude, high-frequency scale, where it is observed as noise generation. It should be stressed, however, that both are simply the different scales of vibration that results from the shedding of Karman vortex.
-%%Chapter 2-1IE>>
+%%Chapter 2-4IE>>
 
 In studying a flow around a solid object, one quickly finds that experimental methods employed in the investigation is never absolutely independent of the phenomenon being studied. The use of probes, for example, means that the researcher is introducing additional elements into the flow that cannot be fully isolated from affecting the flow, however careful the design of the experiments are. To compensate this shortcoming, studies have employed numerical methods to model the flow under consideration, and track the evolution of quantities of interest in the flow to a degree of resolution limited only by the computational power available. Taking note of the expediency of porous media buffering the cylinder to temper flow behaviour, \citet{Ledda2018} made use of numerical methods to simulate Karman vortex shedding from a square cylinder to gain a deeper insight on how the flow interacts with the porous media to produce the flow responses discussed previously. In this study, the authors observed the efficacy of a porous cylinder surface in not only detaching the recirculation region in the near-wake, but in purging it altogether, at higher porosity values. If a technique can be found to vary the the porosity of the surface, perhaps through the use of smart materials \citep{Arsh2020}, an engineer can basically switch Karman vortex shedding on and off at will.
 
+%%Chapter 2-5IE<<
 Other than the usual methods of numerical investigation that work to solve the continuity and Navier-Stokes equations directly (DNS) \citep{AlvesPortela2020}, or those that employ some form of simplification \citep{Shao2016}, methods that model molecular dynamics (MD) have also found their way in the arsenal of tools available to researchers in the field of fluid-structure interaction. One such example is the study by \citet{Asano2020}. In it, the authors employed the Lennard-Jones potential to model represent the molecular dynamics of a flow around one or two circular cylinders. The Lennard-Jones potential models the fluid particle distribution, and all physical quantities are then expressed in terms of energy, length and time. What they discovered was, cavitation, although undesirable in normal operation of turbomachineries, can be a determining factor in the onset of Karman vortex shedding. As they decreased the fluid temperature, the cavitation bubbles interact with the shear layer of the cylinder in a manner that pushes the wake further downstream than usual. Eventually, wake where the vortex shedding resides is pushed far enough downstream that the alternating lift that normally acts on a cylinder during Karman vortex shedding vanishes.
+%%Chapter 2-5IE>>
 
 Another method for Karman vortex shedding control that imposes some form of modification to the shear layer of the cylinder is through the affixing of fairings on the surface of the cylinder. A recent example of this can be found in the work of \citet{Kang2020}. In \citet{Kang2020}, the fairings affixed to the cylinder surface caused a reduction in both lift and drag acting on the cylinder, although the strength of this effect varies with respect to the actual flow velocity being imposed on the cylinder.
 
@@ -575,6 +585,7 @@ To be clear, the splitter plate method is not particularly new in near-wake cont
 
 \subsection{Streamwise Vortex Shedding} \label{ssec:svShedding}
 
+%%Chapter 2-8IE<<
 In the real world, Karman vortex shedding is almost never a two-dimensional phenomenon. Once Re exceeds 150, Karman vortices can no longer be considered a purely two-dimensional vortical structure, with its vortex line parallel to the axis of the cylinder from which it is shed. The stretching of Karman vortex lines in the direction of flow breaks the two-dimensionality as there are now sections of the vortex line that points in the direction of the flow. The sections of the vortex line that now points in the direction of the flow - or stream - create structures that are called streamwise vortices. A schematic of this vortex line stretching is presented in Fig. \ref{fig:modeAStretching}.
 
 \begin{figure}[!h]
@@ -601,9 +612,13 @@ However, as Re is increased, another mode with a smaller wavelength appears, des
     \caption{Three-dimensional visualisation of mode B of Karman vortex shedding. Adapted from \citet{Thompson1994}.}
     \label{fig:modeB3D}
   \end{figure}
+%%Chapter 2-8IE>>
 
 % The Mathematica file used to compute the 20\% value below is in the file liftCoefficients67.50V2HHT.nb
+
+%%Chapter 2-6IE<<
 Noticeably, a lot of studies on streamwise vortex shedding discuss the process as a secondary process that is the offspring of the vortical structure that actually dominates the flow field - the spanwise Karman vortex. This trend in viewing streamwise vortex shedding as a secondary process is also found in \citet{Agbaglah2019}. In their numerical study of an isolated square and circular cylinder, they considered two Reynolds number, $\re = 205$ and $\re = 225$, and noted that the shedding frequencies of the two cylinders are quite similar. The Strouhal number St for the square cylinder is 0.152 and is 0.149 for the circular cylinder. Here, the Strouhal number St is defined as
+%%Chapter 2-6IE>>
 
 \begin{equation}
   \text{St} = \frac{f D}{U},
@@ -751,7 +766,7 @@ Streamwise vortex-induced vibration (SVIV) is a type of vortex-induced vibration
 
 Interestingly, however, the latest published research on a zero-gap circular cylinder cruciform system between $300 \le \re \le 1800$ revealed that no streamwise vortex cell are formed and shed from the structure \citep{Tang2021}. This work by \citet{Tang2021} was a numerical one, employing large eddy simulation (LES) with the dynamic $k$-equation subgrid-scale (DKSGS) model. Even the time history of the drag and lift coefficients did not show significant levels of periodicity, similar to those found in \citet{Deng2007}, although they both simulate flow in the same Reynolds number magnitude of $O(10^{2})$. In fact, \citet{Deng2007} simulated the flow around a circular cylinder cruciform at a much lower $\re$ and still were able to observe the formation of the streamwise vortex cells and their footprint, manifesting themselves as the periodic oscillation of the drag and lift coefficients. What can be deduced from this is the gap between two cylinders forming a cruciform is essential for the formation of streamwise vortices and ultimately the vibration induced by it.
 
-In their study of the two-circular cylinder cruciform, \citet{Shirakashi2001} observed the vibration of the upstream cylinder hitting the top boundary of the wind tunnel between $20.5 \leq \ured \leq 35.9$. The height of the wind tunnel in \citet{Shirakashi2001} is 320 mm and the diameter of both upstream and downstream cylinders are 26 mm. The fact that the reported vibration amplitude reaches the top extent of the wind tunnel means that it is able to achieve at least $(\SI{320}{\milli\metre}/2)/\SI{26}{\milli\metre} = 6D$ within $20.5 \leq \ured \leq 35.9$. This alone is far bigger than any of the amplitude attained by the single cylinder oscillator units reviewed in \S\ref{ssec:singleCylinderOscillator}. However, there seems to be a finite range within which the cruciform oscillator is able to sustain this high amplitude response, which is approximately 15 units of $\ured$. Past this, the amplitude of the cylinder drops to about $0.1D$ and stayed there up to the maximum $\ured$ tested. In contrast, single cylinder oscillators of \S\ref{ssec:singleCylinderOscillator} is able to sustain its vibration through galloping for seemingly an infinite range of $\ured$.
+In their study of the two-circular cylinder cruciform, \citet{Shirakashi2001} observed the vibration of the upstream cylinder hitting the top boundary of the wind tunnel between $20.5 \leq \ured \leq 35.9$. The height of the wind tunnel in \citet{Shirakashi2001} is 320 mm and the diameter of both upstream and downstream cylinders are 26 mm. The fact that the reported vibration amplitude reaches the top extent of the wind tunnel means that it is able to achieve at least $(\SI{320}{\milli\metre}/2)/\SI{26}{\milli\metre} = 6D$ within $20.5 \leq \ured \leq 35.9$. This alone is far bigger than any of the amplitude attained by the single cylinder oscillator units reviewed in Section \ref{ssec:singleCylinderOscillator}. However, there seems to be a finite range within which the cruciform oscillator is able to sustain this high amplitude response, which is approximately 15 units of $\ured$. Past this, the amplitude of the cylinder drops to about $0.1D$ and stayed there up to the maximum $\ured$ tested. In contrast, single cylinder oscillators of Section \ref{ssec:singleCylinderOscillator} is able to sustain its vibration through galloping for seemingly an infinite range of $\ured$.
 
 More recent iterations of the system such as in \citet{Koide2007} and \citet{Kato2007} employs a thin, rectangular plate of width $w = D$ in place of the fixed downstream cylinder, and showed that the region of high-amplitude vibrations of the system is enlarged from 15 units of $\ured$ for a two-circular cylinder cruciform to approximately 40 units of $\ured$ for the circular cylinder-strip plate oscillator studied in \citet{Koide2007}. Nevertheless, the shortcoming of this configuration is a lower amplitude of vibration, which attains only a maximum of close to $\yrms = 0.35$. The vibration amplitude in \citet{Koide2007} and \citet{Kato2007} is given as the \rms{} of nondimensionalised vibration amplitude $\yrms = y_{\text{RMS}}/D$. Here, $y$ denotes the coordinate pointing in the transverse direction of the flow, i.e. the direction of cylinder vibration. The effect of circular cylinder-strip plate gap $g/D$ on $\yrms$ was also examined, and the results were consistent with the trend of high lift generation discussed in \S\ref{ssec:svShedding}: $\yrms$ jumps to a high-amplitude regime as $g/D$ is decreased to $< 0.5$, especially when $g/D < 0.25$.
 
@@ -808,6 +823,7 @@ Now with the single cylinder system firmly planted in the TrSL3 regime, research
 
 Differently, a piecewise linear spring such as in Eq. \ref{eq:piecewiseLinearSpring}, in essence enables switching of system stiffness and natural frequency according to the cylinder displacement.
 
+%%Chapter 2-9IE<<
 \begin{equation}
   F(t)=\begin{cases}
     k_{1} y(t),                              & \text{if $|y(t)| \leq y_{0}$}\\
@@ -815,6 +831,7 @@ Differently, a piecewise linear spring such as in Eq. \ref{eq:piecewiseLinearSpr
   \end{cases}
   \label{eq:piecewiseLinearSpring}
 \end{equation}
+%%Chapter 2-9IE>>
 
 \noindent Through this modification, the system is able to automatically switch to a lower stiffness when the lift acting on the cylinder is small, and to a higher stiffness otherwise. A higher stiffness results in a higher system natural frequency. Consequently, when the system is in sync with the alternating lift and vortex shedding, thus producing a large vibration amplitude, the frequency of vibration also switches to a larger value. This switch to a larger value is valuable as the harnessed power from such a system is proportional to the square of its angular frequency \citep{Ma2018}.
 
@@ -873,6 +890,7 @@ This chapter reviewed studies that contribute towards the advancement of vibrati
     \label{fig:pyramidOfKnowledge}
 \end{figure}
 
+%%Chapter 2-9IE<<
 The main takeaways from each literature reviewed in this chapter is summarised in Table \ref{tab:litRevSummary}. The state-of-the-art of Karman vortex shedding studies inform this thesis of the controllability of the vortex shedding through the modulation of the shear layer around the circular cylinder. Then, this work is informed that the three-dimensionality of Karman vortex brings about the formation of streamwise vortices of a scale smaller than the diameter of the circular cylinder, and whose dynamics are heavily influenced by the shedding of Karman vortices. Reviewing these literature updated our understanding on why and when streamwise vortices form in the first place. An improved understanding of this enables the proposal of new ideas on how to trigger the onset of SVIV at a lower Re or $\ured$. It can also help this thesis identify the causes of difference in amplitude and frequency response when KVIV changes to SVIV, which is objective one.
 
 \begin{landscape}
@@ -918,6 +936,7 @@ The main takeaways from each literature reviewed in this chapter is summarised i
 This chapter also highlights how the amplitude/frequency response of an oscillating system is influenced by varying mechanical parameters of the system and also geometry of the oscillator. This is especially pertinent in cruciform oscillators as the spacing between the upstream cylinder and downstream strip plate dictates the size of the synchronisation regime, which can be up to 15 times larger than the synchronisation regime of an elastically supported smooth circular cylinder. The fact that not much is known about why the geometrical configuration of the cruciform influences the system response of the oscillator is the motivation behind objective two of this thesis, where the present work tries to describe the lift signal as comprised from a finite number of constituents.
 
 Finally, this chapter revealed how the future of alternating lift energy harvesting lies in teasing out favourable flow structures from a system that is made of more than one cylinder. In particular, the VIV-based cruciform system whose studies up until the present is heavily reliant on probes and simple dye visualisations. This can benefit from advances in CFD and a relatively improved access to computing facilities, to investigate and evaluate novel geometrical configurations of the cruciform oscillator for energy harvesting. Following this literature review, it is found that there has been no effort from the research community to investigate cruciform energy harvesters except when the cruciform is right-angled. In fulfilling objective three of this thesis, a new parameter will be studied in this thesis, which is the cruciform angle. Then, the performance of this type of cruciform energy harvester will be evaluated to fulfil objective three.
+%%Chapter 2-9IE>>
 
 The next chapter discussses the methods employed to achieve all three objectives.
 

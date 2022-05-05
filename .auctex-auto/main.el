@@ -124,6 +124,7 @@
     "fig:karmanVortexEvolution"
     "eq:clDef"
     "eq:cdDef"
+    "fig:zdravkovichMap"
     "ssec:svShedding"
     "fig:modeAStretching"
     "fig:modeA3D"
