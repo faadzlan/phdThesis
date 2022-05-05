@@ -3,10 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -117,6 +117,11 @@
     "chap:literatureReview"
     "ssec:kvShedding"
     "eq:reyNum"
+    "fig:kv05"
+    "fig:kv540"
+    "fig:kv40150"
+    "fig:kv15030k"
+    "fig:karmanVortexEvolution"
     "eq:clDef"
     "eq:cdDef"
     "ssec:svShedding"

@@ -503,7 +503,36 @@ The formation of Karman vortex is the direct result of flow separation over a bo
 
 \noindent where $U$, $D$, and $\nu$ are the characteristic velocity, characteristic length, and the kinematic viscosity of the fluid, respectively. For the case of the flow around a circular cylinder, $U$ denotes the flow velocity and $D$ the diameter of the circular cylinder.
 
-As the Reynolds number increases, the higher inertial forces in the flow overpower the viscous forces that kept the streamline along the surface of the body, causing it to separate. This separation creates a bubble downstream the body. With further increase in Reynolds number, the bubble destabilises, leading to the formation of vortices that are shed alternately from the top and bottom surfaces of the body.
+As the Reynolds number increases, the higher inertial forces in the flow overpower the viscous forces that kept the streamline along the surface of the body, causing it to separate. This separation creates a bubble downstream the body. With further increase in Reynolds number, the bubble destabilises, leading to the formation of vortices that are shed alternately from the top and bottom surfaces of the body. This evolution of vortex shedding behaviour with respect to Re is summarised in Fig. \ref{fig:karmanVortexEvolution}. For creeping flows with $\re < 5$, the flow streamline follows the curvature of the circular cylinder submerged in the flow. Then, between $5 \leq \re < 40$, a small recirculation bubble forms at the downstream side of the circular cylinder. Further increasing the value of $\re$ destabilises the bubble, leading to the the shedding of Karman vortices. Karman vortex shedding becomes turbulent between $150 \leq \re < 30 \times 10^{5}$.
+
+\begin{figure}[!h]
+  % \centering
+  \hspace{1.3cm}
+  \begin{subfigure}[h]{0.25\textwidth}
+    \includegraphics[width=\textwidth]{figs/karmanVortex0-5}
+    \caption{$\re < 5$}
+    \label{fig:kv05}
+  \end{subfigure}
+  \hspace{4cm}
+  \begin{subfigure}[h]{0.25\textwidth}
+    \includegraphics[width=\textwidth]{figs/karmanVortex5-40}
+    \caption{$5 \leq \re < 40$}
+    \label{fig:kv540}
+  \end{subfigure}
+
+  \begin{subfigure}[h]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figs/karmanVortex40-150}
+    \caption{$40 \leq \re < 150$}
+    \label{fig:kv40150}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}[h]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figs/karmanVortex150-30k}
+    \caption{$150 \leq \re < 30 \times 10^{5}$}
+    \label{fig:kv15030k}
+  \end{subfigure}
+  \caption{Evolution of Karman vortex shedding from a two-dimensional circular cylinder at increasing Reynolds number.} \label{fig:karmanVortexEvolution}
+\end{figure}
 
 In the study of Karman vortex shedding, seldom is the case where one does not find reference being made to a chart on lift and drag coefficients for a stationary circular cylinder between $10^{0} < \text{Re} < 10^{8}$ in \citet{Zdravkovich1997}. The lift coefficient $\cl$ acting on the body is defined as
 
