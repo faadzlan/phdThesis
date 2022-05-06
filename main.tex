@@ -879,6 +879,124 @@ A lot of studies on this new type of energy harvester focuses on exploring the p
 
 Apart from these studies, the present work is not aware other attempts to generalise the cruciform oscillator system and further unlock the vortical structure and cylinder vibration-regulating potential of the strip plate, which might hold the key to further improving its power output and efficiency.
 
+\section{Numerical Methods} \label{sec:numMeth}
+Consider the free-body diagram of \citet{Maruai2019}, shown in Fig. \ref{fig:freeBodyDiagram}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.6\textwidth]{figs/freeBodyDiagram}
+  \caption{The free-body diagram of the cruciform oscillator.}
+  \label{fig:freeBodyDiagram}
+\end{figure}
+
+The numerical study utilises OpenFOAM, an open-source computational fluid dynamics (CFD) platform written in C++. OpenFOAM solves the 3D unsteady Reynolds averaged Navier-Stokes (3D URANS) equations that are the following.
+
+\begin{equation}
+  \frac{\partial U_{i}}{\partial x_{i}}=0,
+  \label{eq:continuity}
+\end{equation}
+
+\begin{equation}
+  \frac{\partial U_{i}}{\partial t}+U_{j}\frac{\partial U_{i}}{\partial x_{j}} = -\frac{1}{p}\frac{P}{x_{i}}+\frac{\partial}{\partial x_{j}} \left( 2\nu S_{ij}-\overline{u'_{j}u'_{i}} \right).
+  \label{eq:navier-stokes}
+\end{equation}
+
+The symbols $U$, $x$, $t$, $\rho$, $P$, $\nu$, $S$, and $u'$ denote the mean component of velocity, spatial component, time, density, pressure, kinematic viscosity, mean strain rate and the fluctuating component of velocity, respectively. Equation \ref{eq:sij} gives the mean strain rate $S_{ij}$.
+
+\begin{equation}
+  S_{ij} = \frac{1}{2} \left( \frac{\partial U_{i}}{\partial x_{j}} + \frac{\partial U_{j}}{\partial x_{i}} \right).
+  \label{eq:sij}
+\end{equation}
+
+The turbulence model employed to approximate the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'_{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
+
+\begin{equation}
+  \tau_{ij} = 2 \nu_{T}S_{ij},
+  \label{eq:tauij}
+\end{equation}
+
+\noindent where $\nu_{T}$ represents the kinetic eddy viscosity. This kinetic eddy viscosity is ultimately expressed as a function whose arguments consist of the molecular viscosity $\nu$, and an intermediate variable $\tilde{\nu}$ that is the solution of Eq. \ref{eq:kineticEddyTransport}. Equation \ref{eq:kineticEddyTransport} incorporates empirically obtained constants to provide closure to the equations governing this numerical investigation. The empirical constants that make up Eq. \ref{eq:kineticEddyTransport} are listed in Table \ref{tab:spalart-Allmaras}.
+
+\begin{equation}
+  \label{eq:kineticEddyTransport}
+  \frac{\partial \tilde{\nu}}{\partial t} + U_{j} \frac{\partial \tilde{\nu}}{\partial x_{j}} = c_{b1}\tilde{S}\tilde{\nu} - c_{w1} f_{w} \left( \frac{\tilde{\nu}}{D} \right)^{2} + \frac{1}{\sigma} \left\{ \frac{\partial}{\partial x_{j}} \left[ \left( \nu + \tilde{\nu} \right) \frac{\partial \tilde{\nu}}{\partial x_{j}} \right] + c_{b2} \frac{\partial \tilde{\nu}}{\partial x_{i}} \frac{\partial \tilde{\nu}}{\partial x_{i}} \right\}
+\end{equation}
+
+\begin{table}[!ht]
+\centering
+\caption{Empirical constants used in the Spalart-Allmaras turbulence model.} \label{tab:spalart-Allmaras}
+\vspace{\baselineskip}
+\begin{tabular}{l c}
+  \hline
+  \hline
+
+  Empirical constants & Value    \\
+  \hline
+
+  $c_{b1}$            & $0.01$   \\
+  $c_{b2}$            & $0.09$   \\
+  $c_{\nu1}$          & $0.01$   \\
+  $\kappa$            & $0.1$    \\
+  $\sigma$            & $0.162$  \\
+  $c_{\omega3}$       & $0.178$  \\
+  \hline
+  \hline
+\end{tabular}
+\end{table}
+
+\noindent The interested reader is referred to the original paper by \citet{Spalart1992} and more recent applications of the turbulence model in \citet{Ding2019} and \citet{Sun2019b}. With the turbulence model properly defined, one is finally able to solve Eqs. \ref{eq:continuity} and \ref{eq:navier-stokes} using the SIMPLE-stabilised PISO algorithm native to OpenFOAM, known as the PIMPLE algorithm.
+
+Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the numerical study of this thesis. As this study seeks to understand the system response of a generalised form of cruciform oscillator, the angle between the cylinder and the strip plate is varied from the pure cruciform case (\SI{90}{\degree}) down to \SI{0}{\degree}, in \SI{22.5}{\degree} increments. To vary the angle of the cruciform, the cylinder is kept in its original location and maintains its orientation parallel to the $Z=0$ axis, while the strip plate is rotated in the counterclockwise direction when viewed from upstream. These cruciforms are studied within thirteen reduced velocities between $\uron \leq \ured \leq \urtt$, corresponding to $U = 0.1, 0.2, \cdots, 1.3$ m/s in freestream velocity.
+
+\begin{table}[!ht]
+\centering
+\caption{The list of conditions investigated in this study, i.e. the research matrix} \label{tab:researchMatrix}
+\vspace{\baselineskip}
+\begin{tabular}{p{5cm}>{\centering}p{3.5cm}>{\centering\arraybackslash}p{3cm}}
+  \hline
+  \hline
+
+  Cruciform angle & Reduced velocities & Number of cells \\
+  \hline
+
+  Pure cruciform (\SI{90}{\degree}) & $\uron \leq \ured \leq \urtt$ & 697608\\
+  Steep-angled cruciform A (\SI{67.5}{\degree}) & $\uron \leq \ured \leq \urtt$  & 704474\\
+  Steep-angled cruciform B (\SI{45}{\degree}) & $\uron \leq \ured \leq \urtt$  & 769084\\
+  Shallow-angled cruciform A (\SI{22.5}{\degree}) & $\uron \leq \ured \leq \urtt$  & 733800\\
+  Shallow-angled cruciform B (\SI{0}{\degree}) & $\uron \leq \ured \leq \urtt$  & 709984\\
+  \hline
+  \hline
+\end{tabular}
+\end{table}
+
+The number of cells used in the spatial discretisation of the computational domains are determined from the grid independency study on the pure cruciform whose results are detailed in Chapter \ref{chap:resultsDisc}. Difference in the geometry of the cruciform model implemented in each study case results in a slightly different number of cells for each cruciform. However, all of them are ensured to exceed the minimum of 697608 cells, where the numerical results only differ only slightly with the expected value in the limit where the cell size approaches zero, hence number of cells approaching infinity. The $y^{+}$ values for each simulation is capped at $y^{+}< 15$, following \citet{Wang2019}.
+
+An HP Z420 workstation was used to perform the computations, and the specifications of the workstation are listed in Table \ref{tab:workstationSpec}. Since parallelisation is built into OpenFOAM, computationally exhaustive simulations can benefit a lot from being run on such a workstation with minimal effort from the end user. One can just specify the number of subdomains desired in each of the $x$, $y$, and $z$-directions, and then allocate one for each processor available in the workstation.
+
+\begin{table}[!ht]
+\centering
+\caption{The specifications of the HP Z420 workstation} \label{tab:workstationSpec}
+\vspace{\baselineskip}
+\begin{tabular}{l l}
+  \hline
+  \hline
+
+  Feature               & Description                            \\
+  \hline
+
+  Memory                & 38 GB                                  \\
+  Processor             & Intel Xeon(R) CPU E5-16200 at 3.60 GHz \\
+  Number of processors  & 16                                     \\
+  Graphics              & Gallium 0.4 on NVE7                    \\
+  Disk                  & 980.2 GB                               \\
+  \hline
+  \hline
+\end{tabular}
+\end{table}
+
+However, due to the fact that the type of phenomena simulated in this study is three-dimensional, transient, turbulent and involves fluid-structure interactions, the simulations take a long time, even with the computational power listed in Table \ref{tab:workstationSpec}. To give the reader a perspective on this time length, consider the following example from one computational case. To simulate 20 s of flow time for the pure cruciform at $\ured = \urel$ ($U = 1.0$ m/s) using all 16 processors, the workstation took \SI{1688688}{\second} or approximately 19.5 days. This will only increase at higher freestream velocities as smaller time steps are required to maintain a Courant-Friedrichs-Lewy (CFL) number less than 1.
+
+
 \section{Chapter Summary}
 This chapter reviewed studies that contribute towards the advancement of vibration energy harvesting from alternating lift mechanisms, in particular the advancement of energy harvesting from cruciform systems. Figure \ref{fig:pyramidOfKnowledge} illustrates how the status quo of knowledge concerning energy harvesting from a cruciform is akin to the tip of the pyramid. Improving the performance of the cruciform energy harvester is heavily dependent on advances in other fields that are more fundamental, such as vortex-induced vibration and vortex shedding. Figure \ref{fig:pyramidOfKnowledge} also exemplifies the relative number of studies between the subjects, with the most number of studies over the years investigating the phenomenon of vortex shedding, especially Karman vortex shedding, followed by studies on the vibration responses of circular cylinder and cruciform oscillators, and finally, studies on energy harvesting using cruciform oscillators and the circular cylinder oscillator which they are based upon.
 
@@ -962,7 +1080,7 @@ The methodology flowchart is presented in Fig. \ref{fig:flowChartA} and Fig. \re
  Next, the analysis phase in Fig. \ref{fig:flowChartB}. Analysis starts with computing the system response of the lift and vibration signals. This phase also includes the investigation of the causes that result in the system responses observed, to achieve objective one. After that comes the time series analysis phase of the lift signal. Here, the lift signal is analysed using HHT to distinguish the dominant component of lift, to answer objective two. Finally, the performance maps synthesis phase. This is the phase where the performance parameters of the cruciform energy harvester are mapped in the $\alpha \; (\si{\degree}) - \ured$ parameter space, to answer objective three.
 
  %%Chapter 3-2IE<<
-\section{Design geometry} \label{sec:probGeo}
+\section{Design Geometry} \label{sec:probGeo}
 %%Chapter 3-2IE>>
 
 This study bases itself on the work done by \citet{Koide2013}, \citet{Maruai2017}, and \citet{Maruai2018}. In these works, the investigators conducted both experimental and computational investigations of passive control of fluid-structure interaction (FSI) of cylinders using a strip plate located at the cylinder downstream. Here, the term ``strip plate'' is used as a shorthand for the long, rectangular plate used to control the vibration of the cylinder -- since the plate resembles a strip due to its large aspect ratio. \citet{Koide2013} and \citet{Maruai2018} demonstrated the feasibility of energy harvesting using the oscillator system described.
@@ -1005,41 +1123,36 @@ The primary constraint to the scope of this study is the range of Re. As summari
 
 Once the Re range is set, the range of $\ured$ is determined exclusively by the system natural frequency $\fn$ (Hz). In the studies referenced in Table \ref{tab:parameterRange}, those working in a water flow have their $\fn$ set between 4.4 Hz to 5.13 Hz, while those working in an air flow have their $\fn$ set to 14.3 Hz. This thesis chose a value of $\fn = 4.42$ Hz as this study is conducted in a water flow. Consequently, the range for $\ured$ becomes $2.2 \leq \ured \leq 29.5$.
 
-Finally, the values of Sc in Table \ref{tab:parameterRange} are 2.2 and 7.74 in a water medium, and 31.12 in an air medium. The value of Sc for this study is 9.94, which is the result of having a larger effective mass $m_{e}$ compared to \citet{Nguyen2012} and \citet{Koide2013}.
+Finally, the values of Sc in Table \ref{tab:parameterRange} are 2.2 \citep{Nguyen2012} and 7.74 \citep{Koide2013} in a water medium, and 31.12 in an air medium \citep{Maruai2019}. The value of Sc for this study is 9.94, which is the result of having a larger effective mass $m_{e}$ compared to \citet{Nguyen2012} and \citet{Koide2013}.
 %%Chapter 3-3IE>>
-
-Figure \ref{fig:probGeoSide} visualises the computational domain (Fig. \ref{fig:threeDimDom}) from its side. These dimensions are based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
 
 \begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{0.95\textwidth}
-    \includegraphics[width=\textwidth]{figs/threeDimensionalDomain}
-    \caption{}
-    \label{fig:threeDimDom}
-  \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/problemGeometrySide}
-    \caption{}
-    \label{fig:probGeoSide}
-  \end{subfigure}
-
-  \caption{The computational domain: three-dimensional overview and cross-sections.}
+  \hspace{1cm} \includegraphics[width=0.8\textwidth]{figs/threeDimensionalDomain}
+  \caption{Schematic of the computational domain.}
+  \label{fig:threeDimDom}
 \end{figure}
 
-\begin{figure} \continuedfloat
+Figure \ref{fig:threeDimDom} shows the isometric view of the computational domain. The computational domain has a spanwise ($z$-direction) length of $15D$, a streamwise ($x$-direction) length of $31.46D$, and a height ($y$-direction length) of $21D$. The freestream flows from left to right. The strip plate has a thickness of $D/3$.
+% Figure \ref{fig:probGeoSide} visualises the computational domain (Fig. \ref{fig:threeDimDom}) from its side. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
+
+\begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{0.98\textwidth}
-    \includegraphics[width=\textwidth]{figs/problemGeometryTop}
-    \caption{}
-    \label{fig:probGeoTop}
-  \end{subfigure}
-
-  \caption{The computational domain: three-dimensional overview and cross-sections.} \label{fig:problemGeometry}
+  \hspace{1cm} \includegraphics[width=0.9\textwidth]{figs/problemGeometrySide}
+  \caption{The three-dimensional domain, side view.}
+  \label{fig:probGeoSide}
 \end{figure}
 
+The coordinate system used in the domain has its origin (0,0,0) at the centre of the circular cylinder. Figure \ref{fig:probGeoSide} illustrates how this is the case, by presenting the side view of the computational domain, i.e., viewed from the positive $z$-direction. As shown in Fig. \ref{fig:probGeoSide}, the inlet plane has an $x$-coordinate of $-10.5D$. As the leading edge of the cylinder is $10D$ away from the inlet plane, and the cylinder has a diameter of $1D$, the origin of the $x$-axis is at the centre of the circle. Furthermore, the top plane and bottom plane of the domain is assigned $y$-coordinates $10.5D$ and $-10.5D$, respectively. Consequently, the origin of the $y$-axis is also at the centre of the circle.
 
-In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z/D=-7.5$, giving the computational domain an overall spanwise length of $15D$. The computational domain of a similar study by \citet{Deng2007} has a length of $12D$, upon which the dimension of the domain is based upon. The extra $1.5D$ of spanwise length on either side of the domain is allocated to ensure the full expression of the three-dimensionality of flow structures that appear during the course of the numerical study.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.9\textwidth]{figs/problemGeometryTop}
+  \caption{The three-dimensional domain, top view.}
+  \label{fig:probGeoTop}
+\end{figure}
+
+The top view in Fig. \ref{fig:probGeoTop} shows that the front and back planes of the computational domain is assigned $z$-coordinates $7.5D$ and $-7.5D$, respectively. As a result, the origin of the $z$-axis is located at the midpoint of the circular cylinder.
 
 \begin{figure}
   \centering
@@ -1082,114 +1195,6 @@ In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z
 
 Then, variants of the pure cruciform configuration are constructed by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, five different cruciforms are constructed, as shown in Fig. \ref{fig:cruciformLayouts}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
 
-\section{Numerical method} \label{sec:numMeth}
-The numerical study utilises OpenFOAM, an open-source computational fluid dynamics (CFD) platform written in C++. OpenFOAM solves the 3D unsteady Reynolds averaged Navier-Stokes (3D URANS) equations that are the following.
-
-\begin{equation}
-  \frac{\partial U_{i}}{\partial x_{i}}=0,
-  \label{eq:continuity}
-\end{equation}
-
-\begin{equation}
-  \frac{\partial U_{i}}{\partial t}+U_{j}\frac{\partial U_{i}}{\partial x_{j}} = -\frac{1}{p}\frac{P}{x_{i}}+\frac{\partial}{\partial x_{j}} \left( 2\nu S_{ij}-\overline{u'_{j}u'_{i}} \right).
-  \label{eq:navier-stokes}
-\end{equation}
-
-The symbols $U$, $x$, $t$, $\rho$, $P$, $\nu$, $S$, and $u'$ denote the mean component of velocity, spatial component, time, density, pressure, kinematic viscosity, mean strain rate and the fluctuating component of velocity, respectively. Equation \ref{eq:sij} gives the mean strain rate $S_{ij}$.
-
-\begin{equation}
-  S_{ij} = \frac{1}{2} \left( \frac{\partial U_{i}}{\partial x_{j}} + \frac{\partial U_{j}}{\partial x_{i}} \right).
-  \label{eq:sij}
-\end{equation}
-
-The turbulence model employed to approximate the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'_{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
-
-\begin{equation}
-  \tau_{ij} = 2 \nu_{T}S_{ij},
-  \label{eq:tauij}
-\end{equation}
-
-\noindent where $\nu_{T}$ represents the kinetic eddy viscosity. This kinetic eddy viscosity is ultimately expressed as a function whose arguments consist of the molecular viscosity $\nu$, and an intermediate variable $\tilde{\nu}$ that is the solution of Eq. \ref{eq:kineticEddyTransport}. Equation \ref{eq:kineticEddyTransport} incorporates empirically obtained constants to provide closure to the equations governing this numerical investigation. The empirical constants that make up Eq. \ref{eq:kineticEddyTransport} are listed in Table \ref{tab:spalart-Allmaras}.
-
-\begin{equation}
-  \label{eq:kineticEddyTransport}
-  \frac{\partial \tilde{\nu}}{\partial t} + U_{j} \frac{\partial \tilde{\nu}}{\partial x_{j}} = c_{b1}\tilde{S}\tilde{\nu} - c_{w1} f_{w} \left( \frac{\tilde{\nu}}{D} \right)^{2} + \frac{1}{\sigma} \left\{ \frac{\partial}{\partial x_{j}} \left[ \left( \nu + \tilde{\nu} \right) \frac{\partial \tilde{\nu}}{\partial x_{j}} \right] c_{b2} \frac{\partial \tilde{\nu}}{\partial x_{i}} \frac{\partial \tilde{\nu}}{\partial x_{i}} \right\}
-\end{equation}
-
-\begin{table}[!ht]
-\centering
-\caption{Empirical constants used in the Spalart-Allmaras turbulence model.} \label{tab:spalart-Allmaras}
-\vspace{\baselineskip}
-\begin{tabular}{l c}
-  \hline
-  \hline
-
-  Empirical constants & Value    \\
-  \hline
-
-  $c_{b1}$            & $0.01$   \\
-  $c_{b2}$            & $0.09$   \\
-  $c_{\nu1}$          & $0.01$   \\
-  $\kappa$            & $0.1$    \\
-  $\sigma$            & $0.162$  \\
-  $c_{\omega3}$       & $0.178$  \\
-  \hline
-  \hline
-\end{tabular}
-\end{table}
-
-\noindent The interested reader is referred to the original paper by \citet{Spalart1992} and more recent applications of the turbulence model in \citet{Ding2019} and \citet{Sun2019b}. With the turbulence model properly defined, one is finally able to solve Eqs. \ref{eq:continuity} and \ref{eq:navier-stokes} using the SIMPLE-stabilised PISO algorithm native to OpenFOAM, known as the PIMPLE algorithm. 
-
-Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the numerical study of this thesis. As this study seeks to understand the system response of a generalised form of cruciform oscillator, the angle between the cylinder and the strip plate is varied from the pure cruciform case (\SI{90}{\degree}) down to \SI{0}{\degree}, in \SI{22.5}{\degree} increments. To vary the angle of the cruciform, the cylinder is kept in its original location and maintains its orientation parallel to the $Z=0$ axis, while the strip plate is rotated in the counterclockwise direction when viewed from upstream. These cruciforms are studied within thirteen reduced velocities between $\uron \leq \ured \leq \urtt$, corresponding to $U = 0.1, 0.2, \cdots, 1.3$ m/s in freestream velocity. 
-
-\begin{table}[!ht]
-\centering
-\caption{The list of conditions investigated in this study, i.e. the research matrix} \label{tab:researchMatrix}
-\vspace{\baselineskip}
-\begin{tabular}{p{5cm}>{\centering}p{3.5cm}>{\centering\arraybackslash}p{3cm}}
-  \hline
-  \hline
-
-  Cruciform angle & Reduced velocities & Number of cells \\
-  \hline
-
-  Pure cruciform (\SI{90}{\degree}) & $\uron \leq \ured \leq \urtt$ & 697608\\
-  Steep-angled cruciform A (\SI{67.5}{\degree}) & $\uron \leq \ured \leq \urtt$  & 704474\\
-  Steep-angled cruciform B (\SI{45}{\degree}) & $\uron \leq \ured \leq \urtt$  & 769084\\
-  Shallow-angled cruciform A (\SI{22.5}{\degree}) & $\uron \leq \ured \leq \urtt$  & 733800\\
-  Shallow-angled cruciform B (\SI{0}{\degree}) & $\uron \leq \ured \leq \urtt$  & 709984\\
-  \hline
-  \hline
-\end{tabular}
-\end{table}
-
-The number of cells used in the spatial discretisation of the computational domains are determined from the grid independency study on the pure cruciform whose results are detailed in Chapter \ref{chap:resultsDisc}. Difference in the geometry of the cruciform model implemented in each study case results in a slightly different number of cells for each cruciform. However, all of them are ensured to exceed the minimum of 697608 cells, where the numerical results only differ only slightly with the expected value in the limit where the cell size approaches zero, hence number of cells approaching infinity. The $y^{+}$ values for each simulation is capped at $y^{+}< 15$, following \citet{Wang2019}.
-
-An HP Z420 workstation was used to perform the computations, and the specifications of the workstation are listed in Table \ref{tab:workstationSpec}. Since parallelisation is built into OpenFOAM, computationally exhaustive simulations can benefit a lot from being run on such a workstation with minimal effort from the end user. One can just specify the number of subdomains desired in each of the $x$, $y$, and $z$-directions, and then allocate one for each processor available in the workstation.
-
-\begin{table}[!ht]
-\centering
-\caption{The specifications of the HP Z420 workstation} \label{tab:workstationSpec}
-\vspace{\baselineskip}
-\begin{tabular}{l l}
-  \hline
-  \hline
-
-  Feature               & Description                            \\
-  \hline
-
-  Memory                & 38 GB                                  \\
-  Processor             & Intel Xeon(R) CPU E5-16200 at 3.60 GHz \\
-  Number of processors  & 16                                     \\
-  Graphics              & Gallium 0.4 on NVE7                    \\
-  Disk                  & 980.2 GB                               \\
-  \hline
-  \hline
-\end{tabular}
-\end{table}
-
-However, due to the fact that the type of phenomena simulated in this study is three-dimensional, transient, turbulent and involves fluid-structure interactions, the simulations take a long time, even with the computational power listed in Table \ref{tab:workstationSpec}. To give the reader a perspective on this time length, consider the following example from one computational case. To simulate 20 s of flow time for the pure cruciform at $\ured = \urel$ ($U = 1.0$ m/s) using all 16 processors, the workstation took \SI{1688688}{\second} or approximately 19.5 days. This will only increase at higher freestream velocities as smaller time steps are required to maintain a Courant-Friedrichs-Lewy (CFL) number less than 1.
-
 \section{Dynamic mesh motion} \label{sec:dynMesh}
 
 Cylinder motion in the computational domain due to FIV introduces distortion to the mesh immediately surrounding the cylinder. The simplest way to keep the mesh distortion in check, thus keeping mesh quality within an acceptable level, is by diffusing the amount of warping to the surrounding space. In practice, the surrounding space is the rest of the mesh nodes, and Eq. \ref{eq:laplace} governs the diffusion.
@@ -1206,7 +1211,7 @@ In Eq. \ref{eq:laplace}, $u$ and $\gamma$ represents the mesh deformation veloci
   \label{eq:meshNodeUpdate}
 \end{equation}
 
-For most numerical studies of FSI, the mesh warp diffusion method governed by Eq. \ref{eq:laplace} serves as an adequate workaround to conserve mesh quality. However, this requires ample number of ambient mesh nodes acting as the receiving end of the diffusion algorithm. In this case, the small gap between the cylinder and strip plate ($G = 0.16$) pose a serious limitation to the ability to diffuse the amount of warp introduces by the displacement of the cylinder, since a small space means that one can only allocate a proportionate number of mesh nodes in said gap. Sole reliance on the warp diffusion algorithm will hamper the effort to preserve mesh quality as a high concentration of warp remains within the gap. To overcome this problem, the arbitrarily coupled mesh interface (ACMI) is implemented halfway through the gap (see Fig. \ref{fig:problemGeometry}). This technique allows adjacent cells to slide over each other precisely at the $x = 0.13$ plane, ridding this work of the requirement for mesh warp diffusion. In the literature, ACMI is also known as the generalised grid interface, or GGI \citep{Zhang2018,Sun2019b}.
+For most numerical studies of FSI, the mesh warp diffusion method governed by Eq. \ref{eq:laplace} serves as an adequate workaround to conserve mesh quality. However, this requires ample number of ambient mesh nodes acting as the receiving end of the diffusion algorithm. In this case, the small gap between the cylinder and strip plate ($G = 0.16$) pose a serious limitation to the ability to diffuse the amount of warp introduces by the displacement of the cylinder, since a small space means that one can only allocate a proportionate number of mesh nodes in said gap. Sole reliance on the warp diffusion algorithm will hamper the effort to preserve mesh quality as a high concentration of warp remains within the gap. To overcome this problem, the arbitrarily coupled mesh interface (ACMI) is implemented halfway through the gap (see Fig. ). This technique allows adjacent cells to slide over each other precisely at the $x = 0.13$ plane, ridding this work of the requirement for mesh warp diffusion. In the literature, ACMI is also known as the generalised grid interface, or GGI \citep{Zhang2018,Sun2019b}.
 
 \section{Open flow channel experiment} \label{sec:openFlowExp}
 
