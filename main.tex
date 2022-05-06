@@ -961,13 +961,56 @@ The methodology flowchart is presented in Fig. \ref{fig:flowChartA} and Fig. \re
 
  Next, the analysis phase in Fig. \ref{fig:flowChartB}. Analysis starts with computing the system response of the lift and vibration signals. This phase also includes the investigation of the causes that result in the system responses observed, to achieve objective one. After that comes the time series analysis phase of the lift signal. Here, the lift signal is analysed using HHT to distinguish the dominant component of lift, to answer objective two. Finally, the performance maps synthesis phase. This is the phase where the performance parameters of the cruciform energy harvester are mapped in the $\alpha \; (\si{\degree}) - \ured$ parameter space, to answer objective three.
 
+ %%Chapter 3-2IE<<
 \section{Design geometry} \label{sec:probGeo}
+%%Chapter 3-2IE>>
 
-This study bases itself on the work done by \citet{Koide2013}, \citet{Maruai2017}, and \citet{Maruai2018}. In these works, the investigators conducted both experimental and computational investigations of passive control of fluid-structure interaction (FSI) of cylinders using a strip plate located at the cylinder downstream. Here, the term ``strip plate'' is used as a shorthand for the long, rectangular plate used to control the vibration of the cylinder -- since the plate resembles a strip due to its large aspect ratio. \citet{Koide2013} and \citet{Maruai2018} demonstrated the feasibility of energy harvesting using the oscillator system described, in the Reynolds number range $3.6\times10^{3}<\text{Re}<1.3\times10^{4}$. Hence, a similar Re range for this thesis is chose. However, this study starts at $\re = 1.1 \times 10^{3}$ instead of $3.6 \times 10^{3}$, and stops at $\re = 1.5 \times 10^{4}$ instead of $1.3 \times 10^{4}$. This is done to allow examination of a slightly wider range of Re, compared to the previous studies of \citet{Koide2013}, \citet{Maruai2017}, and \citet{Maruai2018}.
+This study bases itself on the work done by \citet{Koide2013}, \citet{Maruai2017}, and \citet{Maruai2018}. In these works, the investigators conducted both experimental and computational investigations of passive control of fluid-structure interaction (FSI) of cylinders using a strip plate located at the cylinder downstream. Here, the term ``strip plate'' is used as a shorthand for the long, rectangular plate used to control the vibration of the cylinder -- since the plate resembles a strip due to its large aspect ratio. \citet{Koide2013} and \citet{Maruai2018} demonstrated the feasibility of energy harvesting using the oscillator system described.
 
-The oscillator system in this work derives its geometry from the works of \citet{Nguyen2012}, \citet{Koide2013}, and \citet{Koide2017}. The basic layout of the oscillator system is the pure cruciform: an arrangement where the circular cylinder and the strip plate located downstream have their axes perpendicular to each other. The gap between the cylinder and the strip plate, $G$, is fixed to $0.16$. This value of $G$ was chosen because the cylinder response most suitable for energy harvesting is sustained over the largest range of reduced velocity $\ured$ when $G = 0.16$ \citep{Koide2013}.
+% In the Reynolds number range $3.6 \times10^{3} < \text{Re} < 1.3 \times10^{4}$. Hence, a similar Re range for this thesis is chose. However, this study starts at $\re = 1.1 \times 10^{3}$ instead of $3.6 \times 10^{3}$, and stops at $\re = 1.5 \times 10^{4}$ instead of $1.3 \times 10^{4}$. This is done to allow examination of a slightly wider range of Re, compared to the previous studies of \citet{Koide2013}, \citet{Maruai2017}, and \citet{Maruai2018}.
 
-\begin{figure}
+%%Chapter 3-3IE<<
+The oscillator system in this work derives its geometry from the works of \citet{Nguyen2012}, \citet{Koide2013}, and \citet{Koide2017}. The basic layout of the oscillator system is the pure cruciform: an arrangement where the circular cylinder and the strip plate located downstream have their axes perpendicular to each other. The gap between the cylinder and the strip plate, $G$, is fixed to $0.16$. This value of $G$ was chosen because the cylinder response most suitable for energy harvesting is sustained over the largest range of reduced velocity $\ured$ when $G = 0.16$ \citep{Koide2013}. The main parameters that set the scope of this study are the Reynolds number Re, reduced velocity $\ured$, Scruton number Sc and system natural frequency $\fn$ (Hz). The values of these parameters in previous studies are summarised in Table \ref{tab:parameterRange}.
+
+\begin{table}[!ht]
+\centering
+\caption{Values of parameters investigated in previous studies.} \label{tab:parameterRange}
+\vspace{\baselineskip}
+\setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
+\begin{tabular}{l c l}
+  \hline
+  \hline
+Parameter                & Value                                         & Paper              \\ \hline
+\multirow{3}{*}{Re}      & $1.1 \times 10^{3} < \re < 4.4 \times 10^{4}$ & \citet{Koide2013}  \\
+                         & $1.4 \times 10^{3} < \re < 5.7 \times 10^{3}$ & \citet{Koide2017}  \\
+                         & $4.2 \times 10^{3} < \re < 1.1 \times 10^{4}$ & \citet{Maruai2018} \\
+                         & $3.6 \times 10^{3} < \re < 1.3 \times 10^{4}$ & \citet{Maruai2019} \\ \hline
+\multirow{3}{*}{$\fn$}   & $4.5 < \fn \; (\text{Hz}) < 5.13$             & \citet{Nguyen2012} \\
+                         & 4.4 Hz                                        & \citet{Koide2013}  \\
+                         & 14.3 Hz                                       & \citet{Maruai2018} \\
+                         & 14.3 Hz                                       & \citet{Maruai2019} \\ \hline
+\multirow{3}{*}{$\ured$} & $2.2 < \ured < 88.7$                          & \citet{Koide2013}  \\
+                         & 6, 8.5, 18                                    & \citet{Maruai2018} \\
+                         & $4 < \ured < 20$                              & \citet{Maruai2019} \\ \hline
+\multirow{3}{*}{Sc}      & 2.2                                           & \citet{Nguyen2012} \\
+                         & 7.74                                          & \citet{Koide2013}  \\
+                         & 31.12                                         & \citet{Maruai2019} \\
+  \hline
+  \hline
+\end{tabular}
+\end{table}
+
+The primary constraint to the scope of this study is the range of Re. As summarised in Table \ref{tab:parameterRange}, it is apparent that the studies have their Re range starting at the end of TrSL1 and ends before the end of TrSL2. The exact value of the range is however, constrained by the choice of cylinder diameter and the freestream velocity that one is able to recreate in the laboratory or computer simulation. This thesis chose a diameter of 10 mm due to the physical dimension of the open flow channel for conducting the validating experiment. The open flow channel is able to produce $0.1 \leq U \; (\si[per-mode=symbol]{\metre\per\second}) < 1.1$. The computing facilities available to the author allow the simulation of up to 1.3 m/s of freestream velocity while keeping the total simulation time below three weeks, or twenty-one days. Therefore, the Re range for this study becomes $1.1 \times 10^{3} \leq \re \leq 1.5 \times 10^{4}$. This range also starts at the end of TrSL1 and ends before the end of TrSL2 - consistent with the studies referenced in Table \ref{tab:parameterRange}.
+
+Once the Re range is set, the range of $\ured$ is determined exclusively by the system natural frequency $\fn$ (Hz). In the studies referenced in Table \ref{tab:parameterRange}, those working in a water flow have their $\fn$ set between 4.4 Hz to 5.13 Hz, while those working in an air flow have their $\fn$ set to 14.3 Hz. This thesis chose a value of $\fn = 4.42$ Hz as this study is conducted in a water flow. Consequently, the range for $\ured$ becomes $2.2 \leq \ured \leq 29.5$.
+
+Finally, the values of Sc in Table \ref{tab:parameterRange} are 2.2 and 7.74 in a water medium, and 31.12 in an air medium. The value of Sc for this study is 9.94, which is the result of having a larger effective mass $m_{e}$ compared to \citet{Nguyen2012} and \citet{Koide2013}.
+%%Chapter 3-3IE>>
+
+Figure \ref{fig:probGeoSide} visualises the computational domain (Fig. \ref{fig:threeDimDom}) from its side. These dimensions are based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
+
+\begin{figure}[!h]
   \centering
   \begin{subfigure}[h]{0.95\textwidth}
     \includegraphics[width=\textwidth]{figs/threeDimensionalDomain}
@@ -993,10 +1036,8 @@ The oscillator system in this work derives its geometry from the works of \citet
   \end{subfigure}
 
   \caption{The computational domain: three-dimensional overview and cross-sections.} \label{fig:problemGeometry}
-  %Figure \ref{fig:probGeoSide} shows the cross-chapteral layout of the computational domain, along with key dimensions, when viewed from the side. Figure \ref{fig:probGeoTop} visualises the cross-chapter of the computational domain as viewed from the top. The arbitrarily coupled mesh interface (ACMI) used to connect the domain containing the cylinder with the domain containing the strip plate is placed halfway through the gap, i.e. $0.08D$ downstream the cylinder.
 \end{figure}
 
-Figure \ref{fig:probGeoSide} visualises the computational domain (Fig. \ref{fig:threeDimDom}) from its side. These dimensions are based on analogous works such as \cite{Maruai2017} and \cite{Maruai2018} which had produced results that agree well with experiments of their own and with \citet{Kawabata2013}. The streamwise coordinates of this domain extends from $-10.5D$ to $10.5D$, and the lateral coordinates from $-10.5D$ to $10.5D$. The coordinate origin $(0,0,0)$, is at the centre of the cylinder and the strip plate is $D/3$ thick.
 
 In Fig. \ref{fig:probGeoTop}, the circular cylinder extends from $z/D=7.5$ to $z/D=-7.5$, giving the computational domain an overall spanwise length of $15D$. The computational domain of a similar study by \citet{Deng2007} has a length of $12D$, upon which the dimension of the domain is based upon. The extra $1.5D$ of spanwise length on either side of the domain is allocated to ensure the full expression of the three-dimensionality of flow structures that appear during the course of the numerical study.
 

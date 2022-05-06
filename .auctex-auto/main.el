@@ -159,6 +159,7 @@
     "fig:flowChartA"
     "fig:flowChartB"
     "sec:probGeo"
+    "tab:parameterRange"
     "fig:threeDimDom"
     "fig:probGeoSide"
     "fig:probGeoTop"
