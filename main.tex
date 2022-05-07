@@ -964,7 +964,7 @@ The numerical part of this study utilises OpenFOAM, an open-source computational
   \label{eq:sij}
 \end{equation}
 
-The turbulence model employed to approximate the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'_{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
+The turbulence model that approximates the Reynolds stress tensor is the Spalart-Allmaras turbulence model. Previous numerical studies on energy harvesting from FIM of circular cylinders have shown reasonable agreement with experiments in the literature through the use of this turbulence model, and thus becomes the basis for the implementation of the same turbulence model in this study \citep{Ding2015a,Ding2015b}. The Boussinesq approximation relates the Reynolds stress tensor $\tau_{ij} = \overline{u'_{j}u'_{i}}$ to the mean velocity gradient, exemplified by Eq. \ref{eq:tauij}.
 
 \begin{equation}
   \tau_{ij} = 2 \nu_{T}S_{ij},
@@ -1233,48 +1233,46 @@ The coordinate system used in the domain has its origin (0,0,0) at the centre of
 
 The top view in Fig. \ref{fig:probGeoTop} shows that the front and back planes of the computational domain is assigned $z$-coordinates $7.5D$ and $-7.5D$, respectively. As a result, the origin of the $z$-axis is located at the midpoint of the circular cylinder.
 
-\begin{figure}
+Then, variants of the pure cruciform configuration are constructed by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, five different cruciforms are constructed, as shown in Figs. \ref{fig:cruciform90}--\ref{fig:cruciform00}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
+
+\begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/cruciform90}
-    \caption{Cruciform layout for \angfi{}}
-    \label{fig:cruciform90}
-  \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/cruciform675}
-    \caption{Cruciform layout for \angfo{}}
-    \label{fig:cruciform675}
-  \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/cruciform45}
-    \caption{Cruciform layout for \angth{}}
-    \label{fig:cruciform45}
-  \end{subfigure}
-  \caption{The cruciform variations studied in this thesis.}
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/cruciform90}
+  \caption{Cruciform layout for \angfi{}.}
+  \label{fig:cruciform90}
 \end{figure}
 
-\begin{figure} \continuedfloat
+\begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/cruciform225}
-    \caption{Cruciform layout for \angtw{}}
-    \label{fig:cruciform22.5}
-  \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/cruciform00}
-    \caption{Cruciform layout for \angon{}}
-    \label{fig:cruciform00}
-  \end{subfigure}
-
-  \caption{The cruciform variations studied in this thesis.}\label{fig:cruciformLayouts}
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/cruciform675}
+  \caption{Cruciform layout for \angfo{}.}
+  \label{fig:cruciform675}
 \end{figure}
 
-Then, variants of the pure cruciform configuration are constructed by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, five different cruciforms are constructed, as shown in Fig. \ref{fig:cruciformLayouts}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/cruciform45}
+  \caption{Cruciform layout for \angth{}.}
+  \label{fig:cruciform45}
+\end{figure}
 
-Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the numerical study of this thesis. As this study seeks to understand the system response of a generalised form of cruciform oscillator, the angle between the cylinder and the strip plate is varied from the pure cruciform case (\SI{90}{\degree}) down to \SI{0}{\degree}, in \SI{22.5}{\degree} increments. To vary the angle of the cruciform, the cylinder is kept in its original location and maintains its orientation parallel to the $Z=0$ axis, while the strip plate is rotated in the counterclockwise direction when viewed from upstream. These cruciforms are studied within thirteen reduced velocities between $\uron \leq \ured \leq \urtt$, corresponding to $U = 0.1, 0.2, \cdots, 1.3$ m/s in freestream velocity.
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/cruciform225}
+  \caption{Cruciform layout for \angtw{}.}
+  \label{fig:cruciform225}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/cruciform00}
+  \caption{Cruciform layout for \angon{}.}
+  \label{fig:cruciform00}
+\end{figure}
+
+To vary the angle of the cruciform, the cylinder is kept in its original location and maintains its orientation parallel to the $Z=0$ axis, while the strip plate is rotated in the counterclockwise direction when viewed from upstream. These cruciforms are studied within thirteen reduced velocities between $\uron \leq \ured \leq \urtt$, corresponding to $U = 0.1, 0.2, \cdots, 1.3$ m/s in freestream velocity.
+
+Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the numerical study of this thesis. As this study seeks to understand the system response of a generalised form of cruciform oscillator, the angle between the cylinder and the strip plate is varied from the pure cruciform case (\SI{90}{\degree}) down to \SI{0}{\degree}, in \SI{22.5}{\degree} increments, as shown in Figs. \ref{fig:cruciform90}--\ref{fig:cruciform00}.
 
 \begin{table}[!ht]
 \centering
