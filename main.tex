@@ -936,7 +936,14 @@ For a vibration system with an effective mass $m_{\text{eff.}}$, spring coeffici
   \label{eq:dampingCoeff}
 \end{equation}
 
-\noindent Knowing the value of $\delta$ also allows the computation of the system natural frequency $\fn$,
+\noindent Literature on VIV-energy harvesters of the single cylinder kind, for example \citet{Yuan2020} and \citet{Kim2021}, generally specifies their value system damping using the damping coefficient $\zeta_{\text{tot.}}$. However, VIV-energy harvesters of the cruciform kind, for example \citet{Adzlan2021} and \citet{Mohamed2021}, usually specify their system damping using the Scruton number Sc,
+
+\begin{equation}
+  \text{Sc} = \frac{8 m_{\text{eff.}} \delta}{\rho \pi D^{2} l}.
+  \label{eq:scrutonNo}
+\end{equation}
+
+\noindent Here, $l$ is the spanwise length of the cylinder. Knowing the value of $\delta$ also allows the computation of the system natural frequency $\fn$,
 
 \begin{equation}
   \fn = \frac{\sqrt{4 \pi^{2} + \delta^{2}}}{2 \pi T}.
@@ -1011,6 +1018,15 @@ Cylinder motion in the computational domain due to FIV introduces distortion to 
   \label{eq:laplace}
 \end{equation}
 
+\noindent Here, $\nabla$ is the differential operator equivalent to
+
+\begin{equation}
+  \nabla = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right),
+  \label{eq:nabla}
+\end{equation}
+
+\noindent in a three-dimensional Cartesian coordinate system.
+
 In Eq. \ref{eq:laplace}, $u$ and $\gamma$ represents the mesh deformation velocity and displacement diffusion, respectively. In this work, the displacement is diffused according to the inverse quadratic rule $\gamma = 1/l^{2}$. Here, $l$ denotes the distance from the cell centre to the nearest cylinder edge. Then, Eq. \ref{eq:laplace} is solved using the GAMG algorithm and the Gauss-Seidel smoother. Solution of Eq. \ref{eq:laplace} returns an updated value of $u$, and this updated value of $u$ is used to update the position of the mesh nodes according to Eq. \ref{eq:meshNodeUpdate}. The PIMPLE solver resumes the solution of the 3D URANS equations after the mesh node positions are updated.
 
 \begin{equation}
@@ -1018,7 +1034,16 @@ In Eq. \ref{eq:laplace}, $u$ and $\gamma$ represents the mesh deformation veloci
   \label{eq:meshNodeUpdate}
 \end{equation}
 
-For most numerical studies of FSI, the mesh warp diffusion method governed by Eq. \ref{eq:laplace} serves as an adequate workaround to conserve mesh quality. However, this requires ample number of ambient mesh nodes acting as the receiving end of the diffusion algorithm. In this case, the small gap between the cylinder and strip plate ($G = 0.16$) pose a serious limitation to the ability to diffuse the amount of warp introduces by the displacement of the cylinder, since a small space means that one can only allocate a proportionate number of mesh nodes in said gap. Sole reliance on the warp diffusion algorithm will hamper the effort to preserve mesh quality as a high concentration of warp remains within the gap. To overcome this problem, the arbitrarily coupled mesh interface (ACMI) is implemented halfway through the gap (see Fig. ). This technique allows adjacent cells to slide over each other precisely at the $x = 0.13$ plane, ridding this work of the requirement for mesh warp diffusion. In the literature, ACMI is also known as the generalised grid interface, or GGI \citep{Zhang2018,Sun2019b}.
+For most numerical studies of fluid-structure interaction (FSI), the mesh warp diffusion method governed by Eq. \ref{eq:laplace} serves as an adequate workaround to conserve mesh quality. However, this requires ample number of ambient mesh nodes acting as the receiving end of the diffusion algorithm. In this case, the small gap between the cylinder and strip plate ($G = 0.16$) pose a serious limitation to the ability to diffuse the amount of warp introduces by the displacement of the cylinder, since a small space means that one can only allocate a proportionate number of mesh nodes in said gap. Sole reliance on the warp diffusion algorithm will hamper the effort to preserve mesh quality as a high concentration of warp remains within the gap.
+
+To overcome this problem, the arbitrarily coupled mesh interface (ACMI) is implemented halfway through the gap (see Figs. \ref{fig:probGeoSide}--\ref{fig:probGeoTop}). This technique allows adjacent cells to slide over each other precisely at the $x = 0.13$ plane, ridding this work of the requirement for mesh warp diffusion. In the literature, ACMI is also known as the generalised grid interface, or GGI in \citep{Zhang2018} and \citet{Sun2019b}. A more recent example of the implementation of ACMI can be found in \citet{Yang2022}, where ACMI is used to connect two differently meshed regions. This is shown in Fig. \ref{fig:acmi}.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.95\textwidth]{figs/acmi}
+  \caption{An example application of ACMI between two differently meshed regions. Adapted from \citet{Yang2022}.}
+  \label{fig:acmi}
+\end{figure}
 
 \subsection{Ensemble Empirical Mode Decomposition and Hilbert Transform} \label{ssec:eemd}
 %% Paraphrase in Grammarly BEGIN

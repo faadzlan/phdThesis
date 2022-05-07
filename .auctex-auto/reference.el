@@ -227,6 +227,8 @@
     "Souza2022"
     "Raghavan2011"
     "Thompson1994"
-    "Sinha2010"))
+    "Sinha2010"
+    "Kim2021"
+    "Yang2022"))
  :bibtex)
 
