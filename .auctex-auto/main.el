@@ -202,6 +202,7 @@
     "fig:cruciform225"
     "fig:cruciform00"
     "tab:researchMatrix"
+    "eq:yplus"
     "tab:workstationSpec"
     "sec:openFlowExp"
     "fig:rigSketch"

@@ -1027,12 +1027,16 @@ Cylinder motion in the computational domain due to FIV introduces distortion to 
 
 \noindent in a three-dimensional Cartesian coordinate system.
 
-In Eq. \ref{eq:laplace}, $u$ and $\gamma$ represents the mesh deformation velocity and displacement diffusion, respectively. In this work, the displacement is diffused according to the inverse quadratic rule $\gamma = 1/l^{2}$. Here, $l$ denotes the distance from the cell centre to the nearest cylinder edge. Then, Eq. \ref{eq:laplace} is solved using the GAMG algorithm and the Gauss-Seidel smoother. Solution of Eq. \ref{eq:laplace} returns an updated value of $u$, and this updated value of $u$ is used to update the position of the mesh nodes according to Eq. \ref{eq:meshNodeUpdate}. The PIMPLE solver resumes the solution of the 3D URANS equations after the mesh node positions are updated.
+In Eq. \ref{eq:laplace}, $u$ and $\gamma$ represents the mesh deformation velocity and displacement diffusion, respectively. In this work, the displacement is diffused according to the inverse quadratic rule $\gamma = 1/l^{2}$. Here, $l$ denotes the distance from the cell centre to the nearest cylinder edge. Diffusing the mesh deformation by the inverse quadratic rule means that a lot more deformation is diffused in the region closer to the surface of the cylinder compared to the region further away.
+
+Then, Eq. \ref{eq:laplace} is solved using the generalised geometric-algebraic multi-grid (GAMG) algorithm and the Gauss-Seidel smoother. Solution of Eq. \ref{eq:laplace} returns an updated value of $u$, and this updated value of $u$ is used to update the position of the mesh nodes according to Eq. \ref{eq:meshNodeUpdate}. The PIMPLE solver resumes the solution of the 3D URANS equations after the mesh node positions are updated.
 
 \begin{equation}
   x_{\text{new}} = x_{\text{old}} + u \Delta t
   \label{eq:meshNodeUpdate}
 \end{equation}
+
+\noindent Here, $u$ is the mesh deformation velocity, $\Delta t$ the time step for numerical solution, $x_{\text{old}}$ the previous mesh node position and $x_{\text{new}}$ the new mesh node position.
 
 For most numerical studies of fluid-structure interaction (FSI), the mesh warp diffusion method governed by Eq. \ref{eq:laplace} serves as an adequate workaround to conserve mesh quality. However, this requires ample number of ambient mesh nodes acting as the receiving end of the diffusion algorithm. In this case, the small gap between the cylinder and strip plate ($G = 0.16$) pose a serious limitation to the ability to diffuse the amount of warp introduces by the displacement of the cylinder, since a small space means that one can only allocate a proportionate number of mesh nodes in said gap. Sole reliance on the warp diffusion algorithm will hamper the effort to preserve mesh quality as a high concentration of warp remains within the gap.
 
@@ -1320,7 +1324,14 @@ Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the
 \end{tabular}
 \end{table}
 
-The number of cells used in the spatial discretisation of the computational domains are determined from the grid independency study on the pure cruciform whose results are detailed in Chapter \ref{chap:resultsDisc}. Difference in the geometry of the cruciform model implemented in each study case results in a slightly different number of cells for each cruciform. However, all of them are ensured to exceed the minimum of 697608 cells, where the numerical results only differ only slightly with the expected value in the limit where the cell size approaches zero, hence number of cells approaching infinity. The $y^{+}$ values for each simulation is capped at $y^{+}< 15$, following \citet{Wang2019}.
+The number of cells used in the spatial discretisation of the computational domains are determined from the grid independency study on the pure cruciform whose results are detailed in Chapter Four. Difference in the geometry of the cruciform model implemented in each study case results in a slightly different number of cells for each cruciform. However, all of them are ensured to exceed the minimum of 697608 cells, where the numerical results only differ only slightly with the expected value in the limit where the cell size approaches zero, hence number of cells approaching infinity. The $y^{+}$ values for each simulation is capped at $y^{+}< 15$, following \citet{Wang2019}. Here, $y^{+}$ is a measure of distance normal from the surface of the object submerged in the flow, taking into consideration the friction velocity $u^{*}$ \citep{Bhukta2018} and kinematic viscosity of the fluid such that
+
+\begin{equation}
+  y^{+} = \frac{u^{*} y}{\nu}.
+  \label{eq:yplus}
+\end{equation}
+
+\noindent In this context, $y$ is simply the distance normal to the surface of the object submerged in the flow.
 
 An HP Z420 workstation was used to perform the computations, and the specifications of the workstation are listed in Table \ref{tab:workstationSpec}. Since parallelisation is built into OpenFOAM, computationally exhaustive simulations can benefit a lot from being run on such a workstation with minimal effort from the end user. One can just specify the number of subdomains desired in each of the $x$, $y$, and $z$-directions, and then allocate one for each processor available in the workstation.
 
