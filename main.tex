@@ -1058,7 +1058,12 @@ The number of cells used in the spatial discretisation of the computational doma
   \label{fig:acmi}
 \end{figure}
 
-The quality of the grid mesh is also established using the Richardson extrapolation and the grid convergence index (GCI) \citep{Stern2001}. The Richardson extrapolation \citep{Richardson1927} and GCI provides this study with a procedure to quantitatively measure on the degree of convergence for the quantities of interest in a numerical study. This method also forces the researcher to pay attention to the trend of convergence of the quantities of interest, requiring a monotonic convergence before proceeding to data collection, in line with previous research such as \citet{MatAli2011} and \citet{Maruai2018}.
+The quality of the grid mesh is also established using the Richardson extrapolation and the grid convergence index (GCI) \citep{Stern2001}. The Richardson extrapolation \citep{Richardson1927} and GCI provides this study with a procedure to quantitatively measure on the degree of convergence for the quantities of interest in a numerical study. This method also forces the researcher to pay attention to the trend of convergence of the quantities of interest, requiring a monotonic convergence before proceeding to data collection, in line with previous research such as \citet{MatAli2011} and \citet{Maruai2018}. A good quality mesh is essential for the computation and visualisation of three-dimensional vortical structures using the $Q$-criterion. The $Q$-criterion is described in \citet{Jeong1995} as the region with positive second invariant of $\nabla U$ - the velocity gradient - where
+
+\begin{equation}
+  Q = \frac{1}{2} u_{i,j}u_{j,i}.
+  \label{eq:qCriterion}
+\end{equation}
 
 \subsection{Ensemble Empirical Mode Decomposition and Hilbert Transform} \label{ssec:eemd}
 %% Paraphrase in Grammarly BEGIN
@@ -1342,7 +1347,7 @@ Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the
 \end{tabular}
 \end{table}
 
-The numerical model designed in Figs. \ref{fig:threeDimDom}--\ref{fig:probGeoTop} is then solved using OpenFOAM. OpenFOAM discretises the continuity and three-dimensional unsteady Reynolds-averaged Navier-Stokes (3D URANS) equation and solves them over the specified mesh grid in the computational domain. The Spalart-Allmaras turbulence model is used to model the near-wall region of the simulation. The ACMI method is used to preserve mesh quality throughout the computational domain.
+The numerical model designed in Figs. \ref{fig:threeDimDom}--\ref{fig:probGeoTop} is then solved using OpenFOAM. OpenFOAM discretises the continuity and three-dimensional unsteady Reynolds-averaged Navier-Stokes (3D URANS) equation and solves them over the specified mesh grid in the computational domain. The Spalart-Allmaras turbulence model is used to model the near-wall region of the simulation. The ACMI method is used to preserve mesh quality throughout the computational domain. Finally, identification of three-dimensional vortical structures are done using the $Q$-criterion, which can be computed automatically by OpenFOAM.
 
 An HP Z420 workstation was used to perform the computations, and the specifications of the workstation are listed in Table \ref{tab:workstationSpec}. Since parallelisation is built into OpenFOAM, computationally exhaustive simulations can benefit a lot from being run on such a workstation with minimal effort from the end user. One can just specify the number of subdomains desired in each of the $x$, $y$, and $z$-directions, and then allocate one for each processor available in the workstation.
 
@@ -1478,7 +1483,43 @@ Here, $\pfrms$, $\pmrms$, $L$, $\cclrms$, $\zetatot$ and $\meff$ are the \rms{} 
 
 \section{Grid Independency Study} \label{sec:gridIndStu}
 
-The pure cruciform configuration (the \angfi{} cruciform) is chosen as the representative. This is because the vibration response for the pure cruciform is already available in the literature, and is also and collected as part of the validation step in this study. Data is collected at $\ured = \urte$ on three sets of grid numbered $1$ for the finest, $2$ for the medium and $3$ for the coarsest. With $v_{i}$ as the volume of the $i^{\text{th}}$ cell in the grid, and $N$ the total number of cells in the domain, the average cell size becomes
+The pure cruciform configuration (the \angfi{} cruciform) is chosen as the benchmark case for grid independency study through the grid convergence index (GCI). This is because the vibration response for the pure cruciform is already available in the literature, and is also and collected as part of the validation step in this study. Data is collected at $\ured = \urte$ on three sets of grid numbered $1$ for the finest, $2$ for the medium and $3$ for the coarsest. A close-up of the grid 1 (fine), grid 2 (medium) and grid 3 (coarse) is shown in Fig. \ref{fig:threeGrids}. In this work, a refinement ratio of 1.376 is used from coarse to medium mesh, and a refinement ratio of 1.303 is used from medium to fine mesh. Computing the refinement ratio is done through the following method.
+
+\begin{equation}
+  r_{i+1,i} = \frac{S_{\text{grid},i+1}}{S_{\text{grid},i}},
+  \label{eq:refinementRatio}
+\end{equation}
+
+\noindent where $S_{\text{grid},i}$ denotes the total number of cells in the $i^{\text{th}}$ grid.
+
+Once the numerical solution has been shown to converge, the fine grid is used in all simulations of the pure cruciform case, and a similar mesh resolution is implemented on all cruciform variants studied in this work.
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}[h]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{figs/threeGridsCoarse}
+    % \includegraphics[width=\textwidth]{figs/figure6a}
+    \caption{Coarse}
+    \label{fig:coarseMesh}
+  \end{subfigure} \hspace{0.25cm}
+  \begin{subfigure}[h]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{figs/threeGridsMedium}
+    % \includegraphics[width=\textwidth]{figs/figure6b}
+    \caption{Medium}
+    \label{fig:mediumMesh}
+  \end{subfigure} \hspace{0.25cm}
+  \begin{subfigure}[h]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{figs/threeGridsFine}
+    % \includegraphics[width=\textwidth]{figs/figure6c}
+    \caption{Fine}
+    \label{fig:fineMesh}
+  \end{subfigure}
+
+  \caption{The course, medium and fine mesh used in the grid independency study.} \label{fig:threeGrids}
+\end{figure}
+
+
+With $v_{i}$ as the volume of the $i^{\text{th}}$ cell in the grid, and $N$ the total number of cells in the domain, the average cell size becomes
 
 \begin{equation}
   h = \frac{1}{N} \left [ \sum_{i=1}^{N} v_{i} \right ]^{1/3},
@@ -1524,6 +1565,8 @@ Finally, the chapter outlined the method to gauge the independency of numerical 
 
 \chapter{Results and Discussion} \label{chap:resultsDisc}
 
+This chapter presents the results and discussion of the data collected using the methods outlined in Chapter Three. First, the results of the benchmarking of the experimental apparatus is shown and discussed. This is followed by a discussion on the grid convergence index study to establish the reliability of the numerical results. Then, the chapter presents the results for the pure cruciform, steep-angled cruciforms ($67.5 \si{\degree}$ and $45 \si{\degree}$) and shallow angled cruciforms ($22.5 \si{\degree}$ and $0 \si{\degree}$). Each of the sections on pure, steep and shallow cruciforms discuss the respective results following the methodology summarised in Fig. \ref{fig:flowChartB}, under the procedure to fulfil objectives one and two. This means that the system response is discussed first, followed by explanations on the system responses based on the observed vortical structures. Finally, the results on the exploration of the $\alpha \; (\si{\degree})-\ured$ parameter space, in terms of vibration amplitude, power and efficiency is presented and discussed to achieve objective three.
+
 \section{Experimental Apparatus Benchmarking} \label{sec:appBenchmark}
 
  Following the procedure to set the freestream velocity in Section \ref{sec:openFlowExp}, the velocity of the flow at different input voltages are sampled by the voltage controller, the final product being an input voltage $V_{\text{in}}$ (V) versus centreline velocity $U_{\text{cent.}}$ calibration curve. This calibration curve allows the setting of the freestream velocity of the open flow channel by specifying the input voltage to the pump. The finished product gave an operability range between \uth{} and \uel{}, which translates to $\urth \leq \ured \leq \urel$ for an circular cylinder of diameter \SI{10}{\milli\metre}. The turbulence level ranges between $5\%$ to $8\%$ when the freestream velocity $U_{\infty} \geq \uei$.
@@ -1539,51 +1582,14 @@ Finally, the chapter outlined the method to gauge the independency of numerical 
 
 \section{The Grid Convergence Index Study} \label{sec:gciStudyResult}
 
-Table \ref{tab:gridIndependency} summarises the result of the grid independency study for the SVIV reduced velocity of $\ured = 22.7$. The flow global quantities checked for convergence are the vibration amplitude, vibration frequency and lift coefficient of the cylinder.
-
-\begin{figure}
-  \centering
-  \begin{subfigure}[h]{0.85\textwidth}
-    \includegraphics[width=\textwidth]{figs/figure6a}
-    \caption{Coarse}
-    \label{fig:coarseMesh}
-  \end{subfigure}
-
-  \begin{subfigure}[h]{0.85\textwidth}
-    \includegraphics[width=\textwidth]{figs/figure6b}
-    \caption{Medium}
-    \label{fig:mediumMesh}
-  \end{subfigure}
-
-  \caption{The course, medium and fine mesh used in the grid independency study.}
-\end{figure}
-
-\begin{figure} \continuedfloat
-  \centering
-  \begin{subfigure}[h]{0.85\textwidth}
-    \includegraphics[width=\textwidth]{figs/figure6c}
-    \caption{Fine}
-    \label{fig:fineMesh}
-  \end{subfigure}
-
-  \caption{The course, medium and fine mesh used in the grid independency study.} \label{fig:convergenceStudy}
-\end{figure}
-
-\noindent Both $\yrms$ and $\clrms$ (see Figs. \ref{fig:gciYrms} and \ref{fig:gciClrms}) have initial values smaller than their Richardson extrapolations, $\fre$, before approaching $\fre$, with decreasing $h$. The vibration frequency, on the other hand, starts at a value larger than its $\fre$ before approaching $\fre$, as one can see in Fig. \ref{fig:gciFstr}.
-
-The most significant drop in GCI is experienced by $\clrms$, with increasing refinement of the grid. Refinement from the coarse to medium grid returns a GCI of $30.92\%$, using a refinement ratio of $1.376$. The refinement ratio is computed by dividing the number of cells in one grid with the grid one stage refined. Generalising this to $i$ number of grids returns
-
-\begin{equation}
-  r_{i+1,i} = \frac{S_{\text{grid},i+1}}{S_{\text{grid},i}},
-  \label{eq:refinementRatio}
-\end{equation}
-
-\noindent where $S_{\text{grid},i}$ denotes the total number of cells in the $i^{\text{th}}$ grid. The GCI of $\clrms$ decreases further to $1.63\%$ with further refinement of the grid. On the other hand, GCI for $\fstr$, shrinks to about one-sixth of its former value.
+Table \ref{tab:gridIndependency} summarises the result of the grid convergence index (GCI) study for the pure cruciform at reduced velocity $\ured = 22.7$. The flow global quantities checked for convergence are the vibration amplitude $\yrms$, vibration frequency $\fstr$ and lift coefficient $\clrms$ of the cylinder. Both $\yrms$ and $\clrms$ in Fig. \ref{fig:gciRichardson} have initial values smaller than their Richardson extrapolations, $\fre$, before approaching $\fre$, with decreasing $h$. The vibration frequency, on the other hand, starts at a value larger than its $\fre$ before approaching $\fre$.
 
 \begin{table}[!ht]
 \centering
 \caption{Summary of grid independency study.} \label{tab:gridIndependency}
 \vspace{\baselineskip}
+\setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
 \begin{tabular}{l c c c}
   \hline
   \hline
@@ -1594,74 +1600,99 @@ $f_{1}$                                                                 & $0.259
 $f_{2}$                                                                 & $0.2430$       & $0.3588$          & $0.9740$              \\
 $f_{3}$                                                                 & $0.0805$       & $0.2374$          & $1.0220$              \\
 $\left | \epsilon_{2,1} \right |$                                       & $0.02$         & $0.01$            & $0.004$               \\
-$\left | \epsilon_{2,1} \right |$                                       & $0.16$         & $0.12$            & $0.48$                \\
-$R = \left | \epsilon_{2,1} \right | / \left | \epsilon_{2,1} \right |$ & $0.10$         & $0.08$            & $0.094$               \\
-$\text{GCI}_{3,2}$                                                      & $30.92$        & $6.00$            & $0.64$                \\  
-$\text{GCI}_{3,2}$                                                      & $1.63$         & $0.52$            & $0.10$                \\
+$\left | \epsilon_{3,2} \right |$                                       & $0.16$         & $0.12$            & $0.48$                \\
+$R = \left | \epsilon_{2,1} \right | / \left | \epsilon_{3,2} \right |$ & $0.10$         & $0.08$            & $0.094$               \\
+$\text{GCI}_{3,2}$                                                      & $30.92$        & $6.00$            & $0.64$                \\
+$\text{GCI}_{2,1}$                                                      & $1.63$         & $0.52$            & $0.10$                \\
   \hline
   \hline
 \end{tabular}
 \end{table}
 
-Inspecting Figs. \ref{fig:gciYrms}, \ref{fig:gciFstr} and \ref{fig:gciClrms}, the quantities of interest is found to be very close to its Richardson extrapolation at the fine grid (grid 1) for all $\clrms$, $\yrms$ and $\fstr$. This seems to be an indication of sufficient spatial discretisation. At this point, the trade-off between a solution even closer to the Richardson extrapolation and the increased computational effort is no longer appealing, compounded by the observation that values of $\yrms$ and $\fstr$ at the fine grid already falls within the experimental uncertainty as evidenced by measurements in \S \ref{sec:openFlowExp} and the work by \citet{Koide2013}. The fine grid is used in all simulations of the pure cruciform case, and a similar mesh resolution is implemented on all cruciform variants studied in this work.
+The most significant drop in GCI is experienced by $\clrms$, with increasing refinement of the grid. Refinement from the coarse to medium grid returns a GCI of $30.92\%$. The GCI of $\clrms$ decreases further to $1.63\%$ with further refinement of the grid. On the other hand, GCI for $\fstr$, shrinks to about one-sixth of its former value.
+% , using a refinement ratio of $1.376$. The refinement ratio is computed by dividing the number of cells in one grid with the grid one stage refined. Generalising this to $i$ number of grids returns
 
+Inspecting Fig. \ref{fig:gciRichardson}, the quantities of interest is found to be very close to its Richardson extrapolation at the fine grid (grid 1) for all $\clrms$, $\yrms$ and $\fstr$. This seems to be an indication of sufficient spatial discretisation. At this point, the trade-off between a solution even closer to the Richardson extrapolation and the increased computational effort is no longer appealing, compounded by the observation that values of $\yrms$ and $\fstr$ at the fine grid already falls within the experimental uncertainty as evidenced by measurements in Section \ref{sec:appBenchmark} and the work by \citet{Koide2013}.
+
+% \begin{figure}
+%   \centering
+%   \begin{subfigure}[h]{1\textwidth}
+%     \hspace{2.4cm}
+%     \includegraphics[angle=90,width=0.6\textwidth]{figs/gciYrms-1a}
+%     \caption{}
+%     \label{fig:gciYrms-1}
+%   \end{subfigure}
+
+%   \begin{subfigure}[h]{1\textwidth}
+%     \includegraphics[width=\textwidth]{figs/gciYrms-2}
+%     \caption{}
+%     \label{fig:gciYrms-2}
+%   \end{subfigure}
+
+%   \caption{Richardson extrapolation of $\yrms$ and the corresponding drop in error.} \label{fig:gciYrms}
+% \end{figure}
 \begin{figure}
   \centering
   \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciYrms-1}
+    \hspace{1.9cm}
+    \includegraphics[angle=90,width=0.7\textwidth]{figs/gciYrms-1a}
     \caption{}
     \label{fig:gciYrms-1}
   \end{subfigure}
 
   \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciYrms-2}
-    \caption{}
-    \label{fig:gciYrms-2}
-  \end{subfigure}
-
-  \caption{Richardson extrapolation of $\yrms$ and the corresponding drop in error.} \label{fig:gciYrms}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciFstr-1}
+    \hspace{1.9cm}
+    \includegraphics[angle=90,width=0.7\textwidth]{figs/gciFstr-1a}
     \caption{}
     \label{fig:gciFstr-1}
   \end{subfigure}
 
   \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciFstr-2}
-    \caption{}
-    \label{fig:gciFstr-2}
-  \end{subfigure}
-  \caption{Richardson extrapolation of $\fstr$ and the corresponding drop in error.} \label{fig:gciFstr}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciClrms-1}
+    \hspace{1.9cm}
+    \includegraphics[width=0.7\textwidth]{figs/gciClrms-1a}
     \caption{}
     \label{fig:gciClrms-1}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/gciClrms-2}
-    \caption{}
-    \label{fig:gciClrms-2}
-  \end{subfigure}
-  \caption{Richardson extrapolation of $\clrms$ and the corresponding drop in error.} \label{fig:gciClrms}
+  \caption{Richardson extrapolation of $\yrms$, $\fstr$ and $\clrms$.} \label{fig:gciRichardson}
+  % \caption{Richardson extrapolation of $\yrms$, $\fstr$ and $\clrms$.} \label{fig:gciYrms}
 \end{figure}
 
-As demonstrated by the grid independency study, the normalised root-mean-square of cylinder displacement $\ystr$, normalised dominant frequency of cylinder vibration $\fstr$, and the root-mean-square of the lift coefficient are chosen $\clrms$, all converge monotonically as the mesh is refined. This is apparent through the computation of the Richardson extrapolation of each quantity, in addition to the GCI values that drop significantly with each subsequent refinement of the mesh. Now that the independency of the quantities of interest with regards to spatial discretisation has been established, the chapter will proceed to present results for the \SI{90}{\degree} cruciform in the next section.
+% \begin{figure}
+%   \centering
+%   \begin{subfigure}[h]{1\textwidth}
+%     \includegraphics[width=\textwidth]{figs/gciFstr-2}
+%     \caption{}
+%     \label{fig:gciFstr-2}
+%   \end{subfigure}
+%   \caption{Richardson extrapolation of $\fstr$ and the corresponding drop in error.} \label{fig:gciFstr}
+% \end{figure}
+
+% \begin{figure}
+%   \centering
+%   \begin{subfigure}[h]{1\textwidth}
+%     \includegraphics[width=\textwidth]{figs/gciClrms-2}
+%     \caption{}
+%     \label{fig:gciClrms-2}
+%   \end{subfigure}
+%   \caption{Richardson extrapolation of $\clrms$ and the corresponding drop in error.} \label{fig:gciClrms}
+% \end{figure}
+
+As demonstrated by the GCI study, $\ystr$, $\fstr$, $\clrms$ all converge as the mesh is refined. This is apparent through the computation of the Richardson extrapolation of each quantity, in addition to the GCI values that drop significantly with each subsequent refinement of the mesh. Furthermore, the error between the values of $\ystr$, $\fstr$ and $\clrms$ and their corresponding Richardson extrapolation also decreases asymptotically to zero, as shown in Fig. \ref{fig:richardsonError}. Now that the independency of the quantities of interest has been established, the chapter will proceed to present results for the pure cruciform in the next section.
+
+\begin{figure}[!h]
+  \centering
+  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/richardsonError}
+  \caption{The error between the values of $\ystr$, $\fstr$ and $\clrms$ and their corresponding Richardson extrapolation.}
+  \label{fig:richardsonError}
+\end{figure}
 
 \section{The pure cruciform}\label{sec:svivRegime}
-This chapter details the investigations conducted with regards to the pure cruciform in terms of it being the oscillator in an energy harvesting system. The pure cruciform serves as the base upon which all subsequent results will be compared against. The reason behind it being the base reference lies in the expansiveness of studies done, making it the type of cruciform oscillator that is most known about. Recall that it is through the study of the pure cruciform oscillator that the three main merits of the cruciform oscillator becomes known: a highly adept passive control system via the downstream strip plate, a very wide synchronisation range, and an approximately constant maximum vibration amplitude across the synchronisation range \citep{Koide2013}.
+% This section details the investigations conducted with regards to the pure cruciform in terms of it being the oscillator in an energy harvesting system. The pure cruciform serves as the base upon which all subsequent results will be compared against.
+% The reason behind it being the base reference lies in the expansiveness of studies done, making it the type of cruciform oscillator that is most known about. Recall that it is through the study of the pure cruciform oscillator that the three main merits of the cruciform oscillator becomes known: a highly adept passive control system via the downstream strip plate, a very wide synchronisation range, and an approximately constant maximum vibration amplitude across the synchronisation range \citep{Koide2013}.
 
-Despite this, in recent years, improvement in terms of power output from the pure cruciform system seems to have hit a wall. Part of the reason behind this engineering roadblock is the fact that studies on pure cruciform oscillators to date have been focussed on answering the ``what happens if'' questions instead of the ``why'' questions concerning its system response. This work is of the opinion that if the roadblock is to be removed, efforts must be made to answer the ``why'' questions and the first step towards that is by understanding why does one observe the system responses found in the literature. This is possible through the use of CFD as one can quite effortlessly make simultaneous measurements of the cylinder displacement and lift while also obtain quantitative visualisations of the three-dimensional flow field describing the vortical structures governing the vibration of the cylinder.
+% Despite this, in recent years, improvement in terms of power output from the pure cruciform system seems to have hit a wall. Part of the reason behind this engineering roadblock is the fact that studies on pure cruciform oscillators to date have been focussed on answering the ``what happens if'' questions instead of the ``why'' questions concerning its system response. This work is of the opinion that if the roadblock is to be removed, efforts must be made to answer the ``why'' questions and the first step towards that is by understanding why does one observe the system responses found in the literature. This is possible through the use of CFD as one can quite effortlessly make simultaneous measurements of the cylinder displacement and lift while also obtain quantitative visualisations of the three-dimensional flow field describing the vortical structures governing the vibration of the cylinder.
 
-The roadblock can also be interpreted as a sign to apply new methods of analysis on the common signals that are studied during the course of a VIV study, which are the time series of cylinder displacement and lift. Coupled with quantitative visualisations of the dominant vortical structures in the flow, this thesis attempts to look for clues that can guide future designs of the cruciform system as an energy harvester and bring to the table knowledge beyond improving its power output and efficiency, but the ability to control them, and adapting them to suit the natural environment within which the cruciform oscillator harnesses energy. This is because, even if the engineering knowledge allows for the vibration amplitude and frequency to reach a certain maximum value - and thus power - within a range of flow velocities, the aquatic or marine environment it is submitted to may not be suitable for such deployments, especially when faced with aquatic and marine life protection responsibilities \citep{Raghavan2007a}.
+% The roadblock can also be interpreted as a sign to apply new methods of analysis on the common signals that are studied during the course of a VIV study, which are the time series of cylinder displacement and lift. Coupled with quantitative visualisations of the dominant vortical structures in the flow, this thesis attempts to look for clues that can guide future designs of the cruciform system as an energy harvester and bring to the table knowledge beyond improving its power output and efficiency, but the ability to control them, and adapting them to suit the natural environment within which the cruciform oscillator harnesses energy. This is because, even if the engineering knowledge allows for the vibration amplitude and frequency to reach a certain maximum value - and thus power - within a range of flow velocities, the aquatic or marine environment it is submitted to may not be suitable for such deployments, especially when faced with aquatic and marine life protection responsibilities \citep{Raghavan2007a}.
 
 The section starts by reproducing the amplitude/frequency responses of the pure cruciform, followed with the investigation of the vortical structures that bring about the amplitude/frequency responses observed. Then, the Hilbert-Huang transform is applied to elucidate the temporal evolution of the phase angle between lift and cylinder displacement to discover potentially hidden branches in the amplitude response not previously subjected to energy harvesting. Finally, the section concludes with the decomposition of the lift signal and the discovery of clues to maximise the vibration-driving lift, and consequently vibration amplitude and power output.
 

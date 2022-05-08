@@ -230,6 +230,7 @@
     "Sinha2010"
     "Kim2021"
     "Yang2022"
-    "Bhukta2018"))
+    "Bhukta2018"
+    "Jeong1995"))
  :bibtex)
 
