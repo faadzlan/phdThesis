@@ -1342,8 +1342,7 @@ Table \ref{tab:researchMatrix} gives a summary of all conditions computed in the
 \end{tabular}
 \end{table}
 
-The numerical model designed in Fig.
-is then solved using OpenFOAM. OpenFOAM discretises the continuity and three-dimensional unsteady Reynolds-averaged Navier-Stokes (3D URANS) equation and solves them over the specified mesh grid in the computational domain. The Spalart-Allmaras turbulence model is used to model the near-wall region of the simulation. The ACMI method is used to preserve mesh quality throughout the computational domain.
+The numerical model designed in Figs. \ref{fig:threeDimDom}--\ref{fig:probGeoTop} is then solved using OpenFOAM. OpenFOAM discretises the continuity and three-dimensional unsteady Reynolds-averaged Navier-Stokes (3D URANS) equation and solves them over the specified mesh grid in the computational domain. The Spalart-Allmaras turbulence model is used to model the near-wall region of the simulation. The ACMI method is used to preserve mesh quality throughout the computational domain.
 
 An HP Z420 workstation was used to perform the computations, and the specifications of the workstation are listed in Table \ref{tab:workstationSpec}. Since parallelisation is built into OpenFOAM, computationally exhaustive simulations can benefit a lot from being run on such a workstation with minimal effort from the end user. One can just specify the number of subdomains desired in each of the $x$, $y$, and $z$-directions, and then allocate one for each processor available in the workstation.
 
@@ -1479,6 +1478,20 @@ Here, $\pfrms$, $\pmrms$, $L$, $\cclrms$, $\zetatot$ and $\meff$ are the \rms{} 
 
 \section{Grid Independency Study} \label{sec:gridIndStu}
 
+The pure cruciform configuration (the \angfi{} cruciform) is chosen as the representative. This is because the vibration response for the pure cruciform is already available in the literature, and is also and collected as part of the validation step in this study. Data is collected at $\ured = \urte$ on three sets of grid numbered $1$ for the finest, $2$ for the medium and $3$ for the coarsest. With $v_{i}$ as the volume of the $i^{\text{th}}$ cell in the grid, and $N$ the total number of cells in the domain, the average cell size becomes
+
+\begin{equation}
+  h = \frac{1}{N} \left [ \sum_{i=1}^{N} v_{i} \right ]^{1/3},
+  \label{eq:averageCellSize}
+\end{equation}
+
+\noindent and the normalised average cell size is hence
+
+\begin{equation}
+  h/D = \frac{1}{ND} \left [ \sum_{i=1}^{N} v_{i} \right ]^{1/3}.
+  \label{eq:normAveCellSize}
+\end{equation}
+
 Let $f_{1},f_{2},f_{3},\dots,\fk$ be the quantity of interest obtained from several grid resolutions. A larger subscript is assigned for a coarser grid, thus ascribing $f_{1}$ to the finest and $\fk$ to the coarsest grid. Let the difference between successive solutions be $\epsilon_{2,1},\epsilon_{3,2},\epsilon_{4,3},\dots,\epsilon_{n,n-1}$, where $\epsilon_{2,1} = f_{2} - f_{1}$, $\epsilon_{3,2} = f_{3} - f_{2}$ and so on. Then, the GCI is computed as
 
 \begin{equation}
@@ -1526,7 +1539,7 @@ Finally, the chapter outlined the method to gauge the independency of numerical 
 
 \section{The Grid Convergence Index Study} \label{sec:gciStudyResult}
 
-Table \ref{tab:gridIndependency} summarises the result of the grid independency study for the SVIV reduced velocity of $\ured = 22.7$. The flow global quantities checked for convergence are the vibration amplitude, vibration frequency and lift coefficient of the cylinder. To simplify the grid independency study, the pure cruciform configuration (the \angfi{} cruciform) is chosen as the representative, and collected data at $\ured = \urte$ on three sets of grid numbered $1$ for the finest, $2$ for the medium and $3$ for the coarsest, shown in Fig. \ref{fig:convergenceStudy}. With $v_{i}$ as the volume of the $i^{\text{th}}$ cell in the grid, and $N$ the total number of cells in the domain, the average cell size becomes
+Table \ref{tab:gridIndependency} summarises the result of the grid independency study for the SVIV reduced velocity of $\ured = 22.7$. The flow global quantities checked for convergence are the vibration amplitude, vibration frequency and lift coefficient of the cylinder.
 
 \begin{figure}
   \centering
@@ -1555,18 +1568,6 @@ Table \ref{tab:gridIndependency} summarises the result of the grid independency 
 
   \caption{The course, medium and fine mesh used in the grid independency study.} \label{fig:convergenceStudy}
 \end{figure}
-
-\begin{equation}
-  h = \frac{1}{N} \left [ \sum_{i=1}^{N} v_{i} \right ]^{1/3},
-  \label{eq:averageCellSize}
-\end{equation}
-
-\noindent and the normalised average cell size is hence 
-
-\begin{equation}
-  h/D = \frac{1}{ND} \left [ \sum_{i=1}^{N} v_{i} \right ]^{1/3}.
-  \label{eq:normAveCellSize}
-\end{equation}
 
 \noindent Both $\yrms$ and $\clrms$ (see Figs. \ref{fig:gciYrms} and \ref{fig:gciClrms}) have initial values smaller than their Richardson extrapolations, $\fre$, before approaching $\fre$, with decreasing $h$. The vibration frequency, on the other hand, starts at a value larger than its $\fre$ before approaching $\fre$, as one can see in Fig. \ref{fig:gciFstr}.
 
