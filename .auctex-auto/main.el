@@ -3,10 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -175,6 +175,7 @@
     "eq:laplace"
     "eq:nabla"
     "eq:meshNodeUpdate"
+    "eq:yplus"
     "fig:acmi"
     "ssec:eemd"
     "enumerate:emd"
@@ -201,30 +202,30 @@
     "fig:cruciform45"
     "fig:cruciform225"
     "fig:cruciform00"
+    "sec:numericalSolution"
     "tab:researchMatrix"
-    "eq:yplus"
     "tab:workstationSpec"
     "sec:openFlowExp"
-    "fig:rigSketch"
-    "fig:damperSketch"
-    "fig:experimentalSetup"
+    "fig:actual apparatus"
     "tab:expParameter"
+    "fig:rigSketch"
     "fig:channelSchematic"
-    "fig:sampTimeHist"
+    "fig:experimentalSetup"
+    "fig:damperSketch"
     "sec:phaseLag90"
     "eq:phaseLagDefinition"
     "sec:estimationOfPower"
     "eq:workCylinder"
     "eq:rmsFluidPower"
     "eq:rmsMechPower"
-    "fig:researchMethodologyFlowchart"
     "sec:gridIndStu"
-    "ssec:richExtrap"
     "eq:gci"
     "eq:richardsonExtrapolation"
     "eq:percentageDifference"
     "sec:chapSumMethod"
     "chap:resultsDisc"
+    "sec:appBenchmark"
+    "fig:sampTimeHist"
     "sec:gciStudyResult"
     "fig:coarseMesh"
     "fig:mediumMesh"
