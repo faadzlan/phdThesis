@@ -626,14 +626,21 @@ Noticeably, a lot of studies on streamwise vortex shedding discuss the process a
 
 \noindent where $f$, $D$ and $U$ are the characteristic frequency, characteristic length, and characteristic velocity of the flow. For a circular cylinder, $D$ becomes the diameter of the cylinder.
 
-It is interesting to note that not only do they differ from each other only by two percent, but also that they differ by less than 20\% from the empirical equation (see, Eq. \ref{eq:karmanStrouhalNumber}) describing the shedding frequency of Karman vortices from a smooth circular cylinder \citep{Blevins1990}.
+It is interesting to note that not only do they differ from each other only by two percent, but also that they differ by less than 20\% from the empirical equation (see, Eq. \ref{eq:karmanStrouhalNumber}) describing the shedding Strouhal number of Karman vortices from a smooth circular cylinder \citep{Blevins1990}.
 
 \begin{equation}
   \text{St}_{\text{Karman}} = 0.198 \left( 1 - \frac{19.7}{\text{Re}} \right)
   \label{eq:karmanStrouhalNumber}
 \end{equation}
 
-The fact that St for the square and circular cylinders of \citet{Agbaglah2019} differs less than 20\% of the value estimated using Eq. \ref{eq:karmanStrouhalNumber} indicates that the shedding process of streamwise vortex is overshadowed by Karman vortices, which are larger in scale. Perhaps this is an artefact of using an isolated cylinder, and as long as one uses a similar system, Karman vortex shedding will remain the primary process governing the flow.
+Furthermore,rearranging Eq. \ref{eq:karmanStrouhalNumber} gives the Karman vortex shedding frequency, shown in Eq. \ref{eq:karmanSheddingFreq}.
+
+\begin{equation}
+  \fvk = 0.198 \left( 1 - \frac{19.7}{\re} \right) DU
+  \label{eq:karmanSheddingFreq}
+\end{equation}
+
+\noindent Here, $\fvk$, $D$ and $U$ are the vortex shedding frequency, diameter of the isolated circular cylinder and $U$ the freestream velocity respectively. The fact that St for the square and circular cylinders of \citet{Agbaglah2019} differs less than 20\% of the value estimated using Eq. \ref{eq:karmanStrouhalNumber} indicates that the shedding process of streamwise vortex is overshadowed by Karman vortices, which are larger in scale. Perhaps this is an artefact of using an isolated cylinder, and as long as one uses a similar system, Karman vortex shedding will remain the primary process governing the flow.
 
 More recent works on streamwise vortex shedding have shifted away from a simple isolated circular cylinder configuration to slightly more complex layouts, perhaps to recreate models that are more faithful to real engineering situations. For example, in \citet{Gibeau2018}, an elongated body is studied in the range $3.5 \times 10^{3} \leq \re \leq 7.0 \times 10^{3}$. Through this study, \citet{Gibeau2018} found that the average strength of the streamwise vortices in the upstream boundary layer is ten times smaller than in the wake. They also observed that the wavelength reaches between 0.7 and 0.8 of the elongated plate thickness, $h$.
 
@@ -1700,7 +1707,7 @@ The section starts by reproducing the amplitude/frequency responses of the pure 
 
 The pure cruciform case, i.e. \angfi{}, demonstrated a normalised \rms{} amplitude of cylinder displacement, $\yrms$ that starts quite expectedly with a low amplitude at reduced velocities $\uron$ and $\urtw$ , before reaching a value close to $\yrms = 0.1$ at $\ured = \urth$, as presented in Fig. \ref{fig:yStrRMS1}. Following the local maximum at $\ured = \urth$, $\yrms$ tapers off to less than $\yrms = 0.05$ between $\urfo \leq \yrms \leq \ursi$. This whole $\yrms$ trend of hitting a local maximum before tapering off bears a striking resemblance to the amplitude response of an isolated circular cylinder in KVIV at mass ratios of order $O(10^{1})$ \citep{Feng1963,Khalak1999}. This resemblance can be seen as an indication that the vibration of a pure cruciform between $\ured \leq \urse$ is driven primarily through the shedding cycle of Karman vortices.
 
-\begin{figure}
+\begin{figure}[!h]
   \centering
   \includegraphics[width=1\textwidth]{figs/yStrRMS1}
   \caption{Evolution of the normalised \rms{} amplitude of cylinder displacement $\yrms$, with respect to reduced velocity $\ured$, in the streamwise vortex-driven vibration regime.} \label{fig:yStrRMS1}
@@ -1708,16 +1715,18 @@ The pure cruciform case, i.e. \angfi{}, demonstrated a normalised \rms{} amplitu
 
 Then at $\ured = \urse$, $\yrms$ experiences a very weak increase followed by a sudden jump close to $0.4$ at $\ured = \urei$. This is followed by a slight decline at $\ured = \urni$ and return to the previous level of $\yrms$ at $\ured = \urte$. Past $\ured = \urte$, one observes that $\yrms$ maintains a linear trend in its variation with respect to $\ured$. As $\ured = \urei$ is well within the lower branch for a system in KVIV, it is quite unlikely for the vibration within $\urei \leq \ured \leq \urtt$ to be the governed by the shedding of Karman vortices, leading previous investigators to attribute the vibration to the periodic shedding of streamwise vortical structures dominating the spatial region close to the cruciform juncture \citep{Shirakashi1989,Hemsuwan2018b,Hemsuwan2018d}. Hence, this range is named of $\ured$ the streamwise vortex-induced vibration regime (SVIV).
 
-\begin{figure}
+The experimental system consisting of the closed loop open flow channel and the pure cruciform oscillator rig in Section \ref{sec:openFlowExp} is constructed not only for the purpose of validating the results of the pure cruciform numerical investigation, but also to corroborate in general, the sum total of the numerical setup. Admittedly, the best undertaking would be to perform equivalent experiment for each of the \angfi{}, \angfo{}, \angth{}, \angtw{} and \angon{} configurations, but the scale of such an exercise and subsequent discussion of the results in the opinion of this work, deserves its own treatment separate from the current study. The degree of agreement between the results of the numerical and experimental investigation of the pure cruciform establishes the validity of the numerical setup, which is taken as extending to the rest of the cruciforms. This assumption is somewhat founded because all cruciforms are simulated under similar boundary conditions, mesh resolution and solver algorithm.
+
+The experiments collect time series data of cylinder displacement $y$, from which the normalised \rms{} amplitude $\yrms$ is computed. Figure \ref{fig:expCompareAmp} compares both numerical and experimental results of $\yrms$.
+
+\begin{figure}[!h]
   \centering
   \includegraphics[width=1\textwidth]{figs/expCompareAmp}
-  \caption{Comparison between the evolution of $\yrms$ with respect to $\ured$of a pure cruciform system from the numerical and experimental work. The filled square represents the numerical, while the filled circle represents the experimental results.}
+  \caption{Comparison between the evolution of $\yrms$ with respect to $\ured$ of a pure cruciform system from the numerical and experimental work. The filled square represents the numerical, while the filled circle represents the experimental results.}
   \label{fig:expCompareAmp}
 \end{figure}
 
-The experimental system consisting of the closed loop open flow channel and the pure cruciform oscillator rig in Section \ref{sec:openFlowExp} is constructed not only for the purpose of validating the results of the pure cruciform numerical investigation, but also to corroborate in general, the sum total of the numerical setup. Admittedly, the best undertaking would be to perform equivalent experiment for each of the \angfi{}, \angfo{}, \angth{}, \angtw{} and \angon{} configurations, but the scale of such an exercise and subsequent discussion of the results in the opinion of this work, deserves its own treatment separate from the current study. The degree of agreement between the results of the numerical and experimental investigation of the pure cruciform establishes the validity of the numerical setup, which is taken as extending to the rest of the cruciforms. This assumption is somewhat founded because all cruciforms are simulated under similar boundary conditions, mesh resolution and solver algorithm.
-
-The experiments collect time series data of cylinder displacement $y$, from which the normalised \rms{} amplitude $\yrms$ is computed. Figure \ref{fig:expCompareAmp} compares both numerical and experimental results of $\yrms$. Both results agree in terms of magnitude and trend of the amplitude response. However, the jump to SVIV occurs at a higher $\ured \approx 19$, translating to a delay of about 3 units of $\ured$. The numerical and experimental results are also able to capture the slight dip in $\yrms$ following the jump to SVIV, but the occurrence in the experiment is also delayed by about 3 units of $\ured$. This delay can perhaps be attributed to the fact that the raw $y$ time series were measured in succession from the lowest attainable channel flow velocity \uth{} to its highest \uel{} within one experimental run. In contrast, the simulations always start with the cylinder at rest at its neutral position at $t_{0} = \SI{0}{\second}$, with the freestream exactly at set at the desired value $\uon, \utw, \dots, \utt$. Thus, the delays found in experimental results may simply be the consequence of ``flow memory'', a concept whose analogy can be found in experiments concerned with the critical value of a nondimensional quantity, e.g. Reynolds number, that demarcates the transition between two states of flow \citep{Saint-Michel2014,Rahman2015,Li2021}. For all practical purposes, ``flow memory'' is simply the natural tendency of a fluid to retain its current state of flow for as long as it can, before being altered by an increase/decrease in momentum. This results in the delay found at the jump to SVIV and the local $\yrms$ minimum after the jump.
+\noindent Both results agree in terms of magnitude and trend of the amplitude response. However, the jump to SVIV occurs at a higher $\ured \approx 19$, translating to a delay of about 3 units of $\ured$. The numerical and experimental results are also able to capture the slight dip in $\yrms$ following the jump to SVIV, but the occurrence in the experiment is also delayed by about 3 units of $\ured$. This delay can perhaps be attributed to the fact that the raw $y$ time series were measured in succession from the lowest attainable channel flow velocity \uth{} to its highest \uel{} within one experimental run. In contrast, the simulations always start with the cylinder at rest at its neutral position at $t_{0} = \SI{0}{\second}$, with the freestream exactly at set at the desired value $\uon, \utw, \dots, \utt$. Thus, the delays found in experimental results may simply be the consequence of ``flow memory'', a concept whose analogy can be found in experiments concerned with the critical value of a nondimensional quantity, e.g. Reynolds number, that demarcates the transition between two states of flow \citep{Saint-Michel2014,Rahman2015,Li2021}. For all practical purposes, ``flow memory'' is simply the natural tendency of a fluid to retain its current state of flow for as long as it can, before being altered by an increase/decrease in momentum. This results in the delay found at the jump to SVIV and the local $\yrms$ minimum after the jump.
 
 \begin{figure}
   \centering
@@ -1726,14 +1735,7 @@ The experiments collect time series data of cylinder displacement $y$, from whic
   \label{fig:yStrFreq5}
 \end{figure}
 
-The evolution of the normalised cylinder vibration frequency $\fstr$ with respect to $\ured$ is shown in Fig. \ref{fig:yStrFreq5}. Inspecting Fig. \ref{fig:yStrFreq5}, one immediately notice two distinct evolutionary pattern for $\fstr$with a sharp boundary at $\ured = \ursi$. Between $\uron \leq \ured \leq \ursi$, the $\fstr$ trend follows closely the shedding frequency of Karman vortices from an isolated, fixed circular cylinder \citep{Blevins1990}. The Karman vortex shedding frequency is given as an empirical equation in Eq. \ref{eq:karmanSheddingFreq}.
-
-\begin{equation}
-  \fvk = 0.198 \left( 1 - \frac{19.7}{\re} \right) DU
-  \label{eq:karmanSheddingFreq}
-\end{equation}
-
-\noindent Here, $\fvk$, $D$ and $U$ are the vortex shedding frequency, diameter of the isolated circular cylinder and $U$ the freestream velocity respectively. One can easily see how $\fvk$ is a linear function of $U$, and this is what gives rise to the linear pattern of $\fstr$ within $\uron \leq \ured \leq \ursi$. Then, within $\urse \leq \ured \leq \urtt$, $\fstr$ drops close to 1, indicating synchronisation between lift and cylinder vibration. It seems that this synchronisation is what gives rise to the bigger $\ystr$, compared to $\uron \leq \ured \leq \ursi$.
+The evolution of the normalised cylinder vibration frequency $\fstr$ with respect to $\ured$ is shown in Fig. \ref{fig:yStrFreq5}. Inspecting Fig. \ref{fig:yStrFreq5}, one immediately notice two distinct evolutionary pattern for $\fstr$with a sharp boundary at $\ured = \ursi$. Between $\uron \leq \ured \leq \ursi$, the $\fstr$ trend follows closely the shedding frequency of Karman vortices from an isolated, fixed circular cylinder \citep{Blevins1990}. Then, within $\urse \leq \ured \leq \urtt$, $\fstr$ drops close to 1, indicating synchronisation between lift and cylinder vibration. It seems that this synchronisation is what gives rise to the bigger $\ystr$, compared to $\uron \leq \ured \leq \ursi$.
 
 Inspecting the evolution of \rms{} amplitude of lift coefficient $\clrms$ and the normalised lift coefficient frequency $\fclstr$ with respect to $\ured$ in Fig. \ref{fig:cl90}, provided more evidence supporting the assertion that $\ured = \urse$ is a boudary berween two vibration-driving mechanisms. In fact, the observation at $\urse$ in Fig. \ref{fig:clRMS5} indicates that the SVIV regime is still in its infancy, due to the dip in $\clrms$ at that $\ured$, compared to $\ured = \ursi$. In Fig. \ref{fig:clFreq5}, a dashed line is also drawn to illustrare $f^{*}_{v} = \fvk/D$, where $\fvk$ is the shedding frequency of Karman vortices from a smooth isolated circular cylinder described in Eq. \ref{eq:karmanSheddingFreq}.
 
