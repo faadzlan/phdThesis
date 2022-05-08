@@ -1273,7 +1273,7 @@ The coordinate system used in the domain has its origin (0,0,0) at the centre of
 
 The top view in Fig. \ref{fig:probGeoTop} shows that the front and back planes of the computational domain is assigned $z$-coordinates $7.5D$ and $-7.5D$, respectively. As a result, the origin of the $z$-axis is located at the midpoint of the circular cylinder.
 
-Then, variants of the pure cruciform configuration are constructed by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, five different cruciforms are constructed, as shown in Figs. \ref{fig:cruciform90}--\ref{fig:cruciform00}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
+Then, variants of the pure cruciform configuration are constructed by rotating the strip plate from \angfi{} to \angon{} in \angtw{} increments. In total, five different cruciforms are constructed, as shown in Figs. \ref{fig:cruciform90}--\ref{fig:cruciform00}. This selection of cruciform angles is to allow exploration of the $\alpha \; (\si{\degree})$--$\ured$ parameter space with the least amount of cruciform variation. This is due to the constraint imposed by the computational time needed to simulate each of the conditions studied in this thesis, which is detailed in Section \ref{sec:numericalSolution}. The dimensions of the computational domain remain fixed for all cruciforms, including the gap between the cylinder and the strip plate.
 
 \begin{figure}[!h]
   \centering
@@ -1441,7 +1441,7 @@ For the benchmarking, the reduced velocity $\ured = \urte$ is chosen. This is be
 
 \section{Phase lag between $\cl$ and normalised cylinder displacement} \label{sec:phaseLag90}
 
-In this study, the phase lag $\plag$ is computed by taking the Hilbert transform of both $\ystr$ and $\cl$ signals, as \citet{Khalak1999} did in their VIV study of isolated circular cylinders, finding the difference between them, and finally averaging the values over a selected period $T$. This is captured by Eq. \ref{eq:phaseLagDefinition}. The reason this quantity is computed is because there is a need to assign a representative value to the phase lag at each $\ured$, and the ensemble average is a deemed a reasonable statistical quantity that captures the essence of the temporal evolution of phase lag.
+In this study, the phase lag $\plag$ is computed by taking the Hilbert transform of both $\ystr$ and $\cl$ signals, as \citet{Khalak1999} did in their VIV study of isolated circular cylinders, finding the difference between them, and finally averaging the values over a selected period $T$. This is captured by Eq. \ref{eq:phaseLagDefinition}. The reason this quantity is computed is because there is a need to assign a representative value to the phase lag at each $\ured$, and the ensemble average is a deemed a reasonable statistical quantity that captures the essence of the temporal evolution of phase lag. Of course, differentiating the instantaneous phase with respect to time returns the instantaneous frequency.
 
 \begin{equation}
   \plag = \frac{1}{T} \int_{0}^{T} \left[ \theta_{\text{Cl}}(t) - \theta_{y}(t) \right] dt.
@@ -1501,13 +1501,13 @@ Let $f_{1},f_{2},f_{3},\dots,\fk$ be the quantity of interest obtained from seve
 \end{equation}
 
 \section{Chapter Summary} \label{sec:chapSumMethod}
-This chapter covers the methods employed to attain the objectives outlined in Chapter One. A cruciform consisting of an upstream circular cylinder and a strip plate placed $G=0.16D$ downstream is the design geometry studied in this thesis and the primary mode of investigation is numerical, i.e., using CFD. The numerical model is solved using OpenFOAM, which is used to discretise the continuity and the RANS form of the momentum transport equation. The turbulence model employed is the one-equation Spalart-Allmaras model, which has been shown time and again in the literature to capture the essence of the flow in VIV situations.
-
-Advances in the OpenFOAM code allows for the implementation of dynamic mesh methods to simulate cylinder motion during VIV. The arbitrarily coupled mesh interface (ACMI) allows the mesh quality to be preserved. The Hilbert-Huang transform is then used to decompose the signals into physically meaningful components and allow the computation of instantaneous phase angle.
+This chapter covers the methods employed to attain the objectives outlined in Chapter One. A cruciform consisting of an upstream circular cylinder and a strip plate placed $G=0.16D$ downstream is the design geometry studied in this thesis and the primary mode of investigation is numerical, i.e., using CFD. The numerical model is solved using OpenFOAM, which is used to discretise the continuity and the RANS form of the momentum transport equation. The turbulence model employed is the one-equation Spalart-Allmaras model, which has been shown time and again in the literature to capture the essence of the flow in VIV situations. The arbitrarily coupled mesh interface (ACMI) allows the mesh quality to be preserved.
 
 The experimental method used to validate the CFD setup consists of an elastically supported cruciform oscillator in an open flow channel. The side plates supporting the two ends of the upstream circular cylinder are marked with a visual marker, thus enabling their motion to be tracked and the displacement time series obtained using a motion capture camera and a motion tracking software.
 
-Finally, Section \ref{sec:gridIndStu} outlines the method to gauge the independency of numerical solutions against spatial discretisation. The parameters are then plotted in the next chapter to demonstrate the convergence of the quantities of interest, i.e., $\ystr$, $\fstr$, and Cl. In the next chapter, the thesis discusses the results of the grid independency study and then details the results of this research.
+The phase lag between the lift and vibration signals is computed using the Hilbert-Huang transform. This is done by averaging the instantaneous phase difference between two characteristic components for lift and vibration after the application of HHT. The characteristic component for vibration is the one with largest root-mean-square amplitude. The characteristic component for lift is the one with the highest correlation to the characteristic component of vibration. Computation of fluid and mechanical power is shown to be dependent on $\plag$ and $\fcyl$. Both $\plag$ and $\fcyl$ come from the results of the HHT analysis.
+
+Finally, the chapter outlined the method to gauge the independency of numerical solutions against spatial discretisation. The parameters are then plotted in the next chapter to demonstrate the convergence of the quantities of interest, i.e., $\ystr$, $\fstr$, and Cl. In the next chapter, the thesis discusses the results of the grid independency study and then details the results of this research.
 
 \chapter{Results and Discussion} \label{chap:resultsDisc}
 
