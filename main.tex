@@ -1486,6 +1486,14 @@ The mathematical model for harnessable power estimation in this study follows th
 
 Here, $\pfrms$, $\pmrms$, $L$, $\cclrms$, $\zetatot$ and $\meff$ are the \rms{} of fluid power, \rms{} of mechanical power, length of the circular cylinder, characteristic \rms{} of lift amplitude, total damping coefficient, and the system effective mass respectively. The quantity $\cclys$ is used to represent $\cclrms$ in Eq. \ref{eq:rmsFluidPower}.
 
+The estimation of mechanical power efficiency $\etamech$ (\%) is based on the definition of efficiency in \citet{Sun2018}. This thesis computes $\etamech$ using the following method outlined in Eq. \ref{eq:mechanicalEfficiency}.
+
+\begin{equation}
+  \etamech \;(\%) = \frac{\pmrms}{P_{\text{Fluid}}} = \frac{1}{2}\rho U^{3}_{\infty} \left( 2 y_{\text{RMS}} + D \right) L
+  \label{eq:mechanicalEfficiency}
+\end{equation}
+
+\noindent Here, $U_{\infty}$ and $L$ are the freestream velocity of the flow and the length of the cylinder, respectively. This study defines efficiency using $y_{\text{RMS}}$ instead of $y_{\text{Max.}}$ like \citet{Sun2018}, due to the focus on time-averaged quantities instead of possibly one-off values.
 % The root-mean-square, i.e. \rms{} (parameters with subscript RMS) quantities in Eq. \ref{eq:workCylinder} instead of the maximum values like the original authors because that may lead to a misunderstanding that the maximum value is sustained throughout the observation window. This obviously is not always the case in this study, especially once the system transits into the SVIV regime. Recall that the time series analysis of $\ystr\left( t \right)$ and $\text{Cl}\left( t \right)$ in Chapter \ref{sec:svivRegime} revealed that there is a degree of intermittency in both signals that cannot be overlooked at certain ranges of $\ured$. Using the \rms{} value allows this work to partially take this into account in the estimation of harnessable power.
 
 \section{Grid Independency Study} \label{sec:gridIndStu}
@@ -1582,7 +1590,7 @@ This chapter presents the results and discussion of the data collected using the
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=1\textwidth]{figs/figure5}
+  \includegraphics[width=0.9\textwidth]{figs/figure5}
   \caption{Experimentally measured $y^{*}(t)$, which is the normalised cylinder displacement time series.}
   \label{fig:sampTimeHist}
 \end{figure}
@@ -1688,7 +1696,7 @@ As demonstrated by the GCI study, $\ystr$, $\fstr$, $\clrms$ all converge as the
 
 \begin{figure}[!h]
   \centering
-  \hspace{1cm} \includegraphics[width=0.7\textwidth]{figs/richardsonError}
+  \hspace{1cm} \includegraphics[width=0.75\textwidth]{figs/richardsonError}
   \caption{The error between the values of $\ystr$, $\fstr$ and $\clrms$ and their corresponding Richardson extrapolation.}
   \label{fig:richardsonError}
 \end{figure}
@@ -1709,7 +1717,7 @@ The pure cruciform case, i.e. \angfi{}, demonstrated a normalised \rms{} amplitu
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=1\textwidth]{figs/yStrRMS1}
+  \includegraphics[width=0.9\textwidth]{figs/yStrRMS1}
   \caption{Evolution of the normalised \rms{} amplitude of cylinder displacement $\yrms$, with respect to reduced velocity $\ured$, in the streamwise vortex-driven vibration regime.} \label{fig:yStrRMS1}
 \end{figure}
 
@@ -1721,7 +1729,7 @@ The experiments collect time series data of cylinder displacement $y$, from whic
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=1\textwidth]{figs/expCompareAmp}
+  \includegraphics[width=0.9\textwidth]{figs/expCompareAmp}
   \caption{Comparison between the evolution of $\yrms$ with respect to $\ured$ of a pure cruciform system from the numerical and experimental work. The filled square represents the numerical, while the filled circle represents the experimental results.}
   \label{fig:expCompareAmp}
 \end{figure}
@@ -1730,7 +1738,7 @@ The experiments collect time series data of cylinder displacement $y$, from whic
 
 \begin{figure}
   \centering
-  \includegraphics[width=1\textwidth]{figs/yStrFreq5}
+  \includegraphics[width=0.9\textwidth]{figs/yStrFreq5}
   \caption{Evolution of the normalised cylinder displacement frequency, $\fstr$, with respect to reduced velocity $\ured$, for the pure cruciform case.}
   \label{fig:yStrFreq5}
 \end{figure}
@@ -1743,13 +1751,13 @@ The trend found in $\fclstr$ vs. $\ured$ is very similar to that found in Fig. \
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{1\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/clRMS5}
     \caption{Evolution of $\clrms$ with respect to $\ured$.}
     \label{fig:clRMS5}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.95\textwidth}
+  \begin{subfigure}[h]{0.75\textwidth}
     \includegraphics[width=\textwidth]{figs/clFreq5}
     \caption{Evolution of $\fclstr$ with respect to $\ured$}
     \label{fig:clFreq5}
@@ -1763,7 +1771,7 @@ Recall Figs. \ref{fig:yStrRMS1} and \ref{fig:yStrFreq5}. Out of all thirteen var
 
 \begin{figure}
   \centering
-\includegraphics[width=1\textwidth]{figs/probe90YU10}
+\includegraphics[width=0.8\textwidth]{figs/probe90YU10}
 \caption{Distribution of normalised frequency of vortex shedding, along the span of the cylinder of the pure cruciform at $\ured = \urte$.}
   \label{fig:probe90YU10}
 \end{figure}
@@ -1780,13 +1788,13 @@ Figures \ref{fig:qCrit090U10} and \ref{fig:qCrit090U02} highlights the three-dim
 
 \begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{0.9\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/qIso090U10}
     \caption{Isometric view of the Q-criterion.}
     \label{fig:qIso090U10}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.9\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/qTop090U10}
     \caption{Plan view of the Q-criterion.}
     \label{fig:qTop090U10}
@@ -1797,13 +1805,13 @@ Figures \ref{fig:qCrit090U10} and \ref{fig:qCrit090U02} highlights the three-dim
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.9\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/qIso090U02}
     \caption{Isometric view of the Q-criterion.}
     \label{fig:qIso090U02}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.9\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/qTop090U02}
     \caption{Plan view of the Q-criterion.}
     \label{fig:qTop090U02}
@@ -1814,14 +1822,14 @@ Figures \ref{fig:qCrit090U10} and \ref{fig:qCrit090U02} highlights the three-dim
 
 \begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{0.7\textwidth}
-    \includegraphics[width=\textwidth]{figs/vorx90}
+  \begin{subfigure}[h]{0.6\textwidth}
+    \includegraphics[width=1\textwidth]{figs/vorx90}
     \caption{$x$-component vorticity}
     \label{fig:vorx90}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.7\textwidth}
-    \includegraphics[width=\textwidth]{figs/vorz90}
+  \begin{subfigure}[h]{0.6\textwidth}
+    \includegraphics[width=1\textwidth]{figs/vorz90}
     \caption{$z$-component vorticity}
     \label{fig:vorz90}
   \end{subfigure}
@@ -2037,7 +2045,7 @@ As $\ured$ is increased to 20.5, a jump is observed in $\phi$ from a mean value 
 
 \begin{figure}[!h]
   \centering
-  \hspace{1cm} \includegraphics[width=0.95\textwidth]{figs/phaseAngleRegime}
+  \hspace{1cm} \includegraphics[width=0.9\textwidth]{figs/phaseAngleRegime}
   \caption{Variation of $\theta_{y-\text{Cl}}$ with respect to $\ured$.}
   \label{fig:phaseAngleRegime}
 \end{figure}
@@ -2047,47 +2055,44 @@ The $\phi(t)$ data makes it possible to visualise the vibration ``branches'' wit
 Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B as one enters region C, marking the start of the transition to the SVIV regime. Following this, the system undergoes a more sudden drop to $\phim \approx 20$ deg. at $\ured = 18.2$. This is designated as region D. Finally, in region E, another jump is observed in $\phim$ from $\phim \approx 20$ deg. in region D to approximately 120 deg. when $\ured \geq \urni$. The discovery of these regimes of $\plag$ is only made possible through the use of HHT. The typical method of estimating $\plag$ from FFT is not applicable on complex lift signals such as those observed in this work.
 
 \subsection{Harnesseable power} \label{ssec:mathModel}
+
 Figure \ref{fig:powerComparison} compares the power estimated from the experimental and numerical results with the experimental results of \citet{Nguyen2012} and the direct power measurement of \citet{Koide2013}. Only the value for $\pmrms$ is computed from the experimental results due to the absence of lift data. The numerical results have both lift and cylinder displacement data, from which both $\pfrms$ and $\pmrms$ are computed. The power is estimated from the experimental results of \citet{Nguyen2012} by interpolating missing data points in both their amplitude and frequency responses to compute the value of $\pmrms$ at a given value of $\ured$. The direct power measurement by \citet{Koide2013} connects the elastic support of the cylinder to a coil that moves with the cylinder. This setup enables a relative pistoning motion against a fixed magnet and produces an alternating current.
 
 \begin{figure}
   \centering
-  \includegraphics[width=1\textwidth]{figs/powerComparison}
+  \includegraphics[width=0.8\textwidth]{figs/powerComparison}
   \caption{Estimation of $\pmrms$ and $\pfrms$ and comparison with available data.}
   \label{fig:powerComparison}
 \end{figure}
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/instantLiftFreq-a}
+  \begin{subfigure}[h]{0.49\textwidth}
+    \includegraphics[angle=90,width=1\textwidth]{figs/instantLiftFreq-a}
     \caption{}
     \label{fig:instantLiftFreq-a}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/instantLiftFreq-b}
+  \hfill
+  \begin{subfigure}[h]{0.49\textwidth}
+    \includegraphics[angle=90,width=1\textwidth]{figs/instantLiftFreq-b}
     \caption{}
     \label{fig:instantLiftFreq-b}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/instantLiftFreq-c}
+  \hfill
+  \begin{subfigure}[h]{0.49\textwidth}
+    \includegraphics[angle=90,width=1\textwidth]{figs/instantLiftFreq-c}
     \caption{}
     \label{fig:instantLiftFreq-c}
   \end{subfigure}
-  \caption{The HHT spectrogram of $\cl$ between $\urni \leq \ured \leq \urtt$. The solid and dashed line white boxes dilineate the distribution of the streamwise and Karman components of lift, respectively.}
-\end{figure}
-
-\begin{figure} \continuedfloat
-  \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/instantLiftFreq-d}
+  \hfill
+  \begin{subfigure}[h]{0.49\textwidth}
+    \includegraphics[angle=90,width=\textwidth]{figs/instantLiftFreq-d}
     \caption{}
     \label{fig:instantLiftFreq-d}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/instantLiftFreq-e}
+  \hfill
+  \begin{subfigure}[h]{0.49\textwidth}
+    \includegraphics[angle=90,width=\textwidth]{figs/instantLiftFreq-e}
     \caption{}
     \label{fig:instantLiftFreq-e}
   \end{subfigure}
@@ -2106,7 +2111,7 @@ Another significant component of lift in the SVIV regime is the one whose mean f
 
 \begin{figure}
   \centering
-  \includegraphics[width=1\textwidth]{figs/karmanStreamwiseComponents}
+  \includegraphics[width=0.8\textwidth]{figs/karmanStreamwiseComponents}
   \caption{Evolution of $\cflkrms$ and $\cflsrms$ with respect to $\ured$.}
   \label{fig:karmanStreamwiseComponents}
 \end{figure}
@@ -2246,16 +2251,16 @@ The source of asymmetry in the vortical structure distribution around the crucif
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{0.6\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorx675}
+    \includegraphics[width=0.6\textwidth]{figs/vorx675}
     \caption{$x$-component vorticity, 67.5$^{\circ}$ cruciform.}
     \label{fig:vorx675}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.6\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorz675}
+    \includegraphics[width=0.6\textwidth]{figs/vorz675}
     \caption{$z$-component vorticity, 67.5$^{\circ}$ cruciform.}
     \label{fig:vorz675}
   \end{subfigure}
@@ -2264,16 +2269,16 @@ The source of asymmetry in the vortical structure distribution around the crucif
 
 \begin{figure} \continuedfloat
   \centering
-  \begin{subfigure}[h]{0.6\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorx45}
+    \includegraphics[width=0.6\textwidth]{figs/vorx45}
     \caption{$x$-component vorticity, 45$^{\circ}$ cruciform.}
     \label{fig:vorx45}
   \end{subfigure}
 
-  \begin{subfigure}[h]{0.6\textwidth}
+  \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorz45}
+    \includegraphics[width=0.6\textwidth]{figs/vorz45}
     \caption{$z$-component vorticity, 45$^{\circ}$ cruciform.}
     \label{fig:vorz45}
   \end{subfigure}
@@ -2350,19 +2355,20 @@ The source of asymmetry in the vortical structure distribution around the crucif
 \end{figure}
 
 \subsection{Phase lag between $\cl$ and normalised cylinder displacement} \label{ssec:phaseLag67545}
+
 Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. Working backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseAngleRegime}, one confronts the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
 
 For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower branch of KVIV at $\ured = \urth$, $\plag$ transitioned to $\approx \SI{65}{\degree}$ between $\urfi \leq \ured \leq \urni$. The proximity between the values \SI{65}{\degree} and \SI{70}{\degree} for the \angfo{} cruciform suggests the equivalence of the two branches. However, this study is inclined to a more cautious conclusion: the two are \textit{variants} of the same branch that is only similar in limited respects as they originate from different angled cruciforms. In this respect, the \angth{} cruciform is much less similar to the pure cruciform case, as one might expect, simply because \angth{} is a much larger deviation from \angfi{} compared to \angfo{}. This larger deviation is in the opinion of this study, what causes $\plag$ in the \angth{} case to drop further to $\approx \SI{35}{\degree}$ within $\urte \leq \ured \leq \urtt$, instead of jumping up to some mean value between $100 \leq \plag \; (\si{\degree}) \leq 130$ similar to what is observed in the \angfi{} and \angfo{} cruciforms.
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{1\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag4}
     \caption{Phase lag for the 67.5$^{\circ}$ cruciform.}
     \label{fig:phaseLag675deg}
   \end{subfigure}
   
-  \begin{subfigure}[h]{1\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag3}
     \caption{Phase lag for the 45$^{\circ}$ cruciform.}
     \label{fig:phaseLag45deg}
@@ -2499,14 +2505,14 @@ Then, the $x$ and $z$-component vorticity contours of the \angtw{} cruciform is 
   \centering
   \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorx225}
+    \includegraphics[width=0.6\textwidth]{figs/vorx225}
     \caption{$x$-component vorticity, 22.5$^{\circ}$ cruciform.}
     \label{fig:vorx225}
   \end{subfigure}
 
   \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorz225}
+    \includegraphics[width=0.6\textwidth]{figs/vorz225}
     \caption{$z$-component vorticity, 22.5$^{\circ}$ cruciform.}
     \label{fig:vorz225}
   \end{subfigure}
@@ -2517,14 +2523,14 @@ Then, the $x$ and $z$-component vorticity contours of the \angtw{} cruciform is 
   \centering
   \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorx00}
+    \includegraphics[width=0.6\textwidth]{figs/vorx00}
     \caption{$x$-component vorticity, 0$^{\circ}$ cruciform.}
     \label{fig:vorx00}
   \end{subfigure}
 
   \begin{subfigure}[h]{1\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figs/vorz00}
+    \includegraphics[width=0.6\textwidth]{figs/vorz00}
     \caption{$z$-component vorticity, 0$^{\circ}$ cruciform.}
     \label{fig:vorz00}
   \end{subfigure}
@@ -2619,13 +2625,13 @@ The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225de
 
 \begin{figure}
   \centering
-  \begin{subfigure}[h]{1\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag2}
     \caption{Phase lag for the 22.5$^{\circ}$ cruciform.}
     \label{fig:phaseLag225deg}
   \end{subfigure}
   
-  \begin{subfigure}[h]{1\textwidth}
+  \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/phaseLag1}
     \caption{Phase lag for the 0$^{\circ}$ cruciform.}
     \label{fig:phaseLag00deg}
@@ -2658,21 +2664,12 @@ Then, the same two-dimensional interpolation is performed on the results of $\pm
 
 The $\pmrms$ contour also elucidated the feasibility of cruciform angle variation as a means to control the range of $\ured$ within which substantive quantity of power can be harnessed. For a given operating range of $\ured$, one can choose for substantive power generation to take place in the high $\ured$ region ($\ured \geq \urei$), or across a larger range starting from a minimum of $\ured = \urfo$, by manipulating the cruciform angle. For power generation in the high $\ured$ region, one simply sets the cruciform angle to \angfi{}, and for power generation starting from the lowest possible $\ured$, one should opt for a shallow-angled cruciform, with increasing magnitude of power generated as $\alpha \rightarrow \SI{0}{\degree}$.
 
-The estimation of mechanical power efficiency $\etamech$ (\%) is based on the definition of efficiency in \citet{Sun2018}. This thesis defines $\etamech$ in Eq. \ref{eq:mechanicalEfficiency}.
-
-\begin{equation}
-  \etamech \;(\%) = \frac{\pmrms}{P_{\text{Fluid}}} = \frac{1}{2}\rho U^{3}_{\infty} \left( 2 y_{\text{RMS}} + D \right) L
-  \label{eq:mechanicalEfficiency}
-\end{equation}
-
-\noindent Here, $U_{\infty}$ and $L$ are the freestream velocity of the flow and the length of the cylinder, respectively. This study defines efficiency using $y_{\text{RMS}}$ instead of $y_{\text{Max.}}$ like \citet{Sun2018}, due to the focus on time-averaged quantities instead of possibly one-off values.
-
 Unlike Fig. \ref{fig:mechanicalPowerContour}, the efficiency contour does not display a trend similar to the contour of $\yrms$ in Fig. \ref{fig:yRMSContour}. The pure cruciform achieves maximum $\etamech$ close to $\ured = \urei$, steep-angled cruciforms (\angfo{} and \angth{} cruciforms) attain maximum $\etamech$ within the vicinity of $(\ured,\alpha) = (\urtw,\angfo)$, and shallow-angled cruciforms (\angtw{} and \angon{} layouts) strikes maximum $\etamech$ in the neighbourhood of $(\ured,\alpha) = (\urfo,\angon)$. These high-efficiency regions is consistent with the assertion that different flow dynamics govern the vibration resulting from either the pure, steep-angled or shallow-angled cruciforms.
 
 \begin{figure}
   \centering
   \includegraphics[width=1\textwidth]{figs/powerEfficiencyContours}
-  \caption{Isocontours describing the map of the estimated mechanical power in the cruciform angle - reduced velocity ($\alpha$--$\ured$) parameter space.}
+  \caption{Isocontours describing the map of the estimated mechanical efficiency in the cruciform angle - reduced velocity ($\alpha$--$\ured$) parameter space.}
   \label{fig:powerEfficiencyContour}
 \end{figure}
 
