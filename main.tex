@@ -1065,7 +1065,7 @@ The number of cells used in the spatial discretisation of the computational doma
   \label{fig:acmi}
 \end{figure}
 
-The quality of the grid mesh is also established using the Richardson extrapolation and the grid convergence index (GCI) \citep{Stern2001}. The Richardson extrapolation \citep{Richardson1927} and GCI provides this study with a procedure to quantitatively measure on the degree of convergence for the quantities of interest in a numerical study. This method also forces the researcher to pay attention to the trend of convergence of the quantities of interest, requiring a monotonic convergence before proceeding to data collection, in line with previous research such as \citet{MatAli2011} and \citet{Maruai2018}. A good quality mesh is essential for the computation and visualisation of three-dimensional vortical structures using the $Q$-criterion. The $Q$-criterion is described in \citet{Jeong1995} as the region with positive second invariant of $\nabla U$ - the velocity gradient - where
+The quality of the grid mesh is also established using the Richardson extrapolation and the grid convergence index (GCI) \citep{Stern2001}. The Richardson extrapolation \citep{Richardson1927} and GCI provides this study with a procedure to quantitatively measure on the degree of convergence for the quantities of interest in a numerical study. This method also forces the researcher to pay attention to the trend of convergence of the quantities of interest, requiring a gradual convergence before proceeding to data collection, in line with previous research such as \citet{MatAli2011} and \citet{Maruai2018}. A good quality mesh is essential for the computation and visualisation of three-dimensional vortical structures using the $Q$-criterion. The $Q$-criterion is described in \citet{Jeong1995} as the region with positive second invariant of $\nabla U$ - the velocity gradient - where
 
 \begin{equation}
   Q = \frac{1}{2} u_{i,j}u_{j,i}.
@@ -1554,7 +1554,7 @@ Let $f_{1},f_{2},f_{3},\dots,\fk$ be the quantity of interest obtained from seve
   \label{eq:richardsonExtrapolation}
 \end{equation}
 
-\noindent where $\fre$ is the Richardson extrapolation of the quantity of interest. Using $\fre$ to estimate the limit of the monotonically convergent series of $f_{i}$, one can determine the percentage difference of the solution on the finest grid from this limit as
+\noindent where $\fre$ is the Richardson extrapolation of the quantity of interest. Using $\fre$ to estimate the limit of the gradually convergent series of $f_{i}$, one can determine the percentage difference of the solution on the finest grid from this limit as
 
 \begin{equation}
   E_{i} = \frac{f_{i} - \fre}{\fre} \times 100\%.
@@ -1834,7 +1834,7 @@ As one can see from the previous section, the streamwise vortex-induced vibratio
 
 \subsubsection{The KVIV regime (reduced velocity below 13.6)} \label{sssec:phaseLag}
 %% Paraphrase in Grammarly BEGIN
-At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between $\cl$ and  $\ured$ are practically zero throughout the whole observation time. The characteristic intrinsic mode functions (IMFs) of $\cl$ and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the Hilbert-Huang transform (HHT) spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the decomposed $\cl$ signal. The trend in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed by \citet{Khalak1999} which also employs the Hilbert transform to compute the instantaneous phase. It is worth noting that the signals dealt with in \citet{Khalak1999} are more or less monotonic, rendering empirical mode decomposition (EEMD) irrelevant. The dominant IMF component of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$. Here, the dominant IMF component refers to the component of IMF with the highest amplitude during the whole observation time.
+At reduced velocities  $\ured = 2.3$ and 4.5, the phase lags  $\phi$ (deg.) between $\cl$ and  $\ured$ are practically zero throughout the whole observation time. The characteristic intrinsic mode functions (IMFs) of $\cl$ and  $\ystr$ at $\ured = 4.5$ exemplifies this trend, as showcased in Fig. \ref{fig:tempAnalysisKVIV}. Here, Fig. \ref{fig:tempAnalysisKVIV}a shows the temporal evolution of $\cysys$ and $\cclys$, which are the characteristic IMFs of $\ystr$ and Cl, respectively. Figure \ref{fig:tempAnalysisKVIV}b shows the phase lag between $\cysys$ and $\cclys$, and Fig. \ref{fig:tempAnalysisKVIV}c presents the Hilbert-Huang transform (HHT) spectrogram of Cl. The HHT spectrogram visualises the instantaneous frequency and amplitude of the decomposed $\cl$ signal. The trend in Fig. \ref{fig:tempAnalysisKVIV}b is similar to what was observed by \citet{Khalak1999} which also employs the Hilbert transform to compute the instantaneous phase. It is worth noting that the signals dealt with in \citet{Khalak1999} are more or less gradual, rendering empirical mode decomposition (EEMD) irrelevant. The dominant IMF component of the lift coefficient has a normalised frequency $\fclstr = f_{\text{Cl}}/\fn$ (Fig. \ref{fig:tempAnalysisKVIV}c) centred at approximately $\fclstr = 0.75$. Here, the dominant IMF component refers to the component of IMF with the highest amplitude during the whole observation time.
 
 \begin{figure}
   \centering
@@ -2000,55 +2000,51 @@ The transition to SVIV is considered complete at $\ured = 18.2$ when the time-av
 \subsubsection{The stable SVIV regime (reduced velocity greater than 20.5)} \label{sssec:svivRegime}
 As $\ured$ is increased to 20.5, a jump is observed in $\phi$ from a mean value of approximately 20 deg. to about 120 deg., shown in Fig. \ref{fig:phaseAngle}a. The phase slippage discussed previously is also observed, indicating the quasi-periodic nature of the lift coefficient signal at this $\ured$. Incidentally, this quasi-periodicity seems to be the norm for the lift signals up to $\ured = 27.3$, as suggested by the phase slippages evident in Figs. \ref{fig:phaseAngle}b, c and d. The slippage halts once $\ured$ reaches 29.5, suggesting the emergence of a more periodic lift signal relative to $20.5 \leq \ured \leq 27.3$. Although the instantaneous phase between $20.5 \leq \ured \leq 27.3$ implies a quasi-periodic nature, their time-averaged values at each $\ured$ are contained in the narrow region $114 < \phi$ (deg.) $< 135$, as is the value for $\phi$ at $\ured = 29.5$. This finding can be interpreted as the dominant vortical structures becoming more resilient against external excitations. Hence, $20.5 \leq \ured \leq 29.5$ is classified as the upper branch of SVIV.
 
-\begin{figure}
+\begin{figure}[!h]
   \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseAngle-a}
-    \caption{}
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{figs/phaseAngle-a}
+    \caption{Phase angle evolution at $\urni$.}
     \label{fig:phaseAngle-a}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseAngle-b}
-    \caption{}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{figs/phaseAngle-b}
+    \caption{Phase angle evolution at $\urte$.}
     \label{fig:phaseAngle-b}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseAngle-c}
-    \caption{}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{figs/phaseAngle-c}
+    \caption{Phase angle evolution at $\urel$.}
     \label{fig:phaseAngle-c}
   \end{subfigure}
-
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseAngle-d}
-    \caption{}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{figs/phaseAngle-d}
+    \caption{Phase angle evolution at $\urtv$.}
     \label{fig:phaseAngle-d}
   \end{subfigure}
-  \caption{The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$.}
-\end{figure}
-
-\begin{figure} \continuedfloat
-  \centering
-  \begin{subfigure}[h]{1\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseAngle-e}
-    \caption{}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{figs/phaseAngle-e}
+    \caption{Phase angle evolution at $\urtt$.}
     \label{fig:phaseAngle-e}
   \end{subfigure}
   \caption{The instantaneous phase lag $\phi$ of $\cclys$ in the range $\urni \leq \ured \leq \urtt$.}
   \label{fig:phaseAngle}
 \end{figure}
 
-The $\phi(t)$ data makes it possible to visualise the vibration ``branches'' within the $\ured$ range investigated. As the branches are mapped against $\ured$, a representative value of $\phi$ is needed at each $\ured$. To achieve this, the time-averaged values of $\phi$ is taken, i.e. $\phim$, and plotted them against $\ured$ in Fig. \ref{fig:phaseAngleRegime}. Region A indicates the initial branch of  KVIV, where  $\phim$ is close to zero. Region B denotes the upper/lower branch of  KVIV, where the system jumps from  $\phim \approx 0$ to greater than 110 deg. The value of $\phim$ saturates near 180 deg. towards the end of this upper/lower branch.
-
-\begin{figure}
+\begin{figure}[!h]
   \centering
-  \includegraphics[width=1\textwidth]{figs/phaseAngleRegime}
+  \hspace{1cm} \includegraphics[width=0.95\textwidth]{figs/phaseAngleRegime}
   \caption{Variation of $\theta_{y-\text{Cl}}$ with respect to $\ured$.}
   \label{fig:phaseAngleRegime}
 \end{figure}
 
-Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B as one enters region C, marking the start of the transition to the SVIV regime. Following this, the system undergoes a more sudden drop to $\phim \approx 20$ deg. at $\ured = 18.2$. This is designated as region D. Finally, in region E, another jump is observed in $\phim$ from $\phim \approx 20$ deg. in region D to approximately 120 deg. when $\ured \geq \urni$.
+The $\phi(t)$ data makes it possible to visualise the vibration ``branches'' within the $\ured$ range investigated. As the branches are mapped against $\ured$, a representative value of $\phi$ is needed at each $\ured$. To achieve this, the time-averaged values of $\phi$ is taken, i.e. $\phim$, and plotted them against $\ured$ in Fig. \ref{fig:phaseAngleRegime}. Region A indicates the initial branch of  KVIV, where  $\phim$ is close to zero. Region B denotes the upper/lower branch of  KVIV, where the system jumps from  $\phim \approx 0$ to greater than 110 deg. The value of $\phim$ saturates near 180 deg. towards the end of this upper/lower branch.
+
+Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B as one enters region C, marking the start of the transition to the SVIV regime. Following this, the system undergoes a more sudden drop to $\phim \approx 20$ deg. at $\ured = 18.2$. This is designated as region D. Finally, in region E, another jump is observed in $\phim$ from $\phim \approx 20$ deg. in region D to approximately 120 deg. when $\ured \geq \urni$. The discovery of these regimes of $\plag$ is only made possible through the use of HHT. The typical method of estimating $\plag$ from FFT is not applicable on complex lift signals such as those observed in this work.
 
 \subsection{Harnesseable power} \label{ssec:mathModel}
 Figure \ref{fig:powerComparison} compares the power estimated from the experimental and numerical results with the experimental results of \citet{Nguyen2012} and the direct power measurement of \citet{Koide2013}. Only the value for $\pmrms$ is computed from the experimental results due to the absence of lift data. The numerical results have both lift and cylinder displacement data, from which both $\pfrms$ and $\pmrms$ are computed. The power is estimated from the experimental results of \citet{Nguyen2012} by interpolating missing data points in both their amplitude and frequency responses to compute the value of $\pmrms$ at a given value of $\ured$. The direct power measurement by \citet{Koide2013} connects the elastic support of the cylinder to a coil that moves with the cylinder. This setup enables a relative pistoning motion against a fixed magnet and produces an alternating current.
@@ -2099,9 +2095,9 @@ Figure \ref{fig:powerComparison} compares the power estimated from the experimen
   \label{fig:instantLiftFreq}
 \end{figure}
 
-The estimated power in the KVIV regime $\ured \leq \urse$ produces power only in the order of \si{\micro\watt}, which is relatively insignificant in contrast to the magnitude of power produced in the SVIV regime (mW). In the region $\urei \leq \ured \leq \urte$, $\pmrms$ for in the experimental and numerical work exhibits a similar trend where a sudden jump in power output is observed, followed by a gradual decrease. This gradual decrease can be attributed to the increased turbulence level right after the onset of SVIV that imposes a degree of intermittency to the normalised cylinder displacement signal, $\ystr$. For $\pfrms$, however, the quantity exhibits a monotonic increase in the range $\urei \leq \ured \leq \urte$. A dip in $\pfrms$ is only observed at $\ured = \urel$, suggesting an increase in intermittency of $\cclys$ at this $\ured$. In the experimental work of \citet{Nguyen2012}, $\pmrms$ only experiences a monotonic increase in the region $\urei \leq \ured \leq \urte$. This markedly different response of the system compared to this work possibly originate from the discrepancy in the cruciform used by \citet{Nguyen2012}. They used two circular cylinders of diameter \SI{10}{\milli\metre} as their cruciform, whereas this study used a circular cylinder - strip plate in both the experiments and numerical work. There are no data from the direct power measurement of \citet{Koide2013} to compare with within $\urei \leq \ured \leq \urte$.
+The estimated power in the KVIV regime $\ured \leq \urse$ produces power only in the order of \si{\micro\watt}, which is relatively insignificant in contrast to the magnitude of power produced in the SVIV regime (mW). In the region $\urei \leq \ured \leq \urte$, $\pmrms$ for in the experimental and numerical work exhibits a similar trend where a sudden jump in power output is observed, followed by a gradual decrease. This gradual decrease can be attributed to the increased turbulence level right after the onset of SVIV that imposes a degree of intermittency to the normalised cylinder displacement signal, $\ystr$. For $\pfrms$, however, the quantity exhibits a gradual increase in the range $\urei \leq \ured \leq \urte$. A dip in $\pfrms$ is only observed at $\ured = \urel$, suggesting an increase in intermittency of $\cclys$ at this $\ured$. In the experimental work of \citet{Nguyen2012}, $\pmrms$ only experiences a gradual increase in the region $\urei \leq \ured \leq \urte$. This markedly different response of the system compared to this work possibly originate from the discrepancy in the cruciform used by \citet{Nguyen2012}. They used two circular cylinders of diameter \SI{10}{\milli\metre} as their cruciform, whereas this study used a circular cylinder - strip plate in both the experiments and numerical work. There are no data from the direct power measurement of \citet{Koide2013} to compare with within $\urei \leq \ured \leq \urte$.
 
-In the range $\urel \leq \ured \leq \urtt$, a reasonably good agreement is found between the trend found in all data compared: they increase monotonically against $\ured$. Although the value of $\pfrms$ falls quite notably below the value of $\pmrms$ at $\ured = \urel$, other values of $\pfrms$, $\pmrms$ from the numerical results and the direct power measurements by \citet{Koide2013} agree well within $\urtv \leq \ured \leq \urtt$. The only set of power data that consistently falls short of the others is the $\pmrms$ estimated from the experimental data of \citet{Nguyen2012}, which again, is most probably due to the different cruciform used in their investigation.
+In the range $\urel \leq \ured \leq \urtt$, a reasonably good agreement is found between the trend found in all data compared: they increase gradually against $\ured$. Although the value of $\pfrms$ falls quite notably below the value of $\pmrms$ of this study at $\ured = \urel$, other values of $\pfrms$, $\pmrms$ from the numerical results of this study and the direct power measurements by \citet{Koide2013} agree well within $\urtv \leq \ured \leq \urtt$. The only set of power data that consistently falls short of the others is the $\pmrms$ estimated from the experimental data of \citet{Nguyen2012}, which again, is most probably due to the different cruciform used in their investigation.
 
 \subsection{Possibility for increasing fluid power} \label{ssec:possIncrease}
 Recall in Fig. \ref{fig:powerComparison} that although $\pfrms$ is computed according to Eq. \ref{eq:rmsFluidPower}, which uses $\cclrms$ instead of the actual \rms{} amplitude of lift ($\clrms$), the resulting power estimate does not result in a trend that is different from the trend found in the other datasets. In addition, the values of $\pfrms$ are in reasonably good agreement with other benchmarked data at high $\ured$ ($\ured = \urtv$ and $\urtt$), except for $\pmrms$ estimated from the experimental data of \citet{Nguyen2012}. This agreement is possibly an indication that the lift component selected for use in the computation of $\pfrms$ is an arguably faithful representation of the force driving the motion of the cylinder. Hence, the motion of the cylinder, once it enters the SVIV regime, is driven only by one component and not the totality of the lift force. This component -- that has a time-averaged frequency close to the system's natural frequency, $\fn$ -- is the ``streamwise component'' of lift.
@@ -2619,7 +2615,7 @@ As demonstrated in Section \ref{sec:svivRegime} and \ref{sec:transitionToKarman}
 \section{Phase lag between $\cl$ and normalised cylinder displacement} \label{sec:phaseLag22500}
 In Fig. \ref{fig:phaseLag225deg}, the evolution of $\plag$ is summarised according to $\ured$ for the \angtw{} cruciform and find $\plag \approx \SI{115}{\degree}$ at $\ured = \urtt$. The significance of $\ured = \urtt$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseAngleRegime} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. This may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform (Fig. \ref{fig:yStrFreq2}).
 
-The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump is the sudden drop at $\ured = \urfo$, which brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which $\plag$ is found to monotonically increase up to $\ured = \urtt$.
+The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump is the sudden drop at $\ured = \urfo$, which brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which $\plag$ is found to gradually increase up to $\ured = \urtt$.
 
 \begin{figure}
   \centering
