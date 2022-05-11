@@ -377,7 +377,6 @@
     "fig:powerEfficiencyContour"
     "ssec:chapSumResults"
     "chap:conclusion"
-    "sec:concResearchOutcome"
     "sec:concFutureWorks")
    (LaTeX-add-bibliographies
     "reference")
