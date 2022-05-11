@@ -3,10 +3,10 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("utmthesis" "oneside")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
     "utmthesis"
@@ -249,6 +249,7 @@
     "fig:yStrRMS1"
     "fig:expCompareAmp"
     "fig:yStrFreq5"
+    "fig:expSimFreq90"
     "fig:clRMS5"
     "fig:clFreq5"
     "fig:cl90"
@@ -353,23 +354,24 @@
     "fig:vorx00"
     "fig:vorz00"
     "fig:vortStruct22500"
-    "fig:qIso000U02"
-    "fig:qTop000U02"
-    "fig:qCrit000U02"
-    "fig:qIso225U10"
-    "fig:qTop225U10"
-    "fig:qCrit225U10"
     "fig:qIso225U02"
     "fig:qTop225U02"
     "fig:qCrit225U02"
+    "fig:qIso225U10"
+    "fig:qTop225U10"
+    "fig:qCrit225U10"
+    "fig:qIso000U02"
+    "fig:qTop000U02"
+    "fig:qCrit000U02"
     "fig:qIso000U10"
     "fig:qTop000U10"
     "fig:qCrit000U10"
-    "sec:phaseLag22500"
+    "ssec:phaseLag22500"
     "fig:phaseLag225deg"
     "fig:phaseLag00deg"
     "fig:phaseLag22500deg"
     "sec:powerCharacteristic"
+    "tab:mainFindings"
     "fig:yRMSContour"
     "fig:mechanicalPowerContour"
     "fig:powerEfficiencyContour"

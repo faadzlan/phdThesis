@@ -497,6 +497,7 @@ As the name suggests, VIV is the result of the periodic shedding of vortices. Th
 %%Chapter 2-1IE>>
 
 \subsection{Karman Vortex Shedding} \label{ssec:kvShedding}
+
 The formation of Karman vortex is the direct result of flow separation over a body submerged in a fluid flow. At low Reynolds numbers, the streamline is still able to follow the contour of the submerged body due to viscosity.  Here, the Reynolds number Re of the flow is defined as
 
 \begin{equation}
@@ -1608,20 +1609,20 @@ Table \ref{tab:gridIndependency} summarises the result of the grid convergence i
 \vspace{\baselineskip}
 \setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
 \renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
-\begin{tabular}{l c c c}
+\begin{tabular}{l l c c c}
   \hline
   \hline
-Parameter/ metric                                                       & $\clrms$       & $\yrms = \ystr/D$ & $\fstr = \fcyl / \fn$ \\
+Parameter                   & Symbol                                                                  & $\clrms$ & $\yrms$  & $\fstr$  \\
   \hline
-$\fre$                                                                  & $0.262$        & $0.369$           & $0.969$               \\
-$f_{1}$                                                                 & $0.2598$       & $0.3687$          & $0.9695$              \\
-$f_{2}$                                                                 & $0.2430$       & $0.3588$          & $0.9740$              \\
-$f_{3}$                                                                 & $0.0805$       & $0.2374$          & $1.0220$              \\
-$\left | \epsilon_{2,1} \right |$                                       & $0.02$         & $0.01$            & $0.004$               \\
-$\left | \epsilon_{3,2} \right |$                                       & $0.16$         & $0.12$            & $0.48$                \\
-$R = \left | \epsilon_{2,1} \right | / \left | \epsilon_{3,2} \right |$ & $0.10$         & $0.08$            & $0.094$               \\
-$\text{GCI}_{3,2}$                                                      & $30.92$        & $6.00$            & $0.64$                \\
-$\text{GCI}_{2,1}$                                                      & $1.63$         & $0.52$            & $0.10$                \\
+Richardson extrapolation    & $\fre$                                                                  & $0.262$  & $0.369$  & $0.969$  \\
+Fine grid result            & $f_{1}$                                                                 & $0.2598$ & $0.3687$ & $0.9695$ \\
+Medium grid result          & $f_{2}$                                                                 & $0.2430$ & $0.3588$ & $0.9740$ \\
+Coarse grid result          & $f_{3}$                                                                 & $0.0805$ & $0.2374$ & $1.0220$ \\
+Medium-to-Fine difference   & $\left | \epsilon_{2,1} \right |$                                       & $0.02$   & $0.01$   & $0.004$  \\
+Coarse-to-Medium difference & $\left | \epsilon_{3,2} \right |$                                       & $0.16$   & $0.12$   & $0.48$   \\
+Convergence ratio           & $R = \left | \epsilon_{2,1} \right | / \left | \epsilon_{3,2} \right |$ & $0.10$   & $0.08$   & $0.094$  \\
+Medium-to-Fine GCI          & $\text{GCI}_{2,1}$                                                      & $1.63$   & $0.52$   & $0.10$   \\
+Coarse-to-Medium GCI        & $\text{GCI}_{3,2}$                                                      & $30.92$  & $6.00$   & $0.64$   \\
   \hline
   \hline
 \end{tabular}
@@ -1684,12 +1685,6 @@ As demonstrated by the GCI study, $\ystr$, $\fstr$, $\clrms$ all converge as the
 \end{figure}
 
 \section{The pure cruciform}\label{sec:svivRegime}
-% This section details the investigations conducted with regards to the pure cruciform in terms of it being the oscillator in an energy harvesting system. The pure cruciform serves as the base upon which all subsequent results will be compared against.
-% The reason behind it being the base reference lies in the expansiveness of studies done, making it the type of cruciform oscillator that is most known about. Recall that it is through the study of the pure cruciform oscillator that the three main merits of the cruciform oscillator becomes known: a highly adept passive control system via the downstream strip plate, a very wide synchronisation range, and an approximately constant maximum vibration amplitude across the synchronisation range \citep{Koide2013}.
-
-% Despite this, in recent years, improvement in terms of power output from the pure cruciform system seems to have hit a wall. Part of the reason behind this engineering roadblock is the fact that studies on pure cruciform oscillators to date have been focussed on answering the ``what happens if'' questions instead of the ``why'' questions concerning its system response. This work is of the opinion that if the roadblock is to be removed, efforts must be made to answer the ``why'' questions and the first step towards that is by understanding why does one observe the system responses found in the literature. This is possible through the use of CFD as one can quite effortlessly make simultaneous measurements of the cylinder displacement and lift while also obtain quantitative visualisations of the three-dimensional flow field describing the vortical structures governing the vibration of the cylinder.
-
-% The roadblock can also be interpreted as a sign to apply new methods of analysis on the common signals that are studied during the course of a VIV study, which are the time series of cylinder displacement and lift. Coupled with quantitative visualisations of the dominant vortical structures in the flow, this thesis attempts to look for clues that can guide future designs of the cruciform system as an energy harvester and bring to the table knowledge beyond improving its power output and efficiency, but the ability to control them, and adapting them to suit the natural environment within which the cruciform oscillator harnesses energy. This is because, even if the engineering knowledge allows for the vibration amplitude and frequency to reach a certain maximum value - and thus power - within a range of flow velocities, the aquatic or marine environment it is submitted to may not be suitable for such deployments, especially when faced with aquatic and marine life protection responsibilities \citep{Raghavan2007a}.
 
 The section starts by reproducing the amplitude/frequency responses of the pure cruciform, followed with the investigation of the vortical structures that bring about the amplitude/frequency responses observed. Then, the Hilbert-Huang transform is applied to elucidate the temporal evolution of the phase angle between lift and cylinder displacement to discover potentially hidden branches in the amplitude response not previously subjected to energy harvesting. Finally, the section concludes with the decomposition of the lift signal and the discovery of clues to maximise the vibration-driving lift, and consequently vibration amplitude and power output.
 
@@ -1718,16 +1713,27 @@ The experiments collect time series data of cylinder displacement $y$, from whic
 
 \noindent Both results agree in terms of magnitude and trend of the amplitude response. However, the jump to SVIV occurs at a higher $\ured \approx 19$, translating to a delay of about 3 units of $\ured$. The numerical and experimental results are also able to capture the slight dip in $\yrms$ following the jump to SVIV, but the occurrence in the experiment is also delayed by about 3 units of $\ured$. This delay can perhaps be attributed to the fact that the raw $y$ time series were measured in succession from the lowest attainable channel flow velocity \uth{} to its highest \uel{} within one experimental run. In contrast, the simulations always start with the cylinder at rest at its neutral position at $t_{0} = \SI{0}{\second}$, with the freestream exactly at set at the desired value $\uon, \utw, \dots, \utt$. Thus, the delays found in experimental results may simply be the consequence of ``flow memory'', a concept whose analogy can be found in experiments concerned with the critical value of a nondimensional quantity, e.g. Reynolds number, that demarcates the transition between two states of flow \citep{Saint-Michel2014,Rahman2015,Li2021}. For all practical purposes, ``flow memory'' is simply the natural tendency of a fluid to retain its current state of flow for as long as it can, before being altered by an increase/decrease in momentum. This results in the delay found at the jump to SVIV and the local $\yrms$ minimum after the jump.
 
-\begin{figure}
+The evolution of the normalised cylinder vibration frequency $\fstr$ with respect to $\ured$ is shown in Fig. \ref{fig:yStrFreq5}. Inspecting Fig. \ref{fig:yStrFreq5}, one immediately notice two distinct evolutionary pattern for $\fstr$with a sharp boundary at $\ured = \ursi$. Between $\uron \leq \ured \leq \ursi$, the $\fstr$ trend follows closely the shedding frequency of Karman vortices from an isolated, fixed circular cylinder \citep{Blevins1990}. Then, within $\urse \leq \ured \leq \urtt$, $\fstr$ drops close to 1, indicating synchronisation between lift and cylinder vibration. It seems that this synchronisation is what gives rise to the bigger $\ystr$, compared to $\uron \leq \ured \leq \ursi$.
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figs/yStrFreq5}
   \caption{Evolution of the normalised cylinder displacement frequency, $\fstr$, with respect to reduced velocity $\ured$, for the pure cruciform case.}
   \label{fig:yStrFreq5}
 \end{figure}
 
-The evolution of the normalised cylinder vibration frequency $\fstr$ with respect to $\ured$ is shown in Fig. \ref{fig:yStrFreq5}. Inspecting Fig. \ref{fig:yStrFreq5}, one immediately notice two distinct evolutionary pattern for $\fstr$with a sharp boundary at $\ured = \ursi$. Between $\uron \leq \ured \leq \ursi$, the $\fstr$ trend follows closely the shedding frequency of Karman vortices from an isolated, fixed circular cylinder \citep{Blevins1990}. Then, within $\urse \leq \ured \leq \urtt$, $\fstr$ drops close to 1, indicating synchronisation between lift and cylinder vibration. It seems that this synchronisation is what gives rise to the bigger $\ystr$, compared to $\uron \leq \ured \leq \ursi$.
+The validation experimental data for $\fstr$ is presented in exhibits a trend previously observed in Fig. \ref{fig:expSimFreq90}. The trend observed is such that $\fstr$ is always within the vicinity of $\fstr = 1$, different from the numerical results. In \citet{Nguyen2012}, this is explained as the consequence of using a moderately turbulent flow channel for conducting the experiment. Random noise from the turbulence overpowers the lift generated by the vortices, exciting the cylinder to vibrate close to the natural frequency of the system, i.e., $\fstr = 1$. It should also be mentioned that while the simulations are done within $2.3 \leq \ured \leq 29.5$, the experiment were done within $9 < \ured < 25$ due to limitations of the open flow channel.
 
-\begin{figure}[!h]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figs/expSimFreq90}
+  \caption{Comparison between the numerical and experimental data of $\fstr$ for the pure cruciform.}
+  \label{fig:expSimFreq90}
+\end{figure}
+
+Inspecting the evolution of \rms{} amplitude of lift coefficient $\clrms$ and the normalised lift coefficient frequency $\fclstr$ with respect to $\ured$ in Fig. \ref{fig:cl90}, provided more evidence supporting the assertion that $\ured = \urse$ is a boudary berween two vibration-driving mechanisms. In fact, the observation at $\urse$ in Fig. \ref{fig:clRMS5} indicates that the SVIV regime is still in its infancy, due to the dip in $\clrms$ at that $\ured$, compared to $\ured = \ursi$. In Fig. \ref{fig:clFreq5}, a dashed line is also drawn to illustrare $f^{*}_{v} = \fvk/D$, where $\fvk$ is the shedding frequency of Karman vortices from a smooth isolated circular cylinder described in Eq. \ref{eq:karmanSheddingFreq}.
+
+\begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.8\textwidth}
     \includegraphics[width=\textwidth]{figs/clRMS5}
@@ -1744,35 +1750,33 @@ The evolution of the normalised cylinder vibration frequency $\fstr$ with respec
   \caption{Evolution of the lift coefficient \rms{} amplitude ($\clrms$) and normalised frequency of lift coefficient ($\fclstr$), with respect to reduced velocity $\ured$, for the pure cruciform case. The dashed line in Fig. \ref{fig:clFreq5} visualises the shedding frequency of Karman vortex computed from Eq. \ref{eq:karmanSheddingFreq}.} \label{fig:cl90}
 \end{figure}
 
-Inspecting the evolution of \rms{} amplitude of lift coefficient $\clrms$ and the normalised lift coefficient frequency $\fclstr$ with respect to $\ured$ in Fig. \ref{fig:cl90}, provided more evidence supporting the assertion that $\ured = \urse$ is a boudary berween two vibration-driving mechanisms. In fact, the observation at $\urse$ in Fig. \ref{fig:clRMS5} indicates that the SVIV regime is still in its infancy, due to the dip in $\clrms$ at that $\ured$, compared to $\ured = \ursi$. In Fig. \ref{fig:clFreq5}, a dashed line is also drawn to illustrare $f^{*}_{v} = \fvk/D$, where $\fvk$ is the shedding frequency of Karman vortices from a smooth isolated circular cylinder described in Eq. \ref{eq:karmanSheddingFreq}.
-
-The trend found in $\fclstr$ vs. $\ured$ is very similar to that found in Fig. \ref{fig:yStrFreq5}. This similarity is interpreted as an indication of the symmetry of lift produced along the cylinder. This reasoning stems from the findings of \citet{Zhao2018a}, who revealed how lift is distributed along the upstream cylinder of a two-cylinder \angfi{} cruciform. They did this by computing chapteral lift coefficients along the upstream cylinder. This system produces a symmetric distribution of chapteral lift coefficient, with $Z = 0$ being the plane of symmetry. An asymmetrical distribution of the chapteral lift coefficient may produce a trend in $\yrms$ and $\fstr$ that is dissimilar to those found in $\clrms$ and $\fclstr$, due to the irregular moment acting on the cylinder.
+The trend found in $\fclstr$ vs. $\ured$ is very similar to that found in Fig. \ref{fig:yStrFreq5}. This similarity is interpreted as an indication of the symmetry of lift produced along the cylinder. This reasoning stems from the findings of \citet{Zhao2018a}, who revealed how lift is distributed along the upstream cylinder of a two-cylinder \angfi{} cruciform. They did this by computing sectional lift coefficients along the upstream cylinder. This system produces a symmetric distribution of sectional lift coefficient, with $Z = 0$ being the plane of symmetry. An asymmetrical distribution of the sectional lift coefficient may produce a trend in $\yrms$ and $\fstr$ that is dissimilar to those found in $\clrms$ and $\fclstr$, due to the irregular moment acting on the cylinder.
 
 \subsection{Main vibration-driving vortical structure}\label{ssec:svivRegimeVortStruct}
 Recall Figs. \ref{fig:yStrRMS1} and \ref{fig:yStrFreq5}. Out of all thirteen variants of $\ured$ studied in the pure cruciform case, seven within $\urse \leq \ured \leq \urtt$ sustain high-amplitude vibrations with no foreseeable upper limit within the observation window. For a more complete understanding of the mechanism driving the vibration, one needs to know what are the vortical structures dominating the flow are and how they interact with each other.
-
-\begin{figure}
-  \centering
-\includegraphics[width=1\textwidth]{figs/probe90YU10}
-\caption{Distribution of normalised frequency of vortex shedding, along the span of the cylinder of the pure cruciform at $\ured = \urte$.}
-  \label{fig:probe90YU10}
-\end{figure}
 
 Let the coordinates of the simulation domain be defined in the following manner: $\left( X, Y, Z \right) = \left( \frac{x}{D}, \frac{y}{D}, \frac{z}{D} \right)$. The $y$-component velocity fluctuations are sampled on the $\left ( X, Y \right ) = \left ( 1.96, 0 \right )$ line, along the span of the cylinder in $0.5D$ increments, i.e. at coordinates $\left ( 1.96, 0, 7.5 \right )$, $\left ( 1.96, 0, 7.0 \right )$, \dots, $\left ( 1.96, 0, -7.5 \right )$. The distance $X = 1.96$ from the origin is equivalent to $1D$ downstream the trailing edge of the strip plate, and this location is chosen as it is not too close to the cruciform that the vortical structures have not fully formed, and not too far, obfuscating meaningful observation of the structures.
 
 The shedding of vortical structures leave their footprint on the flow field in the form of velocity fluctuations. The choice of analysing the fluctuations of the $y$-component of velocity is made due to the fact that the oscillator is constrained to move only in the transverse direction. Then, the velocity fluctuations are processed with FFT to obtain the Fourier transform of the fluctuation signals at each spanwise location. The combines Fourier transforms are presented using a colour map in Fig. \ref{fig:probe90YU10}. In this figure, every point is a result of that FFT giving the observer a spatial understanding of the vortical structures present in the flow. The abscissa and ordinates denotes $\fstr$ and $Z$ coordinates respectively, while the bar legend gives the amplitude of the FFT result.
 
+\begin{figure}[H]
+  \centering
+\includegraphics[angle=90,width=0.9\textwidth]{figs/probe90YU10}
+\caption{Distribution of normalised frequency of vortex shedding, along the span of the cylinder of the pure cruciform at $\ured = \urte$.}
+  \label{fig:probe90YU10}
+\end{figure}
+
 Through inspection, one immediately notices two frequency bands with high amplitudes namely $\fstr \approx 1$ and $\fstr \approx 4.5$. The locations of these bands are between $3 \leq Z \leq 4.5$ for the former and $4.5 < Z \leq 7$ for the latter. Aided with this visualisation, one can give meaning to the $x$ and $z$-components of vorticity visualised in Fig. \ref{fig:vortStruct90}.
 
-\begin{figure}[!h]
+\begin{figure}[H]
   \centering
-  \begin{subfigure}[h]{0.6\textwidth}
+  \begin{subfigure}[h]{0.48\textwidth}
     \includegraphics[width=1\textwidth]{figs/vorx90}
     \caption{$x$-component vorticity}
     \label{fig:vorx90}
   \end{subfigure}
-
-  \begin{subfigure}[h]{0.6\textwidth}
+  \hfill
+  \begin{subfigure}[h]{0.48\textwidth}
     \includegraphics[width=1\textwidth]{figs/vorz90}
     \caption{$z$-component vorticity}
     \label{fig:vorz90}
@@ -1785,7 +1789,7 @@ The slices in Fig. \ref{fig:vortStruct90} visualise the distribution of the $x$ 
 
 Comparing Fig. \ref{fig:probe90YU10} with Fig. \ref{fig:vortStruct90} suggests that the $\fstr \approx 1$ band is actually due to the shedding of streamwise vortex of a scale close to $1D$ while the $\fstr \approx 4.5$ seems to be due to the shedding of Karman vortices. Contrary to the vortical structure commonly observed in studies of isolated circular cylinders \citep{Deng2007,Kinaci2016,Duranay2020}, in the pure cruciform case, two distinct vortical structures take shape in the flow, namely streamwise and Karman vortices. This is consistent with the findings in \citet{Koide2017} or \citet{Zhao2018a}, where they observed a pair of streamwise vortices on a scale of $\approx 1D$ form in the vicinity of the cruciform juncture, and Karman vortices further away in the spanwise direction. Note that the vibration-driving streamwise vortices forming close to the cruciform juncture exist in pairs: in Fig. \ref{fig:vorx90}, one is observed to rotate in the clockwise direction when $Z > 0$ and the other in the counter-clockwise direction when $Z < 0$. What results from this counter-rotating vortex pair is a thrust, propelling the cylinder upwards. This is consistent with the fact that the vorticity field visualisations are produced when the $\cl$ is at a maximum. This work also observe the core of both streamwise vortices lie approximately on the same $Y$-plane, parallel to the axis of the cylinder.
 
-Figures \ref{fig:qCrit090U10} and \ref{fig:qCrit090U02} highlights the three-dimensionality of the vortical structures during SVIV and KVIV, respectively. This shows additional proof that the vibration of the pure cruciform at $\urte$ is due to the shedding of streamwise vortices, while the vibration at $\urtw$ is due to the shedding of Karman vortices.
+Figures \ref{fig:qCrit090U10} and \ref{fig:qCrit090U02} highlights the three-dimensionality of the vortical structures during SVIV and KVIV, respectively. This shows additional proof that the vibration of the pure cruciform at $\urte$ is due to the shedding of streamwise vortices, while the vibration at $\urtw$ is due to the shedding of Karman vortices. Results of this Section \ref{ssec:svivRegimeVortStruct} and the previous Section \ref{ssec:svivRegimeAmpFreqResp} answers objective one of the thesis.
 
 \begin{figure}[H]
   \centering
@@ -1932,7 +1936,7 @@ Once $\ured$ reaches 15.9, it has become difficult to argue that the profile of 
   \caption{Temporal evolution of $\ystr$ and $\cl$ at $\ured = \urse$.} \label{fig:tempEvoCompare}
 \end{figure}
 
-Once the signal is decomposed using EEMD, Fig. \ref{fig:tempEvoCompare}a is replotted using $\cclys$ and $\cysys$ in Fig. \ref{fig:tempAnalysisTransition}a. One can clearly see that the part of $\cl$ signal responsible for driving the vibration at  $\ured = 15.9$ is embedded in the original $\cl$ signal (Fig. \ref{fig:tempAnalysisTransition}a), and decomposition via EEMD managed to recover this signal, which leads $\cysys$ by approximately 150 deg. on average, throughout the whole observation time (Fig. \ref{fig:tempAnalysisTransition}b). This decline from $\phi \approx 180$ deg. at reduced velocities $\urfo \leq \ured \leq \ursi$, to $\phi \approx 150$ deg. at $\ured = \urse$ is quite sizeable, suggesting a fundamental change in flow dynamics, particularly in terms of vortical structure. Another significant change is the increased scatter in $\phi$ from its time-averaged value, different from the evolution of $\phi$ in the range $\urfo \leq \ured \leq \ursi$, which varies only slightly throughout the observation time.
+Once the signal is decomposed using EEMD, Fig. \ref{fig:tempEvoCompare}a is replotted using $\cclys$ and $\cysys$ in Fig. \ref{fig:tempAnalysisTransition}a. One can clearly see that the part of $\cl$ signal responsible for driving the vibration at  $\ured = 15.9$ is embedded in the original $\cl$ signal (Fig. \ref{fig:tempAnalysisTransition}a), and decomposition via EEMD managed to recover this signal, which leads $\cysys$ by approximately 150 deg. on average, throughout the whole observation time (Fig. \ref{fig:tempAnalysisTransition}b). This decline from $\phi \approx 180$ deg. at reduced velocities $\urfo \leq \ured \leq \ursi$, to $\phi \approx 150$ deg. at $\ured = \urse$ is quite sizeable, suggesting a fundamental change in flow dynamics, particularly in terms of vortical structure.
 
 \begin{figure}[H]
   \centering
@@ -1956,15 +1960,17 @@ Once the signal is decomposed using EEMD, Fig. \ref{fig:tempEvoCompare}a is repl
     \caption{Hilbert-Huang spectrogram of $\cl$.}
     \label{fig:tempAnalysisTransition-c}
   \end{subfigure}
-  \caption{Temporal analysis of the lift coefficient and normalised cylinder displacement signal at $\ured = \urse$.}
+  \caption{Temporal analysis of the $\cl$ and $\ystr$ signal at $\ured = \urse$.}
   \label{fig:tempAnalysisTransition}
 \end{figure}
 
-Inspecting the HHT spectrogram in Fig. \ref{fig:tempAnalysisTransition}c reveals two dominant bands in the frequency domain. The first one, denoted by a white rectangular frame, is the instantaneous frequency for the IMF component of lift shown in Fig. \ref{fig:tempAnalysisTransition}a, and its mean frequency lies close to the natural frequency of the system ($\fclstr \approx 1$). Simultaneously, a second frequency band with similar amplitude is marked with a white dashed rectangular frame around $\fclstr \approx 3.3$. The Strouhal number from this frequency is $\st = 0.20$, which is tenuously close to the Strouhal number for Karman vortices as predicted by Eq. \ref{eq:karmanSheddingFreq} for $\re = 7.9 \times 10^{3}$. This second band of frequency is thus attributed to the footprint left by the shedding of Karman vortices and the first band as the result of streamwise vortex shedding. Through visual inspection of Fig. \ref{fig:tempAnalysisTransition}c, both of these dominant frequency bands are markedly wider, and the individual values are more scattered from their time-averaged values than any of their counterparts within $\ured \leq \ursi$.
+\noindent Another significant change is the increased scatter in $\phi$ from its time-averaged value, different from the evolution of $\phi$ in the range $\urfo \leq \ured \leq \ursi$, which varies only slightly throughout the observation time.
+
+Inspecting the HHT spectrogram in Fig. \ref{fig:tempAnalysisTransition}c reveals two dominant bands in the frequency domain. The first one, denoted by a white rectangular frame, is the instantaneous frequency for the IMF component of lift shown in Fig. \ref{fig:tempAnalysisTransition}a, and its mean frequency lies close to the natural frequency of the system ($\fclstr \approx 1$). Simultaneously, a second frequency band with similar amplitude is marked with a white dashed rectangular frame around $\fclstr \approx 2.7$. The Strouhal number from this frequency is $\st = 0.20$, which is tenuously close to the Strouhal number for Karman vortices as predicted by Eq. \ref{eq:karmanSheddingFreq} for $\re = 7.9 \times 10^{3}$. This second band of frequency is thus attributed to the footprint left by the shedding of Karman vortices and the first band as the result of streamwise vortex shedding. Through visual inspection of Fig. \ref{fig:tempAnalysisTransition}c, both of these dominant frequency bands are markedly wider, and the individual values are more scattered from their time-averaged values than any of their counterparts within $\ured \leq \ursi$.
 
 Observing Karman vortices shedding from a cruciform structure during SVIV is not new in the literature. However, pinpointing how the streamwise and Karman vortex shedding modulates the lift signal from a cruciform structure in SVIV has no precedence. The vibration of the cylinder remains steadfast near the system natural frequency, even though both Karman and streamwise vortices are comparable in terms of amplitude. The underlying cause is probably the shedding frequency of the Karman vortex, which is too distant from the system's natural frequency $\fn$. The shedding frequency of the streamwise vortex is much closer to $\fn$ and is thus preferred by the cylinder.
 
-The transition to SVIV is considered complete at $\ured = 18.2$ when the time-averaged phase lag drops further to $\approx 20$ deg. Figure \ref{fig:tempAnalysisStableInitialBranch}a and \ref{fig:tempAnalysisStableInitialBranch}b documents this observation. The instantaneous phase lag is observed to slip through 360 deg. a little past the two second (\SI{2}{\second}) timestamp. By inspecting Fig. \ref{fig:tempAnalysisStableInitialBranch}a, one finds that a little past \SI{2}{\second} is when distortions in the periodicity of $\cclys$ occur. The slipping through 360 deg. was also mentioned by \citet{Khalak1999} in their work on KVIV, drawing attention to the quasi-periodic nature of the signal. For \citet{Khalak1999}, the slip occurs in the initial branch of KVIV. The overall low value of $\phi$ ($\approx 20$ deg. for the whole observation time at $\ured = 18.2$), coupled with the presence of $\phi$ slippage, is suggestive of the possibility for $\ured = 18.2$ being the initial branch of SVIV.
+The transition to SVIV is considered complete at $\ured = 18.2$ when the time-averaged phase lag drops further to $\approx 20$ deg. Figure \ref{fig:tempAnalysisStableInitialBranch}a and \ref{fig:tempAnalysisStableInitialBranch}b documents this observation. The instantaneous phase lag is observed to slip through 360 deg. a little past the two second (\SI{2}{\second}) timestamp. By inspecting Fig. \ref{fig:tempAnalysisStableInitialBranch}a, one finds that a little past \SI{2}{\second} is when distortions in the periodicity of $\cclys$ occur.
 
 \begin{figure}[H]
   \centering
@@ -1992,6 +1998,7 @@ The transition to SVIV is considered complete at $\ured = 18.2$ when the time-av
   \label{fig:tempAnalysisStableInitialBranch}
 \end{figure}
 
+\noindent The slipping through 360 deg. was also mentioned by \citet{Khalak1999} in their work on KVIV, drawing attention to the quasi-periodic nature of the signal. For \citet{Khalak1999}, the slip occurs in the initial branch of KVIV. The overall low value of $\phi$ ($\approx 20$ deg. for the whole observation time at $\ured = 18.2$), coupled with the presence of $\phi$ slippage, is suggestive of the possibility for $\ured = 18.2$ being the initial branch of SVIV. This is a new discovery and it demonstrates the usefulness of CFD in exploring parameter spaces. Using CFD, the researcher can explore new parameter spaces just by setting new values for them in the numerical code. The sensitivity and resolution of data collection can be easily adjusted unlike previous studies such as those by \citet{Koide2009} and \citet{Koide2013}. Their data simply was collected at a lower resolution, thus losing their chance to observe this initial branch of SVIV.
 
 \subsubsection{The stable SVIV regime (reduced velocity greater than 20.5)} \label{sssec:svivRegime}
 
@@ -2041,7 +2048,9 @@ The $\phi(t)$ data makes it possible to visualise the vibration ``branches'' wit
   \label{fig:phaseAngleRegime}
 \end{figure}
 
-Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B as one enters region C, marking the start of the transition to the SVIV regime. Following this, the system undergoes a more sudden drop to $\phim \approx 20$ deg. at $\ured = 18.2$. This is designated as region D. Finally, in region E, another jump is observed in $\phim$ from $\phim \approx 20$ deg. in region D to approximately 120 deg. when $\ured \geq \urni$. The discovery of these regimes of $\plag$ is only made possible through the use of HHT. The typical method of estimating $\plag$ from FFT is not applicable on complex lift signals such as those observed in this work.
+Then, $\phim$ experiences a slight drop from about one-sixth the value of $\phim$ in region B as one enters region C, marking the start of the transition to the SVIV regime. Following this, the value of $\phim$ drops to $\phim \approx 20$ deg. at $\ured = 18.2$. Another jump is observed from $\phim \approx 20$ deg. to approximately 120 deg. when $\ured \geq \urni$. This region where the jump occurs is designated as region D. Finally, in region E, $\phim$ maintains a value of approximately 120 deg. until the end of the observation range.
+
+The discovery of these regimes of $\plag$ is only made possible through the use of HHT. The typical method of estimating $\plag$ from FFT is not applicable on complex lift signals such as those observed in this work. Results of this Section \ref{ssec:tempEvo} in part answers thesis objective two.
 
 \subsection{Harnesseable power} \label{ssec:mathModel}
 
@@ -2108,7 +2117,7 @@ Figure \ref{fig:karmanStreamwiseComponents} shows the \rms{} amplitude of the Ka
   \label{fig:karmanStreamwiseComponents}
 \end{figure}
 
-One possible method of improving $\pfrms$ is by implementing a modified version of the cruciform that can guarantee the dominance of the vortical structure that can lock into $\fn$ - which in Fig. \ref{fig:karmanStreamwiseComponents} is the streamwise vortex - against the vortical structures that do not, i.e., the Karman vortices. This study explores one method -- namely the method of cruciform angle variation -- to achieve said dominance in the following sections.
+One possible method of improving $\pfrms$ is by implementing a modified version of the cruciform that can guarantee the dominance of the vortical structure that can lock into $\fn$ - which in Fig. \ref{fig:karmanStreamwiseComponents} is the streamwise vortex - against the vortical structures that do not, i.e., the Karman vortices. This study explores one method -- namely the method of cruciform angle variation -- to achieve said dominance in the following sections. Results of this Section \ref{ssec:mathModel} and the previous Section \ref{ssec:possIncrease} answers thesis objective two.
 %% Paraphrase in Grammarly END
 
 % \subsection{Section Summary} \label{sec:secSumPure}
@@ -2259,7 +2268,8 @@ On the other hand, at $\ured=22.7$, the vortical structure in Fig. \ref{fig:qCri
   \caption{The Q-criterion for the 67.5$^{\circ}$ cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso675U10}) and plan view (\ref{fig:qTop675U10}).} \label{fig:qCrit675U10}
 \end{figure}
 
-A similar result is observed for the \angth{} cruciform in Fig. \ref{fig:qCrit045U02}. The Karman vortices being shed are too chaotic and small to match the amplitude response of the \angfo{} cruciform at the same $\ured=4.5$.
+A similar result is observed for the \angth{} cruciform in Fig. \ref{fig:qCrit045U02}. The Karman vortices being shed are too chaotic and small to match the amplitude response of the \angfo{} cruciform at the same $\ured=4.5$. Increasing the $\ured$ to 22.7 does not solve this problem. As shown in Fig. \ref{fig:qCrit045U10}, increasing $\ured$ only increases the turbulence in the flow, not lift.
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.48\textwidth}
@@ -2276,8 +2286,6 @@ A similar result is observed for the \angth{} cruciform in Fig. \ref{fig:qCrit04
 
   \caption{The Q-criterion for the 45$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso045U02}) and plan view (\ref{fig:qTop045U02}).} \label{fig:qCrit045U02}
 \end{figure}
-
-\noindent Increasing the $\ured$ to 22.7 does not solve this problem. As shown in Fig. \ref{fig:qCrit045U10}, increasing $\ured$ only increases the turbulence in the flow, not lift.
 
 \begin{figure}[H]
   \centering
@@ -2300,18 +2308,18 @@ A similar result is observed for the \angth{} cruciform in Fig. \ref{fig:qCrit04
 
 Evolution of $\plag$ for the \angfo{} and \angth{} cruciforms share a similar trend in the $\uron \leq \ured \leq \urth$ range. For the \angfo{} cruciform, past $\ured = \urth$, there seem to be two distinct VIV branches between $\uron \leq \ured \leq \ursi$, and between $\urse \leq \ured \leq \urtt$. In the first branch between $\uron \leq \ured \leq \ursi$, $\plag$ seems to remain close to \SI{70}{\degree}, while in the second branch, close to \SI{110}{\degree}. In some sense, this is fairly similar to the $\plag$ vs. $\ured$ pattern of the pure cruciform case, except for two features. First, the lower branch of KVIV -- which in the pure cruciform case exhibits a $\plag \approx \SI{180}{\degree}$ -- does not extend beyond $\ured = \urth$. Instead, the value for $\plag$ suddenly drops to $\approx \SI{70}{\degree}$ before jumping back up to $\approx \SI{110}{\degree}$ starting at $\ured = \urse$. This value of \SI{110}{\degree} is curiously close to $\plag$ of the pure cruciform between $\urni \leq \ured \leq \urtt$, equivalent to the upper branch of SVIV. Working backwards from $\ured = \urni$ in the direction of decreasing $\ured$, and compare Fig. \ref{fig:phaseLag675deg} and Fig. \ref{fig:phaseAngleRegime}, one confronts the possibility that the $\plag = \SI{70}{\degree}$ branch of the \angfo cruciform is a \textit{variant} of the SVIV initial branch. For the pure cruciform case, this occurs within a narrow window of $\urse < \ured < \urni$, with $\plag \approx \SI{20}{\degree}$.
 
-For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower branch of KVIV at $\ured = \urth$, $\plag$ transitioned to $\approx \SI{65}{\degree}$ between $\urfi \leq \ured \leq \urni$. The proximity between the values \SI{65}{\degree} and \SI{70}{\degree} for the \angfo{} cruciform suggests the equivalence of the two branches. However, this study is inclined to a more cautious conclusion: the two are \textit{variants} of the same branch that is only similar in limited respects as they originate from different angled cruciforms. In this respect, the \angth{} cruciform is much less similar to the pure cruciform case, as one might expect, simply because \angth{} is a much larger deviation from \angfi{} compared to \angfo{}. This larger deviation is in the opinion of this study, what causes $\plag$ in the \angth{} case to drop further to $\approx \SI{35}{\degree}$ within $\urte \leq \ured \leq \urtt$, instead of jumping up to some mean value between $100 \leq \plag \; (\si{\degree}) \leq 130$ similar to what is observed in the \angfi{} and \angfo{} cruciforms.
+For the \angth{} cruciform in Fig. \ref{fig:phaseLag45deg}, right after lower branch of KVIV at $\ured = \urth$, $\plag$ transitioned to $\approx \SI{65}{\degree}$ between $\urfi \leq \ured \leq \urni$. The proximity between the values \SI{65}{\degree} and \SI{70}{\degree} for the \angfo{} cruciform suggests the equivalence of the two branches. However, this study is inclined to a more cautious conclusion: the two are \textit{variants} of the same branch that is only similar in limited respects as they originate from different angled cruciforms. In this respect, the \angth{} cruciform is much less similar to the pure cruciform case, as one might expect, simply because \angth{} is a much larger deviation from \angfi{} compared to \angfo{}. This larger deviation is in the opinion of this study, what causes $\plag$ in the \angth{} case to drop further to $\approx \SI{35}{\degree}$ within $\urte \leq \ured \leq \urtt$, instead of jumping up to some mean value between $100 \leq \plag \; (\si{\degree}) \leq 130$ similar to what is observed in the \angfi{} and \angfo{} cruciforms. Results from this Section \ref{ssec:phaseLag67545} and the previous Sections \ref{ssec:transitionalRegimeVortStruct} and \ref{ssec:transRegimeAmpFreqResp} partially answers thesis objective one.
 
 \begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.9\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseLag4}
+    \includegraphics[angle=90,width=\textwidth]{figs/phaseLag4}
     \caption{Phase lag for the 67.5$^{\circ}$ cruciform.}
     \label{fig:phaseLag675deg}
   \end{subfigure}
 
   \begin{subfigure}[h]{0.9\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseLag3}
+    \includegraphics[angle=90,width=\textwidth]{figs/phaseLag3}
     \caption{Phase lag for the 45$^{\circ}$ cruciform.}
     \label{fig:phaseLag45deg}
   \end{subfigure}
@@ -2422,22 +2430,26 @@ Then, the $x$ and $z$-component vorticity contours of the \angtw{} cruciform is 
 
 For the \angon{} cruciform in Figs. \ref{fig:vorx00} and \ref{fig:vorz00}, this overlap between the streamwise vortex cells and the distinct Karman vortex component is even more visually pronounced. This is interpreted as further evidence to the hypothesis that three-dimensional Karman vortical structures govern the vibration of the cylinder for shallow angled cruciforms, including the \SI{0}{\degree} cruciform, which perhaps is more aptly named in-tandem configuration. Notice that for the \angon{} layout, both the streamwise vortex cells and the Karman vortical structure are arranged parallel to the $z$-axis, or at \SI{0}{\degree} relative to the cylinder. This observation seems to demonstrate the role of the strip plate in shallow angled cruciforms: it modifies the spatial distribution of the Karman vortical structure that is driving the vibration of the cylinder.
 
+Figure \ref{fig:qCrit225U02} presents the Q-criterion for the \angtw{} cruciform at $\ured = 4.5$. The visualisation shows that while vortices do form around the cruciform, they do not seem to be sufficiently energised by the surrounding flow. Hence, their effect on driving the vibration of the cylinder becomes negligible. Apart from that, the vortical structures do not seem to be shed in a periodic manner. Instead, the vortical structures seem bunched up in the near-wake region of the cruciform. It is possible that this also contributed to the suppression of the vibration.
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.48\textwidth}
-    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qIso000U02}
+    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qIso225U02}
     \caption{Isometric view of the Q-criterion.}
-    \label{fig:qIso000U02}
+    \label{fig:qIso225U02}
   \end{subfigure}
   \hfill
   \begin{subfigure}[h]{0.48\textwidth}
-    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qTop000U02}
+    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qTop225U02}
     \caption{Plan view of the Q-criterion.}
-    \label{fig:qTop000U02}
+    \label{fig:qTop225U02}
   \end{subfigure}
 
-  \caption{The Q-criterion for the 45$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso000U02}) and plan view (\ref{fig:qTop000U02}).} \label{fig:qCrit000U02}
+  \caption{The Q-criterion for the 22.5$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso225U02}) and plan view (\ref{fig:qTop225U02}).} \label{fig:qCrit225U02}
 \end{figure}
+
+On the other hand, Fig. \ref{fig:qCrit225U10} presents the Q-criterion for the \angtw{} cruciform at $\ured = 22.7$. This time, the vortices in the near-wake of the cruciform is larger that those in Fig. \ref{fig:qCrit225U02}. When the vortices being shed are large enough and sufficiently energised, they can impose a periodic lift capable to drive the vibration of the cylinder. This results in the jump in onset of high-amplitude vibrations shown previously in Fig. \ref{fig:yStrRMS45}.
 
 \begin{figure}[H]
   \centering
@@ -2456,22 +2468,26 @@ For the \angon{} cruciform in Figs. \ref{fig:vorx00} and \ref{fig:vorz00}, this 
   \caption{The Q-criterion for the 22.5$^{\circ}$ cruciform at $\ured = \urte$: the isometric (\ref{fig:qIso225U10}) and plan view (\ref{fig:qTop225U10}).} \label{fig:qCrit225U10}
 \end{figure}
 
+In contrast, the Q-criterion of the \angon{} cruciform at $\ured = 4.5$ show that periodic shedding of Karman vortices do occur. The Karman vortices are coherent and they span the length of the cylinder. The reason behind the small vibration amplitude observed in Fig. \ref{fig:yStrRMS45} is thus due to insufficient energising of the vortical structures.
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.48\textwidth}
-    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qIso225U02}
+    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qIso000U02}
     \caption{Isometric view of the Q-criterion.}
-    \label{fig:qIso225U02}
+    \label{fig:qIso000U02}
   \end{subfigure}
   \hfill
   \begin{subfigure}[h]{0.48\textwidth}
-    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qTop225U02}
+    \includegraphics[width=\textwidth,trim={1.5cm 0 3cm 0},clip]{figs/qTop000U02}
     \caption{Plan view of the Q-criterion.}
-    \label{fig:qTop225U02}
+    \label{fig:qTop000U02}
   \end{subfigure}
 
-  \caption{The Q-criterion for the 22.5$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso225U02}) and plan view (\ref{fig:qTop225U02}).} \label{fig:qCrit225U02}
+  \caption{The Q-criterion for the 0$^{\circ}$ cruciform at $\ured = \urtw$: the isometric (\ref{fig:qIso000U02}) and plan view (\ref{fig:qTop000U02}).} \label{fig:qCrit000U02}
 \end{figure}
+
+\noindent However, because the vortices in the \angon{} cruciform are highly coherent and periodic, even a slight increase in $\ured$ triggered the onset of high-amplitude vibrations, visible in Fig. \ref{fig:yStrRMS45}. The onset takes place at $\ured = \urfo$, which is a mere $\urfo - \urtw = 4.6$ from $\ured = \urtw$ in Fig. \ref{fig:qCrit000U02}. An example vortical structure shed during the high-amplitude vibrations of the \angon{} cruciform is shown in Fig. \ref{fig:qCrit000U10}. It is apparent especially from Fig. \ref{fig:qTop000U02} that the diameter of the vortex is significantly bigger compared to that visualised in Fig. \ref{fig:qTop000U02}. This increase in diameter, or size, is an indication of increased strength of the vortex. As a result, the cylinder produces the highest amplitude vibration among all cruciforms studied in this thesis.
 
 \begin{figure}[H]
   \centering
@@ -2500,19 +2516,20 @@ As demonstrated in Section \ref{sec:svivRegime} and \ref{sec:transitionToKarman}
 
 \noindent The results also suggest the total cylinder-strip plate area overlap as a factor influencing the exact $\ured$ at which the vortical synchronisation occurs. The $\ured$ at which the synchronisation -- and the jump to large $\yrms$ amplitude -- occurs at a lower value when the overlap area is bigger. Nevertheless, there seems to be a limit to this lowering of $\ured$, which in this work is determined to be $\ured = \urfo$. Recall that this is the value where the synchronisation begins for the \angon{} layout; the layout where the totality of the cylinder and strip plate projections onto the $y-z$ plane coincides with each other.
 
-\section{Phase lag between $\cl$ and normalised cylinder displacement} \label{sec:phaseLag22500}
-In Fig. \ref{fig:phaseLag225deg}, the evolution of $\plag$ is summarised according to $\ured$ for the \angtw{} cruciform and find $\plag \approx \SI{115}{\degree}$ at $\ured = \urtt$. The significance of $\ured = \urtt$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseAngleRegime} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. This may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform in Fig. \ref{fig:yStrFreq21}.
+\subsection{Phase lag between $\cl$ and normalised cylinder displacement} \label{ssec:phaseLag22500}
+
+In Fig. \ref{fig:phaseLag225deg}, the evolution of $\plag$ is summarised according to $\ured$ for the \angtw{} cruciform. It is oberved that $\plag \approx \SI{115}{\degree}$ at $\ured = \urth$. The significance of $\ured = \urth$ for the \angtw{} cruciform is that it is where a jump in $\plag$ occurs from $\approx \SI{30}{\degree}$ to $\approx \SI{115}{\degree}$. This abrupt jump usually demarcates transition to the KVIV lower branch, as stated in the discussion accompanying Figs. \ref{fig:phaseAngleRegime} and \ref{fig:phaseLag67545deg}, with a value that is very close to \SI{180}{\degree}. The $\plag$ for the \angtw{} cruciform however, is about 36\% smaller than the expected $\approx \SI{180}{\degree}$. The fact that $\plag < 180 \si{\degree}$, may be the cause of absence of the KVIV lower branch in the $\fstr$ vs. $\ured$ plot of the \angtw{} cruciform in Fig. \ref{fig:yStrFreq21}.
 
 \begin{figure}[H]
   \centering
   \begin{subfigure}[h]{0.9\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseLag2}
+    \includegraphics[angle=90,width=\textwidth]{figs/phaseLag2}
     \caption{Phase lag for the 22.5$^{\circ}$ cruciform.}
     \label{fig:phaseLag225deg}
   \end{subfigure}
 
   \begin{subfigure}[h]{0.9\textwidth}
-    \includegraphics[width=\textwidth]{figs/phaseLag1}
+    \includegraphics[angle=90,width=\textwidth]{figs/phaseLag1}
     \caption{Phase lag for the 0$^{\circ}$ cruciform.}
     \label{fig:phaseLag00deg}
   \end{subfigure}
@@ -2521,12 +2538,35 @@ In Fig. \ref{fig:phaseLag225deg}, the evolution of $\plag$ is summarised accordi
   \label{fig:phaseLag22500deg}
 \end{figure}
 
-The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump is the sudden drop at $\ured = \urfo$, which brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which $\plag$ is found to gradually increase up to $\ured = \urtt$.
+The \angon{} arrangement produces a similar trend to Fig. \ref{fig:phaseLag225deg}, as one can see in Fig. \ref{fig:phaseLag00deg}. However, the $\plag$ jump at  $\ured =\urtt$ is more pronounced and achieves a value very close to \SI{180}{\degree}. Following the sudden jump, is the sudden drop at $\ured = \urfo$. This brings $\plag$ to approximately \SI{25}{\degree}. This trend continues up to $\ured = \urse$, after which $\plag$ is found to gradually increase up to $\ured = \urtt$. Results from this Section \ref{ssec:phaseLag22500}, and previous Sections \ref{ssec:kvivAmpFreqResp} and \ref{ssec:kvivRegimeVortStruct} answers thesis objective one.
 
 \section{Power characteristic in cruciform angle - reduced velocity parameter space}\label{sec:powerCharacteristic}
-In this study, the mechanical power is harnessed from the flow for each cruciform through the application of the formula in Eq. \ref{eq:rmsMechPower}.
 
-To understand how mechanical power $\pmrms$ is influenced not only by $\ured$, but also by the strip plate tilt angle $\alpha$ (\si{\degree}), $\pmrms$ is visualised as contour plots, where the abscissa and ordinate are $\ured$ and $\alpha$, respectively, and the colour of the contours denote the magnitude of $\pmrms$. As an example, the values of $\yrms$ against $\ured$ and $\alpha$ are plotted in Fig. \ref{fig:yRMSContour}. The data used to produce Fig. \ref{fig:yRMSContour} are those from Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}. Then, linear interpolations are performed on the $\yrms$ data along both $\ured$ and $\alpha$ axes to populate the $\alpha$--$\ured$ parameter space. The result of this two-dimensional interpolation is Fig. \ref{fig:yRMSContour}. The snapshot of $\yrms$ evolution in the $\alpha$--$\ured$ parameter space summarises the observations made previously in Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}.
+Table \ref{tab:mainFindings} summarises the key values observed in this study. In the table, key values such as the maximum $\yrms$, high-amplitude vibration onset ($\ured$), maximum $\pmrms$ (mW) and maximum $\etamech$ (\%) are presented. These values serve as the basis to create the map for $\yrms$, $\pmrms$ and $\etamech$ in $\alpha \; (\si{\degree})-\ured$ parameter space.
+
+ \begin{table}[!ht]
+ % \setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+ % \renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
+ \centering
+ \caption{Summary of main findings.} \label{tab:mainFindings}
+ \vspace{\baselineskip}
+ \setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+ \renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
+ \begin{tabular}{l l c c c c}
+   \hline
+   \hline
+ Parameter / Cruciform Angle, $\alpha \; (\si{\degree})$ & 0       & 22.5    & 45      & 67.5    & 90      \\
+   \hline
+ Maximum $\yrms$                                       & 0.79    & 0.41    & 0.03    & 0.08    & 0.49    \\
+ High-amplitude onset ($\ured$)                        & $\urfo$ & $\urni$ & $\urtw$ & $\urtw$ & $\urte$ \\
+ Maximum $\pmrms$ (mW)               & 11.3    & 2.9     & 0.01    & 0.07    & 3.6     \\
+ Maximum $\etamech$ (\%)        & 1.8     & 0.17    & 0.22    & 1.01    & 0.27    \\
+   \hline
+   \hline
+ \end{tabular}
+ \end{table}
+
+In this study, the mechanical power is computed for each cruciform through the application of the formula in Eq. \ref{eq:rmsMechPower}. To understand how mechanical power $\pmrms$ is influenced not only by $\ured$, but also by the cruciform angle $\alpha$ (\si{\degree}), $\pmrms$ is visualised as contour plots, where the abscissa and ordinate are $\ured$ and $\alpha$, respectively, and the colour of the contours denote the magnitude of $\pmrms$. As an example, the values of $\yrms$ against $\ured$ and $\alpha$ are plotted in Fig. \ref{fig:yRMSContour}.
 
 \begin{figure}[H]
   \centering
@@ -2534,6 +2574,8 @@ To understand how mechanical power $\pmrms$ is influenced not only by $\ured$, b
   \caption{Isocontours describing the map of the normalised RMS amplitude of cylinder displacment, $\yrms$ in the cruciform angle - reduced velocity ($\alpha$--$\ured$) parameter space.}
   \label{fig:yRMSContour}
 \end{figure}
+
+\noindent The data used to produce Fig. \ref{fig:yRMSContour} are those from Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}. Then, linear interpolations are performed on the $\yrms$ data along both $\ured$ and $\alpha$ axes to populate the $\alpha$--$\ured$ parameter space. The result of this two-dimensional interpolation is Fig. \ref{fig:yRMSContour}. The snapshot of $\yrms$ evolution in the $\alpha$--$\ured$ parameter space summarises the observations made previously in Figs. \ref{fig:yStrRMS1}, \ref{fig:yStrRMS23} and \ref{fig:yStrRMS45}.
 
 Then, the same two-dimensional interpolation is performed on the results of $\pmrms$ and then summarised Fig. \ref{fig:mechanicalPowerContour}. Two regions of significant power generation exist: first, in the $\urei \leq \ured \leq \urtt$ range as $\alpha$ approaches \angfi{}, and second, starting as low as $\ured = \urfo$ up to $\ured = \urtt$ as $\alpha$ approaches \angon{}. The estimated power in the region approaching $\alpha = \angfi{}$ agrees well in magnitude with previous experimental works such as \citet{Koide2013}. Also, even though no power data was measured in pure cruciform oscillator studies of \citet{Koide2009,Nguyen2012}, their $\yrms$ data agrees well in trend and in magnitude with Fig. \ref{fig:yRMSContour}, along the \angfi{} line. The $\pmrms$ contour of Fig. \ref{fig:mechanicalPowerContour} visualises the high power region as $\alpha$ approaches \angon{} and $\ured$ approaches $\urtt$. The highest $\pmrms$ estimated from the simulation reaches $O(10^{1})$ \si{\milli\watt}, which is one order of magnitude larger than any cruciform energy harvester of this scale have ever recorded in the literature.
 
@@ -2546,7 +2588,7 @@ Then, the same two-dimensional interpolation is performed on the results of $\pm
 
 The $\pmrms$ contour also elucidated the feasibility of cruciform angle variation as a means to control the range of $\ured$ within which substantive quantity of power can be harnessed. For a given operating range of $\ured$, one can choose for substantive power generation to take place in the high $\ured$ region ($\ured \geq \urei$), or across a larger range starting from a minimum of $\ured = \urfo$, by manipulating the cruciform angle. For power generation in the high $\ured$ region, one simply sets the cruciform angle to \angfi{}, and for power generation starting from the lowest possible $\ured$, one should opt for a shallow-angled cruciform, with increasing magnitude of power generated as $\alpha \rightarrow \SI{0}{\degree}$.
 
-Unlike Fig. \ref{fig:mechanicalPowerContour}, the efficiency contour in Fig. \ref{fig:powerEfficiencyContour} does not display a trend similar to the contour of $\yrms$ in Fig. \ref{fig:yRMSContour}. The pure cruciform achieves maximum $\etamech$ close to $\ured = \urei$, steep-angled cruciforms (\angfo{} and \angth{} cruciforms) attain maximum $\etamech$ within the vicinity of $(\ured,\alpha) = (\urtw,\angfo)$, and shallow-angled cruciforms (\angtw{} and \angon{} layouts) strikes maximum $\etamech$ in the neighbourhood of $(\ured,\alpha) = (\urfo,\angon)$. These high-efficiency regions is consistent with the assertion that different flow dynamics govern the vibration resulting from either the pure, steep-angled or shallow-angled cruciforms.
+Unlike Fig. \ref{fig:mechanicalPowerContour}, the efficiency contour in Fig. \ref{fig:powerEfficiencyContour} does not display a trend similar to the contour of $\yrms$ in Fig. \ref{fig:yRMSContour}. The pure cruciform achieves maximum $\etamech$ close to $\ured = \urei$, steep-angled cruciforms (\angfo{} and \angth{} cruciforms) attain maximum $\etamech$ within the vicinity of $(\ured,\alpha) = (\urtw,\angfo)$, and shallow-angled cruciforms (\angtw{} and \angon{} layouts) strikes maximum $\etamech$ in the neighbourhood of $(\ured,\alpha) = (\urfo,\angon)$. These high-efficiency regions is consistent with the assertion that different flow dynamics govern the vibration resulting from either the pure, steep-angled or shallow-angled cruciforms. This Section \ref{sec:powerCharacteristic} answers objective three.
 
 \begin{figure}[H]
   \centering
@@ -2559,9 +2601,32 @@ Unlike Fig. \ref{fig:mechanicalPowerContour}, the efficiency contour in Fig. \re
 %% Section Summary Part 1
 The chapter begins with the study of amplitude/frequency responses of the pure cruciform. Then, these results are validated against  experiment done in the open flow channel, and with experimental works of others in the literature. In doing so, this work found good agreement between the amplitude responses and observed fair agreement between the frequency responses. Then, the chapter proceeds with the demonstration of grid independency of the numerical solution. Through the GCI study, the fine mesh used for numerical data collection has been demonstrated to produce convergent results for $\yrms$, $\fstr$ and $\cl$.
 
-% The discrepancy in the frequency responses are attributed to the high resolution of observation obtainable through the use of CFD, which is not obscured by random excitation frequencies present in experimental works.
-
 Next, as part of fulfilling objective one, this chapter demonstrated the vortical structures present in the flow during the high-amplitde vibrations of the pure cruciform. This is found to be due to the alternate shedding of large-scale streamwise vortices. Karman vortices continue to be shed in the region away from the juncture of the cruciform, but the region close to the juncture is dominated by streamwise vortex shedding.
+
+% \begin{landscape}
+%   \thispagestyle{mylandscape}
+%   \begin{table}[!ht]
+%   % \setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+%   % \renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
+%   \centering
+%   \caption{Summary of main findings.} \label{tab:mainFindings}
+%   \vspace{\baselineskip}
+%   \setlength{\tabcolsep}{10pt}      % This is the table column padding. Default value: 6pt
+%   \renewcommand{\arraystretch}{1.5} % This is the table row padding. Default value: 1
+%   \begin{tabular}{l l c c c c}
+%     \hline
+%     \hline
+%   Parameter/Cruciform Angle, $\alpha \; (\si{\degree})$ & 0       & 22.5    & 45      & 67.5    & 90      \\
+%     \hline
+%   Maximum $\yrms$                                       & 0.79    & 0.41    & 0.03    & 0.08    & 0.49    \\
+%   High-amplitude onset ($\ured$)                        & $\urfo$ & $\urni$ & $\urtw$ & $\urtw$ & $\urte$ \\
+%   Maximum $\pmrms$ (mW)               & 11.3    & 2.9     & 0.01    & 0.07    & 3.6     \\
+%   Maximum $\etamech$ (\%)        & 1.8     & 0.17    & 0.22    & 1.01    & 0.27    \\
+%     \hline
+%     \hline
+%   \end{tabular}
+%   \end{table}
+% \end{landscape}
 
 For the steep-angled cruciforms, a different amplitude/frequency response as the pure cruciform was observed. This time, there only exists a narrow region of meaningful vibration in the KVIV regime. The SVIV regime seems to be non-existent in this steep-angled layout. Flow visualisations confirms the existence of large-scale streamwise vortices near the cruciform juncture, but the absence of a counter-rotating pair in the same plane as either the top or bottom of the upstream cylinder results in a severely diminished vibration-driving lift acting on the cylinder. Furthermore, the unstable evolution of $\fstr$ with respect to $\ured$ led this study to discover an inherent asymmetry in the distribution of vortices along the length of the cylinder, most apparent of which are the Karman vortex cells. This non-uniform distribution of force along the length of the cylinder is what probably induce the instability in the evolution of $\fstr$ with respect to $\ured$.
 
